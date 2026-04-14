@@ -14,7 +14,6 @@ import ApplyPanel    from "@/components/panels/ApplyPanel";
 import SponsorsPanel from "@/components/panels/SponsorsPanel";
 import SketchPanel   from "@/components/panels/SketchPanel";
 
-/* ─── Window registry ─────────────────────────────────────── */
 interface WindowConfig {
   id: string;
   title: string;
@@ -25,35 +24,29 @@ interface WindowConfig {
 }
 
 const WINDOW_DEFS: WindowConfig[] = [
-  { id: "about",    title: "About.app",       icon: "🍌", w: 640, h: 520, component: AboutPanel    },
-  { id: "schedule", title: "Schedule.ical",    icon: "📅", w: 620, h: 540, component: SchedulePanel },
-  { id: "faq",      title: "FAQ.txt",          icon: "❓", w: 560, h: 500, component: FAQPanel      },
-  { id: "prizes",   title: "Prizes.app",       icon: "🏆", w: 580, h: 520, component: PrizesPanel   },
-  { id: "apply",    title: "Apply.exe",        icon: "📝", w: 520, h: 560, component: ApplyPanel    },
-  { id: "sponsors", title: "Sponsors.pdf",     icon: "💛", w: 600, h: 500, component: SponsorsPanel },
-  { id: "sketch",   title: "AI Studio.sketch", icon: "🎨", w: 740, h: 520, component: SketchPanel   },
+  { id: "about",    title: "About",     icon: "🍌", w: 640, h: 520, component: AboutPanel    },
+  { id: "schedule", title: "Schedule",  icon: "📅", w: 620, h: 540, component: SchedulePanel },
+  { id: "faq",      title: "FAQ",       icon: "❓", w: 560, h: 500, component: FAQPanel      },
+  { id: "prizes",   title: "Prizes",    icon: "🏆", w: 580, h: 520, component: PrizesPanel   },
+  { id: "apply",    title: "Apply",     icon: "📝", w: 520, h: 560, component: ApplyPanel    },
+  { id: "sponsors", title: "Sponsors",  icon: "💛", w: 600, h: 500, component: SponsorsPanel },
+  { id: "sketch",   title: "AI Studio", icon: "🎨", w: 740, h: 520, component: SketchPanel   },
 ];
 
 const DESKTOP_ICONS = [
-  { id: "about",    icon: "🍌", label: "About.app"  },
-  { id: "sketch",   icon: "🎨", label: "AI Studio"  },
-  { id: "schedule", icon: "📅", label: "Schedule"   },
-  { id: "prizes",   icon: "🏆", label: "Prizes"     },
-  { id: "apply",    icon: "📝", label: "Apply.exe"  },
-  { id: "faq",      icon: "❓", label: "FAQ.txt"    },
-  { id: "sponsors", icon: "💛", label: "Sponsors"   },
+  { id: "about",    icon: "🍌", label: "About"     },
+  { id: "sketch",   icon: "🎨", label: "AI Studio" },
+  { id: "schedule", icon: "📅", label: "Schedule"  },
+  { id: "prizes",   icon: "🏆", label: "Prizes"    },
+  { id: "apply",    icon: "📝", label: "Apply"     },
+  { id: "faq",      icon: "❓", label: "FAQ"       },
+  { id: "sponsors", icon: "💛", label: "Sponsors"  },
 ];
 
-/* Cascade so every new window fans out instead of stacking */
 const CASCADE_START = { x: 80, y: 56 };
 const CASCADE_STEP  = 28;
 
-interface OpenWindow {
-  id: string;
-  zIndex: number;
-  x: number;
-  y: number;
-}
+interface OpenWindow { id: string; zIndex: number; x: number; y: number; }
 
 export default function Desktop() {
   const [openWindows, setOpenWindows] = useState<OpenWindow[]>([]);
@@ -65,54 +58,34 @@ export default function Desktop() {
       if (prev.find((w) => w.id === id)) {
         return prev.map((w) => w.id === id ? { ...w, zIndex: ++zCounter.current } : w);
       }
-      const cascade = openCount.current % 8;
-      openCount.current += 1;
-      return [
-        ...prev,
-        {
-          id,
-          zIndex: ++zCounter.current,
-          x: CASCADE_START.x + cascade * CASCADE_STEP,
-          y: CASCADE_START.y + cascade * CASCADE_STEP,
-        },
-      ];
+      const n = openCount.current++ % 8;
+      return [...prev, { id, zIndex: ++zCounter.current, x: CASCADE_START.x + n * CASCADE_STEP, y: CASCADE_START.y + n * CASCADE_STEP }];
     });
   }, []);
 
-  const closeWindow = useCallback((id: string) => {
-    setOpenWindows((prev) => prev.filter((w) => w.id !== id));
-  }, []);
-
-  const focusWindow = useCallback((id: string) => {
-    setOpenWindows((prev) =>
-      prev.map((w) => w.id === id ? { ...w, zIndex: ++zCounter.current } : w)
-    );
-  }, []);
+  const closeWindow = useCallback((id: string) => setOpenWindows((p) => p.filter((w) => w.id !== id)), []);
+  const focusWindow = useCallback((id: string) => setOpenWindows((p) => p.map((w) => w.id === id ? { ...w, zIndex: ++zCounter.current } : w)), []);
 
   const showHero = openWindows.length === 0;
 
   return (
     <div className="h-screen w-screen overflow-hidden relative desktop-wallpaper">
 
-      {/* ── Menu bar — always on top ──────────────────────────── */}
+      {/* Menu bar */}
       <MenuBar onOpenWindow={openWindow} />
 
-      {/* ── Left toolbar — always on top ─────────────────────── */}
+      {/* Left toolbar */}
       <Toolbar onOpenWindow={openWindow} />
 
-      {/* ── Desktop surface (below menubar + toolbar) ─────────── */}
+      {/* Desktop surface */}
       <div
         className="absolute"
         style={{ top: 36, left: 52, right: 0, bottom: 52 }}
       >
-        {/* Hero — shown when no windows are open */}
         {showHero && <HeroSection onOpenWindow={openWindow} />}
 
-        {/* Desktop icon column — always visible in top-right */}
-        <div
-          className="absolute top-4 right-3 flex flex-col gap-2.5 z-20"
-          style={{ pointerEvents: showHero ? "auto" : "auto" }}
-        >
+        {/* Right-column desktop icons */}
+        <div className="absolute top-4 right-3 flex flex-col gap-2.5 z-20">
           {DESKTOP_ICONS.map((icon) => (
             <DesktopIcon
               key={icon.id}
@@ -124,7 +97,7 @@ export default function Desktop() {
           ))}
         </div>
 
-        {/* Open windows */}
+        {/* Windows */}
         {openWindows.map((win) => {
           const def = WINDOW_DEFS.find((d) => d.id === win.id);
           if (!def) return null;
@@ -149,7 +122,7 @@ export default function Desktop() {
         })}
       </div>
 
-      {/* ── Dock — pinned above everything ───────────────────── */}
+      {/* Bottom dock */}
       <div
         className="fixed bottom-0 flex justify-center items-end pb-1.5"
         style={{ left: 52, right: 0, zIndex: 9000 }}
