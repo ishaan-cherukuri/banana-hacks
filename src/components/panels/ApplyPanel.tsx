@@ -53,9 +53,26 @@ export default function ApplyPanel() {
     e.preventDefault();
     if (!validate()) return;
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1400));
-    setSubmitting(false);
-    setStep("success");
+    try {
+      const res = await fetch("https://formspree.io/f/xwvapjnn", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name:        form.name,
+          email:       form.email,
+          role:        form.role,
+          experience:  form.experience,
+          team_status: form.teamStatus,
+          project_idea: form.projectIdea,
+        }),
+      });
+      if (!res.ok) throw new Error("submission failed");
+      setStep("success");
+    } catch {
+      setErrors({ name: "Something went wrong — please try again." });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (step === "success") {

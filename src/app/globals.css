@@ -37,8 +37,10 @@ body {
   background: rgba(255, 251, 240, 0.96);
   backdrop-filter: blur(24px) saturate(1.4);
   -webkit-backdrop-filter: blur(24px) saturate(1.4);
-  border: 1px solid rgba(26, 26, 46, 0.09);
+  border: 1px solid rgba(26, 26, 46, 0.18);
   border-radius: 12px;
+  outline: 1px solid rgba(0, 0, 0, 0.55);
+  outline-offset: -1px;
   box-shadow:
     0 4px 6px -1px rgba(26, 26, 46, 0.06),
     0 20px 40px -8px rgba(26, 26, 46, 0.14),

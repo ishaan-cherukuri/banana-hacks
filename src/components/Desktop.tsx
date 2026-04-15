@@ -131,11 +131,14 @@ export default function Desktop() {
           {DESKTOP_ICONS.map((icon) => {
             const isOpen = openWindows.some((w) => w.id === icon.id);
             return (
-              <div key={icon.id} className="relative flex flex-col items-center gap-0.5">
+              <div key={icon.id} className="relative flex flex-col items-center gap-0.5 group/dock">
+                {/* Tooltip */}
+                <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 rounded-md bg-studio-ink text-white text-[11px] font-display font-semibold whitespace-nowrap pointer-events-none opacity-0 group-hover/dock:opacity-100 transition-opacity duration-150 shadow-lg">
+                  {icon.label}
+                </div>
                 <button
                   className="w-10 h-10 rounded-xl bg-white border border-studio-ink/08 flex items-center justify-center text-xl icon-tile hover:bg-banana-50 hover:border-banana-400/50 hover:shadow-icon active:scale-90 transition-all"
                   onClick={() => openWindow(icon.id)}
-                  title={icon.label}
                 >
                   {icon.icon}
                 </button>
@@ -144,11 +147,14 @@ export default function Desktop() {
             );
           })}
           <div className="w-px h-6 bg-studio-ink/10 mx-1" />
-          <div className="relative flex flex-col items-center gap-0.5">
+          <div className="relative flex flex-col items-center gap-0.5 group/dock">
+            {/* Tooltip */}
+            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 rounded-md bg-studio-ink text-white text-[11px] font-display font-semibold whitespace-nowrap pointer-events-none opacity-0 group-hover/dock:opacity-100 transition-opacity duration-150 shadow-lg">
+              Apply Now
+            </div>
             <button
               className="w-10 h-10 rounded-xl bg-banana-400 flex items-center justify-center text-xl icon-tile hover:bg-banana-500 hover:shadow-icon active:scale-90 transition-all"
               onClick={() => openWindow("apply")}
-              title="Apply Now"
             >
               📝
             </button>

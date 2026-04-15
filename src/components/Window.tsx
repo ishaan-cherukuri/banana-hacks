@@ -90,8 +90,8 @@ export default function Window({
         const dw = ev.clientX - resizeRef.current.startX;
         const dh = ev.clientY - resizeRef.current.startY;
         setSize({
-          w: Math.max(320, resizeRef.current.startW + dw),
-          h: Math.max(240, resizeRef.current.startH + dh),
+          w: Math.min(Math.max(320, resizeRef.current.startW + dw), Math.floor(window.innerWidth  * 0.70)),
+          h: Math.min(Math.max(240, resizeRef.current.startH + dh), Math.floor(window.innerHeight * 0.70)),
         });
       };
       const onUp = () => {
