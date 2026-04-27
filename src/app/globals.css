@@ -135,6 +135,12 @@ body {
 .animate-float      { animation: float 6s ease-in-out infinite; }
 .animate-float-slow { animation: float 9s ease-in-out infinite; }
 .animate-float-d2   { animation: float 7s ease-in-out 2s infinite; }
+.animate-float-hero { animation: float-hero 3.2s ease-in-out infinite; }
+
+@keyframes float-hero {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-48px); }
+}
 .animate-spin-slow  { animation: spin-slow 14s linear infinite; }
 .animate-bounce-in  { animation: bounce-in 400ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
 

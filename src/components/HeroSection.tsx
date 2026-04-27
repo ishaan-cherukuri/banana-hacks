@@ -272,7 +272,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           <LeafDecor    className="absolute bottom-8 left-8 opacity-35 animate-float-slow" size={42} />
 
           {/* Main mascot */}
-          <div className="relative z-10 animate-float">
+          <div className="relative z-10 animate-float-hero">
             <BananaMascot size={180} variant="painting" />
           </div>
 
