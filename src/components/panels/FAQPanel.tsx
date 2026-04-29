@@ -18,7 +18,7 @@ const FAQS: FAQItem[] = [
   },
   {
     q: "Do I need a team?",
-    a: "Nope! You can hack solo or form a team of up to 4 people. We run a team formation event on Day 1 if you'd like to find teammates. Teams of all sizes compete in the same pool.",
+    a: "Nope! You can hack solo or form a team of up to 4 people. We run a team formation event on Opening Night if you'd like to find teammates. Teams of all sizes compete in the same pool.",
   },
   {
     q: "What tech stack can I use?",
@@ -46,7 +46,7 @@ const FAQS: FAQItem[] = [
   },
   {
     q: "I've never done a hackathon before. Is this beginner-friendly?",
-    a: "Absolutely. We run dedicated beginner workshops, have mentors available throughout the week, and specifically celebrate first-time hackers. The only requirement is curiosity. We've seen incredible projects from people on their very first hackathon.",
+    a: "Absolutely. We run dedicated beginner workshops, have mentors available throughout the weekend, and specifically celebrate first-time hackers. The only requirement is curiosity. We've seen incredible projects from people on their very first hackathon.",
   },
 ];
 
@@ -56,7 +56,7 @@ export default function FAQPanel() {
   return (
     <div className="window-scroll h-full overflow-y-auto bg-banana-100">
       {/* Header */}
-      <div className="px-6 pt-6 pb-4">
+      <div className="px-6 pt-6 pb-4" style={{ background: "linear-gradient(135deg, rgba(253,216,53,0.30) 0%, rgba(76,110,245,0.15) 100%)" }}>
         <div className="flex items-center gap-2 mb-1">
           <span className="text-xl">🍌</span>
           <h2 className="font-display font-bold text-xl text-studio-ink">
@@ -78,8 +78,8 @@ export default function FAQPanel() {
             key={i}
             className={`rounded-xl border transition-all duration-200 overflow-hidden ${
               open === i
-                ? "border-banana-400/50 bg-white shadow-icon"
-                : "border-studio-ink/07 bg-white/50 hover:bg-white/80 hover:border-banana-400/25"
+                ? "border-banana-400/70 bg-banana-50 shadow-icon"
+                : "border-studio-ink/07 bg-white/60 hover:bg-white/90 hover:border-banana-400/40"
             }`}
           >
             <button

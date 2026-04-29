@@ -9,36 +9,30 @@ interface Event {
 }
 
 const SCHEDULE: Event[] = [
-  // Day 1
-  { day: "Thu Oct 9",  time: "12:00 PM UTC", title: "Opening Ceremony & Theme Reveal",          type: "kickoff",      virtual: true  },
-  { day: "Thu Oct 9",  time: "2:00 PM UTC",  title: "Workshop: Stable Diffusion from Scratch",  type: "workshop",     virtual: true  },
-  { day: "Thu Oct 9",  time: "5:00 PM UTC",  title: "Team Formation Social Hour",               type: "social",       virtual: true  },
-  // Day 2
-  { day: "Fri Oct 10", time: "10:00 AM UTC", title: "Office Hours: APIs & Model Hosting",       type: "office-hours", virtual: true  },
-  { day: "Fri Oct 10", time: "3:00 PM UTC",  title: "Workshop: LoRA Fine-tuning Deep Dive",     type: "workshop",     virtual: true  },
-  // Day 3
-  { day: "Sat Oct 11", time: "All Day",      title: "Hack Sprint — No scheduled events",        type: "social",       virtual: false },
-  { day: "Sat Oct 11", time: "8:00 PM UTC",  title: "Mid-point Check-in & Progress Showcase",   type: "social",       virtual: true  },
-  // Day 4
-  { day: "Sun Oct 12", time: "10:00 AM UTC", title: "Office Hours: UX & Prompt Engineering",    type: "office-hours", virtual: true  },
-  { day: "Sun Oct 12", time: "3:00 PM UTC",  title: "Workshop: ControlNet & Image Conditioning", type: "workshop",    virtual: true  },
-  // Day 5–6
-  { day: "Mon Oct 13", time: "All Day",      title: "Hack Sprint — Free build time",            type: "social",       virtual: false },
-  { day: "Tue Oct 14", time: "All Day",      title: "Hack Sprint — Polish & prepare demo",      type: "social",       virtual: false },
-  // Day 7
-  { day: "Wed Oct 15", time: "11:59 PM UTC", title: "Submission Deadline",                       type: "deadline",     virtual: false },
-  // Ceremony
-  { day: "Thu Oct 16", time: "3:00 PM UTC",  title: "Judging & Demo Day (live streams)",        type: "ceremony",     virtual: true  },
-  { day: "Thu Oct 16", time: "6:00 PM UTC",  title: "Award Ceremony & Closing",                 type: "ceremony",     virtual: true  },
+  // Friday — Opening night
+  { day: "Fri Oct 9",  time: "8:00 PM EDT",  title: "Opening Ceremony & Theme Reveal",          type: "kickoff",      virtual: true  },
+  { day: "Fri Oct 9",  time: "9:30 PM EDT",  title: "Team Formation Social Hour",               type: "social",       virtual: true  },
+  // Saturday — Build day 1
+  { day: "Sat Oct 10", time: "11:00 AM EDT", title: "Workshop: Stable Diffusion from Scratch",  type: "workshop",     virtual: true  },
+  { day: "Sat Oct 10", time: "2:00 PM EDT",  title: "Office Hours: APIs & Model Hosting",       type: "office-hours", virtual: true  },
+  { day: "Sat Oct 10", time: "5:00 PM EDT",  title: "Workshop: LoRA Fine-tuning Deep Dive",     type: "workshop",     virtual: true  },
+  { day: "Sat Oct 10", time: "9:00 PM EDT",  title: "Mid-point Check-in & Progress Showcase",   type: "social",       virtual: true  },
+  // Sunday — Build day 2 + deadline
+  { day: "Sun Oct 11", time: "11:00 AM EDT", title: "Office Hours: UX & Prompt Engineering",    type: "office-hours", virtual: true  },
+  { day: "Sun Oct 11", time: "3:00 PM EDT",  title: "Workshop: ControlNet & Image Conditioning", type: "workshop",    virtual: true  },
+  { day: "Sun Oct 11", time: "11:59 PM AoE", title: "Submissions Close",                         type: "deadline",     virtual: false },
+  // Monday — Closing
+  { day: "Mon Oct 12", time: "3:00 PM EDT",  title: "Judging & Demo Day (live streams)",        type: "ceremony",     virtual: true  },
+  { day: "Mon Oct 12", time: "6:00 PM EDT",  title: "Award Ceremony & Closing",                 type: "ceremony",     virtual: true  },
 ];
 
 const TYPE_META = {
-  kickoff:      { color: "bg-banana-400",     text: "text-studio-ink",  dot: "#FDD835",  label: "Kickoff"       },
-  workshop:     { color: "bg-peri-400",       text: "text-white",       dot: "#4C6EF5",  label: "Workshop"      },
-  "office-hours":{ color: "bg-studio-leaf/20",text: "text-studio-leaf", dot: "#2E7D32",  label: "Office Hours"  },
-  social:       { color: "bg-studio-ripe/15", text: "text-studio-ripe", dot: "#FF6B35",  label: "Social"        },
-  deadline:     { color: "bg-red-100",        text: "text-red-600",     dot: "#EF4444",  label: "Deadline"      },
-  ceremony:     { color: "bg-banana-400/20",  text: "text-banana-700",  dot: "#C49A00",  label: "Ceremony"      },
+  kickoff:      { color: "bg-banana-400",     text: "text-studio-ink",   dot: "#FDD835",  label: "Kickoff",      card: "bg-banana-400/20 border-banana-400/50"   },
+  workshop:     { color: "bg-peri-500",       text: "text-white",        dot: "#4C6EF5",  label: "Workshop",     card: "bg-peri-100 border-peri-300/60"          },
+  "office-hours":{ color: "bg-studio-leaf",   text: "text-white",        dot: "#2E7D32",  label: "Office Hours", card: "bg-studio-leaf/12 border-studio-leaf/35" },
+  social:       { color: "bg-studio-ripe",    text: "text-white",        dot: "#FF6B35",  label: "Social",       card: "bg-studio-ripe/15 border-studio-ripe/45" },
+  deadline:     { color: "bg-red-500",        text: "text-white",        dot: "#EF4444",  label: "Deadline",     card: "bg-red-50 border-red-300/70"             },
+  ceremony:     { color: "bg-banana-500",     text: "text-white",        dot: "#C49A00",  label: "Ceremony",     card: "bg-banana-300/30 border-banana-400/50"   },
 };
 
 function groupByDay(events: Event[]) {
@@ -57,11 +51,11 @@ export default function SchedulePanel() {
   return (
     <div className="window-scroll h-full overflow-y-auto bg-banana-100">
       {/* Header */}
-      <div className="sticky top-0 z-10 px-6 py-3 bg-banana-100/95 backdrop-blur border-b border-studio-ink/06">
+      <div className="sticky top-0 z-10 px-6 py-3 backdrop-blur border-b border-studio-ink/06" style={{ background: "linear-gradient(90deg, rgba(253,216,53,0.35) 0%, rgba(76,110,245,0.20) 100%)" }}>
         <div className="flex items-center justify-between">
           <div>
             <h2 className="font-display font-bold text-base text-studio-ink">Schedule</h2>
-            <p className="text-xs font-mono text-studio-ink/45">All times in UTC · Oct 9–16, 2026</p>
+            <p className="text-xs font-mono text-studio-ink/45">Oct 9–12, 2026 · All times EDT</p>
           </div>
           {/* Legend */}
           <div className="flex gap-2 flex-wrap justify-end">
@@ -81,10 +75,10 @@ export default function SchedulePanel() {
           <div key={day}>
             {/* Day header */}
             <div className="flex items-center gap-3 mb-3">
-              <div className="font-display font-bold text-sm text-studio-ink">
+              <div className="font-display font-bold text-xs text-studio-ink px-3 py-1 rounded-full bg-banana-400/40 border border-banana-400/60">
                 {day}
               </div>
-              <div className="flex-1 h-px bg-studio-ink/08" />
+              <div className="flex-1 h-px bg-banana-400/30" />
             </div>
 
             {/* Events for this day */}
@@ -108,7 +102,7 @@ export default function SchedulePanel() {
                     </span>
 
                     {/* Event card */}
-                    <div className="flex-1 bg-white/70 border border-studio-ink/06 rounded-lg px-3 py-2 hover:bg-white/95 hover:border-banana-400/25 transition-all group-hover:shadow-icon">
+                    <div className={`flex-1 border rounded-lg px-3 py-2 transition-all group-hover:shadow-icon ${meta.card}`}>
                       <div className="flex items-center gap-2">
                         <span className="font-body font-medium text-sm text-studio-ink leading-snug">
                           {event.title}

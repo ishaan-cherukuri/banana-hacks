@@ -24,7 +24,7 @@ const FACTS = [
   { icon: "🌐", label: "Format",  value: "100% Virtual"   },
   { icon: "👥", label: "Teams",   value: "1–4 people"     },
   { icon: "🆓", label: "Cost",    value: "Free to enter"  },
-  { icon: "🏆", label: "Prizes",  value: "$10K+ total"    },
+  { icon: "🎖️", label: "Prizes",  value: "$10K+ total"    },
   { icon: "🤖", label: "Theme",   value: "Generative AI"  },
 ];
 
@@ -79,7 +79,7 @@ export default function InfoSidebar({ onOpenWindow }: InfoSidebarProps) {
       </div>
 
       {/* ── Days countdown ───────────────────────────────────── */}
-      <div className="bg-white/70 border border-studio-ink/08 rounded-2xl p-4 text-center shadow-icon">
+      <div className="bg-banana-400/25 border border-banana-400/55 rounded-2xl p-4 text-center shadow-icon">
         <span
           suppressHydrationWarning
           className="font-display font-extrabold text-5xl leading-none text-studio-ink block"
@@ -106,7 +106,7 @@ export default function InfoSidebar({ onOpenWindow }: InfoSidebarProps) {
       </button>
 
       {/* ── Key facts ────────────────────────────────────────── */}
-      <div className="bg-white/50 border border-studio-ink/07 rounded-2xl overflow-hidden">
+      <div className="bg-white/70 border border-banana-400/30 rounded-2xl overflow-hidden shadow-icon">
         {FACTS.map((f, i) => (
           <div
             key={f.label}

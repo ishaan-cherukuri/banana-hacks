@@ -23,46 +23,51 @@ interface WindowConfig {
   component: React.ComponentType;
 }
 
+const WIN_W = 860;
+const WIN_H = 580;
+
 const WINDOW_DEFS: WindowConfig[] = [
-  { id: "about",    title: "About",     icon: "🍌", w: 640, h: 520, component: AboutPanel    },
-  { id: "schedule", title: "Schedule",  icon: "📅", w: 620, h: 540, component: SchedulePanel },
-  { id: "faq",      title: "FAQ",       icon: "❓", w: 560, h: 500, component: FAQPanel      },
-  { id: "prizes",   title: "Prizes",    icon: "🏆", w: 580, h: 520, component: PrizesPanel   },
-  { id: "apply",    title: "Apply",     icon: "📝", w: 520, h: 560, component: ApplyPanel    },
-  { id: "sponsors", title: "Sponsors",  icon: "💛", w: 600, h: 500, component: SponsorsPanel },
-  { id: "sketch",   title: "AI Studio", icon: "🎨", w: 740, h: 520, component: SketchPanel   },
+  { id: "about",    title: "About",     icon: "🍌", w: WIN_W, h: WIN_H, component: AboutPanel    },
+  { id: "schedule", title: "Schedule",  icon: "📅", w: WIN_W, h: WIN_H, component: SchedulePanel },
+  { id: "faq",      title: "FAQ",       icon: "❓", w: WIN_W, h: WIN_H, component: FAQPanel      },
+  { id: "prizes",   title: "Prizes",    icon: "🎖️", w: WIN_W, h: WIN_H, component: PrizesPanel   },
+  { id: "apply",    title: "Apply",     icon: "📝", w: WIN_W, h: WIN_H, component: ApplyPanel    },
+  { id: "sponsors", title: "Sponsors",  icon: "💛", w: WIN_W, h: WIN_H, component: SponsorsPanel },
+  { id: "sketch",   title: "AI Studio", icon: "🎨", w: WIN_W, h: WIN_H, component: SketchPanel   },
 ];
 
 const DESKTOP_ICONS = [
   { id: "about",    icon: "🍌", label: "About"     },
   { id: "sketch",   icon: "🎨", label: "AI Studio" },
   { id: "schedule", icon: "📅", label: "Schedule"  },
-  { id: "prizes",   icon: "🏆", label: "Prizes"    },
+  { id: "prizes",   icon: "🎖️", label: "Prizes"    },
   { id: "apply",    icon: "📝", label: "Apply"     },
   { id: "faq",      icon: "❓", label: "FAQ"       },
   { id: "sponsors", icon: "💛", label: "Sponsors"  },
 ];
 
-const CASCADE_START = { x: 80, y: 56 };
-const CASCADE_STEP  = 28;
-
 interface OpenWindow { id: string; zIndex: number; x: number; y: number; }
+
+function topLeftPos() {
+  // Position at top-left of desktop area (below menu bar, right of toolbar)
+  return { x: 52, y: 36 };
+}
 
 export default function Desktop() {
   const [openWindows, setOpenWindows] = useState<OpenWindow[]>([]);
-  const zCounter  = useRef(200);
-  const openCount = useRef(0);
+  const zCounter = useRef(200);
 
   const openWindow = useCallback((id: string) => {
     setOpenWindows((prev) => {
       if (prev.find((w) => w.id === id)) {
         return prev.map((w) => w.id === id ? { ...w, zIndex: ++zCounter.current } : w);
       }
-      const n = openCount.current++ % 8;
-      return [...prev, { id, zIndex: ++zCounter.current, x: CASCADE_START.x + n * CASCADE_STEP, y: CASCADE_START.y + n * CASCADE_STEP }];
+      const { x, y } = topLeftPos();
+      return [...prev, { id, zIndex: ++zCounter.current, x, y }];
     });
   }, []);
 
+  const goHome = useCallback(() => setOpenWindows([]), []);
   const closeWindow = useCallback((id: string) => setOpenWindows((p) => p.filter((w) => w.id !== id)), []);
   const focusWindow = useCallback((id: string) => setOpenWindows((p) => p.map((w) => w.id === id ? { ...w, zIndex: ++zCounter.current } : w)), []);
 
@@ -72,7 +77,7 @@ export default function Desktop() {
     <div className="h-screen w-screen overflow-hidden relative desktop-wallpaper">
 
       {/* Menu bar */}
-      <MenuBar onOpenWindow={openWindow} />
+      <MenuBar onOpenWindow={openWindow} onGoHome={goHome} />
 
       {/* Left toolbar */}
       <Toolbar onOpenWindow={openWindow} />
@@ -127,7 +132,7 @@ export default function Desktop() {
         className="fixed bottom-0 flex justify-center items-end pb-1.5"
         style={{ left: 52, right: 0, zIndex: 9000 }}
       >
-        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/80 backdrop-blur-md border border-studio-ink/10 rounded-2xl shadow-window mb-1">
+        <div className="flex items-center gap-1.5 px-3 py-1.5 backdrop-blur-md border border-banana-400/35 rounded-2xl shadow-window mb-1" style={{ background: "linear-gradient(90deg, rgba(255,251,240,0.92) 0%, rgba(253,216,53,0.18) 50%, rgba(255,251,240,0.92) 100%)" }}>
           {DESKTOP_ICONS.map((icon) => {
             const isOpen = openWindows.some((w) => w.id === icon.id);
             return (

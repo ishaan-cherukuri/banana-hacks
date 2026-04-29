@@ -6,7 +6,7 @@ import NeuralNetSVG  from "@/components/svgs/NeuralNetSVG";
 import { PixelSparkle, LeafDecor, BrushStroke, PixelCluster } from "@/components/svgs/StudioDecorations";
 
 /* ─── Countdown ────────────────────────────────────────────── */
-const HACKATHON_START = new Date("2026-10-09T00:00:00Z");
+const HACKATHON_START = new Date("2026-10-10T00:00:00Z");
 
 function useCountdown() {
   const calc = () => {
@@ -28,6 +28,7 @@ function useCountdown() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return t;
 }
+
 
 /* ─── useInView hook ───────────────────────────────────────── */
 function useInView(threshold = 0.2) {
@@ -80,9 +81,9 @@ function CountCell({ n, label }: { n: number; label: string }) {
 }
 
 /* ─── Floating badge ───────────────────────────────────────── */
-function Badge({ emoji, text, className = "" }: { emoji: string; text: string; className?: string }) {
+function Badge({ emoji, text, className = "", color = "bg-white/90 border-studio-ink/15 text-studio-ink" }: { emoji: string; text: string; className?: string; color?: string }) {
   return (
-    <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/85 border border-studio-ink/10 shadow-icon text-xs font-display font-semibold text-studio-ink/80 ${className}`}>
+    <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full border shadow-icon text-xs font-display font-semibold ${color} ${className}`}>
       <span>{emoji}</span>
       {text}
     </div>
@@ -113,13 +114,13 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             <div className="flex items-center gap-2 mb-5">
               <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-banana-400/20 border border-banana-400/50">
                 <div className="w-1.5 h-1.5 rounded-full bg-studio-leaf animate-pulse" />
-                <span className="font-mono text-xs font-semibold text-banana-800">Oct 9–16, 2026  ·  Virtual  ·  Free</span>
+                <span className="font-mono text-xs font-semibold text-banana-800">Oct 9–12, 2026  ·  Virtual  ·  Free</span>
               </div>
             </div>
 
             {/* Headline */}
             <div className="mb-2">
-              <h1 className="font-display font-extrabold leading-[0.92] text-studio-ink select-text" style={{ fontSize: "clamp(2.8rem, 5.5vw, 4.5rem)" }}>
+              <h1 className="font-display font-extrabold leading-[0.92] text-studio-ink" style={{ fontSize: "clamp(2.8rem, 5.5vw, 4.5rem)" }}>
                 Build the<br />
                 <span className="banana-gradient-text">Unseen.</span>
               </h1>
@@ -129,7 +130,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             {/* Subtext */}
             <p className="font-body text-base text-studio-ink/60 leading-relaxed max-w-md mb-6">
-              A week-long virtual hackathon dedicated to{" "}
+              A weekend virtual hackathon dedicated to{" "}
               <strong className="text-studio-ink font-semibold">generative AI</strong> and{" "}
               <strong className="text-studio-ink font-semibold">image creation</strong>.
               Sketch prompts, train models, ship creative tools.
@@ -137,7 +138,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             {/* Countdown */}
             <div className="flex items-center gap-4 mb-6">
-              <div className="flex items-center gap-3 bg-white/70 border border-studio-ink/10 rounded-2xl px-4 py-3 shadow-icon">
+              <div className="flex items-center gap-3 bg-banana-400/20 border border-banana-400/60 rounded-2xl px-4 py-3 shadow-icon">
                 <CountCell n={d} label="days"  />
                 <span className="font-display font-black text-xl text-studio-ink/30 leading-none">:</span>
                 <CountCell n={h} label="hours" />
@@ -183,12 +184,12 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             <div className="grid grid-cols-3 gap-4 max-w-xl mb-8">
               {[
-                { title: "7-Day Sprint", body: "Hack from Oct 9–16. Build, iterate, and ship something real in a week." },
-                { title: "Gen AI Theme", body: "All tracks center on generative AI — images, models, and creative tools." },
-                { title: "100% Virtual", body: "Join from anywhere. Async-friendly with live workshops and office hours." },
+                { title: "Weekend Sprint", body: "Hack from Oct 9–12. Build, iterate, and ship something real in a weekend.", color: "bg-banana-400/20 border-banana-400/50" },
+                { title: "Gen AI Theme", body: "All tracks center on generative AI — images, models, and creative tools.", color: "bg-peri-200 border-peri-400/50" },
+                { title: "100% Virtual", body: "Join from anywhere. Async-friendly with live workshops and office hours.", color: "bg-studio-ripe/15 border-studio-ripe/40" },
               ].map((f, i) => (
                 <FadeUp key={f.title} delay={i * 80}>
-                  <div className="bg-white/60 border border-studio-ink/08 rounded-2xl p-4 h-full">
+                  <div className={`border rounded-2xl p-4 h-full ${f.color}`}>
                     <div className="font-display font-bold text-sm text-studio-ink mb-1">{f.title}</div>
                     <div className="font-body text-[11px] text-studio-ink/55 leading-relaxed">{f.body}</div>
                   </div>
@@ -206,9 +207,9 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             <div className="flex flex-col gap-3 max-w-md mb-10">
               {[
-                { title: "Image Generation", desc: "Text-to-image, inpainting, style transfer", color: "bg-banana-400/12 border-banana-400/35" },
-                { title: "Model Fine-tuning",  desc: "LoRA, DreamBooth, ControlNet adapters",   color: "bg-peri-100 border-peri-300/50"       },
-                { title: "Creative Tools",     desc: "AI-assisted apps, prompt UIs, workflows", color: "bg-studio-ripe/08 border-studio-ripe/25" },
+                { title: "Image Generation", desc: "Text-to-image, inpainting, style transfer", color: "bg-banana-400/30 border-banana-400/60" },
+                { title: "Model Fine-tuning",  desc: "LoRA, DreamBooth, ControlNet adapters",   color: "bg-peri-200 border-peri-400/60"       },
+                { title: "Creative Tools",     desc: "AI-assisted apps, prompt UIs, workflows", color: "bg-studio-ripe/20 border-studio-ripe/50" },
               ].map((t, i) => (
                 <FadeUp key={t.title} delay={i * 90}>
                   <div className={`px-4 py-3 rounded-xl border ${t.color}`}>
@@ -240,16 +241,16 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
         >
           {/* Background blob */}
           <div
-            className="absolute inset-6 rounded-3xl opacity-40"
+            className="absolute inset-6 rounded-3xl opacity-70"
             style={{
               background:
-                "radial-gradient(ellipse at 60% 40%, #FDD835 0%, transparent 65%), radial-gradient(ellipse at 30% 70%, #BACBFF 0%, transparent 60%)",
+                "radial-gradient(ellipse at 60% 35%, #FDD835 0%, transparent 55%), radial-gradient(ellipse at 25% 70%, #BACBFF 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(255,107,53,0.35) 0%, transparent 40%)",
             }}
           />
 
           {/* Dot-grid overlay */}
           <div
-            className="absolute inset-0 opacity-20 pointer-events-none"
+            className="absolute inset-0 opacity-30 pointer-events-none"
             style={{ backgroundImage: "radial-gradient(circle, rgba(26,26,46,0.3) 1px, transparent 0)", backgroundSize: "20px 20px" }}
           />
 
@@ -259,10 +260,10 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           </div>
 
           {/* Floating badges */}
-          <Badge emoji="⚡" text="GPU Credits"   className="absolute top-8  left-6  animate-float"      />
-          <Badge emoji="🎓" text="Workshops"     className="absolute top-28 right-2 animate-float-slow" />
-          <Badge emoji="🏆" text="$10K Prizes"   className="absolute bottom-28 left-4  animate-float-d2"  />
-          <Badge emoji="🌍" text="500+ builders" className="absolute bottom-12 right-6 animate-float"    />
+          <Badge emoji="⚡" text="GPU Credits"   className="absolute top-8  left-6  animate-float"      color="bg-banana-400/85 border-banana-500/60" />
+          <Badge emoji="🎓" text="Workshops"     className="absolute top-28 right-2 animate-float-slow" color="bg-peri-300/90 border-peri-500/50" />
+          <Badge emoji="🎖️" text="$10K Prizes"   className="absolute bottom-28 left-4  animate-float-d2"  color="bg-studio-ripe/85 border-studio-ripe/60 text-white" />
+          <Badge emoji="🌍" text="500+ builders" className="absolute bottom-12 right-6 animate-float"    color="bg-white/90 border-studio-ink/15" />
 
           {/* Decorative clusters */}
           <PixelCluster className="absolute top-16 left-16 opacity-50" size={48} />

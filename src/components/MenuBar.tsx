@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 
 interface MenuBarProps {
   onOpenWindow: (id: string) => void;
+  onGoHome: () => void;
 }
 
-export default function MenuBar({ onOpenWindow }: MenuBarProps) {
+export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
   const [time, setTime] = useState("");
   const [menuOpen, setMenuOpen] = useState<string | null>(null);
 
@@ -26,19 +27,6 @@ export default function MenuBar({ onOpenWindow }: MenuBarProps) {
   }, []);
 
   const menus: Record<string, { label: string; action?: () => void }[]> = {
-    "Banana Hacks": [
-      { label: "About Banana Hacks", action: () => onOpenWindow("about") },
-      { label: "Apply Now", action: () => onOpenWindow("apply") },
-      { label: "—" },
-      { label: "Oct 9–16, 2026" },
-    ],
-    Studio: [
-      { label: "New Sketch", action: () => onOpenWindow("sketch") },
-      { label: "AI Generate", action: () => onOpenWindow("sketch") },
-      { label: "—" },
-      { label: "Prizes", action: () => onOpenWindow("prizes") },
-    ],
-    Schedule: [{ label: "View Schedule", action: () => onOpenWindow("schedule") }],
     Help: [
       { label: "FAQ", action: () => onOpenWindow("faq") },
       { label: "Discord Community" },
@@ -51,14 +39,14 @@ export default function MenuBar({ onOpenWindow }: MenuBarProps) {
       className="menu-bar fixed top-0 left-0 right-0 h-9 flex items-center px-3 gap-1"
       style={{ height: 36, zIndex: 9999 }}
     >
-      {/* App icon + name */}
-      <div
-        className="flex items-center gap-1.5 font-display font-bold text-sm text-studio-ink mr-3 cursor-default select-none"
-        onClick={() => setMenuOpen(menuOpen === "Banana Hacks" ? null : "Banana Hacks")}
+      {/* App icon + name → go home */}
+      <button
+        className="flex items-center gap-1.5 font-display font-bold text-sm text-studio-ink mr-3 select-none hover:opacity-75 transition-opacity active:scale-95"
+        onClick={onGoHome}
       >
         <span className="text-lg leading-none">🍌</span>
         <span>Banana Hacks</span>
-      </div>
+      </button>
 
       {/* Menu items */}
       {Object.entries(menus).map(([name, items]) => (
