@@ -54,16 +54,16 @@ export default function ApplyPanel() {
     if (!validate()) return;
     setSubmitting(true);
     try {
-      const res = await fetch("https://formspree.io/f/xwvapjnn", {
+      const res = await fetch("/api/apply", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name:        form.name,
           email:       form.email,
           role:        form.role,
           experience:  form.experience,
-          team_status: form.teamStatus,
-          project_idea: form.projectIdea,
+          teamStatus:  form.teamStatus,
+          projectIdea: form.projectIdea,
         }),
       });
       if (!res.ok) throw new Error("submission failed");

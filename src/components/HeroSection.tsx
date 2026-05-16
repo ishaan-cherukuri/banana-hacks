@@ -156,7 +156,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
                 onClick={() => onOpenWindow("apply")}
                 className="px-6 py-3 rounded-xl font-display font-bold text-base bg-banana-400 text-studio-ink hover:bg-banana-500 active:scale-[0.97] transition-all shadow-icon hover:shadow-window-focus"
               >
-                Apply Now 🍌
+                Apply Now
               </button>
               <button
                 onClick={() => onOpenWindow("sketch")}
@@ -167,11 +167,11 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             </div>
 
             {/* Scroll cue */}
-            <div className="flex items-center gap-2 text-studio-ink/30">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="6 9 12 15 18 9" />
+            <div className="flex justify-center" style={{ maxWidth: "28rem" }}>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A1A2E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="animate-scroll-cue" style={{ opacity: 0.65 }}>
+                <line x1="12" y1="4" x2="12" y2="18" />
+                <polyline points="6 12 12 18 18 12" />
               </svg>
-              <span className="font-mono text-[10px] uppercase tracking-widest">scroll to learn more</span>
             </div>
           </div>
 
@@ -225,7 +225,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
                 onClick={() => onOpenWindow("apply")}
                 className="px-6 py-3 rounded-xl font-display font-bold text-base bg-banana-400 text-studio-ink hover:bg-banana-500 active:scale-[0.97] transition-all shadow-icon"
               >
-                Apply Now — it&apos;s free 🍌
+                Apply Now — it&apos;s free
               </button>
             </FadeUp>
           </div>
@@ -239,19 +239,16 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           className="sticky top-0 self-start shrink-0 relative flex items-center justify-center overflow-hidden"
           style={{ width: "38%", height: "calc(100vh - 80px)" }}
         >
-          {/* Background blob */}
+          {/* Gradient card box */}
           <div
-            className="absolute inset-6 rounded-3xl opacity-70"
+            className="absolute pointer-events-none"
             style={{
-              background:
-                "radial-gradient(ellipse at 60% 35%, #FDD835 0%, transparent 55%), radial-gradient(ellipse at 25% 70%, #BACBFF 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(255,107,53,0.35) 0%, transparent 40%)",
+              inset: "28px 20px",
+              borderRadius: "28px",
+              background: "linear-gradient(145deg, rgba(253,216,53,0.28) 0%, rgba(186,203,255,0.35) 55%, rgba(253,216,53,0.18) 100%)",
+              border: "1.5px solid rgba(186,203,255,0.55)",
+              boxShadow: "0 0 0 1px rgba(253,216,53,0.25), 0 12px 48px rgba(186,203,255,0.22), inset 0 1px 0 rgba(255,255,255,0.6)",
             }}
-          />
-
-          {/* Dot-grid overlay */}
-          <div
-            className="absolute inset-0 opacity-30 pointer-events-none"
-            style={{ backgroundImage: "radial-gradient(circle, rgba(26,26,46,0.3) 1px, transparent 0)", backgroundSize: "20px 20px" }}
           />
 
           {/* Neural net */}

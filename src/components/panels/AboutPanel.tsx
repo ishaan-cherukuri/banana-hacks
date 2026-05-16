@@ -71,22 +71,21 @@ export default function AboutPanel() {
 
       {/* What to build */}
       <div className="px-8 pb-6">
-        <h2 className="font-display font-bold text-lg text-studio-ink mb-3 flex items-center gap-2">
-          <span className="w-6 h-6 rounded-md bg-banana-400 flex items-center justify-center text-xs">🎨</span>
+        <h2 className="font-display font-bold text-lg text-studio-ink mb-3">
           What You'll Build
         </h2>
         <div className="grid grid-cols-2 gap-3">
           {[
-            { icon: "🖼️", title: "Image Generators",   desc: "Text-to-image tools, style transfer, inpainting systems",          color: "bg-banana-400/20 border-banana-400/45 hover:bg-banana-400/30" },
-            { icon: "🤖", title: "AI Pipelines",        desc: "Fine-tuned diffusion models, LoRA adapters, controlnet workflows",  color: "bg-peri-100 border-peri-300/60 hover:bg-peri-200" },
-            { icon: "✏️", title: "Creative Tools",      desc: "AI-assisted drawing apps, prompt engineering interfaces",           color: "bg-studio-ripe/12 border-studio-ripe/40 hover:bg-studio-ripe/20" },
-            { icon: "🎭", title: "Multi-modal Apps",    desc: "Combine image + text + audio generation in novel ways",             color: "bg-studio-leaf/10 border-studio-leaf/35 hover:bg-studio-leaf/18" },
+            { icon: "1", title: "Image Generators",   desc: "Text-to-image tools, style transfer, inpainting systems",          color: "bg-banana-400/20 border-banana-400/45 hover:bg-banana-400/30" },
+            { icon: "2", title: "AI Pipelines",        desc: "Fine-tuned diffusion models, LoRA adapters, controlnet workflows",  color: "bg-peri-100 border-peri-300/60 hover:bg-peri-200" },
+            { icon: "3", title: "Creative Tools",      desc: "AI-assisted drawing apps, prompt engineering interfaces",           color: "bg-studio-ripe/12 border-studio-ripe/40 hover:bg-studio-ripe/20" },
+            { icon: "4", title: "Multi-modal Apps",    desc: "Combine image + text + audio generation in novel ways",             color: "bg-studio-leaf/10 border-studio-leaf/35 hover:bg-studio-leaf/18" },
           ].map((item) => (
             <div
               key={item.title}
               className={`border rounded-xl p-4 transition-all group ${item.color}`}
             >
-              <div className="text-xl mb-1.5">{item.icon}</div>
+              <div className="w-6 h-6 rounded-md bg-studio-ink/10 flex items-center justify-center font-display font-bold text-sm text-studio-ink mb-1.5">{item.icon}</div>
               <div className="font-display font-semibold text-sm text-studio-ink mb-1">
                 {item.title}
               </div>

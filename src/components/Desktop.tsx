@@ -2,9 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import MenuBar      from "@/components/MenuBar";
-import Toolbar      from "@/components/Toolbar";
 import Window       from "@/components/Window";
-import DesktopIcon  from "@/components/DesktopIcon";
 import HeroSection  from "@/components/HeroSection";
 import AboutPanel    from "@/components/panels/AboutPanel";
 import SchedulePanel from "@/components/panels/SchedulePanel";
@@ -79,28 +77,12 @@ export default function Desktop() {
       {/* Menu bar */}
       <MenuBar onOpenWindow={openWindow} onGoHome={goHome} />
 
-      {/* Left toolbar */}
-      <Toolbar onOpenWindow={openWindow} />
-
       {/* Desktop surface */}
       <div
         className="absolute"
-        style={{ top: 36, left: 52, right: 0, bottom: 52 }}
+        style={{ top: 36, left: 0, right: 0, bottom: 52 }}
       >
         {showHero && <HeroSection onOpenWindow={openWindow} />}
-
-        {/* Right-column desktop icons */}
-        <div className="absolute top-4 right-3 flex flex-col gap-2.5 z-20">
-          {DESKTOP_ICONS.map((icon) => (
-            <DesktopIcon
-              key={icon.id}
-              id={icon.id}
-              icon={icon.icon}
-              label={icon.label}
-              onOpen={openWindow}
-            />
-          ))}
-        </div>
 
         {/* Windows */}
         {openWindows.map((win) => {
@@ -130,7 +112,7 @@ export default function Desktop() {
       {/* Bottom dock */}
       <div
         className="fixed bottom-0 flex justify-center items-end pb-1.5"
-        style={{ left: 52, right: 0, zIndex: 9000 }}
+        style={{ left: 0, right: 0, zIndex: 9000 }}
       >
         <div className="flex items-center gap-1.5 px-3 py-1.5 backdrop-blur-md border border-banana-400/35 rounded-2xl shadow-window mb-1" style={{ background: "linear-gradient(90deg, rgba(255,251,240,0.92) 0%, rgba(253,216,53,0.18) 50%, rgba(255,251,240,0.92) 100%)" }}>
           {DESKTOP_ICONS.map((icon) => {
