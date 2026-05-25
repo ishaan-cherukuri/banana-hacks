@@ -1,46 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
-import { google } from "googleapis";
-
-const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
-
-function getAuth() {
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const key = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
-  if (!email || !key) throw new Error("Missing Google service account env vars");
-  return new google.auth.JWT({ email, key, scopes: SCOPES });
-}
+import { supabase } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, role, experience, teamStatus, projectIdea } = body;
+    const { name, email, emergencyName, emergencyPhone, workshops, teamStatus, projectIdea } = body;
 
-    if (!name || !email || !role || !experience || !teamStatus) {
+    if (!name || !email || !teamStatus || !emergencyName || !emergencyPhone) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const sheetId = process.env.GOOGLE_SHEET_ID;
-    if (!sheetId) throw new Error("Missing GOOGLE_SHEET_ID env var");
-
-    const auth = getAuth();
-    const sheets = google.sheets({ version: "v4", auth });
-
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: sheetId,
-      range: "Sheet1!A:G",
-      valueInputOption: "USER_ENTERED",
-      requestBody: {
-        values: [[
-          new Date().toISOString(),
-          name,
-          email,
-          role,
-          experience,
-          teamStatus,
-          projectIdea ?? "",
-        ]],
-      },
+    const { error } = await supabase.from("registrations").insert({
+      name,
+      email,
+      emergency_name: emergencyName,
+      emergency_phone: emergencyPhone,
+      workshops: workshops ?? [],
+      team_status: teamStatus,
+      project_idea: projectIdea ?? null,
     });
+
+    if (error) {
+      console.error("Supabase insert error:", error);
+      return NextResponse.json({ error: "Submission failed" }, { status: 500 });
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {

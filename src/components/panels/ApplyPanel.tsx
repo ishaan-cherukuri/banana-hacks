@@ -8,26 +8,21 @@ type Step = "form" | "success";
 interface FormData {
   name: string;
   email: string;
-  role: string;
-  experience: string;
+  emergencyName: string;
+  emergencyPhone: string;
+  workshops: string[];
   teamStatus: string;
   projectIdea: string;
   agreeTerms: boolean;
 }
 
-const ROLES = ["Student", "Professional / Employed", "Researcher", "Freelancer / Independent", "Other"];
-const EXPERIENCE_LEVELS = [
-  "Beginner — I'm new to AI & hackathons",
-  "Intermediate — I've used AI APIs before",
-  "Advanced — I've trained or fine-tuned models",
-  "Expert — I work with generative AI professionally",
-];
+const WORKSHOPS = ["HTML/CSS", "Python", "Machine Learning"];
 const TEAM_STATUSES = ["Solo hacker", "I have a team ready", "Looking for teammates", "Not sure yet"];
 
 export default function ApplyPanel() {
   const [step, setStep] = useState<Step>("form");
   const [form, setForm] = useState<FormData>({
-    name: "", email: "", role: "", experience: "", teamStatus: "", projectIdea: "", agreeTerms: false,
+    name: "", email: "", emergencyName: "", emergencyPhone: "", workshops: [], teamStatus: "", projectIdea: "", agreeTerms: false,
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -37,12 +32,19 @@ export default function ApplyPanel() {
     setErrors((e) => ({ ...e, [key]: undefined }));
   };
 
+  const toggleWorkshop = (w: string) => {
+    setForm((f) => ({
+      ...f,
+      workshops: f.workshops.includes(w) ? f.workshops.filter((x) => x !== w) : [...f.workshops, w],
+    }));
+  };
+
   const validate = (): boolean => {
     const e: typeof errors = {};
-    if (!form.name.trim())                          e.name       = "Name is required";
-    if (!form.email.match(/^[^@]+@[^@]+\.[^@]+$/)) e.email      = "Valid email required";
-    if (!form.role)                                 e.role       = "Please select your role";
-    if (!form.experience)                           e.experience = "Please select experience level";
+    if (!form.name.trim())                          e.name          = "Name is required";
+    if (!form.email.match(/^[^@]+@[^@]+\.[^@]+$/)) e.email         = "Valid email required";
+    if (!form.emergencyName.trim())                 e.emergencyName = "Emergency contact name is required";
+    if (!form.emergencyPhone.trim())                e.emergencyPhone = "Emergency contact phone is required";
     if (!form.teamStatus)                           e.teamStatus = "Please select team status";
     if (!form.agreeTerms)                           e.agreeTerms = "You must agree to continue";
     setErrors(e);
@@ -58,12 +60,13 @@ export default function ApplyPanel() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name:        form.name,
-          email:       form.email,
-          role:        form.role,
-          experience:  form.experience,
-          teamStatus:  form.teamStatus,
-          projectIdea: form.projectIdea,
+          name:           form.name,
+          email:          form.email,
+          emergencyName:  form.emergencyName,
+          emergencyPhone: form.emergencyPhone,
+          workshops:      form.workshops,
+          teamStatus:     form.teamStatus,
+          projectIdea:    form.projectIdea,
         }),
       });
       if (!res.ok) throw new Error("submission failed");
@@ -134,46 +137,81 @@ export default function ApplyPanel() {
         {/* Email */}
         <div>
           <label htmlFor="apply-email" className="block text-xs font-display font-semibold text-studio-ink/70 mb-1">
-            Email Address *
+            Personal Email * <span className="text-studio-ink/40 font-normal">(don&apos;t use your school email)</span>
           </label>
           <input
             id="apply-email"
             type="email"
             value={form.email}
             onChange={(e) => setField("email", e.target.value)}
-            placeholder="ada@example.com"
+            placeholder="ada@gmail.com"
             className={`w-full px-3 py-2.5 rounded-xl border text-sm font-body bg-white text-studio-ink placeholder:text-studio-ink/30 focus:outline-none focus:border-banana-400 focus:ring-2 focus:ring-banana-400/20 transition-all ${errors.email ? "border-red-400" : "border-studio-ink/15"}`}
           />
           {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
         </div>
 
-        {/* Role + Experience */}
+        {/* Emergency Contact */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label htmlFor="apply-role" className="block text-xs font-display font-semibold text-studio-ink/70 mb-1">Role *</label>
-            <select
-              id="apply-role"
-              value={form.role}
-              onChange={(e) => setField("role", e.target.value)}
-              className={`w-full px-3 py-2.5 rounded-xl border text-sm font-body bg-white text-studio-ink focus:outline-none focus:border-banana-400 focus:ring-2 focus:ring-banana-400/20 transition-all ${errors.role ? "border-red-400" : "border-studio-ink/15"}`}
-            >
-              <option value="">Select...</option>
-              {ROLES.map((r) => <option key={r} value={r}>{r}</option>)}
-            </select>
-            {errors.role && <p className="text-xs text-red-500 mt-1">{errors.role}</p>}
+            <label htmlFor="apply-ec-name" className="block text-xs font-display font-semibold text-studio-ink/70 mb-1">
+              Emergency Contact Name *
+            </label>
+            <input
+              id="apply-ec-name"
+              type="text"
+              value={form.emergencyName}
+              onChange={(e) => setField("emergencyName", e.target.value)}
+              placeholder="Jane Lovelace"
+              className={`w-full px-3 py-2.5 rounded-xl border text-sm font-body bg-white text-studio-ink placeholder:text-studio-ink/30 focus:outline-none focus:border-banana-400 focus:ring-2 focus:ring-banana-400/20 transition-all ${errors.emergencyName ? "border-red-400" : "border-studio-ink/15"}`}
+            />
+            {errors.emergencyName && <p className="text-xs text-red-500 mt-1">{errors.emergencyName}</p>}
           </div>
           <div>
-            <label htmlFor="apply-exp" className="block text-xs font-display font-semibold text-studio-ink/70 mb-1">AI Experience *</label>
-            <select
-              id="apply-exp"
-              value={form.experience}
-              onChange={(e) => setField("experience", e.target.value)}
-              className={`w-full px-3 py-2.5 rounded-xl border text-sm font-body bg-white text-studio-ink focus:outline-none focus:border-banana-400 focus:ring-2 focus:ring-banana-400/20 transition-all ${errors.experience ? "border-red-400" : "border-studio-ink/15"}`}
-            >
-              <option value="">Select...</option>
-              {EXPERIENCE_LEVELS.map((l) => <option key={l} value={l}>{l}</option>)}
-            </select>
-            {errors.experience && <p className="text-xs text-red-500 mt-1">{errors.experience}</p>}
+            <label htmlFor="apply-ec-phone" className="block text-xs font-display font-semibold text-studio-ink/70 mb-1">
+              Emergency Contact Phone *
+            </label>
+            <input
+              id="apply-ec-phone"
+              type="tel"
+              value={form.emergencyPhone}
+              onChange={(e) => setField("emergencyPhone", e.target.value)}
+              placeholder="(555) 000-0000"
+              className={`w-full px-3 py-2.5 rounded-xl border text-sm font-body bg-white text-studio-ink placeholder:text-studio-ink/30 focus:outline-none focus:border-banana-400 focus:ring-2 focus:ring-banana-400/20 transition-all ${errors.emergencyPhone ? "border-red-400" : "border-studio-ink/15"}`}
+            />
+            {errors.emergencyPhone && <p className="text-xs text-red-500 mt-1">{errors.emergencyPhone}</p>}
+          </div>
+        </div>
+
+        {/* Workshops */}
+        <div>
+          <p className="block text-xs font-display font-semibold text-studio-ink/70 mb-2">
+            What workshops would you like to see? <span className="text-studio-ink/40 font-normal">(select all that apply)</span>
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {WORKSHOPS.map((w) => {
+              const selected = form.workshops.includes(w);
+              return (
+                <button
+                  key={w}
+                  type="button"
+                  onClick={() => toggleWorkshop(w)}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-body transition-all ${
+                    selected
+                      ? "border-banana-400 bg-banana-400/15 text-studio-ink font-medium"
+                      : "border-studio-ink/12 bg-white text-studio-ink/60 hover:border-banana-400/40 hover:bg-banana-50"
+                  }`}
+                >
+                  <div className={`w-4 h-4 rounded border-2 shrink-0 flex items-center justify-center transition-all ${selected ? "bg-banana-400 border-banana-600" : "border-studio-ink/30"}`}>
+                    {selected && (
+                      <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                        <path d="M1 4L3.5 6.5L9 1" stroke="#1A1A2E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </div>
+                  {w}
+                </button>
+              );
+            })}
           </div>
         </div>
 

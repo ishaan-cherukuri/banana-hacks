@@ -1,0 +1,158 @@
+{
+  "design_guidelines": {
+    "source": "hackUMBC 2025",
+    "palette": {
+      "background_primary": "#D4B896",
+      "background_secondary": "#C9A97E",
+      "surface_dark": "#6B1A28",
+      "surface_dark_hover": "#7D2233",
+      "surface_card_tan": "#C9A240",
+      "surface_card_olive": "#7A8A3A",
+      "surface_card_sienna": "#A84A28",
+      "surface_card_dark_olive": "#4A5A1E",
+      "text_on_light": "#2A1A0E",
+      "text_on_dark": "#F5ECD8",
+      "text_muted_on_dark": "#C8A87A",
+      "accent_gold": "#C8A840",
+      "accent_gold_bright": "#E8C850",
+      "accent_crimson": "#6B1A28",
+      "tag_food": "#C8A8F0",
+      "tag_event": "#F0C870",
+      "tag_workshop": "#A8D890",
+      "nav_background": "linear-gradient(to bottom, rgba(30,10,5,0.85) 0%, transparent 100%)"
+    },
+    "typography": {
+      "font_display": "MedievalSharp, Cinzel, serif",
+      "font_body": "system-ui, -apple-system, sans-serif",
+      "font_mono": "monospace",
+      "section_title_style": {
+        "format": "{ TITLE }",
+        "weight": "700",
+        "case": "uppercase",
+        "letter_spacing": "0.08em",
+        "size_desktop": "2.5rem"
+      },
+      "nav_links": {
+        "case": "uppercase",
+        "weight": "600",
+        "letter_spacing": "0.05em",
+        "size": "0.875rem"
+      },
+      "stat_numbers": {
+        "font": "UnifrakturMaguntia, MedievalSharp, blackletter, serif",
+        "size": "3rem",
+        "color": "accent_gold"
+      },
+      "card_heading": {
+        "weight": "700",
+        "size": "1.125rem"
+      },
+      "body_text": {
+        "weight": "400",
+        "size": "0.9375rem",
+        "line_height": "1.6"
+      }
+    },
+    "layout": {
+      "max_content_width": "900px",
+      "section_padding_vertical": "80px",
+      "section_padding_horizontal": "48px",
+      "navbar_height": "80px",
+      "navbar_position": "sticky",
+      "navbar_style": "transparent_with_dark_gradient_top"
+    },
+    "components": {
+      "navbar": {
+        "background": "gradient dark-to-transparent from top",
+        "logo_position": "left",
+        "links_position": "center",
+        "link_style": "uppercase spaced sans-serif",
+        "no_cta_button": true,
+        "border_bottom": false
+      },
+      "section_heading": {
+        "format": "{ HEADING }",
+        "sub_label_below": true,
+        "alignment": "center",
+        "color": "text_on_light"
+      },
+      "prize_cards": {
+        "layout": "4-column grid",
+        "shape": "rounded-2xl",
+        "no_border": true,
+        "no_shadow": true,
+        "icon_top_center": true,
+        "title_bottom_center": true,
+        "each_card_unique_color": true,
+        "colors": ["card_tan", "card_olive_green", "card_sienna", "card_dark_olive"]
+      },
+      "stat_cards": {
+        "layout": "4-column grid",
+        "background": "surface_dark",
+        "border": "2px ornamental gold border",
+        "text_color": "accent_gold",
+        "number_font": "blackletter/old-style",
+        "label_below_number": true,
+        "rounded": "rounded-xl"
+      },
+      "faq_accordion": {
+        "container_background": "surface_dark",
+        "container_padding": "32px",
+        "item_background": "surface_dark_slightly_lighter",
+        "item_border": "1px solid rgba(255,255,255,0.12)",
+        "toggle_indicator": "▼ arrow right-aligned",
+        "layout": "2-column grid",
+        "text_color": "text_on_dark"
+      },
+      "schedule_timeline": {
+        "orientation": "horizontal scroll",
+        "timeline_line_color": "accent_crimson",
+        "dot_color": "accent_crimson",
+        "card_background": "white",
+        "card_shadow": "subtle",
+        "time_display": "above and below line alternating",
+        "event_tags": ["Food", "Event", "Workshop"],
+        "tag_colors": {
+          "Food": "lavender",
+          "Event": "amber",
+          "Workshop": "sage_green"
+        }
+      },
+      "workshop_cards": {
+        "outer_container": "surface_dark rounded-2xl padded",
+        "inner_cards": "semi-transparent lighter surface with border",
+        "title_weight": "bold",
+        "host_label_color": "accent_gold",
+        "body_color": "text_on_dark muted"
+      },
+      "cta_buttons": {
+        "shape": "pill / rounded-full",
+        "background": "surface_dark",
+        "text": "text_on_dark",
+        "padding": "16px 32px",
+        "font_weight": "700",
+        "has_arrow_suffix": true,
+        "hover": "slightly lighter"
+      },
+      "social_footer": {
+        "icon_style": "circular brand color badges",
+        "label_below": true,
+        "label_case": "uppercase",
+        "layout": "horizontal centered row"
+      }
+    },
+    "decoration": {
+      "section_title_brackets": "{ }",
+      "stat_card_corner_ornaments": true,
+      "sparkle_stars_on_hero": true,
+      "timeline_dot_markers": true,
+      "texture": "subtle grain on background"
+    },
+    "motion": {
+      "cursor_trail": "sparkle cursor trail (opt-in toggle)",
+      "hover_cards": "slight scale or shadow lift",
+      "accordion": "arrow rotation on open"
+    },
+    "tone": "medieval / fantasy RPG aesthetic — warm parchment, crimson + gold, serif bracketed headings, blackletter numerals"
+  }
+}
