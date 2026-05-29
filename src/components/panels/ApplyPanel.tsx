@@ -12,19 +12,22 @@ interface FormData {
   emergencyPhone: string;
   workshops: string[];
   teamStatus: string;
+  experience: string;
   projectIdea: string;
   agreeTerms: boolean;
 }
 
 const WORKSHOPS = ["HTML/CSS", "Python", "Machine Learning"];
 const TEAM_STATUSES = ["Solo hacker", "I have a team ready", "Looking for teammates", "Not sure yet"];
+const EXPERIENCE_LEVELS = ["Beginner (0–1 years)", "Intermediate (1–3 years)", "Advanced (3+ years)"];
 
 export default function ApplyPanel() {
   const [step, setStep] = useState<Step>("form");
   const [form, setForm] = useState<FormData>({
-    name: "", email: "", emergencyName: "", emergencyPhone: "", workshops: [], teamStatus: "", projectIdea: "", agreeTerms: false,
+    name: "", email: "", emergencyName: "", emergencyPhone: "", workshops: [], teamStatus: "", experience: "", projectIdea: "", agreeTerms: false,
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
   const setField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
@@ -46,6 +49,7 @@ export default function ApplyPanel() {
     if (!form.emergencyName.trim())                 e.emergencyName = "Emergency contact name is required";
     if (!form.emergencyPhone.trim())                e.emergencyPhone = "Emergency contact phone is required";
     if (!form.teamStatus)                           e.teamStatus = "Please select team status";
+    if (!form.experience)                           e.experience = "Please select your experience level";
     if (!form.agreeTerms)                           e.agreeTerms = "You must agree to continue";
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -55,6 +59,7 @@ export default function ApplyPanel() {
     e.preventDefault();
     if (!validate()) return;
     setSubmitting(true);
+    setSubmitError(null);
     try {
       const res = await fetch("/api/apply", {
         method: "POST",
@@ -66,13 +71,14 @@ export default function ApplyPanel() {
           emergencyPhone: form.emergencyPhone,
           workshops:      form.workshops,
           teamStatus:     form.teamStatus,
+          experience:     form.experience,
           projectIdea:    form.projectIdea,
         }),
       });
       if (!res.ok) throw new Error("submission failed");
       setStep("success");
     } catch {
-      setErrors({ name: "Something went wrong — please try again." });
+      setSubmitError("Something went wrong — please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -238,6 +244,29 @@ export default function ApplyPanel() {
           {errors.teamStatus && <p className="text-xs text-red-500 mt-1">{errors.teamStatus}</p>}
         </div>
 
+        {/* Experience level */}
+        <div>
+          <p className="block text-xs font-display font-semibold text-studio-ink/70 mb-2">Experience Level *</p>
+          <div className="flex flex-wrap gap-2">
+            {EXPERIENCE_LEVELS.map((lvl) => (
+              <button
+                key={lvl}
+                type="button"
+                className={`flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-body transition-all ${
+                  form.experience === lvl
+                    ? "border-banana-400 bg-banana-400/15 text-studio-ink font-medium"
+                    : "border-studio-ink/12 bg-white text-studio-ink/60 hover:border-banana-400/40 hover:bg-banana-50"
+                }`}
+                onClick={() => setField("experience", lvl)}
+              >
+                <span className={`w-3 h-3 rounded-full border-2 shrink-0 ${form.experience === lvl ? "border-banana-600 bg-banana-400" : "border-studio-ink/25"}`} />
+                {lvl}
+              </button>
+            ))}
+          </div>
+          {errors.experience && <p className="text-xs text-red-500 mt-1">{errors.experience}</p>}
+        </div>
+
         {/* Project idea */}
         <div>
           <label htmlFor="apply-idea" className="block text-xs font-display font-semibold text-studio-ink/70 mb-1">
@@ -279,6 +308,10 @@ export default function ApplyPanel() {
           </div>
           {errors.agreeTerms && <p className="text-xs text-red-500 mt-1 ml-2">{errors.agreeTerms}</p>}
         </div>
+
+        {submitError && (
+          <p className="text-xs text-red-500 text-center">{submitError}</p>
+        )}
 
         {/* Submit */}
         <button
