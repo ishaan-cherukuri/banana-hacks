@@ -275,10 +275,8 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           </div>
 
           {/* Sponsor strip */}
-          <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-4 opacity-50">
-            {["Replicate ⚡", "Modal 🔁", "Hugging Face 🤗", "AWS ☁️"].map((s) => (
-              <span key={s} className="font-mono text-[9px] text-studio-ink/60 whitespace-nowrap">{s}</span>
-            ))}
+          <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center opacity-50">
+            <span className="font-mono text-[9px] text-studio-ink/60 whitespace-nowrap">Sponsors Coming Soon ✨</span>
           </div>
         </div>
 

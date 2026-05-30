@@ -14,7 +14,7 @@ const FAQS: FAQItem[] = [
   },
   {
     q: "Is it free to enter?",
-    a: "Yes! Banana Hacks is completely free to participate in. We also provide free compute credits from our sponsors so you can train models and run inference without worrying about costs.",
+    a: "Yes! Banana Hacks is completely free to participate in. We also plan to provide free compute credits so you can train models and run inference without worrying about costs.",
   },
   {
     q: "Do I need a team?",
