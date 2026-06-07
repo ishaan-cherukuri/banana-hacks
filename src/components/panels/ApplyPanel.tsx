@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import BananaMascot from "@/components/svgs/BananaMascot";
+import PolicyModal from "@/components/PolicyModal";
 
 type Step = "form" | "success";
+type PolicyType = "conduct" | "rules" | null;
 
 interface FormData {
   name: string;
@@ -23,6 +25,7 @@ const EXPERIENCE_LEVELS = ["Beginner (0–1 years)", "Intermediate (1–3 years)
 
 export default function ApplyPanel() {
   const [step, setStep] = useState<Step>("form");
+  const [openPolicy, setOpenPolicy] = useState<PolicyType>(null);
   const [form, setForm] = useState<FormData>({
     name: "", email: "", emergencyName: "", emergencyPhone: "", workshops: [], teamStatus: "", experience: "", projectIdea: "", agreeTerms: false,
   });
@@ -112,6 +115,8 @@ export default function ApplyPanel() {
   }
 
   return (
+    <>
+    <PolicyModal type={openPolicy} onClose={() => setOpenPolicy(null)} />
     <div className="window-scroll h-full overflow-y-auto bg-banana-100">
       <div className="px-6 pt-6 pb-2">
         <div className="flex items-center gap-3 mb-1">
@@ -301,8 +306,21 @@ export default function ApplyPanel() {
             </div>
             <span className="text-xs font-body text-studio-ink/65 leading-relaxed select-none">
               I agree to the{" "}
-              <span className="text-peri-500 underline underline-offset-2">Code of Conduct</span> and{" "}
-              <span className="text-peri-500 underline underline-offset-2">Submission Rules</span>.
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setOpenPolicy("conduct"); }}
+                className="text-peri-500 underline underline-offset-2 hover:text-peri-600 transition-colors"
+              >
+                Code of Conduct
+              </button>{" "}
+              and{" "}
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setOpenPolicy("rules"); }}
+                className="text-peri-500 underline underline-offset-2 hover:text-peri-600 transition-colors"
+              >
+                Submission Rules
+              </button>.
               Banana Hacks follows the MLH Code of Conduct.
             </span>
           </div>
@@ -330,5 +348,6 @@ export default function ApplyPanel() {
         </button>
       </form>
     </div>
+    </>
   );
 }
