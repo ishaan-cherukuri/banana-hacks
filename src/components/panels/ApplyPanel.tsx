@@ -101,13 +101,29 @@ export default function ApplyPanel() {
           </p>
         </div>
         <div className="flex gap-2 flex-wrap justify-center">
-          {["Join Discord", "Follow @BananaHacks", "Add to Calendar"].map((cta) => (
-            <button
-              key={cta}
-              className="px-4 py-2 text-sm font-display font-semibold rounded-xl border border-banana-400/50 bg-banana-400/15 text-studio-ink hover:bg-banana-400/30 active:scale-95 transition-all"
-            >
-              {cta}
-            </button>
+          {[
+            { label: "Join Discord", href: null },
+            { label: "Follow @BananaHacks", href: "https://www.instagram.com/bananahacks26/" },
+            { label: "Add to Calendar", href: null },
+          ].map(({ label, href }) => (
+            href ? (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 text-sm font-display font-semibold rounded-xl border border-banana-400/50 bg-banana-400/15 text-studio-ink hover:bg-banana-400/30 active:scale-95 transition-all"
+              >
+                {label}
+              </a>
+            ) : (
+              <button
+                key={label}
+                className="px-4 py-2 text-sm font-display font-semibold rounded-xl border border-banana-400/50 bg-banana-400/15 text-studio-ink hover:bg-banana-400/30 active:scale-95 transition-all"
+              >
+                {label}
+              </button>
+            )
           ))}
         </div>
       </div>
