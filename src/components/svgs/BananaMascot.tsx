@@ -74,13 +74,25 @@ export default function BananaMascot({
 
       {/* Waving arm (only for waving variant) */}
       {variant === "waving" && (
-        <path
-          d="M84 36 C90 28 96 24 100 20 C98 26 92 32 88 38"
-          stroke="#FDD835"
-          strokeWidth="6"
-          strokeLinecap="round"
-          fill="none"
-        />
+        <>
+          {/* Arm */}
+          <path
+            d="M80 48 C86 38 92 28 98 18"
+            stroke="#C49A00"
+            strokeWidth="9"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <path
+            d="M80 48 C86 38 92 28 98 18"
+            stroke="#FDD835"
+            strokeWidth="7"
+            strokeLinecap="round"
+            fill="none"
+          />
+          {/* Hand */}
+          <circle cx="98" cy="17" r="5.5" fill="#FDD835" stroke="#C49A00" strokeWidth="1.5" />
+        </>
       )}
 
       {/* Paintbrush (painting variant) */}

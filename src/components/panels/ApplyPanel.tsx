@@ -97,14 +97,14 @@ export default function ApplyPanel() {
           <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-1">You&apos;re in! 🎉</h2>
           <p className="font-body text-studio-ink/60 text-sm max-w-xs">
             Check <strong>{form.email}</strong> for your confirmation. We&apos;ll send Discord access and
-            compute credit instructions before Oct 9.
+            event notices before Oct 9.
           </p>
         </div>
         <div className="flex gap-2 flex-wrap justify-center">
           {[
             { label: "Join Discord", href: null },
             { label: "Follow @BananaHacks", href: "https://www.instagram.com/bananahacks26/" },
-            { label: "Add to Calendar", href: null },
+            { label: "Add to Calendar", href: "https://calendar.google.com/calendar/render?action=TEMPLATE&dates=20261010T000000Z%2F20261012T220000Z&details=Banana%20Hacks%202026.%20A%203-day%20virtual%20hackathon%20where%20builders%2C%20designers%2C%20and%20dreamers%20come%20together%20to%20create%20something%20extraordinary%21%0A&location=Online&text=Banana%20Hacks" },
           ].map(({ label, href }) => (
             href ? (
               <a
