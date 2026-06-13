@@ -116,7 +116,7 @@ export default function Desktop() {
         className="fixed bottom-0 flex justify-center items-end pb-1.5"
         style={{ left: 0, right: 0, zIndex: 9000 }}
       >
-        <div className="flex items-center gap-1.5 px-3 py-1.5 backdrop-blur-md border border-banana-400/35 rounded-2xl shadow-window mb-1" style={{ background: "linear-gradient(90deg, rgba(255,251,240,0.92) 0%, rgba(253,216,53,0.18) 50%, rgba(255,251,240,0.92) 100%)" }}>
+        <div className="flex items-center gap-2 px-4 py-2.5 backdrop-blur-md border border-banana-400/35 rounded-2xl shadow-window mb-1" style={{ background: "linear-gradient(90deg, rgba(255,251,240,0.92) 0%, rgba(253,216,53,0.18) 50%, rgba(255,251,240,0.92) 100%)" }}>
           {DESKTOP_ICONS.map((icon) => {
             const isOpen = openWindows.some((w) => w.id === icon.id);
             const IconWidget = DOCK_ICON_MAP[icon.id];
@@ -127,26 +127,26 @@ export default function Desktop() {
                   {icon.label}
                 </div>
                 <button
-                  className="w-10 h-10 rounded-xl bg-white border border-studio-ink/08 flex items-center justify-center icon-tile hover:bg-banana-50 hover:border-banana-400/50 hover:shadow-icon active:scale-90 transition-all"
+                  className="w-12 h-12 rounded-xl bg-banana-300 border border-banana-400/40 flex items-center justify-center icon-tile hover:bg-banana-400 hover:border-banana-400/60 hover:shadow-icon active:scale-90 transition-all"
                   onClick={() => openWindow(icon.id)}
                 >
-                  {IconWidget ? <IconWidget size={22} /> : <span className="text-xl">{icon.icon}</span>}
+                  {IconWidget ? <IconWidget size={26} /> : <span className="text-xl">{icon.icon}</span>}
                 </button>
                 {isOpen && <div className="w-1 h-1 rounded-full bg-studio-ink/40" />}
               </div>
             );
           })}
-          <div className="w-px h-6 bg-studio-ink/10 mx-1" />
+          <div className="w-px h-7 bg-studio-ink/10 mx-1" />
           <div className="relative flex flex-col items-center gap-0.5 group/dock">
             {/* Tooltip */}
             <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 rounded-md bg-studio-ink text-white text-[11px] font-display font-semibold whitespace-nowrap pointer-events-none opacity-0 group-hover/dock:opacity-100 transition-opacity duration-150 shadow-lg">
               Apply Now
             </div>
             <button
-              className="w-10 h-10 rounded-xl bg-banana-400 flex items-center justify-center icon-tile hover:bg-banana-500 hover:shadow-icon active:scale-90 transition-all"
+              className="w-12 h-12 rounded-xl bg-banana-400 flex items-center justify-center icon-tile hover:bg-banana-500 hover:shadow-icon active:scale-90 transition-all"
               onClick={() => openWindow("apply")}
             >
-              <ApplyLineIcon size={22} />
+              <ApplyLineIcon size={26} />
             </button>
             {openWindows.some((w) => w.id === "apply") && (
               <div className="w-1 h-1 rounded-full bg-studio-ink/40" />
