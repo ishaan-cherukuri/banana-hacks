@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import BananaMascot from "@/components/svgs/BananaMascot";
 import NeuralNetSVG  from "@/components/svgs/NeuralNetSVG";
 import { PixelSparkle, LeafDecor, BrushStroke, PixelCluster } from "@/components/svgs/StudioDecorations";
+import { BoltLineIcon, CapLineIcon, MedalLineIcon, GlobeLineIcon } from "@/components/svgs/DockIcons";
+import type { ReactNode } from "react";
 
 /* ─── Countdown ────────────────────────────────────────────── */
 const HACKATHON_START = new Date("2026-10-10T00:00:00Z");
@@ -81,10 +83,10 @@ function CountCell({ n, label }: { n: number; label: string }) {
 }
 
 /* ─── Floating badge ───────────────────────────────────────── */
-function Badge({ emoji, text, className = "", color = "bg-white/90 border-studio-ink/15 text-studio-ink" }: { emoji: string; text: string; className?: string; color?: string }) {
+function Badge({ icon, text, className = "", color = "bg-white/90 border-studio-ink/15 text-studio-ink" }: { icon: ReactNode; text: string; className?: string; color?: string }) {
   return (
-    <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full border shadow-icon text-xs font-display font-semibold ${color} ${className}`}>
-      <span>{emoji}</span>
+    <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border shadow-icon text-xs font-display font-semibold ${color} ${className}`}>
+      <span className="flex items-center shrink-0">{icon}</span>
       {text}
     </div>
   );
@@ -257,10 +259,10 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           </div>
 
           {/* Floating badges */}
-          <Badge emoji="⚡" text="GPU Credits"   className="absolute top-8  left-6  animate-float"      color="bg-banana-400/85 border-banana-500/60" />
-          <Badge emoji="🎓" text="Workshops"     className="absolute top-28 right-2 animate-float-slow" color="bg-peri-300/90 border-peri-500/50" />
-          <Badge emoji="🎖️" text="$10K Prizes"   className="absolute bottom-28 left-4  animate-float-d2"  color="bg-studio-ripe/85 border-studio-ripe/60 text-white" />
-          <Badge emoji="🌍" text="500+ builders" className="absolute bottom-12 right-6 animate-float"    color="bg-white/90 border-studio-ink/15" />
+          <Badge icon={<BoltLineIcon size={15} />}  text="GPU Credits"   className="absolute top-8  left-6  animate-float"      color="bg-banana-400/85 border-banana-500/60" />
+          <Badge icon={<CapLineIcon size={15} />}   text="Workshops"     className="absolute top-28 right-2 animate-float-slow" color="bg-peri-300/90 border-peri-500/50" />
+          <Badge icon={<MedalLineIcon size={15} />} text="$10K Prizes"   className="absolute bottom-28 left-4  animate-float-d2"  color="bg-studio-ripe/85 border-studio-ripe/60 text-white" />
+          <Badge icon={<GlobeLineIcon size={15} />} text="500+ builders" className="absolute bottom-12 right-6 animate-float"    color="bg-white/90 border-studio-ink/15" />
 
           {/* Decorative clusters */}
           <PixelCluster className="absolute top-16 left-16 opacity-50" size={48} />

@@ -5,7 +5,7 @@ import { useRef, useState, useCallback, useEffect, ReactNode } from "react";
 interface WindowProps {
   id: string;
   title: string;
-  icon?: string;
+  icon?: ReactNode;
   children: ReactNode;
   initialX?: number;
   initialY?: number;
@@ -19,7 +19,7 @@ interface WindowProps {
 export default function Window({
   id,
   title,
-  icon = "📄",
+  icon,
   children,
   initialX = 100,
   initialY = 60,
@@ -163,7 +163,7 @@ export default function Window({
 
         {/* Title */}
         <div className="flex-1 flex items-center justify-center gap-1.5 pointer-events-none">
-          <span className="text-sm">{icon}</span>
+          {icon && <span className="flex items-center">{icon}</span>}
           <span className="text-sm font-display font-semibold text-studio-ink/75 truncate">
             {title}
           </span>

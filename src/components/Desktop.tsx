@@ -11,6 +11,7 @@ import PrizesPanel   from "@/components/panels/PrizesPanel";
 import ApplyPanel    from "@/components/panels/ApplyPanel";
 import SponsorsPanel from "@/components/panels/SponsorsPanel";
 import SketchPanel   from "@/components/panels/SketchPanel";
+import { DOCK_ICON_MAP, ApplyLineIcon } from "@/components/svgs/DockIcons";
 
 interface WindowConfig {
   id: string;
@@ -89,12 +90,13 @@ export default function Desktop() {
           const def = WINDOW_DEFS.find((d) => d.id === win.id);
           if (!def) return null;
           const Panel = def.component;
+          const TitleIcon = DOCK_ICON_MAP[win.id];
           return (
             <Window
               key={win.id}
               id={win.id}
               title={def.title}
-              icon={def.icon}
+              icon={TitleIcon ? <TitleIcon size={16} /> : undefined}
               initialX={win.x}
               initialY={win.y}
               initialW={def.w}
@@ -117,6 +119,7 @@ export default function Desktop() {
         <div className="flex items-center gap-1.5 px-3 py-1.5 backdrop-blur-md border border-banana-400/35 rounded-2xl shadow-window mb-1" style={{ background: "linear-gradient(90deg, rgba(255,251,240,0.92) 0%, rgba(253,216,53,0.18) 50%, rgba(255,251,240,0.92) 100%)" }}>
           {DESKTOP_ICONS.map((icon) => {
             const isOpen = openWindows.some((w) => w.id === icon.id);
+            const IconWidget = DOCK_ICON_MAP[icon.id];
             return (
               <div key={icon.id} className="relative flex flex-col items-center gap-0.5 group/dock">
                 {/* Tooltip */}
@@ -124,10 +127,10 @@ export default function Desktop() {
                   {icon.label}
                 </div>
                 <button
-                  className="w-10 h-10 rounded-xl bg-white border border-studio-ink/08 flex items-center justify-center text-xl icon-tile hover:bg-banana-50 hover:border-banana-400/50 hover:shadow-icon active:scale-90 transition-all"
+                  className="w-10 h-10 rounded-xl bg-white border border-studio-ink/08 flex items-center justify-center icon-tile hover:bg-banana-50 hover:border-banana-400/50 hover:shadow-icon active:scale-90 transition-all"
                   onClick={() => openWindow(icon.id)}
                 >
-                  {icon.icon}
+                  {IconWidget ? <IconWidget size={22} /> : <span className="text-xl">{icon.icon}</span>}
                 </button>
                 {isOpen && <div className="w-1 h-1 rounded-full bg-studio-ink/40" />}
               </div>
@@ -140,10 +143,10 @@ export default function Desktop() {
               Apply Now
             </div>
             <button
-              className="w-10 h-10 rounded-xl bg-banana-400 flex items-center justify-center text-xl icon-tile hover:bg-banana-500 hover:shadow-icon active:scale-90 transition-all"
+              className="w-10 h-10 rounded-xl bg-banana-400 flex items-center justify-center icon-tile hover:bg-banana-500 hover:shadow-icon active:scale-90 transition-all"
               onClick={() => openWindow("apply")}
             >
-              📝
+              <ApplyLineIcon size={22} />
             </button>
             {openWindows.some((w) => w.id === "apply") && (
               <div className="w-1 h-1 rounded-full bg-studio-ink/40" />
