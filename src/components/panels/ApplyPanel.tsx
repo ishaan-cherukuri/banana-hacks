@@ -178,7 +178,7 @@ export default function ApplyPanel() {
         </div>
 
         {/* Emergency Contact */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label htmlFor="apply-ec-name" className="block text-xs font-display font-semibold text-studio-ink/70 mb-1">
               Emergency Contact Name *

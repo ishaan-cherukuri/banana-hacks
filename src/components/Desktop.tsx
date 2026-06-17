@@ -73,7 +73,7 @@ export default function Desktop() {
   const showHero = openWindows.length === 0;
 
   return (
-    <div className="h-screen w-screen overflow-hidden relative desktop-wallpaper">
+    <div className="h-[100dvh] w-screen overflow-hidden relative desktop-wallpaper">
 
       {/* Menu bar */}
       <MenuBar onOpenWindow={openWindow} onGoHome={goHome} />
@@ -113,10 +113,10 @@ export default function Desktop() {
 
       {/* Bottom dock */}
       <div
-        className="fixed bottom-0 flex justify-center items-end pb-1.5"
-        style={{ left: 0, right: 0, zIndex: 9000 }}
+        className="fixed bottom-0 flex justify-center items-end overflow-x-auto"
+        style={{ left: 0, right: 0, zIndex: 9000, paddingBottom: "calc(6px + env(safe-area-inset-bottom))" }}
       >
-        <div className="flex items-center gap-2 px-4 py-2.5 backdrop-blur-md border border-banana-400/35 rounded-2xl shadow-window mb-1" style={{ background: "linear-gradient(90deg, rgba(255,251,240,0.92) 0%, rgba(253,216,53,0.18) 50%, rgba(255,251,240,0.92) 100%)" }}>
+        <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 sm:py-2.5 backdrop-blur-md border border-banana-400/35 rounded-2xl shadow-window mb-1 mx-auto shrink-0" style={{ background: "linear-gradient(90deg, rgba(255,251,240,0.92) 0%, rgba(253,216,53,0.18) 50%, rgba(255,251,240,0.92) 100%)" }}>
           {DESKTOP_ICONS.map((icon) => {
             const isOpen = openWindows.some((w) => w.id === icon.id);
             const IconWidget = DOCK_ICON_MAP[icon.id];
@@ -127,7 +127,7 @@ export default function Desktop() {
                   {icon.label}
                 </div>
                 <button
-                  className="w-12 h-12 rounded-xl bg-banana-300 border border-banana-400/40 flex items-center justify-center icon-tile hover:bg-banana-400 hover:border-banana-400/60 hover:shadow-icon active:scale-90 transition-all"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-banana-300 border border-banana-400/40 flex items-center justify-center icon-tile hover:bg-banana-400 hover:border-banana-400/60 hover:shadow-icon active:scale-90 transition-all"
                   onClick={() => openWindow(icon.id)}
                 >
                   {IconWidget ? <IconWidget size={26} /> : <span className="text-xl">{icon.icon}</span>}
@@ -143,7 +143,7 @@ export default function Desktop() {
               Apply Now
             </div>
             <button
-              className="w-12 h-12 rounded-xl bg-banana-400 flex items-center justify-center icon-tile hover:bg-banana-500 hover:shadow-icon active:scale-90 transition-all"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-banana-400 flex items-center justify-center icon-tile hover:bg-banana-500 hover:shadow-icon active:scale-90 transition-all"
               onClick={() => openWindow("apply")}
             >
               <ApplyLineIcon size={26} />

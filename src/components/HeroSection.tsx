@@ -110,7 +110,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
         <div className="flex-1 min-w-0 flex flex-col">
 
           {/* ── Screen 1: above-fold hero ─────────────────── */}
-          <div className="flex flex-col justify-center px-12 py-8 relative z-10" style={{ minHeight: "calc(100vh - 80px)" }}>
+          <div className="flex flex-col justify-center px-5 sm:px-8 md:px-12 py-8 relative z-10" style={{ minHeight: "calc(100dvh - 80px)" }}>
 
             {/* Event badge */}
             <div className="flex items-center gap-2 mb-5">
@@ -139,7 +139,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             </p>
 
             {/* Countdown */}
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex flex-col items-start sm:flex-row sm:items-center gap-3 sm:gap-4 mb-6">
               <div className="flex items-center gap-3 bg-banana-400/20 border border-banana-400/60 rounded-2xl px-4 py-3 shadow-icon">
                 <CountCell n={d} label="days"  />
                 <span className="font-display font-black text-xl text-studio-ink/30 leading-none">:</span>
@@ -178,13 +178,13 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           </div>
 
           {/* ── Screen 2: quick facts ─────────────────────── */}
-          <div className="px-12 py-16 border-t border-studio-ink/06">
+          <div className="px-5 sm:px-8 md:px-12 py-16 border-t border-studio-ink/06">
             <FadeUp>
               <p className="font-mono text-[10px] uppercase tracking-widest text-studio-ink/35 mb-1">The Basics</p>
               <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-6">What is Banana Hacks?</h2>
             </FadeUp>
 
-            <div className="grid grid-cols-3 gap-4 max-w-xl mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mb-8">
               {[
                 { title: "Weekend Sprint", body: "Hack from Oct 9–12. Build, iterate, and ship something real in a weekend.", color: "bg-banana-400/20 border-banana-400/50" },
                 { title: "Gen AI Theme", body: "All tracks center on generative AI — images, models, and creative tools.", color: "bg-peri-200 border-peri-400/50" },
@@ -201,7 +201,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           </div>
 
           {/* ── Screen 3: tracks + closing CTA ───────────── */}
-          <div className="px-12 py-12 pb-16 border-t border-studio-ink/06">
+          <div className="px-5 sm:px-8 md:px-12 py-12 pb-16 border-t border-studio-ink/06">
             <FadeUp>
               <p className="font-mono text-[10px] uppercase tracking-widest text-studio-ink/35 mb-1">What you&apos;ll build</p>
               <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-6">Three Tracks</h2>
@@ -238,8 +238,8 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
         {/* RIGHT — sticky illustration                         */}
         {/* ════════════════════════════════════════════════════ */}
         <div
-          className="sticky top-0 self-start shrink-0 relative flex items-center justify-center overflow-hidden"
-          style={{ width: "38%", height: "calc(100vh - 80px)" }}
+          className="sticky top-0 self-start shrink-0 relative hidden md:flex items-center justify-center overflow-hidden"
+          style={{ width: "38%", height: "calc(100dvh - 80px)" }}
         >
           {/* Gradient card box */}
           <div

@@ -49,7 +49,7 @@ export default function AboutPanel() {
 
       {/* Stats row */}
       <div className="px-8 pb-6">
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {STATS.map((s) => (
             <div
               key={s.label}

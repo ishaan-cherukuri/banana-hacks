@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useCallback, useEffect, ReactNode } from "react";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 interface WindowProps {
   id: string;
@@ -29,6 +30,7 @@ export default function Window({
   onFocus,
   onClose,
 }: WindowProps) {
+  const isMobile = useIsMobile();
   const [pos, setPos] = useState({ x: initialX, y: initialY });
   const [size, setSize] = useState({ w: initialW, h: initialH });
   const [isMaximized, setIsMaximized] = useState(false);
@@ -42,7 +44,7 @@ export default function Window({
   /* ── Drag ─────────────────────────────────────────────── */
   const onTitleMouseDown = useCallback(
     (e: React.MouseEvent) => {
-      if (isMaximized) return;
+      if (isMaximized || isMobile) return;
       // Don't start drag if clicking traffic light buttons
       if ((e.target as HTMLElement).closest("button")) return;
       e.preventDefault();
@@ -71,7 +73,7 @@ export default function Window({
       window.addEventListener("mousemove", onMove);
       window.addEventListener("mouseup", onUp);
     },
-    [isMaximized, onFocus, pos]
+    [isMaximized, isMobile, onFocus, pos]
   );
 
   /* ── Resize ───────────────────────────────────────────── */
@@ -119,7 +121,21 @@ export default function Window({
     }
   };
 
-  const style: React.CSSProperties = isMaximized
+  const style: React.CSSProperties = isMobile
+    ? {
+        // Full-screen sheet on phones: fill the area between the menu bar and
+        // the dock so nothing overflows horizontally.
+        position: "fixed",
+        left: 0,
+        right: 0,
+        top: 36,
+        bottom: "calc(72px + env(safe-area-inset-bottom))",
+        width: "auto",
+        height: "auto",
+        borderRadius: 0,
+        zIndex,
+      }
+    : isMaximized
     ? { position: "fixed", left: 52, top: 36, right: 0, bottom: 0, width: "auto", height: "auto", zIndex }
     : { position: "fixed", left: pos.x, top: pos.y, width: size.w, height: size.h, zIndex };
 
@@ -179,7 +195,7 @@ export default function Window({
       </div>
 
       {/* Resize handle */}
-      {!isMaximized && (
+      {!isMaximized && !isMobile && (
         <div
           className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize opacity-30 hover:opacity-70 transition-opacity"
           onMouseDown={onResizeMouseDown}
