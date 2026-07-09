@@ -20,7 +20,7 @@ function useDaysLeft() {
 }
 
 const FACTS = [
-  { icon: "📅", label: "Dates",   value: "Oct 9–16, 2026" },
+  { icon: "📅", label: "Dates",   value: "Oct 9–12, 2026" },
   { icon: "🌐", label: "Format",  value: "100% Virtual"   },
   { icon: "👥", label: "Teams",   value: "1–4 people"     },
   { icon: "🆓", label: "Cost",    value: "Free to enter"  },

@@ -114,7 +114,7 @@ export default function Desktop() {
       {/* Bottom dock */}
       <div
         className="fixed bottom-0 flex justify-center items-end overflow-x-auto"
-        style={{ left: 0, right: 0, zIndex: 9000, paddingBottom: "calc(6px + env(safe-area-inset-bottom))" }}
+        style={{ left: 0, right: 0, zIndex: 9000, paddingTop: "36px", paddingBottom: "calc(6px + env(safe-area-inset-bottom))" }}
       >
         <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 sm:py-2.5 backdrop-blur-md border border-banana-400/35 rounded-2xl shadow-window mb-1 mx-auto shrink-0" style={{ background: "linear-gradient(90deg, rgba(255,251,240,0.92) 0%, rgba(253,216,53,0.18) 50%, rgba(255,251,240,0.92) 100%)" }}>
           {DESKTOP_ICONS.map((icon) => {

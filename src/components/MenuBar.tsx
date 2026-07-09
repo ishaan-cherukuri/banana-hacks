@@ -101,7 +101,7 @@ export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
         <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-banana-400/15 border border-banana-400/30">
           <div className="w-1.5 h-1.5 rounded-full bg-studio-leaf animate-pulse" />
           <span className="text-xs font-mono font-medium text-studio-ink/70">
-            Oct 9–16
+            Oct 9–12
           </span>
         </div>
         <span suppressHydrationWarning className="text-xs font-mono text-studio-ink/50 tabular-nums">{time}</span>

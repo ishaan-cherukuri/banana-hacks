@@ -277,8 +277,24 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           </div>
 
           {/* Sponsor strip */}
-          <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center opacity-50">
-            <span className="font-mono text-[9px] text-studio-ink/60 whitespace-nowrap">Sponsors Coming Soon ✨</span>
+          <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-3 opacity-70">
+            <a
+              href="https://codecrafters.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[9px] font-semibold text-studio-ink/70 hover:text-peri-500 whitespace-nowrap transition-colors"
+            >
+              CodeCrafters
+            </a>
+            <span className="text-studio-ink/30">·</span>
+            <a
+              href="https://www.interviewcake.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[9px] font-semibold text-studio-ink/70 hover:text-peri-500 whitespace-nowrap transition-colors"
+            >
+              Interview Cake
+            </a>
           </div>
         </div>
 

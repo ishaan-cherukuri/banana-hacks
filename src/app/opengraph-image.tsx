@@ -29,7 +29,7 @@ export default function OpenGraphImage() {
           Generative AI &amp; Image Creation Hackathon
         </div>
         <div style={{ fontSize: 30, marginTop: 24, opacity: 0.85 }}>
-          Oct 9–16, 2026 · 100% Virtual · Free · $10K+ in prizes
+          Oct 9–12, 2026 · 100% Virtual · Free · $10K+ in prizes
         </div>
       </div>
     ),
