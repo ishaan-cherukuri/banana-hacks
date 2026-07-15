@@ -126,6 +126,14 @@ const SPONSORS = [
     tagline: "Ace your coding interview",
     bg: "#76BEDB",
   },
+  {
+    name: "Rosebud AI",
+    url: "https://rosebud.ai",
+    logo: "/sponsors/rosebud.png",
+    tagline: "Build & ship games with AI",
+    bg: "#FFFFFF",
+    light: true,
+  },
 ];
 
 export default function SponsorsPanel() {
@@ -147,7 +155,7 @@ export default function SponsorsPanel() {
 
       <div className="px-6 pb-8 space-y-8">
         {/* Sponsor logo grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {SPONSORS.map((sponsor) => (
             <a
               key={sponsor.name}
@@ -157,16 +165,18 @@ export default function SponsorsPanel() {
               className="group flex flex-col overflow-hidden rounded-2xl border-2 border-studio-ink/10 transition-all hover:border-banana-400/60 hover:shadow-icon hover:-translate-y-0.5"
               style={{ backgroundColor: sponsor.bg }}
             >
-              <div className="flex-1 flex items-center justify-center px-6 py-7">
+              <div className="flex-1 flex items-center justify-center px-4 py-11">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={sponsor.logo}
                   alt={sponsor.name}
-                  className="max-h-9 w-auto object-contain"
+                  className="max-h-20 w-full object-contain"
                 />
               </div>
-              <div className="px-4 py-2 bg-black/15">
-                <span className="text-[11px] font-body text-white/80">{sponsor.tagline}</span>
+              <div className={sponsor.light ? "px-4 py-2 bg-studio-ink/06" : "px-4 py-2 bg-black/15"}>
+                <span className={sponsor.light ? "text-[11px] font-body text-studio-ink/60" : "text-[11px] font-body text-white/80"}>
+                  {sponsor.tagline}
+                </span>
               </div>
             </a>
           ))}
