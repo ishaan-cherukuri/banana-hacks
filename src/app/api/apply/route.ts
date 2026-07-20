@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { db } from "@/lib/db";
 
 export async function POST(req: NextRequest) {
   try {
@@ -10,22 +10,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const { error } = await supabase.from("registrations").insert({
-      name,
-      email,
-      emergency_name: emergencyName,
-      emergency_phone: emergencyPhone,
-      workshops: workshops ?? [],
-      team_status: teamStatus,
-      experience,
-      project_idea: projectIdea ?? null,
-      role: "hacker",
+    await db.execute({
+      sql: `INSERT INTO registrations
+        (name, email, emergency_name, emergency_phone, workshops, team_status, experience, project_idea, role)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      args: [
+        name,
+        email,
+        emergencyName,
+        emergencyPhone,
+        JSON.stringify(workshops ?? []),
+        teamStatus,
+        experience,
+        projectIdea ?? null,
+        "hacker",
+      ],
     });
-
-    if (error) {
-      console.error("Supabase insert error:", error);
-      return NextResponse.json({ error: "Submission failed" }, { status: 500 });
-    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {

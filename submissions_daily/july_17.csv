@@ -1,0 +1,129 @@
+id,created_at,name,email,emergency_name,emergency_phone,workshops,role,experience,team_status,project_idea
+05badf77-73b7-470a-a2cb-40de086c86ba,2026-07-16 16:23:51.712273+00,Geethika N,ww.geethika@gmail.com,Susmita N,+91 9176804555,[],hacker,Beginner (0–1 years),Solo hacker,
+ed11d2a8-0154-4d49-816e-dc7b4a0eac57,2026-07-15 14:59:14.311059+00,Siddharth Vijay,siddharthvijaym@gmail.com,Shalini Vijay,4087849297,"[""Machine Learning"",""Python""]",hacker,Advanced (3+ years),Not sure yet,AI/ML end-to-end full stack application---ready to ship.
+9dbd3624-0641-4e9c-a84e-74d85e432342,2026-07-15 01:16:59.905494+00,Aarush Gupta,aarushgupta0821@gmail.com,Mihir Gupta,2019126722,"[""HTML/CSS"",""Python"",""Machine Learning""]",hacker,Beginner (0–1 years),Looking for teammates,
+a4cea34a-36b7-4031-b014-d4f979de86c8,2026-07-14 06:18:23.658094+00,Ming Yang,ming.yang.202X@gmail.com,Wen Yang,6263676878,"[""Python"",""HTML/CSS"",""Machine Learning""]",hacker,Beginner (0–1 years),Solo hacker,
+52ed39dc-539d-4869-9f5f-f13f707d4a6f,2026-07-14 05:54:49.539652+00,Adhiraj Bhopne,adhirajbhopne@gmail.com,Adhiraj Bhopne,9082018375,[],hacker,Intermediate (1–3 years),Solo hacker,
+a8734f21-1db7-41ae-a1df-a31780b2f486,2026-07-14 01:57:05.377842+00,Tyler Lam,tyler.l.jiafu@gmail.com,Vic Lam,3062418868,"[""Machine Learning""]",hacker,Beginner (0–1 years),Looking for teammates,
+c8074ca3-10f7-4686-b283-d10109aeac15,2026-07-13 12:47:51.030633+00,Jospehina Doyle,Josephina.doyle1@gmail.com,Sean Doyle,0481397711,"[""HTML/CSS"",""Python""]",hacker,Beginner (0–1 years),Solo hacker,
+cdfe4879-31a3-4f11-94e0-ff6815a496d0,2026-07-11 19:45:52.81696+00,Matthew McCane,matthewleemccane@gmail.com,Sharon,7373841690,"[""Python"",""Machine Learning"",""HTML/CSS""]",hacker,Beginner (0–1 years),Looking for teammates,"A DSA mobile application using Apple's ecosystem (Swift, SwiftUI et al.) where users can practice DSA knowledge."
+b44f5f8a-a61c-4bc1-8de0-69220c04c666,2026-07-10 22:05:22.900997+00,Demetria White,luvdemixo@hotmail.com,Englishe White,8048882752,"[""HTML/CSS"",""Python"",""Machine Learning""]",hacker,Beginner (0–1 years),Looking for teammates,
+7309d080-7171-43fd-8a0e-6eac99e6403c,2026-07-10 19:12:00.926469+00,Conan Olatunji,conanupme@outlook.com,Conan,6478631160,"[""HTML/CSS""]",hacker,Beginner (0–1 years),Solo hacker,
+d32e0678-f814-4d13-9dcc-5217eddd6441,2026-07-09 05:37:24.634764+00,Steve Zhu,stevezhu.ivy1@gmail.com,Steve Zhu,0490349551,"[""Python"",""Machine Learning""]",hacker,Intermediate (1–3 years),Not sure yet,
+9bd70c75-f2e5-4f23-9f43-8b236f9fccbf,2026-07-08 03:22:53.707621+00,Vaibhav Alle,alle.vaibhav@gmail.com,Sravani,714-417-8685,"[""Machine Learning"",""Python""]",hacker,Beginner (0–1 years),Solo hacker,
+eb018a24-53df-472e-8a7b-81cd0029fc67,2026-07-08 02:28:40.197682+00,Divij Velagapudi,divijvelagapudi@gmail.com,Divij Velagapudi,9046181323,"[""HTML/CSS"",""Python"",""Machine Learning""]",hacker,Intermediate (1–3 years),I have a team ready,
+d82cbe37-476d-44c1-89a4-36d03d5bea63,2026-07-07 17:49:25.269585+00,Nimesh Balasooriya,nimeshbalasooriya7@gmail.com,Nimesh Balasooriya,0757632708,"[""HTML/CSS"",""Python"",""Machine Learning""]",hacker,Advanced (3+ years),Solo hacker,"Helax AI – Startup Application Pitch for Cypher 2026
+
+Startup Name
+
+NHB LK
+
+Product Name
+
+Helax AI
+Website: https://helaxai.com
+
+Founder
+
+Nimesh Harshana Balasooriya
+Founder & AI Developer – NHB LK
+
+About Helax AI
+
+Helax AI is a Sri Lankan artificial intelligence platform focused on building next-generation AI solutions for individuals, developers, creators, and businesses.
+
+Our goal is to develop accessible AI technology with strong multilingual capabilities and create AI innovation from Sri Lanka for the global community.
+
+Our Core Technologies
+
+Helax N3 – AI Language Model
+
+Helax N3 is an AI language model project designed for:
+
+• Natural language conversations
+• Knowledge-based AI assistance
+• Multilingual AI experiences
+• Future LLM research and development
+
+Helax Magic – Generative AI Image Platform
+
+Helax Magic enables users to create AI-generated images using advanced generative AI technology.
+
+Features:
+• Text-to-image generation
+• Creative content generation
+• AI-powered design assistance
+
+Helax AI Studio
+
+A developer-focused AI platform to experiment with AI models, create applications, and explore generative AI technologies.
+
+Problem
+
+Current AI solutions are often limited by:
+• Language barriers
+• Accessibility challenges
+• Lack of localized AI systems for smaller communities
+
+Helax AI aims to make advanced AI technology more accessible while developing AI solutions from Sri Lanka.
+
+Innovation
+
+Our focus areas:
+
+• Large Language Models (LLM)
+• Generative AI
+• Natural Language Processing
+• Multimodal AI
+• AI Agents
+• AI Developer Tools
+
+Why Helax AI Should Be Selected
+
+Helax AI represents emerging AI innovation from Sri Lanka.
+
+We bring:
+• A young AI founder building real-world AI products
+• Local AI innovation with global ambitions
+• Generative AI and language model research
+• A vision to grow Sri Lanka's AI ecosystem
+
+Goal at Cypher 2026
+
+We aim to:
+
+• Showcase Helax AI technology
+• Connect with AI researchers and industry leaders
+• Find collaboration opportunities
+• Present Sri Lankan AI innovation to a global audience
+
+Vision
+
+To build a globally recognized AI ecosystem from Sri Lanka and empower millions through accessible artificial intelligence."
+274250de-1aab-425c-af13-95b670b4d492,2026-07-07 05:05:19.486681+00,Ritesh Gharat,riteshgharat05@gmail.com,Ritesh,+917972778094,"[""Machine Learning"",""Python""]",hacker,Beginner (0–1 years),I have a team ready,
+35a754b4-19e1-4532-b1df-3647b807fc74,2026-07-01 22:48:30.173553+00,Sofia Pizano,sofia.pizanod@gmail.com,Lesvi Diaz,7813867063,"[""Python"",""Machine Learning""]",hacker,Beginner (0–1 years),Looking for teammates,
+1b880c6d-fb5d-4ed1-982f-57532f03251d,2026-06-27 10:30:19.628339+00,Giles Roger,gileskerryroger@gmail.com,"Giles ",+44 7379508666,"[""Python"",""Machine Learning""]",hacker,Advanced (3+ years),Looking for teammates,
+d9b2bfa1-d02b-408b-a56a-be5aea31d352,2026-06-27 07:04:05.430981+00,Param Porwal,paramporwal@gmail.com,PARAM,9921148499,"[""Python"",""Machine Learning""]",hacker,Beginner (0–1 years),Solo hacker,
+ae696a98-82d1-4008-8e17-ab2c323db0a2,2026-06-25 06:34:59.446554+00,Xuelei Peng,leilei17908@gmail.com,Meixiang Zhou,85257028038,"[""Python"",""Machine Learning""]",hacker,Advanced (3+ years),Solo hacker,
+622d5ce2-5e74-446f-9a99-ee25e8ce2675,2026-06-20 16:09:29.189729+00,Tyson Verstraete,verstraetetyson@gmail.com,Sofia Verstraete,3059059288,"[""HTML/CSS"",""Machine Learning"",""Python""]",hacker,Beginner (0–1 years),I have a team ready,
+62fa46f4-d648-4da1-b0c1-97c9a03731a1,2026-06-20 16:02:25.690573+00,Mason Moghadam,mason.moghadam@gmail.com,"Nooshin Kaviani ",65068709,"[""Machine Learning"",""HTML/CSS"",""Python""]",hacker,Beginner (0–1 years),Not sure yet,
+e21a0f36-8df9-4dc0-b5f7-e8647e857a7d,2026-06-20 05:06:13.708013+00,Mrinmoyee,doomed.089@gmail.com,Mrinmoyee Das,7577911555,"[""HTML/CSS"",""Python"",""Machine Learning""]",hacker,Beginner (0–1 years),Not sure yet,I am looking for building something that helps me in my studies where I can add my notes(handwritten) that are converted into text and questions related to that specific topic in the notes will be autogenerated with the help of ai to help me revise
+dd706b2f-cdde-456a-88af-3f83e5abefc8,2026-06-19 17:41:01.642208+00,"Divinefavour Raymond ",divinefavourraymond111@gmail.com,"Rose Raymond ",09125120508,"[""HTML/CSS"",""Machine Learning"",""Python""]",hacker,Beginner (0–1 years),Not sure yet,
+f20cb51f-8b49-4a59-8c4e-4ddb5ce68d3e,2026-06-17 11:39:13.367651+00,Dina N Samuel,Dinasamuel.0316@gmail.com,Dina N Samuel,2068339352,"[""Python"",""HTML/CSS"",""Machine Learning""]",hacker,Intermediate (1–3 years),Not sure yet,
+0d428179-eb70-48ac-9b92-6df28bebaf68,2026-06-17 05:56:56.506243+00,MC Zhu,zhumeich@umich.edu,Mom,2487788219,"[""HTML/CSS"",""Python"",""Machine Learning""]",hacker,Beginner (0–1 years),Solo hacker,
+2328a3b4-1b6a-4ea6-8e06-6a178cad954a,2026-06-16 19:31:59.880471+00,Siddhant Patil,contactsiddhantpatil@gmail.com,Sanjay Patil,2012402515,"[""Python"",""Machine Learning""]",hacker,Intermediate (1–3 years),Looking for teammates,
+15c23ebd-4c08-4547-9f32-431d9c72ea70,2026-06-15 22:30:45.226893+00,Shdrak BESSANH,shadrakbsh@gmail.com,BESSANH Sylvain,2290197426540,"[""Machine Learning"",""Python"",""HTML/CSS""]",hacker,Intermediate (1–3 years),I have a team ready,"I will think about it "
+ed2fef4c-0c79-41dd-8d75-9d013c984c79,2026-06-14 15:59:24.723199+00,DEBESH MAJUMDAR,debeshmajumdar7@gmail.com,DEBESH MAJUMDAR,8637009493,"[""HTML/CSS"",""Machine Learning"",""Python""]",hacker,Intermediate (1–3 years),Solo hacker,I am thinking about a system that can describe any logical and illogical things through ours phones camera.
+254b3a3b-d59a-4916-8296-cf0af0da56fe,2026-06-10 23:17:13.471345+00,Karthickn Kailash Arun,karthickarun2009@gmail.com,Arun Arunachalam,(310) 345-2045,"[""Python"",""Machine Learning""]",hacker,Advanced (3+ years),Looking for teammates,
+7486dc43-cd26-4824-808d-6745997ee4a9,2026-06-09 21:10:17.759212+00,Namish Chopra,namish589@gmail.com,Neha Mittal,2018887806,"[""Python"",""Machine Learning"",""HTML/CSS""]",hacker,Beginner (0–1 years),I have a team ready,
+934d93e7-8f51-40a9-b165-cae63267c4e3,2026-06-08 18:29:14.467335+00,Aadhithya Subramanian,goodaysarecomingsoon@gmail.com,Subramanian,9585057511,"[""HTML/CSS"",""Python"",""Machine Learning""]",hacker,Intermediate (1–3 years),Solo hacker,
+43899eb8-041e-40bd-9332-bda198b9d34e,2026-06-06 14:56:22.996606+00,Aarushi Areti,aarushi.areti@gmail.com,Ava Areti,984-584-8985,"[""HTML/CSS"",""Python"",""Machine Learning""]",hacker,Beginner (0–1 years),Not sure yet,
+7396e770-82f5-4215-81e7-1184a0b49b7f,2026-06-03 16:51:13.485658+00,MD Rizwaan Ali,alirizwaan725@gmail.com,MD Rizwaan Ali,6295186553,"[""HTML/CSS"",""Python"",""Machine Learning""]",hacker,Beginner (0–1 years),I have a team ready,
+a4c091c8-e8f0-4d12-b8b4-e7d1219318b2,2026-06-02 22:48:49.65829+00,Sanya Patel,sanyap0206@gmail.com,Sanya Patel,9195030165,"[""HTML/CSS"",""Python""]",hacker,Beginner (0–1 years),Solo hacker,
+f8650768-0a72-42be-9e95-4bb656203288,2026-06-02 15:17:31.227692+00,Tarun Ganesan,tarun.ganesan@gmail.com,Ganesan Rangaswami,978-761-5704,"[""HTML/CSS"",""Python"",""Machine Learning""]",hacker,Beginner (0–1 years),I have a team ready,
+2c0b80be-c356-43af-8165-00fd5565246f,2026-06-02 14:35:42.282983+00,Anghelo Fernando Araujo-Lazaro,Angheloismeyes@gmail.com,Angela,6038204152,"[""Machine Learning""]",hacker,Intermediate (1–3 years),I have a team ready,"We are building an AI-powered platform that utilizes real-time machine learning pipelines to detect and prevent digital fraud and e-commerce deception, creating a safer and more transparent online shopping experience. But it might change. "
+6666b924-b21c-41df-ab04-b351129a9a8d,2026-06-02 12:25:39.618413+00,Daniel Jacob,danielkjacob01@gmail.com,Jeesmon Jacob,6035144025,"[""Python"",""Machine Learning"",""HTML/CSS""]",hacker,Beginner (0–1 years),I have a team ready,"Some project ideas I have right now are a personalized book cover creator from typing a book title and description. Another idea I had was build like a sandbox type world creator. Our best idea, I think, will be an art creator app with organic painting tools like ThisisSand. "
+e8234a77-1ff1-426b-bace-a94c800c459a,2026-06-02 02:27:10.676275+00,Conan Olatunji,conanupme@outlook.com,Adewale Olatunji,6477215920,"[""HTML/CSS""]",hacker,Beginner (0–1 years),Solo hacker,
+2d5a22dc-2118-438a-ac8c-48e1924b8c17,2026-06-01 03:58:48.145695+00,Justin Barkin,dbag@yogsec.com,Asher Barkin,2162993591,"[""Python"",""Machine Learning"",""HTML/CSS""]",hacker,Intermediate (1–3 years),Solo hacker,I'm thinking about an app for Meta glasses that scans your life day to day and gives you suggestions on how to succeed in ways the user selects. The backend will be in python and the front will be in whatever language you can make Meta Ai Display glasses apps in.
+71e3e6c2-8cdf-4958-b9fb-848360fb226d,2026-06-01 03:25:37.234417+00,Hridyanshu,himank7794@gmail.com,Himank,917982257147,"[""Python"",""Machine Learning""]",hacker,Beginner (0–1 years),Not sure yet,
+d379a5e8-584f-48fc-ab90-f1cef7ebb9a5,2026-06-01 03:08:38.338211+00,Maya Arvinth,maya.arvinth@gmail.com,Arvinth Narayanan,2018939812,"[""Python"",""Machine Learning"",""HTML/CSS""]",hacker,Intermediate (1–3 years),Looking for teammates,
