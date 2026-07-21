@@ -204,13 +204,13 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           <div className="px-5 sm:px-8 md:px-12 py-12 pb-16 border-t border-studio-ink/06">
             <FadeUp>
               <p className="font-mono text-[10px] uppercase tracking-widest text-studio-ink/35 mb-1">What you&apos;ll build</p>
-              <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-6">Three Tracks</h2>
+              <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-6">All About Image AI</h2>
             </FadeUp>
 
             <div className="flex flex-col gap-3 max-w-md mb-10">
               {[
-                { title: "Image Generation", desc: "Text-to-image, inpainting, style transfer", color: "bg-banana-400/30 border-banana-400/60" },
-                { title: "Model Fine-tuning",  desc: "LoRA, DreamBooth, ControlNet adapters",   color: "bg-peri-200 border-peri-400/60"       },
+                { title: "Text-to-Image", desc: "Prompt-driven generation, inpainting, style transfer", color: "bg-banana-400/30 border-banana-400/60" },
+                { title: "Fine-tuning",  desc: "LoRA, DreamBooth, ControlNet adapters",   color: "bg-peri-200 border-peri-400/60"       },
                 { title: "Creative Tools",     desc: "AI-assisted apps, prompt UIs, workflows", color: "bg-studio-ripe/20 border-studio-ripe/50" },
               ].map((t, i) => (
                 <FadeUp key={t.title} delay={i * 90}>

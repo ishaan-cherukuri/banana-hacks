@@ -132,10 +132,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
       >
         {/* Header */}
         <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-studio-ink/08 shrink-0">
-          <div className="flex items-center gap-2">
-            <span className="text-base">{isConductModal ? "📋" : "📐"}</span>
-            <h2 className="font-display font-bold text-base text-studio-ink">{title}</h2>
-          </div>
+          <h2 className="font-display font-bold text-base text-studio-ink">{title}</h2>
           <button
             onClick={onClose}
             className="w-6 h-6 rounded-full bg-studio-ink/08 flex items-center justify-center hover:bg-studio-ink/15 transition-colors text-studio-ink/60 hover:text-studio-ink"
@@ -152,7 +149,6 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
           {sections.map((section) => (
             <div key={section.title}>
               <div className="flex items-center gap-1.5 mb-1.5">
-                <span className="text-sm">{section.icon}</span>
                 <h3 className="font-display font-semibold text-xs text-studio-ink tracking-wide uppercase">
                   {section.title}
                 </h3>

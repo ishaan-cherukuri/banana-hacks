@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import BananaMascot from "@/components/svgs/BananaMascot";
 import PolicyModal from "@/components/PolicyModal";
 
@@ -11,6 +11,7 @@ interface FormData {
   name: string;
   email: string;
   emergencyName: string;
+  emergencyCountryCode: string;
   emergencyPhone: string;
   workshops: string[];
   teamStatus: string;
@@ -23,15 +24,57 @@ const WORKSHOPS = ["HTML/CSS", "Python", "Machine Learning"];
 const TEAM_STATUSES = ["Solo hacker", "I have a team ready", "Looking for teammates", "Not sure yet"];
 const EXPERIENCE_LEVELS = ["Beginner (0–1 years)", "Intermediate (1–3 years)", "Advanced (3+ years)"];
 
+const COUNTRY_CODES = [
+  { dial: "+1",   name: "United States", flag: "🇺🇸" },
+  { dial: "+1",   name: "Canada", flag: "🇨🇦" },
+  { dial: "+91",  name: "India", flag: "🇮🇳" },
+  { dial: "+44",  name: "United Kingdom", flag: "🇬🇧" },
+  { dial: "+61",  name: "Australia", flag: "🇦🇺" },
+  { dial: "+49",  name: "Germany", flag: "🇩🇪" },
+  { dial: "+33",  name: "France", flag: "🇫🇷" },
+  { dial: "+86",  name: "China", flag: "🇨🇳" },
+  { dial: "+81",  name: "Japan", flag: "🇯🇵" },
+  { dial: "+82",  name: "South Korea", flag: "🇰🇷" },
+  { dial: "+52",  name: "Mexico", flag: "🇲🇽" },
+  { dial: "+55",  name: "Brazil", flag: "🇧🇷" },
+  { dial: "+234", name: "Nigeria", flag: "🇳🇬" },
+  { dial: "+27",  name: "South Africa", flag: "🇿🇦" },
+  { dial: "+65",  name: "Singapore", flag: "🇸🇬" },
+  { dial: "+971", name: "UAE", flag: "🇦🇪" },
+  { dial: "+92",  name: "Pakistan", flag: "🇵🇰" },
+  { dial: "+880", name: "Bangladesh", flag: "🇧🇩" },
+  { dial: "+63",  name: "Philippines", flag: "🇵🇭" },
+  { dial: "+34",  name: "Spain", flag: "🇪🇸" },
+];
+
+function formatPhoneNumber(raw: string): string {
+  const digits = raw.replace(/\D/g, "").slice(0, 10);
+  const parts = [digits.slice(0, 3), digits.slice(3, 6), digits.slice(6, 10)].filter(Boolean);
+  return parts.join(" ");
+}
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 export default function ApplyPanel() {
   const [step, setStep] = useState<Step>("form");
   const [openPolicy, setOpenPolicy] = useState<PolicyType>(null);
   const [form, setForm] = useState<FormData>({
-    name: "", email: "", emergencyName: "", emergencyPhone: "", workshops: [], teamStatus: "", experience: "", projectIdea: "", agreeTerms: false,
+    name: "", email: "", emergencyName: "", emergencyCountryCode: "+1", emergencyPhone: "", workshops: [], teamStatus: "", experience: "", projectIdea: "", agreeTerms: false,
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [ccOpen, setCcOpen] = useState(false);
+  const ccRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ccOpen) return;
+    const onClickOutside = (e: MouseEvent) => {
+      if (ccRef.current && !ccRef.current.contains(e.target as Node)) setCcOpen(false);
+    };
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, [ccOpen]);
 
   const setField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
     setForm((f) => ({ ...f, [key]: value }));
@@ -48,9 +91,9 @@ export default function ApplyPanel() {
   const validate = (): boolean => {
     const e: typeof errors = {};
     if (!form.name.trim())                          e.name          = "Name is required";
-    if (!form.email.match(/^[^@]+@[^@]+\.[^@]+$/)) e.email         = "Valid email required";
+    if (!EMAIL_RE.test(form.email.trim()))          e.email         = "Valid email required";
     if (!form.emergencyName.trim())                 e.emergencyName = "Emergency contact name is required";
-    if (!form.emergencyPhone.trim())                e.emergencyPhone = "Emergency contact phone is required";
+    if (form.emergencyPhone.replace(/\D/g, "").length < 10) e.emergencyPhone = "Valid 10-digit phone number required";
     if (!form.teamStatus)                           e.teamStatus = "Please select team status";
     if (!form.experience)                           e.experience = "Please select your experience level";
     if (!form.agreeTerms)                           e.agreeTerms = "You must agree to continue";
@@ -71,7 +114,7 @@ export default function ApplyPanel() {
           name:           form.name,
           email:          form.email,
           emergencyName:  form.emergencyName,
-          emergencyPhone: form.emergencyPhone,
+          emergencyPhone: `${form.emergencyCountryCode} ${form.emergencyPhone}`,
           workshops:      form.workshops,
           teamStatus:     form.teamStatus,
           experience:     form.experience,
@@ -135,12 +178,9 @@ export default function ApplyPanel() {
     <PolicyModal type={openPolicy} onClose={() => setOpenPolicy(null)} />
     <div className="window-scroll h-full overflow-y-auto bg-banana-100">
       <div className="px-6 pt-6 pb-2">
-        <div className="flex items-center gap-3 mb-1">
-          <span className="text-xl">📝</span>
-          <div>
-            <h2 className="font-display font-bold text-xl text-studio-ink">Apply to Hack</h2>
-            <p className="text-xs font-body text-studio-ink/50">Registration closes Oct 8 · Takes 2 minutes</p>
-          </div>
+        <div className="mb-1">
+          <h2 className="font-display font-bold text-xl text-studio-ink">Apply to Hack</h2>
+          <p className="text-xs font-body text-studio-ink/50">Registration closes Oct 8 · Takes 2 minutes</p>
         </div>
       </div>
 
@@ -197,14 +237,46 @@ export default function ApplyPanel() {
             <label htmlFor="apply-ec-phone" className="block text-xs font-display font-semibold text-studio-ink/70 mb-1">
               Emergency Contact Phone *
             </label>
-            <input
-              id="apply-ec-phone"
-              type="tel"
-              value={form.emergencyPhone}
-              onChange={(e) => setField("emergencyPhone", e.target.value)}
-              placeholder="(555) 000-0000"
-              className={`w-full px-3 py-2.5 rounded-xl border text-sm font-body bg-white text-studio-ink placeholder:text-studio-ink/30 focus:outline-none focus:border-banana-400 focus:ring-2 focus:ring-banana-400/20 transition-all ${errors.emergencyPhone ? "border-red-400" : "border-studio-ink/15"}`}
-            />
+            <div className={`flex items-stretch rounded-xl border bg-white overflow-visible ${errors.emergencyPhone ? "border-red-400" : "border-studio-ink/15"} focus-within:border-banana-400 focus-within:ring-2 focus-within:ring-banana-400/20 transition-all`}>
+              <div className="relative shrink-0" ref={ccRef}>
+                <button
+                  type="button"
+                  onClick={() => setCcOpen((o) => !o)}
+                  className="h-full flex items-center gap-1 px-2.5 border-r border-studio-ink/10 text-sm font-body text-studio-ink hover:bg-banana-50 rounded-l-xl transition-colors"
+                >
+                  <span>{COUNTRY_CODES.find((c) => c.dial === form.emergencyCountryCode)?.flag ?? "🌐"}</span>
+                  <span>{form.emergencyCountryCode}</span>
+                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" className="ml-0.5 opacity-50">
+                    <path d="M1 5L5 1L9 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                {ccOpen && (
+                  <div className="absolute bottom-full mb-1 left-0 w-52 max-h-56 overflow-y-auto bg-white border border-studio-ink/15 rounded-xl shadow-lg z-20 py-1">
+                    {COUNTRY_CODES.map((c) => (
+                      <button
+                        key={c.name}
+                        type="button"
+                        onClick={() => { setField("emergencyCountryCode", c.dial); setCcOpen(false); }}
+                        className="w-full flex items-center gap-2 px-3 py-1.5 text-sm font-body text-left text-studio-ink hover:bg-banana-100 transition-colors"
+                      >
+                        <span>{c.flag}</span>
+                        <span className="flex-1 truncate">{c.name}</span>
+                        <span className="text-studio-ink/50">{c.dial}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <input
+                id="apply-ec-phone"
+                type="tel"
+                inputMode="numeric"
+                value={form.emergencyPhone}
+                onChange={(e) => setField("emergencyPhone", formatPhoneNumber(e.target.value))}
+                placeholder="555 123 4567"
+                className="flex-1 min-w-0 px-3 py-2.5 rounded-r-xl text-sm font-body bg-transparent text-studio-ink placeholder:text-studio-ink/30 focus:outline-none"
+              />
+            </div>
             {errors.emergencyPhone && <p className="text-xs text-red-500 mt-1">{errors.emergencyPhone}</p>}
           </div>
         </div>
