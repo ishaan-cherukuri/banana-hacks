@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import MenuBar      from "@/components/MenuBar";
 import Window       from "@/components/Window";
 import HeroSection  from "@/components/HeroSection";
@@ -70,10 +70,17 @@ export default function Desktop() {
   const closeWindow = useCallback((id: string) => setOpenWindows((p) => p.filter((w) => w.id !== id)), []);
   const focusWindow = useCallback((id: string) => setOpenWindows((p) => p.map((w) => w.id === id ? { ...w, zIndex: ++zCounter.current } : w)), []);
 
+  // Deep link support: /?open=apply opens that window on load, so the
+  // crawlable content pages can hand users straight into the right panel.
+  useEffect(() => {
+    const target = new URLSearchParams(window.location.search).get("open");
+    if (target && WINDOW_DEFS.some((w) => w.id === target)) openWindow(target);
+  }, [openWindow]);
+
   const showHero = openWindows.length === 0;
 
   return (
-    <div className="h-[100dvh] w-screen overflow-hidden relative desktop-wallpaper">
+    <div className="os-desktop h-[100dvh] w-screen overflow-hidden relative desktop-wallpaper">
 
       {/* Menu bar */}
       <MenuBar onOpenWindow={openWindow} onGoHome={goHome} />

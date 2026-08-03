@@ -1,30 +1,6 @@
 "use client";
 
-interface Event {
-  time: string;
-  title: string;
-  type: "kickoff" | "workshop" | "office-hours" | "social" | "deadline" | "ceremony";
-  day: string;
-  virtual?: boolean;
-}
-
-const SCHEDULE: Event[] = [
-  // Friday — Opening night
-  { day: "Fri Oct 9",  time: "8:00 PM EDT",  title: "Opening Ceremony & Theme Reveal",          type: "kickoff",      virtual: true  },
-  { day: "Fri Oct 9",  time: "9:30 PM EDT",  title: "Team Formation Social Hour",               type: "social",       virtual: true  },
-  // Saturday — Build day 1
-  { day: "Sat Oct 10", time: "11:00 AM EDT", title: "Workshop: Stable Diffusion from Scratch",  type: "workshop",     virtual: true  },
-  { day: "Sat Oct 10", time: "2:00 PM EDT",  title: "Office Hours: APIs & Model Hosting",       type: "office-hours", virtual: true  },
-  { day: "Sat Oct 10", time: "5:00 PM EDT",  title: "Workshop: LoRA Fine-tuning Deep Dive",     type: "workshop",     virtual: true  },
-  { day: "Sat Oct 10", time: "9:00 PM EDT",  title: "Mid-point Check-in & Progress Showcase",   type: "social",       virtual: true  },
-  // Sunday — Build day 2 + deadline
-  { day: "Sun Oct 11", time: "11:00 AM EDT", title: "Office Hours: UX & Prompt Engineering",    type: "office-hours", virtual: true  },
-  { day: "Sun Oct 11", time: "3:00 PM EDT",  title: "Workshop: ControlNet & Image Conditioning", type: "workshop",    virtual: true  },
-  { day: "Sun Oct 11", time: "11:59 PM AoE", title: "Submissions Close",                         type: "deadline",     virtual: false },
-  // Monday — Closing
-  { day: "Mon Oct 12", time: "3:00 PM EDT",  title: "Judging & Demo Day (live streams)",        type: "ceremony",     virtual: true  },
-  { day: "Mon Oct 12", time: "6:00 PM EDT",  title: "Award Ceremony & Closing",                 type: "ceremony",     virtual: true  },
-];
+import { SCHEDULE, type ScheduleEvent } from "@/lib/content";
 
 const TYPE_META = {
   kickoff:      { color: "bg-banana-400",     text: "text-studio-ink",   dot: "#FDD835",  label: "Kickoff",      card: "bg-banana-400/20 border-banana-400/50"   },
@@ -35,8 +11,8 @@ const TYPE_META = {
   ceremony:     { color: "bg-banana-500",     text: "text-white",        dot: "#C49A00",  label: "Ceremony",     card: "bg-banana-300/30 border-banana-400/50"   },
 };
 
-function groupByDay(events: Event[]) {
-  const map = new Map<string, Event[]>();
+function groupByDay(events: ScheduleEvent[]) {
+  const map = new Map<string, ScheduleEvent[]>();
   events.forEach((e) => {
     if (!map.has(e.day)) map.set(e.day, []);
     map.get(e.day)!.push(e);

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { SPONSORS } from "@/lib/content";
 
 function SponsorInfoModal({ onClose }: { onClose: () => void }) {
   useEffect(() => {
@@ -111,30 +112,6 @@ function SponsorInfoModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-const SPONSORS = [
-  {
-    name: "CodeCrafters",
-    url: "https://codecrafters.io",
-    logo: "/sponsors/codecrafters.png",
-    tagline: "Build your own Redis, Git, SQLite & more",
-    bg: "#070C0F",
-  },
-  {
-    name: "Interview Cake",
-    url: "https://www.interviewcake.com",
-    logo: "/sponsors/interviewcake.png",
-    tagline: "Ace your coding interview",
-    bg: "#76BEDB",
-  },
-  {
-    name: "Rosebud AI",
-    url: "https://rosebud.ai",
-    logo: "/sponsors/rosebud.png",
-    tagline: "Build & ship games with AI",
-    bg: "#FFFFFF",
-    light: true,
-  },
-];
 
 export default function SponsorsPanel() {
   const [showDeck, setShowDeck] = useState(false);
@@ -169,7 +146,8 @@ export default function SponsorsPanel() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={sponsor.logo}
-                  alt={sponsor.name}
+                  alt={`${sponsor.name} — ${sponsor.tagline}. Sponsor of Banana Hacks 2026.`}
+                  loading="lazy"
                   className="max-h-20 w-full object-contain"
                 />
               </div>

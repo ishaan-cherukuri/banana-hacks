@@ -5,7 +5,7 @@ import NeuralNetSVG from "@/components/svgs/NeuralNetSVG";
 import { PixelSparkle, BrushStroke, LeafDecor } from "@/components/svgs/StudioDecorations";
 
 const STATS = [
-  { value: "3",    label: "Days",     sub: "Oct 9–12",             color: "bg-banana-400/30 border-banana-400/60 text-banana-800" },
+  { value: "4",    label: "Days",     sub: "Oct 9–12",             color: "bg-banana-400/30 border-banana-400/60 text-banana-800" },
   { value: "∞",    label: "Tracks",   sub: "AI · Image · Creative", color: "bg-peri-200 border-peri-400/50 text-peri-700" },
   { value: "$10K", label: "Prizes",   sub: "in cash & credits",     color: "bg-studio-ripe/20 border-studio-ripe/50 text-studio-ripe" },
   { value: "100%", label: "Virtual",  sub: "Join anywhere",         color: "bg-studio-leaf/15 border-studio-leaf/40 text-studio-leaf" },
@@ -33,10 +33,10 @@ export default function AboutPanel() {
             <p className="text-xs font-mono font-medium text-banana-700 uppercase tracking-widest mb-1">
               Banana Hacks 2026
             </p>
-            <h1 className="font-display font-extrabold text-3xl text-studio-ink leading-tight mb-2">
+            <h2 className="font-display font-extrabold text-3xl text-studio-ink leading-tight mb-2">
               Create the{" "}
               <span className="banana-gradient-text">Unseen</span>.
-            </h1>
+            </h2>
             <BrushStroke color="#FDD835" width={120} className="mb-3" />
             <p className="font-body text-studio-ink/70 text-sm leading-relaxed max-w-sm">
               A weekend virtual hackathon dedicated to generative AI and image

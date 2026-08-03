@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+// Default (nodejs) runtime so the image is generated once at build time —
+// the edge runtime opts the route out of static generation.
 export const alt = "Banana Hacks 2026 — Generative AI & Image Creation Hackathon";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -29,7 +30,7 @@ export default function OpenGraphImage() {
           Generative AI &amp; Image Creation Hackathon
         </div>
         <div style={{ fontSize: 30, marginTop: 24, opacity: 0.85 }}>
-          Oct 9–12, 2026 · 100% Virtual · Free · $10K+ in prizes
+          Oct 9–12, 2026 · 100% Virtual · Free to enter
         </div>
       </div>
     ),

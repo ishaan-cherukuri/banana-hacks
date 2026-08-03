@@ -1,54 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { FAQS } from "@/lib/content";
 
-interface FAQItem {
-  q: string;
-  a: string;
-}
-
-const FAQS: FAQItem[] = [
-  {
-    q: "Who can participate?",
-    a: "Anyone, anywhere in the world! Students, professionals, hobbyists, and first-timers are all welcome. You just need an internet connection and a passion for generative AI and image creation.",
-  },
-  {
-    q: "Is it free to enter?",
-    a: "Yes! Banana Hacks is completely free to participate in. We also plan to provide free compute credits so you can train models and run inference without worrying about costs.",
-  },
-  {
-    q: "Do I need a team?",
-    a: "Nope! You can hack solo or form a team of up to 4 people. We run a team formation event on Opening Night if you'd like to find teammates. Teams of all sizes compete in the same pool.",
-  },
-  {
-    q: "What tech stack can I use?",
-    a: "Anything goes! Stable Diffusion, DALL-E, Midjourney API, Flux, custom models, ControlNet, ComfyUI, A1111, Hugging Face Diffusers — use whatever tools help you build the best project. Open source is celebrated.",
-  },
-  {
-    q: "How are projects judged?",
-    a: "Projects are evaluated on: Creativity & Originality (30%), Technical Implementation (30%), Visual Quality / User Experience (20%), and Potential Impact (20%). Judges include working AI researchers, artists, and startup founders.",
-  },
-  {
-    q: "Can I use pre-trained models?",
-    a: "Yes! You're encouraged to build on top of existing models. The innovation can be in your application layer, fine-tuning approach, prompt engineering, workflow design, or novel combination of tools.",
-  },
-  {
-    q: "What should I submit?",
-    a: "A working demo (live URL or recorded video), GitHub repository, and a short write-up (max 500 words) explaining what you built and why. Judges will interact with live demos when possible.",
-  },
-  {
-    q: "Will there be prizes?",
-    a: "Yes! Over $10,000 in prizes including cash, GPU credits (AWS, Replicate, Modal), and tooling subscriptions. There are category prizes for Best Creative Tool, Best Fine-tune, Most Surprising Output, and People's Choice.",
-  },
-  {
-    q: "Where does hacking happen?",
-    a: "Banana Hacks is 100% virtual. Our community hub is on Discord. Workshops and ceremonies are on Zoom. You hack wherever you're most creative — bedroom, café, library, co-working space.",
-  },
-  {
-    q: "I've never done a hackathon before. Is this beginner-friendly?",
-    a: "Absolutely. We run dedicated beginner workshops, have mentors available throughout the weekend, and specifically celebrate first-time hackers. The only requirement is curiosity. We've seen incredible projects from people on their very first hackathon.",
-  },
-];
 
 export default function FAQPanel() {
   const [open, setOpen] = useState<number | null>(0);

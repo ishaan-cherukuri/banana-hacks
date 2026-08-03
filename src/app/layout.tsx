@@ -1,12 +1,33 @@
 import type { Metadata, Viewport } from "next";
+import { Space_Grotesk, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { siteConfig } from "@/lib/site";
-import SeoContent from "@/components/SeoContent";
+import { siteConfig, analytics } from "@/lib/site";
+import Analytics from "@/components/Analytics";
+
+const displayFont = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const bodyFont = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const monoFont = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Banana Hacks 2026 — Generative AI & Image Creation Hackathon",
+    default: "Banana Hacks 2026",
     template: "%s · Banana Hacks 2026",
   },
   description: siteConfig.description,
@@ -19,11 +40,16 @@ export const metadata: Metadata = {
     "virtual hackathon",
     "online hackathon 2026",
     "AI hackathon",
+    "diffusion model hackathon",
+    "free hackathon for beginners",
   ],
   applicationName: siteConfig.name,
-  alternates: {
-    canonical: "/",
-  },
+  authors: [{ name: siteConfig.organizer, url: siteConfig.url }],
+  creator: siteConfig.organizer,
+  publisher: siteConfig.organizer,
+  // Note: `alternates.canonical` is intentionally NOT set here. A canonical in
+  // the root layout is inherited by every child route, which would point all
+  // pages at "/" and de-index them. Each page declares its own.
   openGraph: {
     title: "Banana Hacks 2026 — Generative AI & Image Creation Hackathon",
     description: siteConfig.description,
@@ -36,6 +62,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Banana Hacks 2026 — Generative AI & Image Creation Hackathon",
     description: siteConfig.description,
+  },
+  verification: {
+    ...(analytics.googleVerification
+      ? { google: analytics.googleVerification }
+      : {}),
+    ...(analytics.bingVerification
+      ? { other: { "msvalidate.01": analytics.bingVerification } }
+      : {}),
   },
   robots: {
     index: true,
@@ -56,9 +90,21 @@ export const viewport: Viewport = {
   themeColor: "#FFFBF0",
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteConfig.url}/#organization`,
+  name: siteConfig.organizer,
+  url: siteConfig.url,
+  logo: `${siteConfig.url}/icon.svg`,
+  email: siteConfig.contactEmail,
+  description: siteConfig.description,
+};
+
 const eventJsonLd = {
   "@context": "https://schema.org",
   "@type": "Event",
+  "@id": `${siteConfig.url}/#event`,
   name: siteConfig.name,
   description: siteConfig.description,
   startDate: siteConfig.startDate,
@@ -68,22 +114,19 @@ const eventJsonLd = {
   url: siteConfig.url,
   image: `${siteConfig.url}/opengraph-image`,
   isAccessibleForFree: true,
+  inLanguage: "en",
   location: {
     "@type": "VirtualLocation",
     url: siteConfig.url,
   },
-  organizer: {
-    "@type": "Organization",
-    name: siteConfig.organizer,
-    url: siteConfig.url,
-  },
+  organizer: { "@id": `${siteConfig.url}/#organization` },
   offers: {
     "@type": "Offer",
     price: "0",
     priceCurrency: "USD",
     availability: "https://schema.org/InStock",
-    url: siteConfig.url,
-    validFrom: siteConfig.startDate,
+    url: `${siteConfig.url}/register`,
+    validFrom: "2026-01-01T00:00:00-05:00",
   },
 };
 
@@ -91,14 +134,19 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className="h-full overflow-hidden">
+    <html
+      lang="en"
+      className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}
+    >
+      <body className="h-full">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([organizationJsonLd, eventJsonLd]),
+          }}
         />
-        <SeoContent />
         {children}
+        <Analytics />
       </body>
     </html>
   );

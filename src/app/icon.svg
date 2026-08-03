@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Peeled banana. Transparent background so it sits on the browser's own
+       tab colour in both light and dark themes. Built from thick round-capped
+       strokes rather than fine outlines so it survives at 16px. -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- Peel, folded down either side of the fruit -->
+    <g stroke="#C99A16" stroke-width="4.6">
+      <path d="M17.5 12 C14 13.5 11.5 17 10.5 20.5" />
+      <path d="M22.5 12.5 C26 14 28 17 28.5 20" />
+    </g>
+    <g stroke="#F0C22B" stroke-width="3">
+      <path d="M17.5 12 C14 13.5 11.5 17 10.5 20.5" />
+      <path d="M22.5 12.5 C26 14 28 17 28.5 20" />
+    </g>
+
+    <!-- Stem -->
+    <path d="M19.8 10 L20.2 5.5" stroke="#8A6A12" stroke-width="2.6" />
+
+    <!-- Banana body: dark edge, then fill, then highlight -->
+    <path d="M20 11 C26.5 17.5 22.5 27 11 28" stroke="#C99A16" stroke-width="10" />
+    <path d="M20 11 C26.5 17.5 22.5 27 11 28" stroke="#FCD849" stroke-width="7.6" />
+    <path d="M19 13.2 C23.6 18.4 20.6 24.8 12.4 25.9" stroke="#FFF0A8" stroke-width="2.2" />
+  </g>
+</svg>

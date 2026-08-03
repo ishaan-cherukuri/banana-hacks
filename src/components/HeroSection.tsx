@@ -122,10 +122,12 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             {/* Headline */}
             <div className="mb-2">
-              <h1 className="font-display font-extrabold leading-[0.92] text-studio-ink" style={{ fontSize: "clamp(2.8rem, 5.5vw, 4.5rem)" }}>
+              {/* h2, not h1: the page's single H1 is the keyword-bearing one in
+                  SeoContent, which comes first in the DOM. */}
+              <h2 className="font-display font-extrabold leading-[0.92] text-studio-ink" style={{ fontSize: "clamp(2.8rem, 5.5vw, 4.5rem)" }}>
                 Build the<br />
                 <span className="banana-gradient-text">Unseen.</span>
-              </h1>
+              </h2>
             </div>
 
             <BrushStroke color="#FDD835" width={160} className="mb-4 opacity-60" />

@@ -42,9 +42,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["'Space Grotesk'", "system-ui", "sans-serif"],
-        body:    ["'DM Sans'", "system-ui", "sans-serif"],
-        mono:    ["'JetBrains Mono'", "monospace"],
+        display: ["var(--font-display)", "'Space Grotesk'", "system-ui", "sans-serif"],
+        body:    ["var(--font-body)", "'DM Sans'", "system-ui", "sans-serif"],
+        mono:    ["var(--font-mono)", "'JetBrains Mono'", "monospace"],
       },
       boxShadow: {
         window:

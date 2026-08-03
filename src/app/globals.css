@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap");
+/* Fonts are self-hosted via next/font in app/layout.tsx — no external
+   stylesheet request, no render-blocking @import, no layout shift. */
 
 @tailwind base;
 @tailwind components;
@@ -14,11 +15,18 @@
 html,
 body {
   height: 100%;
-  overflow: hidden;          /* desktop OS — no page scroll */
-  font-family: "DM Sans", system-ui, sans-serif;
+  font-family: var(--font-body), "DM Sans", system-ui, sans-serif;
   background-color: #FFFBF0;
   color: #1A1A2E;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Only the OS simulation locks page scroll. The crawlable content pages
+   under app/(info) need to scroll normally, so this is scoped rather than
+   applied to html/body globally. */
+html:has(.os-desktop),
+body:has(.os-desktop) {
+  overflow: hidden;
 }
 
 /* ─── Desktop wallpaper ───────────────────────────────────── */
