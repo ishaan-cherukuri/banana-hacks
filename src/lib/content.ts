@@ -120,6 +120,14 @@ export const SPONSORS: Sponsor[] = [
     bg: "#FFFFFF",
     light: true,
   },
+  {
+    name: "XYZ",
+    url: "https://gen.xyz",
+    logo: "/sponsors/xyz.png",
+    tagline: "Domains for every website, everywhere",
+    bg: "#B1CF5B",
+    light: true,
+  },
 ];
 
 export interface Track {

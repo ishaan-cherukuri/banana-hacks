@@ -297,6 +297,15 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             >
               Interview Cake
             </a>
+            <span className="text-studio-ink/30">·</span>
+            <a
+              href="https://gen.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[9px] font-semibold text-studio-ink/70 hover:text-peri-500 whitespace-nowrap transition-colors"
+            >
+              XYZ
+            </a>
           </div>
         </div>
 

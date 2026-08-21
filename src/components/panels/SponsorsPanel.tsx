@@ -132,7 +132,7 @@ export default function SponsorsPanel() {
 
       <div className="px-6 pb-8 space-y-8">
         {/* Sponsor logo grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {SPONSORS.map((sponsor) => (
             <a
               key={sponsor.name}

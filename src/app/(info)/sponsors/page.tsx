@@ -38,7 +38,7 @@ export default function SponsorsPage() {
         >
           Our sponsors
         </h2>
-        <ul className="grid sm:grid-cols-3 gap-4">
+        <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {SPONSORS.map((sponsor) => (
             <li key={sponsor.name}>
               <a
