@@ -52,8 +52,8 @@ export const metadata: Metadata = {
     "free hackathon for beginners",
   ],
   applicationName: siteConfig.name,
-  authors: [{ name: siteConfig.organizer, url: siteConfig.url }],
-  creator: siteConfig.organizer,
+  authors: [{ name: siteConfig.organizerName, url: siteConfig.url }],
+  creator: siteConfig.organizerName,
   publisher: siteConfig.organizer,
   // Note: `alternates.canonical` is intentionally NOT set here. A canonical in
   // the root layout is inherited by every child route, which would point all
@@ -107,6 +107,20 @@ const organizationJsonLd = {
   logo: `${siteConfig.url}/icon.svg`,
   email: siteConfig.contactEmail,
   description: siteConfig.description,
+  // A named human. The Organization node previously had no founder at all,
+  // which is also how the rendered site read: nothing anywhere said who runs
+  // the event. See AUDIT.md T3.
+  founder: {
+    "@type": "Person",
+    name: siteConfig.organizerName,
+  },
+  sameAs: [siteConfig.instagramUrl],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    email: siteConfig.contactEmail,
+    availableLanguage: "English",
+  },
 };
 
 const eventJsonLd = {
@@ -121,13 +135,13 @@ const eventJsonLd = {
   eventStatus: "https://schema.org/EventScheduled",
   url: siteConfig.url,
   image: `${siteConfig.url}/opengraph-image`,
-  isAccessibleForFree: true,
   inLanguage: "en",
   location: {
     "@type": "VirtualLocation",
     url: siteConfig.url,
   },
   organizer: { "@id": `${siteConfig.url}/#organization` },
+  isAccessibleForFree: true,
   offers: {
     "@type": "Offer",
     price: "0",

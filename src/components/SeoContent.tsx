@@ -14,7 +14,18 @@ import { siteConfig, sitePages } from "@/lib/site";
  */
 export default function SeoContent() {
   return (
-    <section className="sr-only" aria-label="About Banana Hacks 2026">
+    /*
+      Crawlable, visually hidden — but its 11 links are focusable, so tabbing
+      into the homepage used to move focus through eleven off-screen anchors
+      before reaching any visible control, and the focus ring simply vanished.
+      `focus-within:not-sr-only` brings the whole block on screen the moment
+      anything inside it takes focus, so focus is always visible while staying
+      out of the way for everyone else. See AUDIT.md A2.
+    */
+    <section
+      className="sr-only focus-within:not-sr-only focus-within:fixed focus-within:inset-x-0 focus-within:top-9 focus-within:z-[9998] focus-within:max-h-[70vh] focus-within:overflow-y-auto focus-within:bg-banana-50 focus-within:p-6 focus-within:border-b-[1.5px] focus-within:border-studio-ink focus-within:prose-sm"
+      aria-label="About Banana Hacks 2026"
+    >
       <h1>Banana Hacks 2026 — International Generative AI &amp; Image Creation Hackathon</h1>
       <p>{siteConfig.description}</p>
 
@@ -40,8 +51,9 @@ export default function SeoContent() {
 
       <h2>Prizes and judging</h2>
       <p>
-        The prize pool is being finalised with sponsors and will be announced
-        before the event. Projects are judged on creativity and originality,
+        The prize pool is over $10,000 in cash, compute credits, and tooling
+        from our sponsors, with the split between categories confirmed before
+        the event. Projects are judged on creativity and originality,
         technical implementation, visual quality, and potential impact, with
         category awards for Best Creative Tool, Best Fine-tune, Most Surprising
         Output, and People&apos;s Choice.{" "}

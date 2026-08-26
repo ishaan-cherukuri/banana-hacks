@@ -32,7 +32,7 @@ export default function PrizesPage() {
     <PageShell
       path={PATH}
       heading="Prizes & Judging"
-      lede="Banana Hacks is free to enter and every submitted project gets reviewed. The prize pool is being finalised with our sponsors and will be announced before the event — here's how judging works and what the award categories are."
+      lede="Banana Hacks is free to enter and every submitted project gets reviewed. The prize pool is over $10,000 in cash, compute credits, and tooling from our sponsors — here's how judging works, what the award categories are, and how the pool breaks down."
     >
       <section
         aria-labelledby="prize-pool"
@@ -45,12 +45,16 @@ export default function PrizesPage() {
           Prize pool
         </h2>
         <p className="font-body text-sm text-studio-ink/75 leading-relaxed max-w-2xl mb-3">
-          The full prize breakdown is still being confirmed with sponsors and
-          will be published here ahead of {""}
-          <Link href="/schedule" className="text-vine-500 hover:underline">
+          The total pool is <strong className="text-studio-ink">over $10,000</strong>, committed by
+          our{" "}
+          <Link href="/sponsors" className="text-vine-600 hover:underline">
+            sponsors
+          </Link>
+          . The exact split between categories is published here ahead of{" "}
+          <Link href="/schedule" className="text-vine-600 hover:underline">
             opening night
           </Link>
-          . Based on sponsor commitments so far, expect a mix of:
+          . It is made up of:
         </p>
         <ul className="space-y-2 font-body text-sm text-studio-ink/75">
           <li className="flex items-start gap-2.5">

@@ -14,7 +14,7 @@ export interface FAQItem {
 export const FAQS: FAQItem[] = [
   {
     q: "Who can participate?",
-    a: "Anyone, in any country. Banana Hacks is an international hackathon — there is no regional, national, or school-based eligibility restriction. Students, professionals, hobbyists, and first-timers are all welcome; you just need an internet connection and a passion for generative AI and image creation.",
+    a: "Anyone, at any age, in any country. There is no age limit, no regional or national restriction, and no school affiliation required. Banana Hacks is built for students and first-time hackers in particular — the workshops and mentoring assume no prior experience — but professionals and hobbyists are welcome too. All you need is an internet connection. Participants under 18 should have a parent or guardian read the Code of Conduct with them.",
   },
   {
     q: "Is it free to enter?",
@@ -42,7 +42,7 @@ export const FAQS: FAQItem[] = [
   },
   {
     q: "Will there be prizes?",
-    a: "Yes — the prize pool is being finalized and will be announced closer to the event. Expect a mix of cash, compute credits, and tooling subscriptions from our sponsors, plus category awards for standout projects.",
+    a: "Yes — the prize pool is over $10,000, made up of cash, compute credits, and tooling subscriptions from our sponsors, plus category awards for standout projects. The exact split between categories is confirmed closer to the event.",
   },
   {
     q: "Where does hacking happen?",
@@ -150,8 +150,106 @@ export const JUDGING_CRITERIA = [
 ];
 
 export const ELIGIBILITY = [
-  "Open to everyone in every country — students, professionals, hobbyists",
+  "Open to everyone, everywhere — no age limit and no country restriction",
+  "Built for students and first-timers; professionals and hobbyists welcome too",
   "Teams of 1–4 people",
-  "All skill levels welcome — first-timers encouraged",
+  "Under 18? Read the Code of Conduct with a parent or guardian",
   "Must submit by Oct 11, 2026 at 11:59 PM AoE",
+];
+
+/**
+ * Event policies. Shared by the in-desktop PolicyModal and the crawlable
+ * /code-of-conduct page, so a participant, a parent and a search engine all
+ * read the same words. The CoC previously existed only inside the
+ * registration form, which made it both hard to find and uncrawlable.
+ */
+export interface PolicySection {
+  title: string;
+  body: string[];
+}
+
+export const COC_SECTIONS: PolicySection[] = [
+  {
+    title: "Online Hackathon Standards",
+    body: [
+      "Banana Hacks is a virtual event — your conduct online is held to the same standard as an in-person event. Screen-share content, Discord messages, project demos, video calls, and submitted work are all covered.",
+      "Do not record, screenshot, or share other participants' video feeds or private messages without explicit consent.",
+      "Do not attempt to disrupt the event infrastructure — submission platforms, judging portals, Discord bots, or organizer tooling.",
+    ],
+  },
+  {
+    title: "Be Excellent to Each Other",
+    body: [
+      "We are committed to providing a harassment-free experience regardless of gender, gender identity, age, sexual orientation, disability, physical appearance, race, ethnicity, nationality, or religion.",
+      "Harassment includes offensive verbal comments, deliberate intimidation, unwanted attention, sustained disruption of others' work, and inappropriate online contact.",
+      "Sexualised language, imagery, or jokes are not acceptable in any event channel, DM, or submission.",
+    ],
+  },
+  {
+    title: "Privacy & Safety Online",
+    body: [
+      "Do not share personal information about other participants (doxxing) in any form.",
+      "Phishing, social engineering, malware distribution, or any attack targeting participants or organizers is grounds for immediate removal.",
+      "If you discover a security vulnerability in event infrastructure, disclose it privately to the organizers — do not exploit or publicise it.",
+    ],
+  },
+  {
+    title: "Academic Integrity",
+    body: [
+      "All code, designs, and content submitted must be your team's original work created during the hackathon window.",
+      "Properly attribute open-source libraries, datasets, and pre-trained models used in your project.",
+      "Using generative AI tools is permitted and encouraged — disclose which tools you used in your submission.",
+    ],
+  },
+  {
+    title: "Enforcement",
+    body: [
+      "Violations may result in a warning, removal from the event, or disqualification from prizes at organizer discretion.",
+      "Report concerns to an organiser via the #help channel on Discord, or by emailing team@bananahacks.tech. Reports are read only by the organising team.",
+      "Banana Hacks also follows the MLH Code of Conduct (mlh.io/code-of-conduct). Banana Hacks is not an MLH member event.",
+    ],
+  },
+];
+
+export const RULES_SECTIONS: PolicySection[] = [
+  {
+    title: "Teams",
+    body: [
+      "Teams of 1–4 people. You may form a team with anyone — no school affiliation required.",
+      "Each person may only be on one team.",
+      "Team changes must be reported to organizers before hacking begins.",
+    ],
+  },
+  {
+    title: "Hacking Window",
+    body: [
+      "Hacking begins at the opening ceremony and ends at the announced deadline (Sun Oct 11, 11:59 PM AoE).",
+      "Any work started before the opening ceremony is not eligible for judging.",
+      "Code must be in a public GitHub repository committed within the hacking window — commit timestamps are verified.",
+    ],
+  },
+  {
+    title: "What You Can Build On",
+    body: [
+      "Open-source libraries, public APIs, and pre-trained models are all fair game — cite them in your README.",
+      "Theme and challenge details are revealed at the opening ceremony. Projects must address the theme.",
+      "Hardware is not required; all projects should be demonstrable via screen-share or a hosted link.",
+    ],
+  },
+  {
+    title: "Submissions",
+    body: [
+      "Submit via the official submission portal before the deadline. Late submissions will not be considered.",
+      "Required: project name, 1-paragraph description, GitHub link, and a short demo video (≤3 min).",
+      "Judges score on Creativity & Originality (30%), Technical Implementation (30%), Visual Quality / User Experience (20%), and Potential Impact (20%) — the same criteria listed on the Prizes page.",
+    ],
+  },
+  {
+    title: "Prizes & Eligibility",
+    body: [
+      "Prize winners must be available for a short post-event demo call with sponsors.",
+      "Organizers and judges are not eligible to win prizes.",
+      "By submitting, you grant Banana Hacks permission to feature your project in promotional materials.",
+    ],
+  },
 ];

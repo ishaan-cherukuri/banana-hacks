@@ -2,14 +2,39 @@
 export const siteConfig = {
   name: "Banana Hacks 2026",
   shortName: "Banana Hacks",
-  url: "https://bananahacks.tech",
+  // The apex 307-redirects to www on Vercel, so the apex was never the URL
+  // that actually serves. Pointing canonicals, og:url, the sitemap and the
+  // JSON-LD @ids at a redirecting host is a self-inflicted SEO wound.
+  // If you'd rather be canonical on the apex, change the Vercel redirect —
+  // but the site and the DNS have to agree. See AUDIT.md T7.
+  url: "https://www.bananahacks.tech",
   description:
     "Banana Hacks 2026 is a free, international virtual weekend hackathon on generative AI and image creation, running Oct 9–12, 2026. Hackers from every country are welcome — build creative AI tools, fine-tune diffusion models, and compete for prizes and compute credits.",
   startDate: "2026-10-09T20:00:00-04:00",
   endDate: "2026-10-12T19:00:00-04:00",
   dateRangeLabel: "October 9–12, 2026",
   organizer: "Banana Hacks",
-  contactEmail: "sponsorships@bananahacks.tech",
+  /**
+   * Named human behind the event. A visitor — often a parent or a teacher —
+   * asking "who runs this?" previously found nothing at all: `organizer` was
+   * self-referential and the Organization schema had no founder.
+   */
+  organizerName: "Ishaan Cherukuri",
+  organizerBlurb:
+    "Banana Hacks is organised by Ishaan Cherukuri and a student-run team.",
+  /** General participant contact. Distinct from the sponsorship inbox. */
+  contactEmail: "team@bananahacks.tech",
+  sponsorEmail: "sponsorships@bananahacks.tech",
+  /**
+   * Community. Left empty until a permanent invite exists — the UI renders
+   * honest copy when this is falsy rather than a button that goes nowhere.
+   */
+  discordUrl: "",
+  instagramUrl: "https://www.instagram.com/bananahacks26/",
+  mlhCodeOfConductUrl: "https://mlh.io/code-of-conduct",
+  /** Stated plainly because nothing on the site previously said either. */
+  eligibility:
+    "Open to everyone, everywhere, at any age. Banana Hacks is built for students and first-time hackers, but there is no age, country, or school requirement to enter.",
 } as const;
 
 /**
@@ -78,6 +103,14 @@ export const sitePages: SitePage[] = [
     description:
       "Meet the sponsors backing Banana Hacks 2026 and learn how your company can reach generative AI builders around the world through compute credits, tooling, or cash prizes.",
     priority: 0.7,
+  },
+  {
+    path: "/code-of-conduct",
+    label: "Conduct",
+    title: "Banana Hacks 2026 Code of Conduct & Submission Rules",
+    description:
+      "The Code of Conduct and submission rules for Banana Hacks 2026, plus how to report a problem. Applies to every participant, mentor, judge and organiser, in Discord, on Zoom and in submitted work.",
+    priority: 0.6,
   },
   {
     path: "/register",

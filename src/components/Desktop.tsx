@@ -11,6 +11,7 @@ import PrizesPanel   from "@/components/panels/PrizesPanel";
 import ApplyPanel    from "@/components/panels/ApplyPanel";
 import SponsorsPanel from "@/components/panels/SponsorsPanel";
 import SketchPanel   from "@/components/panels/SketchPanel";
+import InfoPanel     from "@/components/panels/InfoPanel";
 import { DOCK_ICON_MAP, ApplyLineIcon } from "@/components/svgs/DockIcons";
 
 interface WindowConfig {
@@ -32,6 +33,7 @@ const WINDOW_DEFS: WindowConfig[] = [
   { id: "apply",    title: "Apply", w: WIN_W, h: WIN_H, component: ApplyPanel    },
   { id: "sponsors", title: "Sponsors", w: WIN_W, h: WIN_H, component: SponsorsPanel },
   { id: "sketch",   title: "AI Studio", w: WIN_W, h: WIN_H, component: SketchPanel   },
+  { id: "info",     title: "Get Info", w: 640,   h: 560,   component: InfoPanel     },
 ];
 
 // Dock order. Icons come from DOCK_ICON_MAP — drawn marks, not emoji.
@@ -45,6 +47,7 @@ const DESKTOP_ICONS = [
   { id: "apply",    label: "Apply"     },
   { id: "faq",      label: "FAQ"       },
   { id: "sponsors", label: "Sponsors"  },
+  { id: "info",     label: "Get Info"  },
 ];
 
 interface OpenWindow { id: string; zIndex: number; x: number; y: number; minimized: boolean; }
@@ -97,11 +100,21 @@ export default function Desktop() {
   return (
     <div className="os-desktop h-[100dvh] w-screen overflow-hidden relative desktop-wallpaper">
 
+      {/*
+        The homepage previously rendered no landmarks at all — no main, nav,
+        header or skip link — so a screen-reader user got an unstructured pile
+        of divs. See AUDIT.md A1.
+      */}
+      <a href="#desktop" className="skip-link">Skip to the desktop</a>
+
       {/* Menu bar */}
       <MenuBar onOpenWindow={openWindow} onGoHome={goHome} />
 
       {/* Desktop surface */}
-      <div
+      <main
+        id="desktop"
+        tabIndex={-1}
+        aria-label="Banana Hacks desktop"
         className="absolute"
         style={{ top: 36, left: 0, right: 0, bottom: 52 }}
       >
@@ -134,10 +147,11 @@ export default function Desktop() {
             </Window>
           );
         })}
-      </div>
+      </main>
 
       {/* Bottom dock */}
-      <div
+      <nav
+        aria-label="Open a Banana Hacks window"
         className="fixed bottom-0 flex justify-center items-end overflow-x-auto"
         style={{ left: 0, right: 0, zIndex: 9000, paddingTop: "36px", paddingBottom: "calc(6px + env(safe-area-inset-bottom))" }}
       >
@@ -190,7 +204,7 @@ export default function Desktop() {
             <div className={`h-[3px] w-4 ${openWindows.some((w) => w.id === "apply") ? "bg-studio-ink" : "bg-transparent"}`} />
           </div>
         </div>
-      </div>
+      </nav>
     </div>
   );
 }

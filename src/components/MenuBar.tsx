@@ -2,6 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { BananaLineIcon } from "@/components/svgs/DockIcons";
+import { siteConfig } from "@/lib/site";
+
+interface MenuItem {
+  label: string;
+  action?: () => void;
+  href?: string;
+}
 
 interface MenuBarProps {
   onOpenWindow: (id: string) => void;
@@ -27,16 +34,23 @@ export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
     return () => clearInterval(id);
   }, []);
 
-  const menus: Record<string, { label: string; action?: () => void }[]> = {
+  /*
+    Every item here now does something. "Discord Community" and "Contact
+    Organizers" used to be actionless <button>s — dead UI in the one menu a
+    confused visitor opens. See AUDIT.md T2.
+  */
+  const menus: Record<string, MenuItem[]> = {
     Help: [
+      { label: "Get Info", action: () => onOpenWindow("info") },
       { label: "FAQ", action: () => onOpenWindow("faq") },
-      { label: "Discord Community" },
-      { label: "Contact Organizers" },
+      { label: "—" },
+      { label: "Email the organisers", href: `mailto:${siteConfig.contactEmail}` },
+      { label: "Code of Conduct", href: "/code-of-conduct" },
     ],
   };
 
   return (
-    <div
+    <header
       className="menu-bar fixed top-0 left-0 right-0 h-9 flex items-center px-3 gap-1"
       style={{ height: 36, zIndex: 9999 }}
     >
@@ -74,14 +88,19 @@ export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
                 {items.map((item, i) =>
                   item.label === "—" ? (
                     <div key={i} className="mx-2 my-1 border-t border-studio-ink/30" />
+                  ) : item.href ? (
+                    <a
+                      key={i}
+                      href={item.href}
+                      className="block w-full text-left px-4 py-1.5 text-[13px] font-body text-studio-ink hover:bg-banana-400 transition-colors"
+                      onClick={() => setMenuOpen(null)}
+                    >
+                      {item.label}
+                    </a>
                   ) : (
                     <button
                       key={i}
-                      className={`w-full text-left px-4 py-1.5 text-[13px] font-body transition-colors ${
-                        item.action
-                          ? "text-studio-ink hover:bg-banana-400 cursor-pointer"
-                          : "text-studio-ink/65 cursor-default"
-                      }`}
+                      className="w-full text-left px-4 py-1.5 text-[13px] font-body text-studio-ink hover:bg-banana-400 cursor-pointer transition-colors"
                       onClick={() => {
                         item.action?.();
                         setMenuOpen(null);
@@ -106,6 +125,6 @@ export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
         </div>
         <span suppressHydrationWarning className="font-mono text-[11px] font-bold text-studio-ink/70 tabular-nums">{time}</span>
       </div>
-    </div>
+    </header>
   );
 }
