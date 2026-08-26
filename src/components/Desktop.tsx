@@ -47,7 +47,7 @@ const DESKTOP_ICONS = [
   { id: "sponsors", label: "Sponsors"  },
 ];
 
-interface OpenWindow { id: string; zIndex: number; x: number; y: number; }
+interface OpenWindow { id: string; zIndex: number; x: number; y: number; minimized: boolean; }
 
 function topLeftPos() {
   // Position at top-left of desktop area (below menu bar, right of toolbar)
@@ -61,16 +61,22 @@ export default function Desktop() {
   const openWindow = useCallback((id: string) => {
     setOpenWindows((prev) => {
       if (prev.find((w) => w.id === id)) {
-        return prev.map((w) => w.id === id ? { ...w, zIndex: ++zCounter.current } : w);
+        // Restore as well as raise. A minimized window is still in this list,
+        // so without clearing the flag the dock icon looked live but did
+        // nothing — see AUDIT.md C2.
+        return prev.map((w) =>
+          w.id === id ? { ...w, zIndex: ++zCounter.current, minimized: false } : w
+        );
       }
       const { x, y } = topLeftPos();
-      return [...prev, { id, zIndex: ++zCounter.current, x, y }];
+      return [...prev, { id, zIndex: ++zCounter.current, x, y, minimized: false }];
     });
   }, []);
 
   const goHome = useCallback(() => setOpenWindows([]), []);
   const closeWindow = useCallback((id: string) => setOpenWindows((p) => p.filter((w) => w.id !== id)), []);
   const focusWindow = useCallback((id: string) => setOpenWindows((p) => p.map((w) => w.id === id ? { ...w, zIndex: ++zCounter.current } : w)), []);
+  const minimizeWindow = useCallback((id: string) => setOpenWindows((p) => p.map((w) => w.id === id ? { ...w, minimized: true } : w)), []);
 
   // Deep link support: /?open=apply opens that window on load, so the
   // crawlable content pages can hand users straight into the right panel.
@@ -79,10 +85,12 @@ export default function Desktop() {
     if (target && WINDOW_DEFS.some((w) => w.id === target)) openWindow(target);
   }, [openWindow]);
 
-  const showHero = openWindows.length === 0;
+  // Minimized counts as "not on screen": with every window minimized the
+  // desktop would otherwise be empty with no way back to the hero.
+  const showHero = openWindows.every((w) => w.minimized);
   // Highest z-index is the active window; it gets the accent title bar.
   const focusedId = openWindows.reduce<OpenWindow | null>(
-    (top, w) => (!top || w.zIndex > top.zIndex ? w : top),
+    (top, w) => (w.minimized ? top : !top || w.zIndex > top.zIndex ? w : top),
     null
   )?.id;
 
@@ -117,8 +125,10 @@ export default function Desktop() {
               initialH={def.h}
               zIndex={win.zIndex}
               focused={win.id === focusedId}
+              minimized={win.minimized}
               onFocus={() => focusWindow(win.id)}
               onClose={() => closeWindow(win.id)}
+              onMinimize={() => minimizeWindow(win.id)}
             >
               <Panel />
             </Window>

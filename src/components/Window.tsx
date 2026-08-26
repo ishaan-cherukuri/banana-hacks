@@ -15,8 +15,16 @@ interface WindowProps {
   zIndex: number;
   /** Drives the accent shadow on the active window. */
   focused?: boolean;
+  /**
+   * Owned by Desktop, not by this component. When it lived here the dock had
+   * no way to clear it, so minimising a window orphaned it permanently — the
+   * dock still showed the app as running but clicking it did nothing, and the
+   * only recovery was a page reload. See AUDIT.md C2.
+   */
+  minimized?: boolean;
   onFocus: () => void;
   onClose: () => void;
+  onMinimize: () => void;
 }
 
 export default function Window({
@@ -30,14 +38,15 @@ export default function Window({
   initialH = 480,
   zIndex,
   focused = false,
+  minimized = false,
   onFocus,
   onClose,
+  onMinimize,
 }: WindowProps) {
   const isMobile = useIsMobile();
   const [pos, setPos] = useState({ x: initialX, y: initialY });
   const [size, setSize] = useState({ w: initialW, h: initialH });
   const [isMaximized, setIsMaximized] = useState(false);
-  const [minimized, setMinimized] = useState(false);
   const [prevState, setPrevState] = useState({ pos, size });
 
   const dragRef  = useRef<{ startX: number; startY: number; startPosX: number; startPosY: number } | null>(null);
@@ -167,7 +176,7 @@ export default function Window({
         <div className="flex items-center gap-1 mr-2.5">
           {([
             { label: "Close window",    glyph: "\u00d7", fill: "#E2542A", onClick: onClose },
-            { label: "Minimize window", glyph: "\u2013", fill: "#F2EEE2", onClick: () => setMinimized(true) },
+            { label: "Minimize window", glyph: "\u2013", fill: "#F2EEE2", onClick: onMinimize },
             { label: "Maximize window", glyph: "\u25a1", fill: "#F2EEE2", onClick: toggleMaximize },
           ] as const).map((b) => (
             <button
