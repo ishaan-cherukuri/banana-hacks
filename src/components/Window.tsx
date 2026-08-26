@@ -119,6 +119,29 @@ export default function Window({
     [size]
   );
 
+  /*
+    Escape closes the focused window. There was no keyboard way to dismiss a
+    window at all — the only affordance was clicking a 15px control.
+    See AUDIT.md A5.
+  */
+  useEffect(() => {
+    if (!focused || minimized) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [focused, minimized, onClose]);
+
+  /*
+    Move focus into a newly opened window so keyboard and screen-reader users
+    land on its content instead of staying wherever they were on the desktop.
+  */
+  useEffect(() => {
+    if (minimized) return;
+    windowRef.current?.focus();
+  }, [minimized]);
+
   /* ── Maximize / Restore ───────────────────────────────── */
   const toggleMaximize = () => {
     if (isMaximized) {
@@ -154,9 +177,12 @@ export default function Window({
   if (minimized) return null;
 
   return (
-    <div
+    <section
       ref={windowRef}
       style={style}
+      tabIndex={-1}
+      role="dialog"
+      aria-label={title}
       className={`window-chrome flex flex-col overflow-hidden animate-bounce-in ${focused ? "is-focused" : ""}`}
       onMouseDown={onFocus}
     >
@@ -225,6 +251,6 @@ export default function Window({
         </div>
       )}
 
-    </div>
+    </section>
   );
 }

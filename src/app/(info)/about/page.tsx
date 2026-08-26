@@ -13,7 +13,7 @@ const STATS = [
   { value: "4", label: "Days", sub: "Oct 9–12, 2026" },
   { value: "60+", label: "Countries", sub: "No regional limits" },
   { value: "$0", label: "Entry fee", sub: "Free for everyone" },
-  { value: "1–4", label: "Team size", sub: "Solo hacking welcome" },
+  { value: "$10K+", label: "Prize pool", sub: "Cash, credits & tooling" },
 ];
 
 export default function AboutPage() {
@@ -74,6 +74,15 @@ export default function AboutPage() {
               schedule page
             </Link>
             .
+          </p>
+          <p>
+            <strong className="text-studio-ink">Who it&apos;s for:</strong>{" "}
+            {siteConfig.eligibility} {siteConfig.organizerBlurb} If you&apos;re
+            under 18, read the{" "}
+            <Link href="/code-of-conduct" className="text-vine-600 hover:underline">
+              Code of Conduct
+            </Link>{" "}
+            with a parent or guardian before you register.
           </p>
           <p>
             The hackathon is deliberately beginner-friendly. Dedicated beginner

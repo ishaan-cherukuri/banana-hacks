@@ -71,6 +71,9 @@ export interface ScheduleEvent {
 }
 
 export const SCHEDULE: ScheduleEvent[] = [
+  // Registration deadline. This date used to appear only inside the apply
+  // form ("Registration closes Oct 8") and nowhere else on the site.
+  { day: "Thu Oct 8",  time: "11:59 PM AoE", title: "Registration Closes",                       type: "deadline",      virtual: false },
   // Friday — Opening night
   { day: "Fri Oct 9",  time: "8:00 PM EDT",  title: "Opening Ceremony & Theme Reveal",           type: "kickoff",       virtual: true  },
   { day: "Fri Oct 9",  time: "9:30 PM EDT",  title: "Team Formation Social Hour",                type: "social",        virtual: true  },
