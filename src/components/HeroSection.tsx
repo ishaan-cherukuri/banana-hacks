@@ -136,10 +136,17 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
         <div className="flex-1 min-w-0 flex flex-col">
 
           {/* ── Screen 1: above-fold hero ─────────────────── */}
-          <div className="flex flex-col justify-center px-5 sm:px-8 md:px-12 py-8 relative z-10" style={{ minHeight: "calc(100dvh - 80px)" }}>
+          {/* pb clears the fixed dock — at 360 the sponsor row sat underneath it. */}
+          <div
+            className="flex flex-col justify-center px-5 sm:px-8 md:px-12 pt-6 sm:pt-8 relative z-10"
+            style={{
+              minHeight: "calc(100dvh - 80px)",
+              paddingBottom: "calc(90px + env(safe-area-inset-bottom))",
+            }}
+          >
 
             {/* Event badge */}
-            <div className="flex items-center gap-2 mb-5">
+            <div className="flex items-center gap-2 mb-4">
               <div className="inline-flex items-center bg-banana-400 border-[1.5px] border-studio-ink shadow-icon-sm">
                 <span className="px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-studio-ink">
                   Oct 9–12, 2026
@@ -154,7 +161,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             <div className="mb-2">
               {/* h2, not h1: the page's single H1 is the keyword-bearing one in
                   SeoContent, which comes first in the DOM. */}
-              <h2 className="font-display font-extrabold leading-[0.92] text-studio-ink" style={{ fontSize: "clamp(2.8rem, 5.5vw, 4.5rem)" }}>
+              <h2 className="font-display font-extrabold leading-[0.92] text-studio-ink" style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.5rem)" }}>
                 Build the<br />
                 <span className="banana-gradient-text">Unseen.</span>
               </h2>
@@ -163,7 +170,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             <BrushStroke color="#FDD835" width={160} className="mb-4 opacity-60" />
 
             {/* Subtext */}
-            <p className="font-body text-base text-studio-ink/75 leading-relaxed max-w-md mb-6">
+            <p className="font-body text-base text-studio-ink/75 leading-relaxed max-w-md mb-5">
               An international weekend hackathon dedicated to{" "}
               <strong className="text-studio-ink font-semibold">generative AI</strong> and{" "}
               <strong className="text-studio-ink font-semibold">image creation</strong>.
@@ -171,7 +178,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             </p>
 
             {/* Countdown */}
-            <div className="flex flex-col items-start sm:flex-row sm:items-center gap-3 sm:gap-4 mb-6">
+            <div className="flex flex-col items-start sm:flex-row sm:items-center gap-2 sm:gap-4 mb-5">
               {phase === "before" ? (
                 <>
                   <div className="flex items-center gap-3 bg-banana-200 hard-card px-4 py-3">
@@ -220,20 +227,38 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
                 buttons separated only by fill colour. Elevation now carries
                 priority: primary sits on a shadow, secondary sits flat.
                 See DESIGN-SYSTEM.md §3. */}
-            <div className="flex flex-wrap gap-3 mb-6">
-              <button onClick={() => onOpenWindow("apply")} className="btn-primary">
-                Apply now — it&apos;s free
-              </button>
-              <button onClick={() => onOpenWindow("sketch")} className="btn-secondary">
-                Try the AI Studio
-              </button>
+            {/*
+              Once the event is over, "Apply now" is a dead end — registration
+              is closed and the window it opens can do nothing useful. The
+              primary action follows the phase.
+            */}
+            <div className="flex flex-wrap gap-3 mb-5">
+              {phase === "after" ? (
+                <>
+                  <button onClick={() => onOpenWindow("sketch")} className="btn-primary">
+                    Try the AI Studio
+                  </button>
+                  <button onClick={() => onOpenWindow("info")} className="btn-secondary">
+                    About Banana Hacks
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button onClick={() => onOpenWindow("apply")} className="btn-primary">
+                    Apply now — it&apos;s free
+                  </button>
+                  <button onClick={() => onOpenWindow("sketch")} className="btn-secondary">
+                    Try the AI Studio
+                  </button>
+                </>
+              )}
             </div>
 
             {/* Sponsors, above the fold. They previously sat at the bottom of
                 the illustration panel, permanently clipped by the dock, so the
                 homepage's only third-party credibility signal was invisible.
                 See AUDIT.md L2. */}
-            <div className="mb-8">
+            <div className="mb-6">
               <p className="eyebrow mb-2">Backed by</p>
               <ul className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
                 {SPONSORS.map((sp) => (
@@ -242,7 +267,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
                       href={sp.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-studio-ink/75 hover:text-vine-600 underline decoration-studio-ink/25 underline-offset-2 whitespace-nowrap transition-colors"
+                      className="inline-flex items-center justify-center min-h-[24px] min-w-[24px] font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-studio-ink/75 hover:text-vine-600 underline decoration-studio-ink/25 underline-offset-2 whitespace-nowrap transition-colors"
                     >
                       {sp.name}
                     </a>
@@ -251,8 +276,9 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
               </ul>
             </div>
 
-            {/* Scroll cue */}
-            <div className="flex justify-center" style={{ maxWidth: "28rem" }}>
+            {/* Scroll cue. Was centred inside a stray 28rem box, which put it
+                at no meaningful x — it now sits on the content's left rail. */}
+            <div className="hidden sm:flex justify-start">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#191A17" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-scroll-cue" style={{ opacity: 0.65 }}>
                 <line x1="12" y1="4" x2="12" y2="18" />
                 <polyline points="6 12 12 18 18 12" />
@@ -312,10 +338,10 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             <FadeUp delay={120}>
               <button
-                onClick={() => onOpenWindow("apply")}
-                className="px-6 py-3 rounded-[6px] font-display font-bold text-base bg-banana-400 text-studio-ink border-[1.5px] border-studio-ink shadow-icon press"
+                onClick={() => onOpenWindow(phase === "after" ? "info" : "apply")}
+                className="btn-primary"
               >
-                Apply Now — it&apos;s free
+                {phase === "after" ? "See what got built" : "Apply now — it\u2019s free"}
               </button>
             </FadeUp>
           </div>
@@ -341,10 +367,16 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             was inset 28px/20px, so every badge cut across the plate's ink
             border at every desktop width. See AUDIT.md L1.
           */}
+          {/*
+            Capped and centred rather than stretched to the full column height.
+            At 1440 the plate was ~500x780 around a 190px mascot — a large
+            empty rectangle with four badges stranded in its corners. A
+            bounded box puts the badges back in relation to the mascot.
+          */}
           <div
-            className="absolute"
+            className="absolute left-5 right-5 top-1/2 -translate-y-1/2"
             style={{
-              inset: "28px 20px",
+              height: "min(calc(100dvh - 140px), 620px)",
               borderRadius: "8px",
               background: "#FFF6D6",
               border: "1.5px solid #191A17",
@@ -358,8 +390,8 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             {/* Four facts, inset from the plate edge. Pinned, not bobbing. */}
             <Badge icon={<BoltLineIcon size={14} />}  text="GPU Credits"   className="absolute top-5 left-5"        color="bg-banana-400 text-studio-ink" />
-            <Badge icon={<CapLineIcon size={14} />}   text="Workshops"     className="absolute top-20 right-5"      color="bg-vine-200 text-studio-ink" />
-            <Badge icon={<MedalLineIcon size={14} />} text="$10K Prizes"   className="absolute bottom-20 left-5"    color="bg-studio-ripe text-banana-50" />
+            <Badge icon={<CapLineIcon size={14} />}   text="Workshops"     className="absolute top-16 right-5"      color="bg-vine-200 text-studio-ink" />
+            <Badge icon={<MedalLineIcon size={14} />} text="$10K Prizes"   className="absolute bottom-16 left-5"    color="bg-studio-ripe text-banana-50" />
             <Badge icon={<GlobeLineIcon size={14} />} text="60+ countries" className="absolute bottom-5 right-5"    color="bg-banana-50 text-studio-ink" />
 
             {/*
@@ -373,7 +405,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             {/* The mascot is the one thing on this panel that moves. */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="animate-float-hero">
-                <BananaMascot size={190} variant="painting" />
+                <BananaMascot size={200} variant="painting" />
               </div>
             </div>
           </div>

@@ -56,7 +56,7 @@ export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
     >
       {/* App icon + name → go home */}
       <button
-        className="flex items-center gap-1.5 font-display font-extrabold text-[15px] tracking-[-0.03em] text-studio-ink mr-3 select-none hover:text-vine-600 transition-colors"
+        className="flex items-center gap-1.5 min-h-[24px] px-1 font-display font-extrabold text-[15px] tracking-[-0.03em] text-studio-ink mr-2 select-none hover:text-vine-600 transition-colors"
         onClick={onGoHome}
       >
         <BananaLineIcon size={17} />
@@ -67,7 +67,7 @@ export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
       {Object.entries(menus).map(([name, items]) => (
         <div key={name} className="relative">
           <button
-            className={`px-2.5 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] transition-colors select-none ${
+            className={`px-2.5 min-h-[24px] inline-flex items-center font-mono text-[11px] font-bold uppercase tracking-[0.08em] transition-colors select-none ${
               menuOpen === name
                 ? "bg-studio-ink text-banana-400"
                 : "text-studio-ink/75 hover:bg-banana-400"
