@@ -15,6 +15,12 @@ export default function InfoLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="min-h-full flex flex-col bg-banana-100">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[10000] focus:px-4 focus:py-2 focus:bg-banana-400 focus:text-studio-ink focus:font-display focus:font-bold focus:text-sm focus:border-[1.5px] focus:border-studio-ink"
+      >
+        Skip to content
+      </a>
       <header className="sticky top-0 z-50 border-b-[1.5px] border-studio-ink bg-banana-100">
         <div className="mx-auto max-w-4xl px-5 h-14 flex items-center gap-4">
           <Link
@@ -44,7 +50,7 @@ export default function InfoLayout({
         </div>
       </header>
 
-      <main className="flex-1 mx-auto w-full max-w-4xl px-5 py-10">
+      <main id="main" className="flex-1 mx-auto w-full max-w-4xl px-5 py-10">
         {children}
       </main>
 
@@ -57,9 +63,14 @@ export default function InfoLayout({
                 Banana Hacks 2026
               </span>
             </div>
-            <p className="font-body text-xs text-studio-ink/70 leading-relaxed">
+            <p className="font-body text-xs text-studio-ink/70 leading-relaxed mb-2">
               A free, international generative AI &amp; image creation hackathon. Open to hackers in every country.{" "}
               {siteConfig.dateRangeLabel}.
+            </p>
+            {/* Names a human. Nothing on the site previously said who runs the
+                event, which is the first thing a parent or teacher checks. */}
+            <p className="font-body text-xs text-studio-ink/70 leading-relaxed">
+              {siteConfig.organizerBlurb}
             </p>
           </div>
 
@@ -93,12 +104,40 @@ export default function InfoLayout({
             <h2 className="font-display font-semibold text-xs uppercase tracking-wider text-studio-ink/65 mb-2">
               Contact
             </h2>
-            <a
-              href={`mailto:${siteConfig.contactEmail}`}
-              className="font-body text-xs text-vine-500 hover:underline break-all"
-            >
-              {siteConfig.contactEmail}
-            </a>
+            <ul className="space-y-1.5">
+              <li>
+                <a
+                  href={`mailto:${siteConfig.contactEmail}`}
+                  className="font-body text-xs text-vine-600 hover:underline break-all"
+                >
+                  {siteConfig.contactEmail}
+                </a>
+                <span className="block font-body text-[11px] text-studio-ink/65">
+                  General &amp; participant questions
+                </span>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${siteConfig.sponsorEmail}`}
+                  className="font-body text-xs text-vine-600 hover:underline break-all"
+                >
+                  {siteConfig.sponsorEmail}
+                </a>
+                <span className="block font-body text-[11px] text-studio-ink/65">
+                  Sponsorship
+                </span>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-body text-xs text-vine-600 hover:underline"
+                >
+                  Instagram
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </footer>

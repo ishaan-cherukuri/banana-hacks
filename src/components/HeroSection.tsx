@@ -3,34 +3,60 @@
 import { useState, useEffect, useRef } from "react";
 import BananaMascot from "@/components/svgs/BananaMascot";
 import NeuralNetSVG  from "@/components/svgs/NeuralNetSVG";
-import { PixelSparkle, LeafDecor, BrushStroke, PixelCluster } from "@/components/svgs/StudioDecorations";
+import { PixelSparkle, BrushStroke } from "@/components/svgs/StudioDecorations";
 import { BoltLineIcon, CapLineIcon, MedalLineIcon, GlobeLineIcon } from "@/components/svgs/DockIcons";
+import { siteConfig } from "@/lib/site";
+import { SPONSORS } from "@/lib/content";
 import type { ReactNode } from "react";
 
 /* ─── Countdown ────────────────────────────────────────────── */
-const HACKATHON_START = new Date("2026-10-10T00:00:00Z");
+/*
+  Three states, not one. The old hook returned {0,0,0,0} both before hydration
+  and forever after the start date, so the server HTML shipped a literal
+  00:00:00:00 and the hero would have read "00:00:00:00 until hacking begins"
+  every day from Oct 10 onwards. See AUDIT.md, suspected issue 1.
+*/
+const HACKATHON_START = new Date(siteConfig.startDate);
+const HACKATHON_END = new Date(siteConfig.endDate);
 
-function useCountdown() {
-  const calc = () => {
-    const diff = HACKATHON_START.getTime() - Date.now();
-    if (diff <= 0) return { d: 0, h: 0, m: 0, s: 0 };
-    const s = Math.floor(diff / 1000);
+type Phase = "pending" | "before" | "during" | "after";
+
+interface Countdown {
+  phase: Phase;
+  d: number;
+  h: number;
+  m: number;
+  s: number;
+}
+
+function useCountdown(): Countdown {
+  const calc = (): Countdown => {
+    const now = Date.now();
+    if (now >= HACKATHON_END.getTime()) return { phase: "after", d: 0, h: 0, m: 0, s: 0 };
+    if (now >= HACKATHON_START.getTime()) return { phase: "during", d: 0, h: 0, m: 0, s: 0 };
+    const sec = Math.floor((HACKATHON_START.getTime() - now) / 1000);
     return {
-      d: Math.floor(s / 86400),
-      h: Math.floor((s % 86400) / 3600),
-      m: Math.floor((s % 3600) / 60),
-      s: s % 60,
+      phase: "before",
+      d: Math.floor(sec / 86400),
+      h: Math.floor((sec % 86400) / 3600),
+      m: Math.floor((sec % 3600) / 60),
+      s: sec % 60,
     };
   };
-  const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 });
+
+  // "pending" is the pre-hydration state. The server can't know the client's
+  // clock, so rather than render zeros it renders the date, and the digits
+  // appear once we're mounted. No dead placeholder is ever painted.
+  const [t, setT] = useState<Countdown>({ phase: "pending", d: 0, h: 0, m: 0, s: 0 });
+
   useEffect(() => {
     setT(calc());
     const id = setInterval(() => setT(calc()), 1000);
     return () => clearInterval(id);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return t;
 }
-
 
 /* ─── useInView hook ───────────────────────────────────────── */
 function useInView(threshold = 0.2) {
@@ -98,7 +124,7 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
-  const { d, h, m, s } = useCountdown();
+  const { phase, d, h, m, s } = useCountdown();
 
   return (
     <div className="absolute inset-0 overflow-y-auto overflow-x-hidden scroll-smooth">
@@ -110,10 +136,17 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
         <div className="flex-1 min-w-0 flex flex-col">
 
           {/* ── Screen 1: above-fold hero ─────────────────── */}
-          <div className="flex flex-col justify-center px-5 sm:px-8 md:px-12 py-8 relative z-10" style={{ minHeight: "calc(100dvh - 80px)" }}>
+          {/* pb clears the fixed dock — at 360 the sponsor row sat underneath it. */}
+          <div
+            className="flex flex-col justify-center px-5 sm:px-8 md:px-12 pt-6 sm:pt-8 relative z-10"
+            style={{
+              minHeight: "calc(100dvh - 80px)",
+              paddingBottom: "calc(90px + env(safe-area-inset-bottom))",
+            }}
+          >
 
             {/* Event badge */}
-            <div className="flex items-center gap-2 mb-5">
+            <div className="flex items-center gap-2 mb-4">
               <div className="inline-flex items-center bg-banana-400 border-[1.5px] border-studio-ink shadow-icon-sm">
                 <span className="px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-studio-ink">
                   Oct 9–12, 2026
@@ -128,7 +161,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             <div className="mb-2">
               {/* h2, not h1: the page's single H1 is the keyword-bearing one in
                   SeoContent, which comes first in the DOM. */}
-              <h2 className="font-display font-extrabold leading-[0.92] text-studio-ink" style={{ fontSize: "clamp(2.8rem, 5.5vw, 4.5rem)" }}>
+              <h2 className="font-display font-extrabold leading-[0.92] text-studio-ink" style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.5rem)" }}>
                 Build the<br />
                 <span className="banana-gradient-text">Unseen.</span>
               </h2>
@@ -137,7 +170,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             <BrushStroke color="#FDD835" width={160} className="mb-4 opacity-60" />
 
             {/* Subtext */}
-            <p className="font-body text-base text-studio-ink/75 leading-relaxed max-w-md mb-6">
+            <p className="font-body text-base text-studio-ink/75 leading-relaxed max-w-md mb-5">
               An international weekend hackathon dedicated to{" "}
               <strong className="text-studio-ink font-semibold">generative AI</strong> and{" "}
               <strong className="text-studio-ink font-semibold">image creation</strong>.
@@ -145,37 +178,107 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             </p>
 
             {/* Countdown */}
-            <div className="flex flex-col items-start sm:flex-row sm:items-center gap-3 sm:gap-4 mb-6">
-              <div className="flex items-center gap-3 bg-banana-200 hard-card px-4 py-3">
-                <CountCell n={d} label="days"  />
-                <span className="font-mono font-bold text-xl text-studio-ink/65 leading-none">:</span>
-                <CountCell n={h} label="hours" />
-                <span className="font-mono font-bold text-xl text-studio-ink/65 leading-none">:</span>
-                <CountCell n={m} label="min"   />
-                <span className="font-mono font-bold text-xl text-studio-ink/65 leading-none">:</span>
-                <CountCell n={s} label="sec"   />
-              </div>
-              <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-studio-ink/65">until hacking begins</span>
+            <div className="flex flex-col items-start sm:flex-row sm:items-center gap-2 sm:gap-4 mb-5">
+              {phase === "before" ? (
+                <>
+                  <div className="flex items-center gap-3 bg-banana-200 hard-card px-4 py-3">
+                    <CountCell n={d} label="days"  />
+                    <span className="font-mono font-bold text-xl text-studio-ink/65 leading-none">:</span>
+                    <CountCell n={h} label="hours" />
+                    <span className="font-mono font-bold text-xl text-studio-ink/65 leading-none">:</span>
+                    <CountCell n={m} label="min"   />
+                    <span className="font-mono font-bold text-xl text-studio-ink/65 leading-none">:</span>
+                    <CountCell n={s} label="sec"   />
+                  </div>
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-studio-ink/70">
+                    until hacking begins
+                  </span>
+                </>
+              ) : phase === "during" ? (
+                <div className="flex items-center gap-2.5 bg-studio-leaf hard-card px-4 py-3">
+                  <span className="w-2 h-2 rounded-full bg-banana-400 animate-pulse" aria-hidden="true" />
+                  <span className="font-display font-extrabold text-base text-banana-50">
+                    Hacking is live right now
+                  </span>
+                </div>
+              ) : phase === "after" ? (
+                <div className="bg-banana-200 hard-card px-4 py-3">
+                  <span className="font-display font-extrabold text-base text-studio-ink">
+                    That&apos;s a wrap on Banana Hacks 2026
+                  </span>
+                  <span className="block font-mono text-[11px] font-bold uppercase tracking-wider text-studio-ink/70 mt-0.5">
+                    Thanks to everyone who built with us
+                  </span>
+                </div>
+              ) : (
+                /* Pre-hydration: the dates, never a row of zeros. */
+                <div className="bg-banana-200 hard-card px-4 py-3">
+                  <span className="font-display font-extrabold text-base text-studio-ink">
+                    {siteConfig.dateRangeLabel}
+                  </span>
+                  <span className="block font-mono text-[11px] font-bold uppercase tracking-wider text-studio-ink/70 mt-0.5">
+                    Free · fully online
+                  </span>
+                </div>
+              )}
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-3 mb-8">
-              <button
-                onClick={() => onOpenWindow("apply")}
-                className="px-6 py-3 rounded-[6px] font-display font-bold text-base bg-banana-400 text-studio-ink border-[1.5px] border-studio-ink shadow-icon press"
-              >
-                Apply Now
-              </button>
-              <button
-                onClick={() => onOpenWindow("sketch")}
-                className="px-6 py-3 rounded-[6px] font-display font-bold text-base bg-banana-50 text-studio-ink border-[1.5px] border-studio-ink shadow-icon press"
-              >
-                Try AI Studio
-              </button>
+            {/* CTAs — one primary. These were two identically-weighted
+                buttons separated only by fill colour. Elevation now carries
+                priority: primary sits on a shadow, secondary sits flat.
+                See DESIGN-SYSTEM.md §3. */}
+            {/*
+              Once the event is over, "Apply now" is a dead end — registration
+              is closed and the window it opens can do nothing useful. The
+              primary action follows the phase.
+            */}
+            <div className="flex flex-wrap gap-3 mb-5">
+              {phase === "after" ? (
+                <>
+                  <button onClick={() => onOpenWindow("sketch")} className="btn-primary">
+                    Try the AI Studio
+                  </button>
+                  <button onClick={() => onOpenWindow("info")} className="btn-secondary">
+                    About Banana Hacks
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button onClick={() => onOpenWindow("apply")} className="btn-primary">
+                    Apply now — it&apos;s free
+                  </button>
+                  <button onClick={() => onOpenWindow("sketch")} className="btn-secondary">
+                    Try the AI Studio
+                  </button>
+                </>
+              )}
             </div>
 
-            {/* Scroll cue */}
-            <div className="flex justify-center" style={{ maxWidth: "28rem" }}>
+            {/* Sponsors, above the fold. They previously sat at the bottom of
+                the illustration panel, permanently clipped by the dock, so the
+                homepage's only third-party credibility signal was invisible.
+                See AUDIT.md L2. */}
+            <div className="mb-6">
+              <p className="eyebrow mb-2">Backed by</p>
+              <ul className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+                {SPONSORS.map((sp) => (
+                  <li key={sp.name}>
+                    <a
+                      href={sp.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center min-h-[24px] min-w-[24px] font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-studio-ink/75 hover:text-vine-600 underline decoration-studio-ink/25 underline-offset-2 whitespace-nowrap transition-colors"
+                    >
+                      {sp.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Scroll cue. Was centred inside a stray 28rem box, which put it
+                at no meaningful x — it now sits on the content's left rail. */}
+            <div className="hidden sm:flex justify-start">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#191A17" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-scroll-cue" style={{ opacity: 0.65 }}>
                 <line x1="12" y1="4" x2="12" y2="18" />
                 <polyline points="6 12 12 18 18 12" />
@@ -235,10 +338,10 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             <FadeUp delay={120}>
               <button
-                onClick={() => onOpenWindow("apply")}
-                className="px-6 py-3 rounded-[6px] font-display font-bold text-base bg-banana-400 text-studio-ink border-[1.5px] border-studio-ink shadow-icon press"
+                onClick={() => onOpenWindow(phase === "after" ? "info" : "apply")}
+                className="btn-primary"
               >
-                Apply Now — it&apos;s free
+                {phase === "after" ? "See what got built" : "Apply now — it\u2019s free"}
               </button>
             </FadeUp>
           </div>
@@ -248,77 +351,63 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
         {/* ════════════════════════════════════════════════════ */}
         {/* RIGHT — sticky illustration                         */}
         {/* ════════════════════════════════════════════════════ */}
+        {/*
+          lg:, not md:. At 768 this panel is ~292px — too narrow for the
+          mascot, four badges and the neural net, which is why the badges
+          collided with the plate worst at that width. See AUDIT.md L3.
+        */}
         <div
-          className="sticky top-0 self-start shrink-0 relative hidden md:flex items-center justify-center overflow-hidden"
+          className="sticky top-0 self-start shrink-0 relative hidden lg:flex items-center justify-center overflow-hidden"
           style={{ width: "38%", height: "calc(100dvh - 80px)" }}
+          aria-hidden="true"
         >
-          {/* Flat plate. Was a three-stop gradient card with an inset
-              highlight and two bloom shadows — the stock "hero glass"
-              treatment. Now it's a piece of tinted paper on the grid. */}
+          {/*
+            The plate is now a positioning context, so the badges sit inside
+            it. They used to be positioned against the panel while the plate
+            was inset 28px/20px, so every badge cut across the plate's ink
+            border at every desktop width. See AUDIT.md L1.
+          */}
+          {/*
+            Capped and centred rather than stretched to the full column height.
+            At 1440 the plate was ~500x780 around a 190px mascot — a large
+            empty rectangle with four badges stranded in its corners. A
+            bounded box puts the badges back in relation to the mascot.
+          */}
           <div
-            className="absolute pointer-events-none"
+            className="absolute left-5 right-5 top-1/2 -translate-y-1/2"
             style={{
-              inset: "28px 20px",
+              height: "min(calc(100dvh - 140px), 620px)",
               borderRadius: "8px",
               background: "#FFF6D6",
               border: "1.5px solid #191A17",
               boxShadow: "6px 6px 0 rgba(25,26,23,0.85)",
             }}
-          />
+          >
+            {/* Neural net, clipped to the plate rather than overflowing it. */}
+            <div className="absolute top-5 right-5 opacity-40 overflow-hidden">
+              <NeuralNetSVG size={130} animated />
+            </div>
 
-          {/* Neural net */}
-          <div className="absolute top-6 right-6 opacity-45">
-            <NeuralNetSVG size={150} animated />
-          </div>
+            {/* Four facts, inset from the plate edge. Pinned, not bobbing. */}
+            <Badge icon={<BoltLineIcon size={14} />}  text="GPU Credits"   className="absolute top-5 left-5"        color="bg-banana-400 text-studio-ink" />
+            <Badge icon={<CapLineIcon size={14} />}   text="Workshops"     className="absolute top-16 right-5"      color="bg-vine-200 text-studio-ink" />
+            <Badge icon={<MedalLineIcon size={14} />} text="$10K Prizes"   className="absolute bottom-16 left-5"    color="bg-studio-ripe text-banana-50" />
+            <Badge icon={<GlobeLineIcon size={14} />} text="60+ countries" className="absolute bottom-5 right-5"    color="bg-banana-50 text-studio-ink" />
 
-          {/* Stat badges. Pinned, not bobbing — five independently
-              floating chips is the single loudest "generated" cue on a
-              hero, and it makes the numbers hard to read. */}
-          <Badge icon={<BoltLineIcon size={14} />}  text="GPU Credits"   className="absolute top-8  left-6"      color="bg-banana-400 text-studio-ink" />
-          <Badge icon={<CapLineIcon size={14} />}   text="Workshops"     className="absolute top-28 right-2"     color="bg-vine-200 text-studio-ink" />
-          <Badge icon={<MedalLineIcon size={14} />} text="$10K Prizes"   className="absolute bottom-28 left-4"   color="bg-studio-ripe text-banana-50" />
-          <Badge icon={<GlobeLineIcon size={14} />} text="60+ countries" className="absolute bottom-12 right-6"  color="bg-banana-50 text-studio-ink" />
+            {/*
+              One ornament, not six. This panel carried two PixelClusters, two
+              PixelSparkles and a LeafDecor on top of the mascot and the net —
+              enough scattered decoration to read as noise rather than craft.
+              Chanel's rule: take one thing off. See AUDIT.md §6.
+            */}
+            <PixelSparkle className="absolute top-1/3 left-6 opacity-70" size={20} color="#FDD835" />
 
-          {/* Decorative clusters */}
-          <PixelCluster className="absolute top-16 left-16 opacity-55" size={48} />
-          <PixelCluster className="absolute bottom-20 right-16 opacity-45" size={40} />
-          <PixelSparkle className="absolute top-48 left-8 opacity-75" size={20} color="#FDD835" />
-          <PixelSparkle className="absolute bottom-36 right-12 opacity-65" size={16} color="#2C7466" />
-          <LeafDecor    className="absolute bottom-8 left-8 opacity-40" size={42} />
-
-          {/* Main mascot — the one thing on this panel that moves. */}
-          <div className="relative z-10 animate-float-hero">
-            <BananaMascot size={180} variant="painting" />
-          </div>
-
-          {/* Sponsor strip */}
-          <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-3">
-            <a
-              href="https://codecrafters.io"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-[10px] font-bold uppercase tracking-[0.06em] text-studio-ink/75 hover:text-vine-600 underline decoration-studio-ink/25 underline-offset-2 whitespace-nowrap transition-colors"
-            >
-              CodeCrafters
-            </a>
-            <span className="text-studio-ink/65">·</span>
-            <a
-              href="https://www.interviewcake.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-[10px] font-bold uppercase tracking-[0.06em] text-studio-ink/75 hover:text-vine-600 underline decoration-studio-ink/25 underline-offset-2 whitespace-nowrap transition-colors"
-            >
-              Interview Cake
-            </a>
-            <span className="text-studio-ink/65">·</span>
-            <a
-              href="https://gen.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-[10px] font-bold uppercase tracking-[0.06em] text-studio-ink/75 hover:text-vine-600 underline decoration-studio-ink/25 underline-offset-2 whitespace-nowrap transition-colors"
-            >
-              XYZ
-            </a>
+            {/* The mascot is the one thing on this panel that moves. */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="animate-float-hero">
+                <BananaMascot size={200} variant="painting" />
+              </div>
+            </div>
           </div>
         </div>
 

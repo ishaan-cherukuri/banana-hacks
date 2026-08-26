@@ -250,7 +250,7 @@ export default function SketchPanel() {
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="a banana robot in a neon gallery..."
               rows={3}
-              className="w-full px-2.5 py-2 rounded-[6px] border-[1.5px] border-studio-ink bg-banana-50 text-xs font-body text-studio-ink placeholder:text-studio-ink/60 resize-none focus:outline-none focus:bg-white focus:shadow-icon-sm transition-all"
+              className="w-full px-2.5 py-2 rounded-[6px] border-[1.5px] border-studio-ink bg-banana-50 text-xs font-body text-studio-ink placeholder:text-studio-ink/65 resize-none focus:outline-none focus:bg-white focus:shadow-icon-sm transition-all"
             />
           </div>
 
@@ -339,7 +339,7 @@ export default function SketchPanel() {
         </div>
 
         <div className="p-3 border-t border-studio-ink/25 shrink-0">
-          <p className="text-[9px] font-mono text-studio-ink/60 text-center leading-relaxed">
+          <p className="text-[9px] font-mono text-studio-ink/65 text-center leading-relaxed">
             Demo mode · Real generation after registration
           </p>
         </div>

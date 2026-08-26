@@ -15,7 +15,8 @@
      • Borders are 1.5–2px of near-solid ink, not 1px of 8% tint.
      • Shadows offset in x/y with zero blur. No glows, ever.
      • Fills are flat. Gradients only as ink-on-paper texture.
-     • Text is ink at ≥60% opacity. Below that it turns to mush.
+     • Text is ink at ≥65% opacity. /60 measures 4.07–4.49:1 on the
+       banana and vine fills — under AA. /65 clears 4.72:1 everywhere.
      • Motion is rare and short. Two floating things, not eight.
 
    The failure mode this is steering away from is the generated
@@ -33,6 +34,20 @@
   /* One radius scale, used everywhere. Two values, not seven. */
   --r-sm: 4px;
   --r-md: 8px;
+
+  /* Focus. Everything here is drawn with a pen — hard ink rules, hard offset
+     shadows — so the browser's default 1px ring read as unstyled. A 2.5px ink
+     box offset from the element speaks the same language, and still clears
+     7.4:1 on banana-400 so it is visible on the accent as well as on paper. */
+  --focus-ring: 2.5px;
+  --focus-offset: 2px;
+}
+
+/* :focus-visible, not :focus — mouse users never see this. */
+:focus-visible {
+  outline: var(--focus-ring) solid var(--ink);
+  outline-offset: var(--focus-offset);
+  border-radius: var(--r-sm);
 }
 
 /* ─── Base reset ─────────────────────────────────────────── */
@@ -193,6 +208,88 @@ body:has(.os-desktop) {
 }
 .press:hover  { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 rgba(25, 26, 23, 0.85); }
 .press:active { transform: translate(2px, 2px);   box-shadow: 0 0 0 rgba(25, 26, 23, 0.85); }
+
+/* ─── Skip link ──────────────────────────────────────────── */
+/* Off-screen until focused, then a real object on the page. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10000;
+}
+.skip-link:focus {
+  left: 8px;
+  top: 8px;
+  padding: 0.5rem 1rem;
+  background: var(--banana);
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-sm);
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+/* ─── Button tiers ───────────────────────────────────────── */
+/* Elevation encodes priority. In an OS a raised object is one you can press,
+   so primary literally sits above the page and secondary sits on it. The hero
+   previously separated its two CTAs by fill colour alone, which is a weak
+   signal and vanishes in greyscale. One primary per view. */
+.btn-primary,
+.btn-secondary,
+.btn-tertiary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  /* 44px min touch target on every tier. */
+  min-height: 44px;
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--r-sm);
+  transition: transform 110ms ease, box-shadow 110ms ease, background-color 110ms ease;
+}
+
+.btn-primary {
+  background: var(--banana);
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  box-shadow: 3px 3px 0 rgba(25, 26, 23, 0.85);
+}
+.btn-primary:hover  { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 rgba(25, 26, 23, 0.85); }
+.btn-primary:active { transform: translate(2px, 2px);   box-shadow: 0 0 0 rgba(25, 26, 23, 0.85); }
+
+/* Flat on the page: available, but not the thing to do next. Losing the
+   shadow — not just the fill — is what makes the tiers readable at a glance. */
+.btn-secondary {
+  background: var(--paper);
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  box-shadow: none;
+}
+.btn-secondary:hover { background: #FFF3B0; }
+
+.btn-tertiary {
+  background: none;
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+.btn-tertiary:hover { color: var(--vine); }
+
+.btn-primary:disabled,
+.btn-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
 
 /* Small uppercase mono label used above section headings. */
 .eyebrow {

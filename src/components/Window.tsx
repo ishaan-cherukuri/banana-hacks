@@ -15,8 +15,16 @@ interface WindowProps {
   zIndex: number;
   /** Drives the accent shadow on the active window. */
   focused?: boolean;
+  /**
+   * Owned by Desktop, not by this component. When it lived here the dock had
+   * no way to clear it, so minimising a window orphaned it permanently — the
+   * dock still showed the app as running but clicking it did nothing, and the
+   * only recovery was a page reload. See AUDIT.md C2.
+   */
+  minimized?: boolean;
   onFocus: () => void;
   onClose: () => void;
+  onMinimize: () => void;
 }
 
 export default function Window({
@@ -30,14 +38,15 @@ export default function Window({
   initialH = 480,
   zIndex,
   focused = false,
+  minimized = false,
   onFocus,
   onClose,
+  onMinimize,
 }: WindowProps) {
   const isMobile = useIsMobile();
   const [pos, setPos] = useState({ x: initialX, y: initialY });
   const [size, setSize] = useState({ w: initialW, h: initialH });
   const [isMaximized, setIsMaximized] = useState(false);
-  const [minimized, setMinimized] = useState(false);
   const [prevState, setPrevState] = useState({ pos, size });
 
   const dragRef  = useRef<{ startX: number; startY: number; startPosX: number; startPosY: number } | null>(null);
@@ -110,6 +119,29 @@ export default function Window({
     [size]
   );
 
+  /*
+    Escape closes the focused window. There was no keyboard way to dismiss a
+    window at all — the only affordance was clicking a 15px control.
+    See AUDIT.md A5.
+  */
+  useEffect(() => {
+    if (!focused || minimized) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [focused, minimized, onClose]);
+
+  /*
+    Move focus into a newly opened window so keyboard and screen-reader users
+    land on its content instead of staying wherever they were on the desktop.
+  */
+  useEffect(() => {
+    if (minimized) return;
+    windowRef.current?.focus();
+  }, [minimized]);
+
   /* ── Maximize / Restore ───────────────────────────────── */
   const toggleMaximize = () => {
     if (isMaximized) {
@@ -145,9 +177,12 @@ export default function Window({
   if (minimized) return null;
 
   return (
-    <div
+    <section
       ref={windowRef}
       style={style}
+      tabIndex={-1}
+      role="dialog"
+      aria-label={title}
       className={`window-chrome flex flex-col overflow-hidden animate-bounce-in ${focused ? "is-focused" : ""}`}
       onMouseDown={onFocus}
     >
@@ -167,7 +202,7 @@ export default function Window({
         <div className="flex items-center gap-1 mr-2.5">
           {([
             { label: "Close window",    glyph: "\u00d7", fill: "#E2542A", onClick: onClose },
-            { label: "Minimize window", glyph: "\u2013", fill: "#F2EEE2", onClick: () => setMinimized(true) },
+            { label: "Minimize window", glyph: "\u2013", fill: "#F2EEE2", onClick: onMinimize },
             { label: "Maximize window", glyph: "\u25a1", fill: "#F2EEE2", onClick: toggleMaximize },
           ] as const).map((b) => (
             <button
@@ -216,6 +251,6 @@ export default function Window({
         </div>
       )}
 
-    </div>
+    </section>
   );
 }

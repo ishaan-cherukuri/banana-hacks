@@ -141,7 +141,19 @@ export function GlobeLineIcon(props: IconProps) {
   );
 }
 
+/** Get Info → the OS "info" mark: who made this, how to reach them. */
+export function InfoLineIcon(props: IconProps) {
+  return (
+    <Base {...props} label="Get Info">
+      <circle cx="12" cy="12" r="8.5" fill="#FDD835" />
+      <path d="M12 11v5" />
+      <path d="M12 8.2v.6" />
+    </Base>
+  );
+}
+
 export const DOCK_ICON_MAP: Record<string, (p: IconProps) => JSX.Element> = {
+  info:     InfoLineIcon,
   about:    BananaLineIcon,
   sketch:   PaletteLineIcon,
   schedule: CalendarLineIcon,

@@ -34,3 +34,18 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Secrets — never commit. See SECURITY-REMEDIATION.md.
+.env*
+!.env.example
+
+# Registrant personal data. These files contain names, emails and
+# emergency-contact phone numbers and must not be tracked in a public repo.
+submissions_daily/
+banana_hacks_emails.json
+failed_emails.json
+followup_remaining.json
+*.csv
+
+# Playwright MCP scratch output
+.playwright-mcp/
