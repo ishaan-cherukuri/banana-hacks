@@ -149,62 +149,72 @@ export default function Desktop() {
         })}
       </main>
 
-      {/* Bottom dock */}
+      {/*
+        Bottom dock.
+
+        At 360px the old dock measured 379px of content in a 360px box and the
+        overflow fell on the right — where the separated Apply tile lives — so
+        the primary call to action was the one thing clipped off the narrowest
+        common phone. Apply now sits outside the scrolling strip, pinned, so it
+        is always reachable; the browsing icons scroll under it. Tiles are 44px
+        so they clear the comfortable touch-target minimum.
+        See AUDIT.md L4, L6.
+      */}
       <nav
         aria-label="Open a Banana Hacks window"
-        className="fixed bottom-0 flex justify-center items-end overflow-x-auto"
-        style={{ left: 0, right: 0, zIndex: 9000, paddingTop: "36px", paddingBottom: "calc(6px + env(safe-area-inset-bottom))" }}
+        className="fixed bottom-0 left-0 right-0 flex justify-center items-end"
+        style={{ zIndex: 9000, paddingTop: "36px", paddingBottom: "calc(6px + env(safe-area-inset-bottom))" }}
       >
-        {/* Flat paper on a hard ink rule. The old version was a
-            translucent blurred pill over a three-stop gradient. */}
         <div
-          className="flex items-end gap-1 sm:gap-1.5 px-2 sm:px-3 py-2 hard-card mb-1 mx-auto shrink-0"
+          className="flex items-end hard-card mb-1 mx-2 max-w-full overflow-hidden"
           style={{ background: "#FFFBF0" }}
         >
-          {DESKTOP_ICONS.map((icon) => {
-            const isOpen = openWindows.some((w) => w.id === icon.id);
-            const IconWidget = DOCK_ICON_MAP[icon.id];
-            return (
-              <div key={icon.id} className="relative flex flex-col items-center gap-1 group/dock">
-                {/* Tooltip */}
-                <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-studio-ink text-banana-400 font-mono text-[10px] font-bold uppercase tracking-wider whitespace-nowrap pointer-events-none opacity-0 group-hover/dock:opacity-100 transition-opacity duration-100">
-                  {icon.label}
-                </div>
-                <button
-                  className={`w-10 h-10 sm:w-12 sm:h-12 rounded-[6px] flex items-center justify-center icon-tile shadow-icon transition-colors ${
-                    isOpen ? "bg-banana-400" : "bg-banana-200 hover:bg-banana-300"
-                  }`}
-                  style={{ border: "1.5px solid #191A17" }}
-                  onClick={() => openWindow(icon.id)}
-                  aria-label={icon.label}
-                >
-                  {IconWidget && <IconWidget size={26} />}
-                </button>
-                {/* Running indicator: a solid ink bar, visible at a glance. */}
-                <div className={`h-[3px] w-4 ${isOpen ? "bg-studio-ink" : "bg-transparent"}`} />
+          {/* Scrollable: the seven browsing destinations. */}
+          <ul className="flex items-end gap-1 sm:gap-1.5 px-2 sm:px-3 py-2 overflow-x-auto min-w-0">
+            {DESKTOP_ICONS.map((icon) => {
+              const isOpen = openWindows.some((w) => w.id === icon.id && !w.minimized);
+              const IconWidget = DOCK_ICON_MAP[icon.id];
+              return (
+                <li key={icon.id} className="relative flex flex-col items-center gap-1 group/dock shrink-0">
+                  <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-studio-ink text-banana-400 font-mono text-[10px] font-bold uppercase tracking-wider whitespace-nowrap pointer-events-none opacity-0 group-hover/dock:opacity-100 transition-opacity duration-100">
+                    {icon.label}
+                  </div>
+                  <button
+                    className={`w-11 h-11 rounded-[6px] flex items-center justify-center icon-tile shadow-icon transition-colors ${
+                      isOpen ? "bg-banana-400" : "bg-banana-200 hover:bg-banana-300"
+                    }`}
+                    style={{ border: "1.5px solid #191A17" }}
+                    onClick={() => openWindow(icon.id)}
+                    aria-label={icon.label}
+                  >
+                    {IconWidget && <IconWidget size={26} />}
+                  </button>
+                  <div className={`h-[3px] w-4 ${isOpen ? "bg-studio-ink" : "bg-transparent"}`} />
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Pinned: never scrolls out of reach. */}
+          <div className="flex items-end shrink-0 border-l-[1.5px] border-studio-ink/25 px-2 sm:px-3 py-2">
+            <div className="relative flex flex-col items-center gap-1 group/dock">
+              <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-studio-ink text-banana-400 font-mono text-[10px] font-bold uppercase tracking-wider whitespace-nowrap pointer-events-none opacity-0 group-hover/dock:opacity-100 transition-opacity duration-100">
+                Apply Now
               </div>
-            );
-          })}
-
-          <div className="self-stretch w-[1.5px] bg-studio-ink/25 mx-1 my-0.5" />
-
-          <div className="relative flex flex-col items-center gap-1 group/dock">
-            {/* Tooltip */}
-            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-studio-ink text-banana-400 font-mono text-[10px] font-bold uppercase tracking-wider whitespace-nowrap pointer-events-none opacity-0 group-hover/dock:opacity-100 transition-opacity duration-100">
-              Apply Now
+              <button
+                className="w-11 h-11 rounded-[6px] bg-banana-400 flex items-center justify-center icon-tile shadow-icon hover:bg-banana-500 transition-colors"
+                style={{ border: "1.5px solid #191A17" }}
+                onClick={() => openWindow("apply")}
+                aria-label="Apply Now"
+              >
+                <ApplyLineIcon size={26} />
+              </button>
+              <div className={`h-[3px] w-4 ${openWindows.some((w) => w.id === "apply" && !w.minimized) ? "bg-studio-ink" : "bg-transparent"}`} />
             </div>
-            <button
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-[6px] bg-banana-400 flex items-center justify-center icon-tile shadow-icon hover:bg-banana-500 transition-colors"
-              style={{ border: "1.5px solid #191A17" }}
-              onClick={() => openWindow("apply")}
-              aria-label="Apply Now"
-            >
-              <ApplyLineIcon size={26} />
-            </button>
-            <div className={`h-[3px] w-4 ${openWindows.some((w) => w.id === "apply") ? "bg-studio-ink" : "bg-transparent"}`} />
           </div>
         </div>
       </nav>
+
     </div>
   );
 }
