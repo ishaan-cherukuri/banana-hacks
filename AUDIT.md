@@ -380,3 +380,74 @@ Ordered by the brief's ladder: trust/legitimacy → first-impression clarity →
 and already de-slopped. Phase 4 extends it (focus token, contrast floor, CTA hierarchy, one honest
 trust component) rather than replacing it — replacing it would be the trend-following move this
 brief explicitly warns against.
+
+
+---
+
+# Verification — after the fix pass
+
+Re-measured against a fresh production build (`next build` + `next start`), same
+conditions as §0.
+
+## Scores
+
+| Signal | Scope | Before | After |
+|---|---|---|---|
+| Accessibility | `/`, mobile navigation | 100 | **100** (51 audits passed, up from 50) |
+| Best Practices | `/`, mobile navigation | 100 | **100** |
+| SEO | `/`, mobile navigation | 100 | **100** |
+| Agentic Browsing | `/`, mobile navigation | 100 | **100** |
+| Accessibility / BP / SEO | `/code-of-conduct` (new page) | — | **100 / 100 / 100** |
+| LCP | `/`, desktop, local prod | 209 ms | **252 ms** |
+| CLS | `/`, desktop, local prod | 0.00 | **0.00** |
+| Console errors | `/` | 0 | **0** (CSP added without breakage) |
+
+Lighthouse was already at 100 before this pass, so the score table is not the
+evidence that matters. The list below is.
+
+## Behaviour verified in a browser
+
+| Item | Before | After |
+|---|---|---|
+| C2 minimize | Window orphaned; `{windowVisible: false, dockShowsRunning: true, formPresent: false}`; only a reload recovered it | Minimize returns the hero, dock click restores: `{restored: true, title: "Get Info"}` |
+| C3 phone | UK `020 7946 0958` stored as `020 794 6095` (11 digits → 10) | Stored as `020 7946 0958`, 11 digits, spacing intact |
+| A3 form errors | `{ariaInvalid: 0, ariaDescribedBy: 0, liveRegions: 0}`, focus left on submit | `{ariaInvalid: 7, ariaDescribedBy: 7, liveRegions: 1}`, alert reads "7 fields need your attention before you can apply.", focus moves to it |
+| A4 checkbox | 1 `div[role="checkbox"]` with nested buttons | `0` such divs; native `input#apply-terms`; 2 `role="radiogroup"` |
+| A2 tab order | 11 invisible tab stops before the first visible control | Skip link is the first tab stop, on screen, with the new focus token |
+| A7 focus ring | Browser default `1px auto` | `2.5px solid rgb(25,26,23)` on `:focus-visible` |
+| Countdown | `00:00:00:00` in server HTML, and forever after Oct 10 | Verified all four phases with a faked clock: pending renders the dates, before ticks, during shows "Hacking is live right now", after shows "That's a wrap" |
+| Registration | — | End to end: validation → API error path (announced, form retained) → success screen |
+| T7 canonical | `https://bananahacks.tech` (307s to www) | `https://www.bananahacks.tech` |
+| B1 headers | HSTS only | CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy all present |
+| L4 dock | `{clientW: 360, scrollW: 379, overflowing: true}`, Apply clipped | Apply pinned outside the scroll strip; no horizontal overflow at any breakpoint |
+| L2 sponsors | Behind the dock at every width | Above the fold in the left column; `occludedByDock: []` at 360/768/1024/1440 |
+| Tap targets | Dock 40px; menu bar and sponsor links 17–23px | All ≥ 24px; dock tiles 44px |
+
+## Ten-second test, re-run
+
+| Question | Before (desktop / mobile) | After |
+|---|---|---|
+| What is it? | ✅ / ✅ | ✅ / ✅ |
+| When? | ✅ / ✅ | ✅ / ✅ |
+| Free? | ✅ / ✅ | ✅ / ✅ |
+| How do I start? | ✅ / ⚠️ clipped | ✅ / ✅ |
+| Who runs it? | ❌ / ❌ | ✅ named in Get Info, the footer and the JSON-LD |
+| Is it legitimate? | ⚠️ hidden / ❌ | ✅ sponsors above the fold, CoC crawlable, real contact |
+
+Six of six, on both.
+
+## Still outstanding
+
+1. **`SECURITY-REMEDIATION.md` §2–§4 — yours to run.** Rotation and history purge
+   are not done. The code no longer carries the secret, but git history does, and
+   the key was public.
+2. **No Discord invite exists yet.** The UI renders honest copy instead of a dead
+   link; set `siteConfig.discordUrl` and the button appears everywhere at once.
+3. **No confirmation email is sent.** The success screen now says so plainly
+   rather than promising one. Wiring `/api/apply` to Resend would let that copy
+   change.
+4. **CSP still needs `'unsafe-inline'`** for Next's bootstrap and Tailwind's
+   injected styles. Tightening needs a nonce setup.
+5. **`next lint` is unconfigured** — it prompts for setup on first run. Left alone
+   deliberately rather than choosing a config on your behalf.
+6. **B7 legacy JS** (14.4 kB) — measured savings 0 ms. Not worth doing.

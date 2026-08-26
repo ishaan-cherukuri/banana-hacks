@@ -103,10 +103,9 @@ export default function Desktop() {
       {/*
         The homepage previously rendered no landmarks at all — no main, nav,
         header or skip link — so a screen-reader user got an unstructured pile
-        of divs. See AUDIT.md A1.
+        of divs. The skip link itself lives in app/page.tsx so it precedes
+        SeoContent in the tab order. See AUDIT.md A1.
       */}
-      <a href="#desktop" className="skip-link">Skip to the desktop</a>
-
       {/* Menu bar */}
       <MenuBar onOpenWindow={openWindow} onGoHome={goHome} />
 
