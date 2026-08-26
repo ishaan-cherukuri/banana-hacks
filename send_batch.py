@@ -2,11 +2,19 @@ import smtplib
 import json
 import time
 import os
+from dotenv import load_dotenv
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-FROM_EMAIL = "team@bananahacks.tech"
-APP_PASSWORD = "J4Yvd8hQXgq8"
+load_dotenv()
+
+FROM_EMAIL = os.getenv("ZOHO_FROM_EMAIL", "team@bananahacks.tech")
+# Never hardcode this. Set ZOHO_APP_PASSWORD in .env (gitignored).
+APP_PASSWORD = os.getenv("ZOHO_APP_PASSWORD")
+if not APP_PASSWORD:
+    raise SystemExit(
+        "ZOHO_APP_PASSWORD is not set. Add it to .env — see SECURITY-REMEDIATION.md."
+    )
 FAILED_FILE = "failed_emails.json"
 EMAILS_FILE = "banana_hacks_emails.json"
 

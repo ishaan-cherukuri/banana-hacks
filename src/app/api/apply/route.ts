@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 
 export async function POST(req: NextRequest) {
   try {
@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    await db.execute({
+    await getDb().execute({
       sql: `INSERT INTO registrations
         (name, email, emergency_name, emergency_phone, workshops, team_status, experience, project_idea, role)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
