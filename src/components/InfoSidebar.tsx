@@ -19,13 +19,15 @@ function useDaysLeft() {
   return days;
 }
 
+// Two-letter mono keys instead of emoji: they set in the page's own
+// typeface, stay identical across platforms, and line up in a column.
 const FACTS = [
-  { icon: "📅", label: "Dates",   value: "Oct 9–12, 2026" },
-  { icon: "🌐", label: "Format",  value: "100% Virtual"   },
-  { icon: "👥", label: "Teams",   value: "1–4 people"     },
-  { icon: "🆓", label: "Cost",    value: "Free to enter"  },
-  { icon: "🎖️", label: "Prizes",  value: "$10K+ total"    },
-  { icon: "🤖", label: "Theme",   value: "Generative AI"  },
+  { key: "DT", label: "Dates",   value: "Oct 9–12, 2026"  },
+  { key: "FM", label: "Format",  value: "Online, global"  },
+  { key: "TM", label: "Teams",   value: "1–4 people"      },
+  { key: "$$", label: "Cost",    value: "Free to enter"   },
+  { key: "PZ", label: "Prizes",  value: "$10K+ total"     },
+  { key: "TH", label: "Theme",   value: "Generative AI"   },
 ];
 
 const SOCIALS = [
@@ -73,20 +75,20 @@ export default function InfoSidebar({ onOpenWindow }: InfoSidebarProps) {
     <aside className="flex flex-col h-full py-4 px-3 gap-4 overflow-y-auto" style={{ width: 168 }}>
 
       {/* ── Registration status ──────────────────────────────── */}
-      <div className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-mono font-semibold ${regOpen ? "bg-studio-leaf/12 text-studio-leaf border border-studio-leaf/25" : "bg-red-50 text-red-500 border border-red-200"}`}>
+      <div className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-[6px] text-xs font-mono font-semibold ${regOpen ? "bg-studio-leaf/12 text-studio-leaf border border-studio-leaf/25" : "bg-red-50 text-red-500 border border-red-200"}`}>
         <div className={`w-1.5 h-1.5 rounded-full ${regOpen ? "bg-studio-leaf animate-pulse" : "bg-red-400"}`} />
         {regOpen ? "REG OPEN" : "REG CLOSED"}
       </div>
 
       {/* ── Days countdown ───────────────────────────────────── */}
-      <div className="bg-banana-400/25 border border-banana-400/55 rounded-2xl p-4 text-center shadow-icon">
+      <div className="bg-banana-400/25 border border-banana-400/55 rounded-[8px] p-4 text-center shadow-icon">
         <span
           suppressHydrationWarning
           className="font-display font-extrabold text-5xl leading-none text-studio-ink block"
         >
           {days}
         </span>
-        <span className="font-mono text-[10px] uppercase tracking-widest text-studio-ink/40 mt-1 block">
+        <span className="font-mono text-[10px] uppercase tracking-widest text-studio-ink/65 mt-1 block">
           days to go
         </span>
         <div className="mt-3 h-1.5 rounded-full bg-banana-200 overflow-hidden">
@@ -100,21 +102,21 @@ export default function InfoSidebar({ onOpenWindow }: InfoSidebarProps) {
       {/* ── Apply CTA ────────────────────────────────────────── */}
       <button
         onClick={() => onOpenWindow("apply")}
-        className="w-full py-2.5 rounded-xl font-display font-bold text-sm bg-banana-400 text-studio-ink hover:bg-banana-500 active:scale-95 transition-all shadow-icon"
+        className="w-full py-2.5 rounded-[6px] font-display font-bold text-sm bg-banana-400 text-studio-ink border-[1.5px] border-studio-ink shadow-icon press"
       >
-        Apply Now 🍌
+        Apply Now
       </button>
 
       {/* ── Key facts ────────────────────────────────────────── */}
-      <div className="bg-white/70 border border-banana-400/30 rounded-2xl overflow-hidden shadow-icon">
+      <div className="bg-banana-50 hard-card overflow-hidden">
         {FACTS.map((f, i) => (
           <div
             key={f.label}
-            className={`flex items-center gap-2.5 px-3 py-2 ${i < FACTS.length - 1 ? "border-b border-studio-ink/05" : ""}`}
+            className={`flex items-center gap-2.5 px-3 py-2 ${i < FACTS.length - 1 ? "border-b border-studio-ink/25" : ""}`}
           >
-            <span className="text-sm shrink-0">{f.icon}</span>
+            <span className="font-mono text-[10px] font-bold text-studio-ink/70 shrink-0 w-5 tabular-nums">{f.key}</span>
             <div className="min-w-0">
-              <div className="font-mono text-[9px] uppercase tracking-wider text-studio-ink/35 leading-none">
+              <div className="font-mono text-[9px] uppercase tracking-wider text-studio-ink/60 leading-none">
                 {f.label}
               </div>
               <div className="font-body text-[11px] font-semibold text-studio-ink/80 leading-tight mt-0.5 truncate">
@@ -127,7 +129,7 @@ export default function InfoSidebar({ onOpenWindow }: InfoSidebarProps) {
 
       {/* ── Social links ─────────────────────────────────────── */}
       <div>
-        <p className="font-mono text-[9px] uppercase tracking-widest text-studio-ink/30 mb-2 px-0.5">
+        <p className="font-mono text-[9px] uppercase tracking-widest text-studio-ink/60 mb-2 px-0.5">
           Community
         </p>
         <div className="flex flex-col gap-1.5">
@@ -135,7 +137,7 @@ export default function InfoSidebar({ onOpenWindow }: InfoSidebarProps) {
             <a
               key={s.label}
               href={s.href}
-              className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-studio-ink/50 transition-all ${s.color} border border-transparent hover:border-studio-ink/08`}
+              className={`flex items-center gap-2.5 px-3 py-2 rounded-[6px] text-studio-ink/70 transition-all ${s.color} border border-transparent hover:border-studio-ink/25`}
             >
               {s.icon}
               <span className="font-body text-xs font-medium">{s.label}</span>
@@ -145,12 +147,12 @@ export default function InfoSidebar({ onOpenWindow }: InfoSidebarProps) {
       </div>
 
       {/* ── MLH trust badge placeholder ──────────────────────── */}
-      <div className="mt-auto pt-2 border-t border-studio-ink/07">
+      <div className="mt-auto pt-2 border-t border-studio-ink/25">
         <div className="flex items-center gap-2 px-1">
           <div className="w-6 h-8 rounded bg-studio-ink/08 flex items-center justify-center">
-            <span className="text-[8px] font-mono font-bold text-studio-ink/40">MLH</span>
+            <span className="text-[8px] font-mono font-bold text-studio-ink/65">MLH</span>
           </div>
-          <span className="font-mono text-[9px] text-studio-ink/30 leading-tight">
+          <span className="font-mono text-[9px] text-studio-ink/60 leading-tight">
             MLH Member<br />Event 2026
           </span>
         </div>

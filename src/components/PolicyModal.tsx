@@ -9,7 +9,6 @@ interface PolicyModalProps {
 
 const COC_SECTIONS = [
   {
-    icon: "🌐",
     title: "Online Hackathon Standards",
     body: [
       "Banana Hacks is a virtual event — your conduct online is held to the same standard as an in-person event. Screen-share content, Discord messages, project demos, video calls, and submitted work are all covered.",
@@ -18,7 +17,6 @@ const COC_SECTIONS = [
     ],
   },
   {
-    icon: "🤝",
     title: "Be Excellent to Each Other",
     body: [
       "We are committed to providing a harassment-free experience regardless of gender, gender identity, age, sexual orientation, disability, physical appearance, race, ethnicity, nationality, or religion.",
@@ -27,7 +25,6 @@ const COC_SECTIONS = [
     ],
   },
   {
-    icon: "🔒",
     title: "Privacy & Safety Online",
     body: [
       "Do not share personal information about other participants (doxxing) in any form.",
@@ -36,7 +33,6 @@ const COC_SECTIONS = [
     ],
   },
   {
-    icon: "⚖️",
     title: "Academic Integrity",
     body: [
       "All code, designs, and content submitted must be your team's original work created during the hackathon window.",
@@ -45,7 +41,6 @@ const COC_SECTIONS = [
     ],
   },
   {
-    icon: "🚨",
     title: "Enforcement",
     body: [
       "Violations may result in a warning, removal from the event, or disqualification from prizes at organizer discretion.",
@@ -57,7 +52,6 @@ const COC_SECTIONS = [
 
 const RULES_SECTIONS = [
   {
-    icon: "👥",
     title: "Teams",
     body: [
       "Teams of 1–4 people. You may form a team with anyone — no school affiliation required.",
@@ -66,7 +60,6 @@ const RULES_SECTIONS = [
     ],
   },
   {
-    icon: "⏱️",
     title: "Hacking Window",
     body: [
       "Hacking begins at the opening ceremony and ends at the announced deadline (Sun Oct 11, 11:59 PM AoE).",
@@ -75,7 +68,6 @@ const RULES_SECTIONS = [
     ],
   },
   {
-    icon: "🛠️",
     title: "What You Can Build On",
     body: [
       "Open-source libraries, public APIs, and pre-trained models are all fair game — cite them in your README.",
@@ -84,7 +76,6 @@ const RULES_SECTIONS = [
     ],
   },
   {
-    icon: "📦",
     title: "Submissions",
     body: [
       "Submit via the official submission portal before the deadline. Late submissions will not be considered.",
@@ -93,7 +84,6 @@ const RULES_SECTIONS = [
     ],
   },
   {
-    icon: "🏆",
     title: "Prizes & Eligibility",
     body: [
       "Prize winners must be available for a short post-event demo call with sponsors.",
@@ -119,23 +109,23 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ backgroundColor: "rgba(26,26,46,0.45)", backdropFilter: "blur(3px)" }}
+      style={{ backgroundColor: "rgba(25,26,23,0.55)", backdropFilter: "blur(3px)" }}
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div
-        className="relative bg-banana-100 rounded-2xl flex flex-col"
+        className="relative bg-banana-100 rounded-[8px] flex flex-col"
         style={{
           width: "min(420px, 92vw)",
           maxHeight: "72vh",
-          boxShadow: "0 4px 6px -1px rgba(26,26,46,0.08), 0 24px 48px -8px rgba(26,26,46,0.22), 0 0 0 1px rgba(26,26,46,0.08)",
+          border: "1.5px solid #191A17", boxShadow: "6px 6px 0 rgba(25,26,23,0.88)",
         }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-studio-ink/08 shrink-0">
+        <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-studio-ink/25 shrink-0">
           <h2 className="font-display font-bold text-base text-studio-ink">{title}</h2>
           <button
             onClick={onClose}
-            className="w-6 h-6 rounded-full bg-studio-ink/08 flex items-center justify-center hover:bg-studio-ink/15 transition-colors text-studio-ink/60 hover:text-studio-ink"
+            className="w-6 h-6 rounded-full bg-studio-ink/08 flex items-center justify-center hover:bg-studio-ink/15 transition-colors text-studio-ink/72 hover:text-studio-ink"
             aria-label="Close"
           >
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -166,10 +156,10 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
         </div>
 
         {/* Footer */}
-        <div className="px-5 pt-3 pb-4 border-t border-studio-ink/08 shrink-0">
+        <div className="px-5 pt-3 pb-4 border-t border-studio-ink/25 shrink-0">
           <button
             onClick={onClose}
-            className="w-full py-2 rounded-xl font-display font-semibold text-sm bg-banana-400 text-studio-ink hover:bg-banana-500 active:scale-[0.98] transition-all"
+            className="w-full py-2 rounded-[6px] font-display font-semibold text-sm bg-banana-400 text-studio-ink hover:bg-banana-500 active:scale-[0.98] transition-all"
           >
             Got it
           </button>

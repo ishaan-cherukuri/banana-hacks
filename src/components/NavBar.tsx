@@ -1,4 +1,5 @@
 "use client";
+import { BananaLineIcon } from "@/components/svgs/DockIcons";
 
 interface NavBarProps {
   openWindows: string[];
@@ -17,7 +18,7 @@ const NAV_LINKS = [
 export default function NavBar({ openWindows, onOpenWindow }: NavBarProps) {
   return (
     <div
-      className="fixed bottom-0 flex items-center px-4 border-t border-studio-ink/08"
+      className="fixed bottom-0 flex items-center px-4 border-t border-studio-ink/25"
       style={{
         left: 52,
         right: 0,
@@ -30,9 +31,9 @@ export default function NavBar({ openWindows, onOpenWindow }: NavBarProps) {
     >
       {/* Brand */}
       <div className="flex items-center gap-2 mr-6 shrink-0">
-        <span className="text-base leading-none">🍌</span>
+        <BananaLineIcon size={17} />
         <span className="font-display font-bold text-sm text-studio-ink">Banana Hacks</span>
-        <span className="font-mono text-[10px] text-studio-ink/35 border border-studio-ink/15 rounded px-1 py-0.5">2026</span>
+        <span className="font-mono text-[10px] text-studio-ink/60 border border-studio-ink/30 rounded px-1 py-0.5">2026</span>
       </div>
 
       {/* Separator */}
@@ -46,10 +47,10 @@ export default function NavBar({ openWindows, onOpenWindow }: NavBarProps) {
             <button
               key={link.id}
               onClick={() => onOpenWindow(link.id)}
-              className={`relative px-3 py-1.5 rounded-lg text-xs font-display font-semibold transition-all whitespace-nowrap ${
+              className={`relative px-3 py-1.5 rounded-[6px] text-xs font-display font-semibold transition-all whitespace-nowrap ${
                 isOpen
                   ? "bg-banana-400/20 text-studio-ink"
-                  : "text-studio-ink/50 hover:text-studio-ink hover:bg-studio-ink/05"
+                  : "text-studio-ink/70 hover:text-studio-ink hover:bg-studio-ink/05"
               }`}
             >
               {link.label}
@@ -98,7 +99,7 @@ export default function NavBar({ openWindows, onOpenWindow }: NavBarProps) {
             key={s.label}
             href={s.href}
             title={s.label}
-            className="w-7 h-7 rounded-lg flex items-center justify-center text-studio-ink/40 hover:text-studio-ink hover:bg-studio-ink/08 transition-all"
+            className="w-7 h-7 rounded-[6px] flex items-center justify-center text-studio-ink/65 hover:text-studio-ink hover:bg-studio-ink/08 transition-all"
           >
             {s.icon}
           </a>
@@ -109,7 +110,7 @@ export default function NavBar({ openWindows, onOpenWindow }: NavBarProps) {
         {/* Apply CTA */}
         <button
           onClick={() => onOpenWindow("apply")}
-          className={`px-4 py-1.5 rounded-lg font-display font-bold text-xs transition-all ${
+          className={`px-4 py-1.5 rounded-[6px] font-display font-bold text-xs transition-all ${
             openWindows.includes("apply")
               ? "bg-banana-500 text-studio-ink"
               : "bg-banana-400 text-studio-ink hover:bg-banana-500"

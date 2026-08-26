@@ -13,6 +13,8 @@ interface WindowProps {
   initialW?: number;
   initialH?: number;
   zIndex: number;
+  /** Drives the accent shadow on the active window. */
+  focused?: boolean;
   onFocus: () => void;
   onClose: () => void;
 }
@@ -27,6 +29,7 @@ export default function Window({
   initialW = 640,
   initialH = 480,
   zIndex,
+  focused = false,
   onFocus,
   onClose,
 }: WindowProps) {
@@ -45,7 +48,7 @@ export default function Window({
   const onTitleMouseDown = useCallback(
     (e: React.MouseEvent) => {
       if (isMaximized || isMobile) return;
-      // Don't start drag if clicking traffic light buttons
+      // Don't start drag if clicking a window-control button
       if ((e.target as HTMLElement).closest("button")) return;
       e.preventDefault();
       onFocus();
@@ -145,48 +148,48 @@ export default function Window({
     <div
       ref={windowRef}
       style={style}
-      className={`window-chrome flex flex-col overflow-hidden animate-bounce-in`}
+      className={`window-chrome flex flex-col overflow-hidden animate-bounce-in ${focused ? "is-focused" : ""}`}
       onMouseDown={onFocus}
     >
       {/* Title bar */}
       <div
-        className="flex items-center px-3 h-9 shrink-0 cursor-grab active:cursor-grabbing border-b border-studio-ink/06"
-        style={{ background: "rgba(255,251,240,0.98)" }}
+        className="flex items-center px-2.5 h-9 shrink-0 cursor-grab active:cursor-grabbing"
+        style={{
+          background: focused ? "#FDD835" : "#F2EEE2",
+          borderBottom: "1.5px solid #191A17",
+        }}
         onMouseDown={onTitleMouseDown}
         onDoubleClick={toggleMaximize}
       >
-        {/* Traffic lights */}
-        <div className="flex items-center gap-1.5 mr-3">
-          <button
-            className="w-3 h-3 rounded-full bg-[#FF5F57] hover:brightness-90 border border-[#E0443E] transition-all"
-            onClick={(e) => { e.stopPropagation(); onClose(); }}
-            onMouseDown={(e) => e.stopPropagation()}
-            aria-label="Close window"
-          />
-          <button
-            className="w-3 h-3 rounded-full bg-[#FEBC2E] hover:brightness-90 border border-[#D4960A] transition-all"
-            onClick={(e) => { e.stopPropagation(); setMinimized(true); }}
-            onMouseDown={(e) => e.stopPropagation()}
-            aria-label="Minimize window"
-          />
-          <button
-            className="w-3 h-3 rounded-full bg-[#28C840] hover:brightness-90 border border-[#1AAB29] transition-all"
-            onClick={(e) => { e.stopPropagation(); toggleMaximize(); }}
-            onMouseDown={(e) => e.stopPropagation()}
-            aria-label="Maximize window"
-          />
+        {/* Window controls. Squared and outlined rather than macOS
+            traffic lights — a cloned OS chrome is its own kind of
+            stock look, and the glyphs make the actions legible. */}
+        <div className="flex items-center gap-1 mr-2.5">
+          {([
+            { label: "Close window",    glyph: "\u00d7", fill: "#E2542A", onClick: onClose },
+            { label: "Minimize window", glyph: "\u2013", fill: "#F2EEE2", onClick: () => setMinimized(true) },
+            { label: "Maximize window", glyph: "\u25a1", fill: "#F2EEE2", onClick: toggleMaximize },
+          ] as const).map((b) => (
+            <button
+              key={b.label}
+              className="w-[15px] h-[15px] rounded-[3px] flex items-center justify-center font-mono text-[9px] leading-none text-studio-ink hover:bg-studio-ink hover:text-banana-400 transition-colors"
+              style={{ background: b.fill, border: "1.5px solid #191A17" }}
+              onClick={(e) => { e.stopPropagation(); b.onClick(); }}
+              onMouseDown={(e) => e.stopPropagation()}
+              aria-label={b.label}
+            >
+              {b.glyph}
+            </button>
+          ))}
         </div>
 
         {/* Title */}
-        <div className="flex-1 flex items-center justify-center gap-1.5 pointer-events-none">
-          {icon && <span className="flex items-center">{icon}</span>}
-          <span className="text-sm font-display font-semibold text-studio-ink/75 truncate">
+        <div className="flex-1 flex items-center gap-1.5 pointer-events-none min-w-0">
+          {icon && <span className="flex items-center shrink-0">{icon}</span>}
+          <span className="font-mono text-[11px] font-bold uppercase tracking-[0.10em] text-studio-ink truncate">
             {title}
           </span>
         </div>
-
-        {/* Right spacer */}
-        <div className="w-[54px]" />
       </div>
 
       {/* Content */}
@@ -197,14 +200,22 @@ export default function Window({
       {/* Resize handle */}
       {!isMaximized && !isMobile && (
         <div
-          className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize opacity-30 hover:opacity-70 transition-opacity"
+          className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize"
           onMouseDown={onResizeMouseDown}
-          style={{
-            background: "linear-gradient(135deg, transparent 50%, rgba(26,26,46,0.5) 50%)",
-            borderRadius: "0 0 12px 0",
-          }}
-        />
+          aria-hidden
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16">
+            <path
+              d="M15 6 L6 15 M15 10 L10 15 M15 14 L14 15"
+              stroke="#191A17"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              opacity="0.55"
+            />
+          </svg>
+        </div>
       )}
+
     </div>
   );
 }

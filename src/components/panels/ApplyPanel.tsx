@@ -138,7 +138,7 @@ export default function ApplyPanel() {
         </div>
         <div>
           <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-1">You&apos;re in! 🎉</h2>
-          <p className="font-body text-studio-ink/60 text-sm max-w-xs">
+          <p className="font-body text-studio-ink/72 text-sm max-w-xs">
             Check <strong>{form.email}</strong> for your confirmation. We&apos;ll send Discord access and
             event notices before Oct 9.
           </p>
@@ -155,14 +155,14 @@ export default function ApplyPanel() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 text-sm font-display font-semibold rounded-xl border border-banana-400/50 bg-banana-400/15 text-studio-ink hover:bg-banana-400/30 active:scale-95 transition-all"
+                className="px-4 py-2 text-sm font-display font-bold rounded-[6px] border-[1.5px] border-studio-ink bg-banana-400 text-studio-ink shadow-icon press"
               >
                 {label}
               </a>
             ) : (
               <button
                 key={label}
-                className="px-4 py-2 text-sm font-display font-semibold rounded-xl border border-banana-400/50 bg-banana-400/15 text-studio-ink hover:bg-banana-400/30 active:scale-95 transition-all"
+                className="px-4 py-2 text-sm font-display font-bold rounded-[6px] border-[1.5px] border-studio-ink bg-banana-400 text-studio-ink shadow-icon press"
               >
                 {label}
               </button>
@@ -180,7 +180,7 @@ export default function ApplyPanel() {
       <div className="px-6 pt-6 pb-2">
         <div className="mb-1">
           <h2 className="font-display font-bold text-xl text-studio-ink">Apply to Hack</h2>
-          <p className="text-xs font-body text-studio-ink/50">Registration closes Oct 8 · Takes 2 minutes</p>
+          <p className="text-xs font-body text-studio-ink/70">Registration closes Oct 8 · Takes 2 minutes</p>
         </div>
       </div>
 
@@ -196,15 +196,15 @@ export default function ApplyPanel() {
             value={form.name}
             onChange={(e) => setField("name", e.target.value)}
             placeholder="Ada Lovelace"
-            className={`w-full px-3 py-2.5 rounded-xl border text-sm font-body bg-white text-studio-ink placeholder:text-studio-ink/30 focus:outline-none focus:border-banana-400 focus:ring-2 focus:ring-banana-400/20 transition-all ${errors.name ? "border-red-400" : "border-studio-ink/15"}`}
+            className={`w-full px-3 py-2.5 rounded-[6px] border-[1.5px] text-sm font-body bg-banana-50 text-studio-ink placeholder:text-studio-ink/60 focus:outline-none focus:border-studio-ink focus:bg-white focus:shadow-icon-sm transition-all ${errors.name ? "border-studio-ripe" : "border-studio-ink"}`}
           />
-          {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
+          {errors.name && <p className="text-xs text-studio-alert mt-1">{errors.name}</p>}
         </div>
 
         {/* Email */}
         <div>
           <label htmlFor="apply-email" className="block text-xs font-display font-semibold text-studio-ink/70 mb-1">
-            Personal Email * <span className="text-studio-ink/40 font-normal">(don&apos;t use your school email)</span>
+            Personal Email * <span className="text-studio-ink/65 font-normal">(don&apos;t use your school email)</span>
           </label>
           <input
             id="apply-email"
@@ -212,9 +212,9 @@ export default function ApplyPanel() {
             value={form.email}
             onChange={(e) => setField("email", e.target.value)}
             placeholder="ada@gmail.com"
-            className={`w-full px-3 py-2.5 rounded-xl border text-sm font-body bg-white text-studio-ink placeholder:text-studio-ink/30 focus:outline-none focus:border-banana-400 focus:ring-2 focus:ring-banana-400/20 transition-all ${errors.email ? "border-red-400" : "border-studio-ink/15"}`}
+            className={`w-full px-3 py-2.5 rounded-[6px] border-[1.5px] text-sm font-body bg-banana-50 text-studio-ink placeholder:text-studio-ink/60 focus:outline-none focus:border-studio-ink focus:bg-white focus:shadow-icon-sm transition-all ${errors.email ? "border-studio-ripe" : "border-studio-ink"}`}
           />
-          {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
+          {errors.email && <p className="text-xs text-studio-alert mt-1">{errors.email}</p>}
         </div>
 
         {/* Emergency Contact */}
@@ -229,20 +229,20 @@ export default function ApplyPanel() {
               value={form.emergencyName}
               onChange={(e) => setField("emergencyName", e.target.value)}
               placeholder="Jane Lovelace"
-              className={`w-full px-3 py-2.5 rounded-xl border text-sm font-body bg-white text-studio-ink placeholder:text-studio-ink/30 focus:outline-none focus:border-banana-400 focus:ring-2 focus:ring-banana-400/20 transition-all ${errors.emergencyName ? "border-red-400" : "border-studio-ink/15"}`}
+              className={`w-full px-3 py-2.5 rounded-[6px] border-[1.5px] text-sm font-body bg-banana-50 text-studio-ink placeholder:text-studio-ink/60 focus:outline-none focus:border-studio-ink focus:bg-white focus:shadow-icon-sm transition-all ${errors.emergencyName ? "border-studio-ripe" : "border-studio-ink"}`}
             />
-            {errors.emergencyName && <p className="text-xs text-red-500 mt-1">{errors.emergencyName}</p>}
+            {errors.emergencyName && <p className="text-xs text-studio-alert mt-1">{errors.emergencyName}</p>}
           </div>
           <div>
             <label htmlFor="apply-ec-phone" className="block text-xs font-display font-semibold text-studio-ink/70 mb-1">
               Emergency Contact Phone *
             </label>
-            <div className={`flex items-stretch rounded-xl border bg-white overflow-visible ${errors.emergencyPhone ? "border-red-400" : "border-studio-ink/15"} focus-within:border-banana-400 focus-within:ring-2 focus-within:ring-banana-400/20 transition-all`}>
+            <div className={`flex items-stretch rounded-[6px] border-[1.5px] bg-banana-50 overflow-visible ${errors.emergencyPhone ? "border-studio-ripe" : "border-studio-ink/30"} focus-within:border-studio-ink focus-within:shadow-icon-sm transition-all`}>
               <div className="relative shrink-0" ref={ccRef}>
                 <button
                   type="button"
                   onClick={() => setCcOpen((o) => !o)}
-                  className="h-full flex items-center gap-1 px-2.5 border-r border-studio-ink/10 text-sm font-body text-studio-ink hover:bg-banana-50 rounded-l-xl transition-colors"
+                  className="h-full flex items-center gap-1 px-2.5 border-r border-studio-ink/25 text-sm font-body text-studio-ink hover:bg-banana-50 rounded-l-xl transition-colors"
                 >
                   <span>{COUNTRY_CODES.find((c) => c.dial === form.emergencyCountryCode)?.flag ?? "🌐"}</span>
                   <span>{form.emergencyCountryCode}</span>
@@ -251,7 +251,7 @@ export default function ApplyPanel() {
                   </svg>
                 </button>
                 {ccOpen && (
-                  <div className="absolute bottom-full mb-1 left-0 w-52 max-h-56 overflow-y-auto bg-white border border-studio-ink/15 rounded-xl shadow-lg z-20 py-1">
+                  <div className="absolute bottom-full mb-1 left-0 w-52 max-h-56 overflow-y-auto bg-banana-50 hard-card-sm z-20 py-1">
                     {COUNTRY_CODES.map((c) => (
                       <button
                         key={c.name}
@@ -261,7 +261,7 @@ export default function ApplyPanel() {
                       >
                         <span>{c.flag}</span>
                         <span className="flex-1 truncate">{c.name}</span>
-                        <span className="text-studio-ink/50">{c.dial}</span>
+                        <span className="text-studio-ink/70">{c.dial}</span>
                       </button>
                     ))}
                   </div>
@@ -274,17 +274,17 @@ export default function ApplyPanel() {
                 value={form.emergencyPhone}
                 onChange={(e) => setField("emergencyPhone", formatPhoneNumber(e.target.value))}
                 placeholder="555 123 4567"
-                className="flex-1 min-w-0 px-3 py-2.5 rounded-r-xl text-sm font-body bg-transparent text-studio-ink placeholder:text-studio-ink/30 focus:outline-none"
+                className="flex-1 min-w-0 px-3 py-2.5 rounded-r-xl text-sm font-body bg-transparent text-studio-ink placeholder:text-studio-ink/60 focus:outline-none"
               />
             </div>
-            {errors.emergencyPhone && <p className="text-xs text-red-500 mt-1">{errors.emergencyPhone}</p>}
+            {errors.emergencyPhone && <p className="text-xs text-studio-alert mt-1">{errors.emergencyPhone}</p>}
           </div>
         </div>
 
         {/* Workshops */}
         <div>
           <p className="block text-xs font-display font-semibold text-studio-ink/70 mb-2">
-            What workshops would you like to see? <span className="text-studio-ink/40 font-normal">(select all that apply)</span>
+            What workshops would you like to see? <span className="text-studio-ink/65 font-normal">(select all that apply)</span>
           </p>
           <div className="flex flex-wrap gap-2">
             {WORKSHOPS.map((w) => {
@@ -294,16 +294,16 @@ export default function ApplyPanel() {
                   key={w}
                   type="button"
                   onClick={() => toggleWorkshop(w)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-body transition-all ${
+                  className={`flex items-center gap-2 px-3 py-2 rounded-[6px] border-[1.5px] border-studio-ink text-sm font-body transition-colors ${
                     selected
-                      ? "border-banana-400 bg-banana-400/15 text-studio-ink font-medium"
-                      : "border-studio-ink/12 bg-white text-studio-ink/60 hover:border-banana-400/40 hover:bg-banana-50"
+                      ? "bg-banana-400 text-studio-ink font-semibold"
+                      : "bg-banana-50 text-studio-ink/80 hover:bg-banana-200"
                   }`}
                 >
-                  <div className={`w-4 h-4 rounded border-2 shrink-0 flex items-center justify-center transition-all ${selected ? "bg-banana-400 border-banana-600" : "border-studio-ink/30"}`}>
+                  <div className={`w-4 h-4 rounded-[2px] border-[1.5px] border-studio-ink shrink-0 flex items-center justify-center transition-colors ${selected ? "bg-studio-ink" : "bg-banana-50"}`}>
                     {selected && (
                       <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4L3.5 6.5L9 1" stroke="#1A1A2E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M1 4L3.5 6.5L9 1" stroke="#FDD835" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     )}
                   </div>
@@ -322,19 +322,19 @@ export default function ApplyPanel() {
               <button
                 key={ts}
                 type="button"
-                className={`flex items-center gap-2 px-3 py-2.5 rounded-xl border cursor-pointer text-sm font-body transition-all text-left ${
+                className={`flex items-center gap-2 px-3 py-2.5 rounded-[6px] border-[1.5px] border-studio-ink cursor-pointer text-sm font-body transition-colors text-left ${
                   form.teamStatus === ts
-                    ? "border-banana-400 bg-banana-400/15 text-studio-ink font-medium"
-                    : "border-studio-ink/12 bg-white text-studio-ink/60 hover:border-banana-400/40 hover:bg-banana-50"
+                    ? "bg-banana-400 text-studio-ink font-semibold"
+                    : "bg-banana-50 text-studio-ink/80 hover:bg-banana-200"
                 }`}
                 onClick={() => setField("teamStatus", ts)}
               >
-                <span className={`w-3 h-3 rounded-full border-2 shrink-0 flex items-center justify-center ${form.teamStatus === ts ? "border-banana-600 bg-banana-400" : "border-studio-ink/25"}`} />
+                <span className={`w-3 h-3 rounded-full border-[1.5px] border-studio-ink shrink-0 ${form.teamStatus === ts ? "bg-studio-ink" : "bg-banana-50"}`} />
                 {ts}
               </button>
             ))}
           </div>
-          {errors.teamStatus && <p className="text-xs text-red-500 mt-1">{errors.teamStatus}</p>}
+          {errors.teamStatus && <p className="text-xs text-studio-alert mt-1">{errors.teamStatus}</p>}
         </div>
 
         {/* Experience level */}
@@ -345,25 +345,25 @@ export default function ApplyPanel() {
               <button
                 key={lvl}
                 type="button"
-                className={`flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-body transition-all ${
+                className={`flex items-center gap-2 px-3 py-2 rounded-[6px] border-[1.5px] border-studio-ink text-sm font-body transition-colors ${
                   form.experience === lvl
-                    ? "border-banana-400 bg-banana-400/15 text-studio-ink font-medium"
-                    : "border-studio-ink/12 bg-white text-studio-ink/60 hover:border-banana-400/40 hover:bg-banana-50"
+                    ? "bg-banana-400 text-studio-ink font-semibold"
+                    : "bg-banana-50 text-studio-ink/80 hover:bg-banana-200"
                 }`}
                 onClick={() => setField("experience", lvl)}
               >
-                <span className={`w-3 h-3 rounded-full border-2 shrink-0 ${form.experience === lvl ? "border-banana-600 bg-banana-400" : "border-studio-ink/25"}`} />
+                <span className={`w-3 h-3 rounded-full border-[1.5px] border-studio-ink shrink-0 ${form.experience === lvl ? "bg-studio-ink" : "bg-banana-50"}`} />
                 {lvl}
               </button>
             ))}
           </div>
-          {errors.experience && <p className="text-xs text-red-500 mt-1">{errors.experience}</p>}
+          {errors.experience && <p className="text-xs text-studio-alert mt-1">{errors.experience}</p>}
         </div>
 
         {/* Project idea */}
         <div>
           <label htmlFor="apply-idea" className="block text-xs font-display font-semibold text-studio-ink/70 mb-1">
-            Project Idea <span className="text-studio-ink/40 font-normal">(optional)</span>
+            Project Idea <span className="text-studio-ink/65 font-normal">(optional)</span>
           </label>
           <textarea
             id="apply-idea"
@@ -371,7 +371,7 @@ export default function ApplyPanel() {
             onChange={(e) => setField("projectIdea", e.target.value)}
             placeholder="I'm thinking about building an AI tool that..."
             rows={3}
-            className="w-full px-3 py-2.5 rounded-xl border border-studio-ink/15 text-sm font-body bg-white text-studio-ink placeholder:text-studio-ink/30 focus:outline-none focus:border-banana-400 focus:ring-2 focus:ring-banana-400/20 transition-all resize-none"
+            className="w-full px-3 py-2.5 rounded-[6px] border-[1.5px] border-studio-ink text-sm font-body bg-banana-50 text-studio-ink placeholder:text-studio-ink/60 focus:outline-none focus:bg-white focus:shadow-icon-sm transition-all resize-none"
           />
         </div>
 
@@ -381,14 +381,14 @@ export default function ApplyPanel() {
             role="checkbox"
             aria-checked={form.agreeTerms}
             tabIndex={0}
-            className={`flex items-start gap-2.5 cursor-pointer rounded-lg p-2 -mx-2 transition-colors ${form.agreeTerms ? "bg-banana-400/08" : "hover:bg-studio-ink/04"}`}
+            className={`flex items-start gap-2.5 cursor-pointer rounded-[6px] p-2 -mx-2 transition-colors ${form.agreeTerms ? "bg-banana-400/08" : "hover:bg-studio-ink/04"}`}
             onClick={() => setField("agreeTerms", !form.agreeTerms)}
             onKeyDown={(e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); setField("agreeTerms", !form.agreeTerms); } }}
           >
-            <div className={`mt-0.5 w-4 h-4 rounded border-2 shrink-0 flex items-center justify-center transition-all ${form.agreeTerms ? "bg-banana-400 border-banana-600" : "border-studio-ink/30"}`}>
+            <div className={`mt-0.5 w-4 h-4 rounded border-2 shrink-0 flex items-center justify-center transition-all ${form.agreeTerms ? "bg-banana-400 border-banana-600" : "border-studio-ink"}`}>
               {form.agreeTerms && (
                 <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                  <path d="M1 4L3.5 6.5L9 1" stroke="#1A1A2E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M1 4L3.5 6.5L9 1" stroke="#FDD835" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               )}
             </div>
@@ -397,7 +397,7 @@ export default function ApplyPanel() {
               <button
                 type="button"
                 onClick={(e) => { e.stopPropagation(); setOpenPolicy("conduct"); }}
-                className="text-peri-500 underline underline-offset-2 hover:text-peri-600 transition-colors"
+                className="text-vine-500 underline underline-offset-2 hover:text-vine-600 transition-colors"
               >
                 Code of Conduct
               </button>{" "}
@@ -405,25 +405,25 @@ export default function ApplyPanel() {
               <button
                 type="button"
                 onClick={(e) => { e.stopPropagation(); setOpenPolicy("rules"); }}
-                className="text-peri-500 underline underline-offset-2 hover:text-peri-600 transition-colors"
+                className="text-vine-500 underline underline-offset-2 hover:text-vine-600 transition-colors"
               >
                 Submission Rules
               </button>.
               Banana Hacks follows the MLH Code of Conduct.
             </span>
           </div>
-          {errors.agreeTerms && <p className="text-xs text-red-500 mt-1 ml-2">{errors.agreeTerms}</p>}
+          {errors.agreeTerms && <p className="text-xs text-studio-alert mt-1 ml-2">{errors.agreeTerms}</p>}
         </div>
 
         {submitError && (
-          <p className="text-xs text-red-500 text-center">{submitError}</p>
+          <p className="text-xs text-studio-alert text-center">{submitError}</p>
         )}
 
         {/* Submit */}
         <button
           type="submit"
           disabled={submitting}
-          className="w-full py-3 rounded-xl font-display font-bold text-sm bg-banana-400 text-studio-ink hover:bg-banana-500 disabled:opacity-60 disabled:cursor-not-allowed transition-all hover:shadow-icon active:scale-[0.98] flex items-center justify-center gap-2"
+          className="w-full py-3 rounded-[6px] font-display font-bold text-sm bg-banana-400 text-studio-ink border-[1.5px] border-studio-ink shadow-icon press disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-icon flex items-center justify-center gap-2"
         >
           {submitting ? (
             <>
@@ -431,7 +431,7 @@ export default function ApplyPanel() {
               Submitting...
             </>
           ) : (
-            "Apply to Banana Hacks 🍌"
+            "Apply to Banana Hacks"
           )}
         </button>
       </form>

@@ -45,8 +45,8 @@ export default function NeuralNetSVG({
           <stop offset="100%" stopColor="#FDD835" />
         </radialGradient>
         <radialGradient id="outputGrad" cx="30%" cy="30%">
-          <stop offset="0%" stopColor="#BACBFF" />
-          <stop offset="100%" stopColor="#4C6EF5" />
+          <stop offset="0%" stopColor="#8FC4BB" />
+          <stop offset="100%" stopColor="#2C7466" />
         </radialGradient>
         {animated && (
           <filter id="glow">
@@ -67,7 +67,7 @@ export default function NeuralNetSVG({
           y1={y1}
           x2={x2}
           y2={y2}
-          stroke="rgba(76,110,245,0.18)"
+          stroke="rgba(44,116,102,0.18)"
           strokeWidth="1"
         />
       ))}
@@ -133,15 +133,15 @@ export default function NeuralNetSVG({
           cy={n.y}
           r="14"
           fill="url(#outputGrad)"
-          stroke="#3A56DB"
+          stroke="#1F5C50"
           strokeWidth="1.5"
         />
       ))}
 
       {/* Layer labels */}
-      <text x="30" y="190" textAnchor="middle" fontSize="9" fill="rgba(26,26,46,0.45)" fontFamily="JetBrains Mono, monospace">input</text>
-      <text x="100" y="190" textAnchor="middle" fontSize="9" fill="rgba(26,26,46,0.45)" fontFamily="JetBrains Mono, monospace">hidden</text>
-      <text x="170" y="190" textAnchor="middle" fontSize="9" fill="rgba(26,26,46,0.45)" fontFamily="JetBrains Mono, monospace">output</text>
+      <text x="30" y="190" textAnchor="middle" fontSize="9" fill="rgba(25,26,23,0.45)" fontFamily="var(--font-mono), monospace">input</text>
+      <text x="100" y="190" textAnchor="middle" fontSize="9" fill="rgba(25,26,23,0.45)" fontFamily="var(--font-mono), monospace">hidden</text>
+      <text x="170" y="190" textAnchor="middle" fontSize="9" fill="rgba(25,26,23,0.45)" fontFamily="var(--font-mono), monospace">output</text>
 
       {/* Image pixel grid on output nodes (generative AI metaphor) */}
       {[0, 1, 2, 3].map((row) =>
@@ -157,8 +157,8 @@ export default function NeuralNetSVG({
               (row + col) % 3 === 0
                 ? "#FDD835"
                 : (row + col) % 3 === 1
-                ? "#4C6EF5"
-                : "#FF6B35"
+                ? "#2C7466"
+                : "#E2542A"
             }
             opacity="0.6"
           />

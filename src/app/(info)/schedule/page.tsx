@@ -61,9 +61,9 @@ export default function SchedulePage() {
             {events.map((event) => (
               <li
                 key={`${event.day}-${event.time}-${event.title}`}
-                className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 border border-studio-ink/10 bg-white/50 rounded-xl px-4 py-3"
+                className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 bg-banana-50 hard-card-sm rounded-[6px] px-4 py-3"
               >
-                <time className="font-mono text-xs text-studio-ink/50 sm:w-28 shrink-0">
+                <time className="font-mono text-xs text-studio-ink/70 sm:w-28 shrink-0">
                   {event.time}
                 </time>
                 <div className="flex-1">
@@ -71,12 +71,12 @@ export default function SchedulePage() {
                     {event.title}
                   </h3>
                   {event.virtual && (
-                    <p className="font-mono text-[11px] text-peri-500 mt-0.5">
+                    <p className="font-mono text-[11px] text-vine-500 mt-0.5">
                       Virtual via Discord + Zoom
                     </p>
                   )}
                 </div>
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-studio-ink/45 shrink-0">
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-studio-ink/65 shrink-0">
                   {TYPE_LABEL[event.type]}
                 </span>
               </li>
@@ -87,7 +87,7 @@ export default function SchedulePage() {
 
       <section
         aria-labelledby="schedule-notes"
-        className="border border-studio-ink/12 bg-white/50 rounded-2xl p-6"
+        className="bg-banana-50 hard-card-sm rounded-[8px] p-6"
       >
         <h2
           id="schedule-notes"
@@ -107,7 +107,7 @@ export default function SchedulePage() {
           </li>
           <li>
             Judging criteria and award categories are on the{" "}
-            <Link href="/prizes" className="text-peri-500 hover:underline">
+            <Link href="/prizes" className="text-vine-500 hover:underline">
               prizes page
             </Link>
             .

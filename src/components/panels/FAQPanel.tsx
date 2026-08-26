@@ -1,4 +1,5 @@
 "use client";
+import { QuestionLineIcon } from "@/components/svgs/DockIcons";
 
 import { useState } from "react";
 import { FAQS } from "@/lib/content";
@@ -10,16 +11,16 @@ export default function FAQPanel() {
   return (
     <div className="window-scroll h-full overflow-y-auto bg-banana-100">
       {/* Header */}
-      <div className="px-6 pt-6 pb-4" style={{ background: "linear-gradient(135deg, rgba(253,216,53,0.30) 0%, rgba(76,110,245,0.15) 100%)" }}>
+      <div className="px-6 pt-6 pb-4 bg-banana-300 border-b-[1.5px] border-studio-ink">
         <div className="flex items-center gap-2 mb-1">
-          <span className="text-xl">🍌</span>
-          <h2 className="font-display font-bold text-xl text-studio-ink">
+          <QuestionLineIcon size={22} />
+          <h2 className="font-display font-extrabold text-xl text-studio-ink">
             Frequently Asked Questions
           </h2>
         </div>
-        <p className="text-xs font-body text-studio-ink/50 ml-7">
+        <p className="text-xs font-body text-studio-ink/70 ml-7">
           Can't find your answer?{" "}
-          <span className="text-peri-500 cursor-pointer hover:underline">
+          <span className="text-vine-500 cursor-pointer hover:underline">
             Ask on Discord
           </span>
         </p>
@@ -30,10 +31,8 @@ export default function FAQPanel() {
         {FAQS.map((item, i) => (
           <div
             key={i}
-            className={`rounded-xl border transition-all duration-200 overflow-hidden ${
-              open === i
-                ? "border-banana-400/70 bg-banana-50 shadow-icon"
-                : "border-studio-ink/07 bg-white/60 hover:bg-white/90 hover:border-banana-400/40"
+            className={`hard-card-sm overflow-hidden transition-colors ${
+              open === i ? "bg-banana-200" : "bg-banana-50 hover:bg-banana-100"
             }`}
           >
             <button
@@ -42,13 +41,11 @@ export default function FAQPanel() {
             >
               {/* Number badge */}
               <span
-                className={`shrink-0 w-5 h-5 rounded-md text-[10px] font-mono font-bold flex items-center justify-center transition-colors ${
-                  open === i
-                    ? "bg-banana-400 text-studio-ink"
-                    : "bg-studio-ink/08 text-studio-ink/40"
+                className={`shrink-0 w-5 h-5 rounded-[3px] border-[1.5px] border-studio-ink text-[10px] font-mono font-bold flex items-center justify-center tabular-nums transition-colors ${
+                  open === i ? "bg-studio-ink text-banana-400" : "bg-banana-50 text-studio-ink"
                 }`}
               >
-                {i + 1}
+                {String(i + 1).padStart(2, "0")}
               </span>
 
               <span className="font-display font-semibold text-sm text-studio-ink flex-1">
@@ -56,7 +53,7 @@ export default function FAQPanel() {
               </span>
 
               <span
-                className={`shrink-0 text-studio-ink/40 transition-transform duration-200 ${
+                className={`shrink-0 font-mono font-bold text-studio-ink transition-transform duration-150 ${
                   open === i ? "rotate-45" : ""
                 }`}
               >
@@ -66,7 +63,7 @@ export default function FAQPanel() {
 
             {open === i && (
               <div className="px-4 pb-4 pt-1 pl-12">
-                <p className="font-body text-sm text-studio-ink/70 leading-relaxed">
+                <p className="font-body text-sm text-studio-ink/80 leading-relaxed">
                   {item.a}
                 </p>
               </div>

@@ -77,15 +77,15 @@ function CountCell({ n, label }: { n: number; label: string }) {
       >
         {String(n).padStart(2, "0")}
       </span>
-      <span className="font-mono text-[9px] uppercase tracking-wider text-studio-ink/40 mt-0.5">{label}</span>
+      <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-studio-ink/65 mt-0.5">{label}</span>
     </div>
   );
 }
 
 /* ─── Floating badge ───────────────────────────────────────── */
-function Badge({ icon, text, className = "", color = "bg-white/90 border-studio-ink/15 text-studio-ink" }: { icon: ReactNode; text: string; className?: string; color?: string }) {
+function Badge({ icon, text, className = "", color = "bg-banana-50 border-studio-ink/30 text-studio-ink" }: { icon: ReactNode; text: string; className?: string; color?: string }) {
   return (
-    <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border shadow-icon text-xs font-display font-semibold ${color} ${className}`}>
+    <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-[4px] border-[1.5px] border-studio-ink shadow-icon-sm text-[11px] font-mono font-bold uppercase tracking-[0.05em] ${color} ${className}`}>
       <span className="flex items-center shrink-0">{icon}</span>
       {text}
     </div>
@@ -114,9 +114,13 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             {/* Event badge */}
             <div className="flex items-center gap-2 mb-5">
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-banana-400/20 border border-banana-400/50">
-                <div className="w-1.5 h-1.5 rounded-full bg-studio-leaf animate-pulse" />
-                <span className="font-mono text-xs font-semibold text-banana-800">Oct 9–12, 2026  ·  Virtual  ·  Free</span>
+              <div className="inline-flex items-center bg-banana-400 border-[1.5px] border-studio-ink shadow-icon-sm">
+                <span className="px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-studio-ink">
+                  Oct 9–12, 2026
+                </span>
+                <span className="px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-banana-400 bg-studio-ink">
+                  International · Free
+                </span>
               </div>
             </div>
 
@@ -133,46 +137,46 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             <BrushStroke color="#FDD835" width={160} className="mb-4 opacity-60" />
 
             {/* Subtext */}
-            <p className="font-body text-base text-studio-ink/60 leading-relaxed max-w-md mb-6">
-              A weekend virtual hackathon dedicated to{" "}
+            <p className="font-body text-base text-studio-ink/75 leading-relaxed max-w-md mb-6">
+              An international weekend hackathon dedicated to{" "}
               <strong className="text-studio-ink font-semibold">generative AI</strong> and{" "}
               <strong className="text-studio-ink font-semibold">image creation</strong>.
-              Sketch prompts, train models, ship creative tools.
+              Hack from any country — sketch prompts, train models, ship creative tools.
             </p>
 
             {/* Countdown */}
             <div className="flex flex-col items-start sm:flex-row sm:items-center gap-3 sm:gap-4 mb-6">
-              <div className="flex items-center gap-3 bg-banana-400/20 border border-banana-400/60 rounded-2xl px-4 py-3 shadow-icon">
+              <div className="flex items-center gap-3 bg-banana-200 hard-card px-4 py-3">
                 <CountCell n={d} label="days"  />
-                <span className="font-display font-black text-xl text-studio-ink/30 leading-none">:</span>
+                <span className="font-mono font-bold text-xl text-studio-ink/65 leading-none">:</span>
                 <CountCell n={h} label="hours" />
-                <span className="font-display font-black text-xl text-studio-ink/30 leading-none">:</span>
+                <span className="font-mono font-bold text-xl text-studio-ink/65 leading-none">:</span>
                 <CountCell n={m} label="min"   />
-                <span className="font-display font-black text-xl text-studio-ink/30 leading-none">:</span>
+                <span className="font-mono font-bold text-xl text-studio-ink/65 leading-none">:</span>
                 <CountCell n={s} label="sec"   />
               </div>
-              <span className="text-xs font-mono text-studio-ink/40">until hacking begins</span>
+              <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-studio-ink/65">until hacking begins</span>
             </div>
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-3 mb-8">
               <button
                 onClick={() => onOpenWindow("apply")}
-                className="px-6 py-3 rounded-xl font-display font-bold text-base bg-banana-400 text-studio-ink hover:bg-banana-500 active:scale-[0.97] transition-all shadow-icon hover:shadow-window-focus"
+                className="px-6 py-3 rounded-[6px] font-display font-bold text-base bg-banana-400 text-studio-ink border-[1.5px] border-studio-ink shadow-icon press"
               >
                 Apply Now
               </button>
               <button
                 onClick={() => onOpenWindow("sketch")}
-                className="px-6 py-3 rounded-xl font-display font-bold text-base bg-white border border-studio-ink/12 text-studio-ink hover:border-banana-400/60 hover:bg-banana-50 active:scale-[0.97] transition-all shadow-icon"
+                className="px-6 py-3 rounded-[6px] font-display font-bold text-base bg-banana-50 text-studio-ink border-[1.5px] border-studio-ink shadow-icon press"
               >
-                ✨ Try AI Studio
+                Try AI Studio
               </button>
             </div>
 
             {/* Scroll cue */}
             <div className="flex justify-center" style={{ maxWidth: "28rem" }}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A1A2E" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="animate-scroll-cue" style={{ opacity: 0.65 }}>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#191A17" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-scroll-cue" style={{ opacity: 0.65 }}>
                 <line x1="12" y1="4" x2="12" y2="18" />
                 <polyline points="6 12 12 18 18 12" />
               </svg>
@@ -180,22 +184,22 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           </div>
 
           {/* ── Screen 2: quick facts ─────────────────────── */}
-          <div className="px-5 sm:px-8 md:px-12 py-16 border-t border-studio-ink/06">
+          <div className="px-5 sm:px-8 md:px-12 py-16 border-t-[1.5px] border-studio-ink/25">
             <FadeUp>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-studio-ink/35 mb-1">The Basics</p>
+              <p className="eyebrow mb-1">The Basics</p>
               <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-6">What is Banana Hacks?</h2>
             </FadeUp>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mb-8">
               {[
-                { title: "Weekend Sprint", body: "Hack from Oct 9–12. Build, iterate, and ship something real in a weekend.", color: "bg-banana-400/20 border-banana-400/50" },
-                { title: "Gen AI Theme", body: "All tracks center on generative AI — images, models, and creative tools.", color: "bg-peri-200 border-peri-400/50" },
-                { title: "100% Virtual", body: "Join from anywhere. Async-friendly with live workshops and office hours.", color: "bg-studio-ripe/15 border-studio-ripe/40" },
+                { title: "Weekend Sprint", body: "Hack from Oct 9–12. Build, iterate, and ship something real in a weekend.", color: "bg-banana-300" },
+                { title: "Gen AI Theme", body: "All tracks center on generative AI — images, models, and creative tools.", color: "bg-vine-200" },
+                { title: "Every Timezone", body: "International and fully online. Async-friendly, with workshops replayed for every region.", color: "bg-banana-50" },
               ].map((f, i) => (
                 <FadeUp key={f.title} delay={i * 80}>
-                  <div className={`border rounded-2xl p-4 h-full ${f.color}`}>
+                  <div className={`hard-card p-4 h-full ${f.color}`}>
                     <div className="font-display font-bold text-sm text-studio-ink mb-1">{f.title}</div>
-                    <div className="font-body text-[11px] text-studio-ink/55 leading-relaxed">{f.body}</div>
+                    <div className="font-body text-[11px] text-studio-ink/70 leading-relaxed">{f.body}</div>
                   </div>
                 </FadeUp>
               ))}
@@ -203,22 +207,27 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           </div>
 
           {/* ── Screen 3: tracks + closing CTA ───────────── */}
-          <div className="px-5 sm:px-8 md:px-12 py-12 pb-16 border-t border-studio-ink/06">
+          <div className="px-5 sm:px-8 md:px-12 py-12 pb-16 border-t-[1.5px] border-studio-ink/25">
             <FadeUp>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-studio-ink/35 mb-1">What you&apos;ll build</p>
+              <p className="eyebrow mb-1">What you&apos;ll build</p>
               <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-6">All About Image AI</h2>
             </FadeUp>
 
             <div className="flex flex-col gap-3 max-w-md mb-10">
               {[
-                { title: "Text-to-Image", desc: "Prompt-driven generation, inpainting, style transfer", color: "bg-banana-400/30 border-banana-400/60" },
-                { title: "Fine-tuning",  desc: "LoRA, DreamBooth, ControlNet adapters",   color: "bg-peri-200 border-peri-400/60"       },
-                { title: "Creative Tools",     desc: "AI-assisted apps, prompt UIs, workflows", color: "bg-studio-ripe/20 border-studio-ripe/50" },
+                { title: "Text-to-Image", desc: "Prompt-driven generation, inpainting, style transfer", color: "bg-banana-300" },
+                { title: "Fine-tuning",   desc: "LoRA, DreamBooth, ControlNet adapters",              color: "bg-vine-200"   },
+                { title: "Creative Tools", desc: "AI-assisted apps, prompt UIs, workflows",           color: "bg-banana-50"  },
               ].map((t, i) => (
                 <FadeUp key={t.title} delay={i * 90}>
-                  <div className={`px-4 py-3 rounded-xl border ${t.color}`}>
-                    <div className="font-display font-semibold text-sm text-studio-ink">{t.title}</div>
-                    <div className="font-body text-[11px] text-studio-ink/50">{t.desc}</div>
+                  <div className={`flex items-baseline gap-3 px-4 py-3 hard-card-sm ${t.color}`}>
+                    <span className="font-mono text-[11px] font-bold text-studio-ink/70 shrink-0 tabular-nums">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <div className="font-display font-semibold text-sm text-studio-ink">{t.title}</div>
+                      <div className="font-body text-[11px] text-studio-ink/70">{t.desc}</div>
+                    </div>
                   </div>
                 </FadeUp>
               ))}
@@ -227,7 +236,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             <FadeUp delay={120}>
               <button
                 onClick={() => onOpenWindow("apply")}
-                className="px-6 py-3 rounded-xl font-display font-bold text-base bg-banana-400 text-studio-ink hover:bg-banana-500 active:scale-[0.97] transition-all shadow-icon"
+                className="px-6 py-3 rounded-[6px] font-display font-bold text-base bg-banana-400 text-studio-ink border-[1.5px] border-studio-ink shadow-icon press"
               >
                 Apply Now — it&apos;s free
               </button>
@@ -243,66 +252,70 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           className="sticky top-0 self-start shrink-0 relative hidden md:flex items-center justify-center overflow-hidden"
           style={{ width: "38%", height: "calc(100dvh - 80px)" }}
         >
-          {/* Gradient card box */}
+          {/* Flat plate. Was a three-stop gradient card with an inset
+              highlight and two bloom shadows — the stock "hero glass"
+              treatment. Now it's a piece of tinted paper on the grid. */}
           <div
             className="absolute pointer-events-none"
             style={{
               inset: "28px 20px",
-              borderRadius: "28px",
-              background: "linear-gradient(145deg, rgba(253,216,53,0.28) 0%, rgba(186,203,255,0.35) 55%, rgba(253,216,53,0.18) 100%)",
-              border: "1.5px solid rgba(186,203,255,0.55)",
-              boxShadow: "0 0 0 1px rgba(253,216,53,0.25), 0 12px 48px rgba(186,203,255,0.22), inset 0 1px 0 rgba(255,255,255,0.6)",
+              borderRadius: "8px",
+              background: "#FFF6D6",
+              border: "1.5px solid #191A17",
+              boxShadow: "6px 6px 0 rgba(25,26,23,0.85)",
             }}
           />
 
           {/* Neural net */}
-          <div className="absolute top-6 right-6 opacity-40 animate-float-slow">
+          <div className="absolute top-6 right-6 opacity-45">
             <NeuralNetSVG size={150} animated />
           </div>
 
-          {/* Floating badges */}
-          <Badge icon={<BoltLineIcon size={15} />}  text="GPU Credits"   className="absolute top-8  left-6  animate-float"      color="bg-banana-400/85 border-banana-500/60" />
-          <Badge icon={<CapLineIcon size={15} />}   text="Workshops"     className="absolute top-28 right-2 animate-float-slow" color="bg-peri-300/90 border-peri-500/50" />
-          <Badge icon={<MedalLineIcon size={15} />} text="$10K Prizes"   className="absolute bottom-28 left-4  animate-float-d2"  color="bg-studio-ripe/85 border-studio-ripe/60 text-white" />
-          <Badge icon={<GlobeLineIcon size={15} />} text="500+ builders" className="absolute bottom-12 right-6 animate-float"    color="bg-white/90 border-studio-ink/15" />
+          {/* Stat badges. Pinned, not bobbing — five independently
+              floating chips is the single loudest "generated" cue on a
+              hero, and it makes the numbers hard to read. */}
+          <Badge icon={<BoltLineIcon size={14} />}  text="GPU Credits"   className="absolute top-8  left-6"      color="bg-banana-400 text-studio-ink" />
+          <Badge icon={<CapLineIcon size={14} />}   text="Workshops"     className="absolute top-28 right-2"     color="bg-vine-200 text-studio-ink" />
+          <Badge icon={<MedalLineIcon size={14} />} text="$10K Prizes"   className="absolute bottom-28 left-4"   color="bg-studio-ripe text-banana-50" />
+          <Badge icon={<GlobeLineIcon size={14} />} text="60+ countries" className="absolute bottom-12 right-6"  color="bg-banana-50 text-studio-ink" />
 
           {/* Decorative clusters */}
-          <PixelCluster className="absolute top-16 left-16 opacity-50" size={48} />
-          <PixelCluster className="absolute bottom-20 right-16 opacity-40" size={40} />
-          <PixelSparkle className="absolute top-48 left-8 opacity-70 animate-float-d2" size={20} color="#FDD835" />
-          <PixelSparkle className="absolute bottom-36 right-12 opacity-60 animate-float" size={16} color="#4C6EF5" />
-          <LeafDecor    className="absolute bottom-8 left-8 opacity-35 animate-float-slow" size={42} />
+          <PixelCluster className="absolute top-16 left-16 opacity-55" size={48} />
+          <PixelCluster className="absolute bottom-20 right-16 opacity-45" size={40} />
+          <PixelSparkle className="absolute top-48 left-8 opacity-75" size={20} color="#FDD835" />
+          <PixelSparkle className="absolute bottom-36 right-12 opacity-65" size={16} color="#2C7466" />
+          <LeafDecor    className="absolute bottom-8 left-8 opacity-40" size={42} />
 
-          {/* Main mascot */}
+          {/* Main mascot — the one thing on this panel that moves. */}
           <div className="relative z-10 animate-float-hero">
             <BananaMascot size={180} variant="painting" />
           </div>
 
           {/* Sponsor strip */}
-          <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-3 opacity-70">
+          <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-3">
             <a
               href="https://codecrafters.io"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[9px] font-semibold text-studio-ink/70 hover:text-peri-500 whitespace-nowrap transition-colors"
+              className="font-mono text-[10px] font-bold uppercase tracking-[0.06em] text-studio-ink/75 hover:text-vine-600 underline decoration-studio-ink/25 underline-offset-2 whitespace-nowrap transition-colors"
             >
               CodeCrafters
             </a>
-            <span className="text-studio-ink/30">·</span>
+            <span className="text-studio-ink/65">·</span>
             <a
               href="https://www.interviewcake.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[9px] font-semibold text-studio-ink/70 hover:text-peri-500 whitespace-nowrap transition-colors"
+              className="font-mono text-[10px] font-bold uppercase tracking-[0.06em] text-studio-ink/75 hover:text-vine-600 underline decoration-studio-ink/25 underline-offset-2 whitespace-nowrap transition-colors"
             >
               Interview Cake
             </a>
-            <span className="text-studio-ink/30">·</span>
+            <span className="text-studio-ink/65">·</span>
             <a
               href="https://gen.xyz"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[9px] font-semibold text-studio-ink/70 hover:text-peri-500 whitespace-nowrap transition-colors"
+              className="font-mono text-[10px] font-bold uppercase tracking-[0.06em] text-studio-ink/75 hover:text-vine-600 underline decoration-studio-ink/25 underline-offset-2 whitespace-nowrap transition-colors"
             >
               XYZ
             </a>

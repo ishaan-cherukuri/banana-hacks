@@ -21,38 +21,47 @@ const config: Config = {
           800: "#7A5F00",
           900: "#3D2F00",
         },
-        peri: {
-          50:  "#F8F9FF",
-          100: "#F0F4FF",   // periwinkle light
-          200: "#E0E9FF",
-          300: "#BACBFF",
-          400: "#7B96F5",
-          500: "#4C6EF5",
-          600: "#3A56DB",
-          700: "#2940B8",
-          800: "#1B2D8F",
-          900: "#0F1B5C",
+        // Deep teal "banana vine". Deliberately NOT the periwinkle/indigo
+        // that every generated landing page reaches for — it complements the
+        // yellow without pulling the page toward the default AI-SaaS palette.
+        vine: {
+          50:  "#F3F8F7",
+          100: "#E3F0ED",
+          200: "#C4E0D9",
+          300: "#8FC4BB",
+          400: "#4E9A8D",
+          500: "#2C7466",
+          600: "#1F5C50",
+          700: "#17463D",
+          800: "#0F2F29",
+          900: "#081A16",
         },
         studio: {
-          ink:    "#1A1A2E",   // deep navy text
+          ink:    "#191A17",   // near-black ink; warmer + darker than the old navy
           leaf:   "#2E7D32",   // banana leaf green
-          ripe:   "#FF6B35",   // ripe orange accent
+          ripe:   "#E2542A",   // ripe orange accent, desaturated off the neon
+          // Darker sibling of `ripe` for error TEXT: `ripe` itself only hits
+          // 3.7:1 on the cream page, under the 4.5:1 AA floor. Use `ripe` for
+          // fills and borders, `alert` whenever it is set as type.
+          alert:  "#B23617",
           mist:   "#F5F5F5",   // neutral light
-          shadow: "rgba(26,26,46,0.08)",
+          paper:  "#FFFBF0",   // warm cream page
+          shadow: "rgba(25,26,23,0.08)",
         },
       },
       fontFamily: {
-        display: ["var(--font-display)", "'Space Grotesk'", "system-ui", "sans-serif"],
-        body:    ["var(--font-body)", "'DM Sans'", "system-ui", "sans-serif"],
-        mono:    ["var(--font-mono)", "'JetBrains Mono'", "monospace"],
+        display: ["var(--font-display)", "'Bricolage Grotesque'", "Georgia", "system-ui", "sans-serif"],
+        body:    ["var(--font-body)", "'Instrument Sans'", "system-ui", "sans-serif"],
+        mono:    ["var(--font-mono)", "'Space Mono'", "ui-monospace", "monospace"],
       },
       boxShadow: {
-        window:
-          "0 4px 6px -1px rgba(26,26,46,0.06), 0 20px 40px -8px rgba(26,26,46,0.12), 0 0 0 1px rgba(26,26,46,0.06)",
-        "window-focus":
-          "0 4px 6px -1px rgba(26,26,46,0.08), 0 24px 48px -8px rgba(26,26,46,0.18), 0 0 0 1px rgba(253,216,53,0.4)",
-        icon:   "0 2px 8px rgba(26,26,46,0.12)",
-        toolbar: "2px 0 12px rgba(26,26,46,0.06)",
+        // Offset ink shadows, not diffuse glows. A hard edge reads as a
+        // deliberate print/UI choice; a soft blur reads as a default.
+        window:       "4px 4px 0 rgba(25,26,23,0.90)",
+        "window-focus": "6px 6px 0 #FDD835, 6px 6px 0 1px rgba(25,26,23,0.90)",
+        icon:         "2px 2px 0 rgba(25,26,23,0.85)",
+        "icon-sm":    "1px 1px 0 rgba(25,26,23,0.85)",
+        toolbar:      "2px 0 0 rgba(25,26,23,0.12)",
       },
       animation: {
         "float":        "float 6s ease-in-out infinite",
@@ -80,10 +89,10 @@ const config: Config = {
       backgroundImage: {
         "banana-stripe":
           "repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(253,216,53,0.06) 20px, rgba(253,216,53,0.06) 40px)",
-        "dot-grid":
-          "radial-gradient(circle, rgba(26,26,46,0.12) 1px, transparent 1px)",
+        "graph-paper":
+          "linear-gradient(rgba(25,26,23,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(25,26,23,0.055) 1px, transparent 1px)",
         "canvas-texture":
-          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeBlend in='SourceGraphic' mode='overlay'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E\")",
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E\")",
       },
     },
   },

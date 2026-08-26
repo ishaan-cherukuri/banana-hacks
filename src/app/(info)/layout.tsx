@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteConfig, sitePages } from "@/lib/site";
+import { BananaLineIcon } from "@/components/svgs/DockIcons";
 
 /**
  * Shared chrome for the server-rendered, crawlable content pages.
@@ -14,15 +15,13 @@ export default function InfoLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="min-h-full flex flex-col bg-banana-100">
-      <header className="sticky top-0 z-50 border-b border-studio-ink/10 bg-banana-100/90 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b-[1.5px] border-studio-ink bg-banana-100">
         <div className="mx-auto max-w-4xl px-5 h-14 flex items-center gap-4">
           <Link
             href="/"
             className="flex items-center gap-2 shrink-0 hover:opacity-75 transition-opacity"
           >
-            <span className="text-lg leading-none" aria-hidden="true">
-              🍌
-            </span>
+            <BananaLineIcon size={18} />
             <span className="font-display font-bold text-sm text-studio-ink">
               Banana Hacks
             </span>
@@ -36,7 +35,7 @@ export default function InfoLayout({
               <Link
                 key={page.path}
                 href={page.path}
-                className="px-2.5 py-1.5 rounded-lg font-display font-semibold text-xs text-studio-ink/65 hover:text-studio-ink hover:bg-banana-400/25 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-studio-ink/75 hover:bg-banana-400 hover:text-studio-ink transition-colors whitespace-nowrap"
               >
                 {page.label}
               </Link>
@@ -49,32 +48,30 @@ export default function InfoLayout({
         {children}
       </main>
 
-      <footer className="border-t border-studio-ink/10 mt-10">
+      <footer className="border-t-[1.5px] border-studio-ink mt-10">
         <div className="mx-auto max-w-4xl px-5 py-8 grid gap-6 sm:grid-cols-3">
           <div className="sm:col-span-1">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-base leading-none" aria-hidden="true">
-                🍌
-              </span>
+              <BananaLineIcon size={17} />
               <span className="font-display font-bold text-sm text-studio-ink">
                 Banana Hacks 2026
               </span>
             </div>
-            <p className="font-body text-xs text-studio-ink/55 leading-relaxed">
-              A free, virtual generative AI &amp; image creation hackathon.{" "}
+            <p className="font-body text-xs text-studio-ink/70 leading-relaxed">
+              A free, international generative AI &amp; image creation hackathon. Open to hackers in every country.{" "}
               {siteConfig.dateRangeLabel}.
             </p>
           </div>
 
           <nav aria-label="Footer" className="sm:col-span-1">
-            <h2 className="font-display font-semibold text-xs uppercase tracking-wider text-studio-ink/45 mb-2">
+            <h2 className="font-display font-semibold text-xs uppercase tracking-wider text-studio-ink/65 mb-2">
               Event
             </h2>
             <ul className="space-y-1.5">
               <li>
                 <Link
                   href="/"
-                  className="font-body text-xs text-studio-ink/70 hover:text-peri-500 hover:underline"
+                  className="font-body text-xs text-studio-ink/70 hover:text-vine-500 hover:underline"
                 >
                   Home
                 </Link>
@@ -83,7 +80,7 @@ export default function InfoLayout({
                 <li key={page.path}>
                   <Link
                     href={page.path}
-                    className="font-body text-xs text-studio-ink/70 hover:text-peri-500 hover:underline"
+                    className="font-body text-xs text-studio-ink/70 hover:text-vine-500 hover:underline"
                   >
                     {page.label}
                   </Link>
@@ -93,12 +90,12 @@ export default function InfoLayout({
           </nav>
 
           <div className="sm:col-span-1">
-            <h2 className="font-display font-semibold text-xs uppercase tracking-wider text-studio-ink/45 mb-2">
+            <h2 className="font-display font-semibold text-xs uppercase tracking-wider text-studio-ink/65 mb-2">
               Contact
             </h2>
             <a
               href={`mailto:${siteConfig.contactEmail}`}
-              className="font-body text-xs text-peri-500 hover:underline break-all"
+              className="font-body text-xs text-vine-500 hover:underline break-all"
             >
               {siteConfig.contactEmail}
             </a>

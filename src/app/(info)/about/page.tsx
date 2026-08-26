@@ -11,7 +11,7 @@ export const metadata: Metadata = buildMetadata(PATH);
 
 const STATS = [
   { value: "4", label: "Days", sub: "Oct 9–12, 2026" },
-  { value: "100%", label: "Virtual", sub: "Join from anywhere" },
+  { value: "60+", label: "Countries", sub: "No regional limits" },
   { value: "$0", label: "Entry fee", sub: "Free for everyone" },
   { value: "1–4", label: "Team size", sub: "Solo hacking welcome" },
 ];
@@ -21,12 +21,12 @@ export default function AboutPage() {
     <PageShell
       path={PATH}
       heading="About Banana Hacks 2026"
-      lede="Banana Hacks 2026 is a free, fully virtual hackathon dedicated to generative AI and image creation. Over one long weekend you'll sketch prompts, fine-tune diffusion models, and ship a creative AI project — whether it's your first hackathon or your fiftieth."
+      lede="Banana Hacks 2026 is a free, international online hackathon dedicated to generative AI and image creation, open to participants in every country. Over one long weekend you'll sketch prompts, fine-tune diffusion models, and ship a creative AI project — whether it's your first hackathon or your fiftieth."
     >
       <section aria-labelledby="at-a-glance" className="mb-12">
         <h2
           id="at-a-glance"
-          className="font-display font-bold text-xl text-studio-ink mb-4"
+          className="font-display font-extrabold text-xl text-studio-ink mb-4"
         >
           At a glance
         </h2>
@@ -34,7 +34,7 @@ export default function AboutPage() {
           {STATS.map((s) => (
             <div
               key={s.label}
-              className="border border-banana-400/50 bg-banana-400/15 rounded-xl p-4 text-center"
+              className="bg-banana-200 hard-card p-4 text-center"
             >
               <dd className="font-display font-extrabold text-2xl text-studio-ink mb-0.5">
                 {s.value}
@@ -42,7 +42,7 @@ export default function AboutPage() {
               <dt className="font-body font-semibold text-xs text-studio-ink">
                 {s.label}
               </dt>
-              <dd className="font-body text-[11px] text-studio-ink/55 mt-0.5">
+              <dd className="font-body text-[11px] text-studio-ink/70 mt-0.5">
                 {s.sub}
               </dd>
             </div>
@@ -53,7 +53,7 @@ export default function AboutPage() {
       <section aria-labelledby="what-is" className="mb-12">
         <h2
           id="what-is"
-          className="font-display font-bold text-xl text-studio-ink mb-3"
+          className="font-display font-extrabold text-xl text-studio-ink mb-3"
         >
           What is Banana Hacks?
         </h2>
@@ -70,7 +70,7 @@ export default function AboutPage() {
             Discord, workshops and ceremonies happen on Zoom, and every session is
             recorded so you can hack across time zones without missing anything.
             You can see the full breakdown on the{" "}
-            <Link href="/schedule" className="text-peri-500 hover:underline">
+            <Link href="/schedule" className="text-vine-500 hover:underline">
               schedule page
             </Link>
             .
@@ -87,11 +87,11 @@ export default function AboutPage() {
       <section aria-labelledby="tracks" className="mb-12">
         <h2
           id="tracks"
-          className="font-display font-bold text-xl text-studio-ink mb-2"
+          className="font-display font-extrabold text-xl text-studio-ink mb-2"
         >
           What you&apos;ll build
         </h2>
-        <p className="font-body text-sm text-studio-ink/60 mb-4 max-w-2xl">
+        <p className="font-body text-sm text-studio-ink/72 mb-4 max-w-2xl">
           Projects tend to fall into four loose tracks. You&apos;re not locked
           into one — they exist to give you a starting point.
         </p>
@@ -99,12 +99,12 @@ export default function AboutPage() {
           {TRACKS.map((track) => (
             <div
               key={track.title}
-              className="border border-studio-ink/12 bg-white/50 rounded-xl p-4"
+              className="bg-banana-50 hard-card-sm rounded-[6px] p-4"
             >
               <h3 className="font-display font-semibold text-sm text-studio-ink mb-1">
                 {track.title}
               </h3>
-              <p className="font-body text-xs text-studio-ink/60 leading-relaxed">
+              <p className="font-body text-xs text-studio-ink/72 leading-relaxed">
                 {track.desc}
               </p>
             </div>
@@ -115,7 +115,7 @@ export default function AboutPage() {
       <section aria-labelledby="eligibility" className="mb-12">
         <h2
           id="eligibility"
-          className="font-display font-bold text-xl text-studio-ink mb-3"
+          className="font-display font-extrabold text-xl text-studio-ink mb-3"
         >
           Who can participate
         </h2>
@@ -136,7 +136,7 @@ export default function AboutPage() {
 
       <section
         aria-labelledby="next"
-        className="border border-banana-400/50 bg-banana-400/15 rounded-2xl p-6"
+        className="bg-banana-200 hard-card p-6"
       >
         <h2
           id="next"
@@ -146,14 +146,14 @@ export default function AboutPage() {
         </h2>
         <p className="font-body text-sm text-studio-ink/70 mb-4 max-w-xl">
           Registration is free and takes about a minute. Still deciding? The{" "}
-          <Link href="/faq" className="text-peri-500 hover:underline">
+          <Link href="/faq" className="text-vine-500 hover:underline">
             FAQ
           </Link>{" "}
           covers eligibility, team rules, allowed tools, and how judging works.
         </p>
         <Link
           href="/register"
-          className="inline-flex items-center px-5 py-2.5 rounded-xl font-display font-semibold text-sm bg-banana-400 text-studio-ink hover:bg-banana-500 transition-colors"
+          className="inline-flex items-center px-5 py-2.5 rounded-[6px] font-display font-semibold text-sm bg-banana-400 text-studio-ink hover:bg-banana-500 transition-colors"
         >
           Register for Banana Hacks 2026
         </Link>

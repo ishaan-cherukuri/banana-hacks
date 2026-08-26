@@ -14,7 +14,7 @@ export default function DesktopIcon({ id, icon, label, onOpen }: DesktopIconProp
       onClick={() => onOpen(id)}
     >
       {/* Icon container */}
-      <div className="w-14 h-14 rounded-2xl bg-white/80 border border-studio-ink/08 shadow-icon flex items-center justify-center text-3xl group-hover:border-banana-400/40 group-hover:shadow-window-focus transition-all duration-200">
+      <div className="w-14 h-14 rounded-[8px] bg-banana-50 border border-studio-ink/25 shadow-icon flex items-center justify-center text-3xl group-hover:border-banana-400/40 group-hover:shadow-window-focus transition-all duration-200">
         {icon}
       </div>
 

@@ -35,14 +35,14 @@ export default function PageShell({
       />
 
       <nav aria-label="Breadcrumb" className="mb-5">
-        <ol className="flex items-center gap-2 font-mono text-[11px] text-studio-ink/45">
+        <ol className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-wider text-studio-ink/65">
           <li>
-            <Link href="/" className="hover:text-peri-500 hover:underline">
+            <Link href="/" className="hover:text-vine-600 underline decoration-studio-ink/25 underline-offset-2">
               Home
             </Link>
           </li>
           <li aria-hidden="true">/</li>
-          <li aria-current="page" className="text-studio-ink/70">
+          <li aria-current="page" className="text-studio-ink">
             {page.label}
           </li>
         </ol>
@@ -51,7 +51,7 @@ export default function PageShell({
       <h1 className="font-display font-extrabold text-3xl sm:text-4xl text-studio-ink leading-tight mb-3">
         {heading}
       </h1>
-      <p className="font-body text-base text-studio-ink/65 leading-relaxed max-w-2xl mb-10">
+      <p className="font-body text-base text-studio-ink/80 leading-relaxed max-w-2xl mb-10">
         {lede}
       </p>
 

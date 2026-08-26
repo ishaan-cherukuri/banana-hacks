@@ -10,7 +10,7 @@ interface IconProps {
   size?: number;
 }
 
-const INK = "#1A1A2E";
+const INK = "#191A17";
 
 function Base({ size = 22, className = "", children, label }: IconProps & { children: React.ReactNode; label: string }) {
   return (
@@ -48,8 +48,8 @@ export function PaletteLineIcon(props: IconProps) {
   return (
     <Base {...props} label="AI Studio">
       <path d="M12 3.5c-4.7 0-8.5 3.5-8.5 7.9 0 4.3 3.4 6.9 6.6 6.9 1.4 0 1.9-1 1.9-1.8 0-.5-.2-.8-.2-1.3 0-1 .8-1.7 1.8-1.7h1.4c2.8 0 4.5-1.9 4.5-4.6C19.5 6.5 16.1 3.5 12 3.5Z" fill="white" />
-      <circle cx="8" cy="9" r="1.1" fill="#4C6EF5" stroke="none" />
-      <circle cx="12" cy="7.2" r="1.1" fill="#FF6B35" stroke="none" />
+      <circle cx="8" cy="9" r="1.1" fill="#2C7466" stroke="none" />
+      <circle cx="12" cy="7.2" r="1.1" fill="#E2542A" stroke="none" />
       <circle cx="15.7" cy="9" r="1.1" fill="#2E7D32" stroke="none" />
       <circle cx="16.5" cy="12.6" r="1.1" fill="#FDD835" stroke="none" />
     </Base>
@@ -63,7 +63,7 @@ export function CalendarLineIcon(props: IconProps) {
       <rect x="3.5" y="5" width="17" height="15" rx="2.5" fill="white" />
       <path d="M3.5 9h17" />
       <path d="M8 3.5v3M16 3.5v3" />
-      <path d="M7.5 13h2M14.5 13h2M7.5 16.5h2M14.5 16.5h2" stroke="#4C6EF5" />
+      <path d="M7.5 13h2M14.5 13h2M7.5 16.5h2M14.5 16.5h2" stroke="#2C7466" />
     </Base>
   );
 }
@@ -72,7 +72,7 @@ export function CalendarLineIcon(props: IconProps) {
 export function MedalLineIcon(props: IconProps) {
   return (
     <Base {...props} label="Prizes">
-      <path d="M8.5 3.5l3.5 6 3.5-6" stroke="#FF6B35" />
+      <path d="M8.5 3.5l3.5 6 3.5-6" stroke="#E2542A" />
       <circle cx="12" cy="15" r="5.5" fill="#FDD835" />
       <path d="M12 12.4l.9 1.8 2 .3-1.45 1.4.35 2-1.8-.95-1.8.95.35-2L9.1 14.5l2-.3.9-1.8Z" fill="white" stroke={INK} strokeWidth="1" />
     </Base>
@@ -85,7 +85,7 @@ export function ApplyLineIcon(props: IconProps) {
     <Base {...props} label="Apply">
       <path d="M6 3.5h7l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" fill="white" />
       <path d="M13 3.5V8.5h5" />
-      <path d="M8 12.5h5M8 15.5h8M8 18h5" stroke="#4C6EF5" />
+      <path d="M8 12.5h5M8 15.5h8M8 18h5" stroke="#2C7466" />
     </Base>
   );
 }
@@ -95,8 +95,8 @@ export function QuestionLineIcon(props: IconProps) {
   return (
     <Base {...props} label="FAQ">
       <path d="M4 6.5a2.5 2.5 0 0 1 2.5-2.5h11A2.5 2.5 0 0 1 20 6.5v7A2.5 2.5 0 0 1 17.5 16H10l-4 3.5V16h-.5A1.5 1.5 0 0 1 4 14.5v-8Z" fill="white" />
-      <path d="M9.7 8.6a2.3 2.3 0 0 1 4.4.8c0 1.6-2.1 1.9-2.1 3.2" stroke="#FF6B35" />
-      <circle cx="12" cy="14.4" r=".4" fill="#FF6B35" stroke="#FF6B35" strokeWidth=".8" />
+      <path d="M9.7 8.6a2.3 2.3 0 0 1 4.4.8c0 1.6-2.1 1.9-2.1 3.2" stroke="#E2542A" />
+      <circle cx="12" cy="14.4" r=".4" fill="#E2542A" stroke="#E2542A" strokeWidth=".8" />
     </Base>
   );
 }
@@ -123,7 +123,7 @@ export function BoltLineIcon(props: IconProps) {
 export function CapLineIcon(props: IconProps) {
   return (
     <Base {...props} label="Workshops">
-      <path d="M2.5 8.5 12 4.5l9.5 4-9.5 4-9.5-4Z" fill="#4C6EF5" />
+      <path d="M2.5 8.5 12 4.5l9.5 4-9.5 4-9.5-4Z" fill="#2C7466" />
       <path d="M6.5 10.5v4c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5v-4" fill="white" />
       <path d="M21.5 8.5v4.5" />
     </Base>

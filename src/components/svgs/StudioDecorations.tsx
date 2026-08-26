@@ -89,7 +89,7 @@ export function PixelCluster({ className = "", size = 60 }) {
           width={d.s}
           height={d.s}
           rx="0.5"
-          fill={i % 3 === 0 ? "#FDD835" : i % 3 === 1 ? "#4C6EF5" : "#FF6B35"}
+          fill={i % 3 === 0 ? "#FDD835" : i % 3 === 1 ? "#2C7466" : "#E2542A"}
           opacity={d.o}
         />
       ))}
@@ -114,8 +114,8 @@ export function EaselDecor({ className = "", size = 80 }) {
       {/* Simplified banana in painting */}
       <path d="M28 38 C24 30 26 22 32 18 C38 14 46 18 46 26 C46 34 38 40 30 38 Z" fill="#FDD835" />
       {/* Palette dots */}
-      <circle cx="54" cy="20" r="3" fill="#FF6B35" />
-      <circle cx="62" cy="20" r="3" fill="#4C6EF5" />
+      <circle cx="54" cy="20" r="3" fill="#E2542A" />
+      <circle cx="62" cy="20" r="3" fill="#2C7466" />
       <circle cx="54" cy="28" r="3" fill="#2E7D32" />
     </svg>
   );

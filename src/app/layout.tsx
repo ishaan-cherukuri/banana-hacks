@@ -1,25 +1,30 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, DM_Sans, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Instrument_Sans, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig, analytics } from "@/lib/site";
 import Analytics from "@/components/Analytics";
 
-const displayFont = Space_Grotesk({
+// Type stack is deliberately not the default sans trio. Bricolage Grotesque
+// has real quirks in its terminals and apertures, Instrument Sans reads clean
+// at small sizes, and Space Mono's slab-ish mono carries the "studio machine"
+// tone the OS chrome is going for.
+const displayFont = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-display",
   display: "swap",
 });
 
-const bodyFont = DM_Sans({
+const bodyFont = Instrument_Sans({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-body",
   display: "swap",
 });
 
-const monoFont = JetBrains_Mono({
+const monoFont = Space_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "700"],
   variable: "--font-mono",
   display: "swap",
 });
@@ -37,8 +42,11 @@ export const metadata: Metadata = {
     "banana hacks 2026",
     "generative AI hackathon",
     "image creation hackathon",
+    "international hackathon",
+    "global hackathon 2026",
     "virtual hackathon",
     "online hackathon 2026",
+    "worldwide AI hackathon",
     "AI hackathon",
     "diffusion model hackathon",
     "free hackathon for beginners",
@@ -51,7 +59,7 @@ export const metadata: Metadata = {
   // the root layout is inherited by every child route, which would point all
   // pages at "/" and de-index them. Each page declares its own.
   openGraph: {
-    title: "Banana Hacks 2026 — Generative AI & Image Creation Hackathon",
+    title: "Banana Hacks 2026 — International Generative AI & Image Creation Hackathon",
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
@@ -60,7 +68,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Banana Hacks 2026 — Generative AI & Image Creation Hackathon",
+    title: "Banana Hacks 2026 — International Generative AI & Image Creation Hackathon",
     description: siteConfig.description,
   },
   verification: {

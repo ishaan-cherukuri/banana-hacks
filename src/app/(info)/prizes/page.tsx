@@ -36,18 +36,18 @@ export default function PrizesPage() {
     >
       <section
         aria-labelledby="prize-pool"
-        className="mb-12 border border-banana-400/50 bg-banana-400/15 rounded-2xl p-6"
+        className="mb-12 bg-banana-200 hard-card p-6"
       >
         <h2
           id="prize-pool"
-          className="font-display font-bold text-xl text-studio-ink mb-2"
+          className="font-display font-extrabold text-xl text-studio-ink mb-2"
         >
           Prize pool
         </h2>
         <p className="font-body text-sm text-studio-ink/75 leading-relaxed max-w-2xl mb-3">
           The full prize breakdown is still being confirmed with sponsors and
           will be published here ahead of {""}
-          <Link href="/schedule" className="text-peri-500 hover:underline">
+          <Link href="/schedule" className="text-vine-500 hover:underline">
             opening night
           </Link>
           . Based on sponsor commitments so far, expect a mix of:
@@ -64,7 +64,7 @@ export default function PrizesPage() {
           <li className="flex items-start gap-2.5">
             <span className="text-banana-600 mt-0.5 shrink-0" aria-hidden="true">◆</span>
             Tooling subscriptions and product access from our{" "}
-            <Link href="/sponsors" className="text-peri-500 hover:underline">
+            <Link href="/sponsors" className="text-vine-500 hover:underline">
               sponsors
             </Link>
           </li>
@@ -74,11 +74,11 @@ export default function PrizesPage() {
       <section aria-labelledby="categories" className="mb-12">
         <h2
           id="categories"
-          className="font-display font-bold text-xl text-studio-ink mb-2"
+          className="font-display font-extrabold text-xl text-studio-ink mb-2"
         >
           Award categories
         </h2>
-        <p className="font-body text-sm text-studio-ink/60 mb-4 max-w-2xl">
+        <p className="font-body text-sm text-studio-ink/72 mb-4 max-w-2xl">
           Alongside the overall winners, category awards recognise projects that
           stand out in a specific direction. You don&apos;t apply for these —
           every submission is considered for every category.
@@ -87,12 +87,12 @@ export default function PrizesPage() {
           {CATEGORIES.map((c) => (
             <div
               key={c.title}
-              className="border border-studio-ink/12 bg-white/50 rounded-xl p-4"
+              className="bg-banana-50 hard-card-sm rounded-[6px] p-4"
             >
               <h3 className="font-display font-semibold text-sm text-studio-ink mb-1">
                 {c.title}
               </h3>
-              <p className="font-body text-xs text-studio-ink/60 leading-relaxed">
+              <p className="font-body text-xs text-studio-ink/72 leading-relaxed">
                 {c.desc}
               </p>
             </div>
@@ -103,11 +103,11 @@ export default function PrizesPage() {
       <section aria-labelledby="criteria" className="mb-12">
         <h2
           id="criteria"
-          className="font-display font-bold text-xl text-studio-ink mb-2"
+          className="font-display font-extrabold text-xl text-studio-ink mb-2"
         >
           How projects are judged
         </h2>
-        <p className="font-body text-sm text-studio-ink/60 mb-4 max-w-2xl">
+        <p className="font-body text-sm text-studio-ink/72 mb-4 max-w-2xl">
           Judges include working AI researchers, artists, and startup founders.
           Every project is scored against four weighted criteria:
         </p>
@@ -115,7 +115,7 @@ export default function PrizesPage() {
           {JUDGING_CRITERIA.map((c) => (
             <div
               key={c.label}
-              className="flex items-center justify-between gap-4 border border-studio-ink/12 bg-white/50 rounded-xl px-4 py-3"
+              className="flex items-center justify-between gap-4 bg-banana-50 hard-card-sm rounded-[6px] px-4 py-3"
             >
               <dt className="font-body text-sm text-studio-ink/80">{c.label}</dt>
               <dd className="font-display font-bold text-sm text-studio-ink shrink-0">
@@ -129,7 +129,7 @@ export default function PrizesPage() {
       <section aria-labelledby="submit" className="mb-4">
         <h2
           id="submit"
-          className="font-display font-bold text-xl text-studio-ink mb-3"
+          className="font-display font-extrabold text-xl text-studio-ink mb-3"
         >
           What you submit
         </h2>
@@ -139,11 +139,11 @@ export default function PrizesPage() {
           built and why. Judges interact with live demos wherever possible, so a
           working link beats a polished video. Submissions close at 11:59 PM AoE
           on Sunday, October 11, 2026 — see the full{" "}
-          <Link href="/schedule" className="text-peri-500 hover:underline">
+          <Link href="/schedule" className="text-vine-500 hover:underline">
             schedule
           </Link>{" "}
           or the{" "}
-          <Link href="/faq" className="text-peri-500 hover:underline">
+          <Link href="/faq" className="text-vine-500 hover:underline">
             FAQ
           </Link>{" "}
           for details.

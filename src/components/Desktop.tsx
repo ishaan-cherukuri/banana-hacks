@@ -16,7 +16,6 @@ import { DOCK_ICON_MAP, ApplyLineIcon } from "@/components/svgs/DockIcons";
 interface WindowConfig {
   id: string;
   title: string;
-  icon: string;
   w: number;
   h: number;
   component: React.ComponentType;
@@ -26,23 +25,26 @@ const WIN_W = 860;
 const WIN_H = 580;
 
 const WINDOW_DEFS: WindowConfig[] = [
-  { id: "about",    title: "About",     icon: "🍌", w: WIN_W, h: WIN_H, component: AboutPanel    },
-  { id: "schedule", title: "Schedule",  icon: "📅", w: WIN_W, h: WIN_H, component: SchedulePanel },
-  { id: "faq",      title: "FAQ",       icon: "❓", w: WIN_W, h: WIN_H, component: FAQPanel      },
-  { id: "prizes",   title: "Prizes",    icon: "🎖️", w: WIN_W, h: WIN_H, component: PrizesPanel   },
-  { id: "apply",    title: "Apply",     icon: "📝", w: WIN_W, h: WIN_H, component: ApplyPanel    },
-  { id: "sponsors", title: "Sponsors",  icon: "💛", w: WIN_W, h: WIN_H, component: SponsorsPanel },
-  { id: "sketch",   title: "AI Studio", icon: "🎨", w: WIN_W, h: WIN_H, component: SketchPanel   },
+  { id: "about",    title: "About", w: WIN_W, h: WIN_H, component: AboutPanel    },
+  { id: "schedule", title: "Schedule", w: WIN_W, h: WIN_H, component: SchedulePanel },
+  { id: "faq",      title: "FAQ", w: WIN_W, h: WIN_H, component: FAQPanel      },
+  { id: "prizes",   title: "Prizes", w: WIN_W, h: WIN_H, component: PrizesPanel   },
+  { id: "apply",    title: "Apply", w: WIN_W, h: WIN_H, component: ApplyPanel    },
+  { id: "sponsors", title: "Sponsors", w: WIN_W, h: WIN_H, component: SponsorsPanel },
+  { id: "sketch",   title: "AI Studio", w: WIN_W, h: WIN_H, component: SketchPanel   },
 ];
 
+// Dock order. Icons come from DOCK_ICON_MAP — drawn marks, not emoji.
+// Emoji are the fastest way to make a UI look auto-generated, and they
+// render as a different typeface on every platform.
 const DESKTOP_ICONS = [
-  { id: "about",    icon: "🍌", label: "About"     },
-  { id: "sketch",   icon: "🎨", label: "AI Studio" },
-  { id: "schedule", icon: "📅", label: "Schedule"  },
-  { id: "prizes",   icon: "🎖️", label: "Prizes"    },
-  { id: "apply",    icon: "📝", label: "Apply"     },
-  { id: "faq",      icon: "❓", label: "FAQ"       },
-  { id: "sponsors", icon: "💛", label: "Sponsors"  },
+  { id: "about",    label: "About"     },
+  { id: "sketch",   label: "AI Studio" },
+  { id: "schedule", label: "Schedule"  },
+  { id: "prizes",   label: "Prizes"    },
+  { id: "apply",    label: "Apply"     },
+  { id: "faq",      label: "FAQ"       },
+  { id: "sponsors", label: "Sponsors"  },
 ];
 
 interface OpenWindow { id: string; zIndex: number; x: number; y: number; }
@@ -78,6 +80,11 @@ export default function Desktop() {
   }, [openWindow]);
 
   const showHero = openWindows.length === 0;
+  // Highest z-index is the active window; it gets the accent title bar.
+  const focusedId = openWindows.reduce<OpenWindow | null>(
+    (top, w) => (!top || w.zIndex > top.zIndex ? w : top),
+    null
+  )?.id;
 
   return (
     <div className="os-desktop h-[100dvh] w-screen overflow-hidden relative desktop-wallpaper">
@@ -109,6 +116,7 @@ export default function Desktop() {
               initialW={def.w}
               initialH={def.h}
               zIndex={win.zIndex}
+              focused={win.id === focusedId}
               onFocus={() => focusWindow(win.id)}
               onClose={() => closeWindow(win.id)}
             >
@@ -123,41 +131,53 @@ export default function Desktop() {
         className="fixed bottom-0 flex justify-center items-end overflow-x-auto"
         style={{ left: 0, right: 0, zIndex: 9000, paddingTop: "36px", paddingBottom: "calc(6px + env(safe-area-inset-bottom))" }}
       >
-        <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 sm:py-2.5 backdrop-blur-md border border-banana-400/35 rounded-2xl shadow-window mb-1 mx-auto shrink-0" style={{ background: "linear-gradient(90deg, rgba(255,251,240,0.92) 0%, rgba(253,216,53,0.18) 50%, rgba(255,251,240,0.92) 100%)" }}>
+        {/* Flat paper on a hard ink rule. The old version was a
+            translucent blurred pill over a three-stop gradient. */}
+        <div
+          className="flex items-end gap-1 sm:gap-1.5 px-2 sm:px-3 py-2 hard-card mb-1 mx-auto shrink-0"
+          style={{ background: "#FFFBF0" }}
+        >
           {DESKTOP_ICONS.map((icon) => {
             const isOpen = openWindows.some((w) => w.id === icon.id);
             const IconWidget = DOCK_ICON_MAP[icon.id];
             return (
-              <div key={icon.id} className="relative flex flex-col items-center gap-0.5 group/dock">
+              <div key={icon.id} className="relative flex flex-col items-center gap-1 group/dock">
                 {/* Tooltip */}
-                <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 rounded-md bg-studio-ink text-white text-[11px] font-display font-semibold whitespace-nowrap pointer-events-none opacity-0 group-hover/dock:opacity-100 transition-opacity duration-150 shadow-lg">
+                <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-studio-ink text-banana-400 font-mono text-[10px] font-bold uppercase tracking-wider whitespace-nowrap pointer-events-none opacity-0 group-hover/dock:opacity-100 transition-opacity duration-100">
                   {icon.label}
                 </div>
                 <button
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-banana-300 border border-banana-400/40 flex items-center justify-center icon-tile hover:bg-banana-400 hover:border-banana-400/60 hover:shadow-icon active:scale-90 transition-all"
+                  className={`w-10 h-10 sm:w-12 sm:h-12 rounded-[6px] flex items-center justify-center icon-tile shadow-icon transition-colors ${
+                    isOpen ? "bg-banana-400" : "bg-banana-200 hover:bg-banana-300"
+                  }`}
+                  style={{ border: "1.5px solid #191A17" }}
                   onClick={() => openWindow(icon.id)}
+                  aria-label={icon.label}
                 >
-                  {IconWidget ? <IconWidget size={26} /> : <span className="text-xl">{icon.icon}</span>}
+                  {IconWidget && <IconWidget size={26} />}
                 </button>
-                {isOpen && <div className="w-1 h-1 rounded-full bg-studio-ink/40" />}
+                {/* Running indicator: a solid ink bar, visible at a glance. */}
+                <div className={`h-[3px] w-4 ${isOpen ? "bg-studio-ink" : "bg-transparent"}`} />
               </div>
             );
           })}
-          <div className="w-px h-7 bg-studio-ink/10 mx-1" />
-          <div className="relative flex flex-col items-center gap-0.5 group/dock">
+
+          <div className="self-stretch w-[1.5px] bg-studio-ink/25 mx-1 my-0.5" />
+
+          <div className="relative flex flex-col items-center gap-1 group/dock">
             {/* Tooltip */}
-            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 rounded-md bg-studio-ink text-white text-[11px] font-display font-semibold whitespace-nowrap pointer-events-none opacity-0 group-hover/dock:opacity-100 transition-opacity duration-150 shadow-lg">
+            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-studio-ink text-banana-400 font-mono text-[10px] font-bold uppercase tracking-wider whitespace-nowrap pointer-events-none opacity-0 group-hover/dock:opacity-100 transition-opacity duration-100">
               Apply Now
             </div>
             <button
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-banana-400 flex items-center justify-center icon-tile hover:bg-banana-500 hover:shadow-icon active:scale-90 transition-all"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-[6px] bg-banana-400 flex items-center justify-center icon-tile shadow-icon hover:bg-banana-500 transition-colors"
+              style={{ border: "1.5px solid #191A17" }}
               onClick={() => openWindow("apply")}
+              aria-label="Apply Now"
             >
               <ApplyLineIcon size={26} />
             </button>
-            {openWindows.some((w) => w.id === "apply") && (
-              <div className="w-1 h-1 rounded-full bg-studio-ink/40" />
-            )}
+            <div className={`h-[3px] w-4 ${openWindows.some((w) => w.id === "apply") ? "bg-studio-ink" : "bg-transparent"}`} />
           </div>
         </div>
       </div>

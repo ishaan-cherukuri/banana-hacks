@@ -22,7 +22,7 @@ export default function BananaMascot({
       aria-label="Banana Hacks mascot"
     >
       {/* Subtle drop shadow */}
-      <ellipse cx="60" cy="112" rx="28" ry="5" fill="rgba(26,26,46,0.08)" />
+      <ellipse cx="60" cy="112" rx="28" ry="5" fill="rgba(25,26,23,0.08)" />
 
       {/* Banana body */}
       <path
@@ -54,23 +54,23 @@ export default function BananaMascot({
       />
 
       {/* Eyes */}
-      <circle cx="54" cy="44" r="5" fill="#1A1A2E" />
-      <circle cx="70" cy="40" r="5" fill="#1A1A2E" />
+      <circle cx="54" cy="44" r="5" fill="#191A17" />
+      <circle cx="70" cy="40" r="5" fill="#191A17" />
       <circle cx="55.5" cy="42.5" r="1.5" fill="white" />
       <circle cx="71.5" cy="38.5" r="1.5" fill="white" />
 
       {/* Smile */}
       <path
         d="M54 54 Q62 60 70 54"
-        stroke="#1A1A2E"
+        stroke="#191A17"
         strokeWidth="2"
         strokeLinecap="round"
         fill="none"
       />
 
       {/* Rosy cheeks */}
-      <circle cx="49" cy="52" r="4" fill="#FF6B35" opacity="0.35" />
-      <circle cx="73" cy="48" r="4" fill="#FF6B35" opacity="0.35" />
+      <circle cx="49" cy="52" r="4" fill="#E2542A" opacity="0.35" />
+      <circle cx="73" cy="48" r="4" fill="#E2542A" opacity="0.35" />
 
       {/* Waving arm (only for waving variant) */}
       {variant === "waving" && (
@@ -115,14 +115,14 @@ export default function BananaMascot({
             fill="#4CAF50"
             transform="rotate(30 98 14)"
           />
-          <circle cx="93" cy="45" r="4" fill="#4C6EF5" opacity="0.8" />
+          <circle cx="93" cy="45" r="4" fill="#2C7466" opacity="0.8" />
         </>
       )}
 
       {/* Small pixel sparkles */}
       <rect x="28" y="24" width="4" height="4" rx="1" fill="#FDD835" opacity="0.7" />
-      <rect x="88" y="58" width="3" height="3" rx="0.5" fill="#4C6EF5" opacity="0.6" />
-      <rect x="20" y="54" width="3" height="3" rx="0.5" fill="#FF6B35" opacity="0.5" />
+      <rect x="88" y="58" width="3" height="3" rx="0.5" fill="#2C7466" opacity="0.6" />
+      <rect x="20" y="54" width="3" height="3" rx="0.5" fill="#E2542A" opacity="0.5" />
     </svg>
   );
 }

@@ -4,7 +4,7 @@ export const siteConfig = {
   shortName: "Banana Hacks",
   url: "https://bananahacks.tech",
   description:
-    "Banana Hacks 2026 is a free, virtual weekend hackathon on generative AI and image creation, running Oct 9–12, 2026. Build creative AI tools, fine-tune diffusion models, and compete for prizes and compute credits.",
+    "Banana Hacks 2026 is a free, international virtual weekend hackathon on generative AI and image creation, running Oct 9–12, 2026. Hackers from every country are welcome — build creative AI tools, fine-tune diffusion models, and compete for prizes and compute credits.",
   startDate: "2026-10-09T20:00:00-04:00",
   endDate: "2026-10-12T19:00:00-04:00",
   dateRangeLabel: "October 9–12, 2026",
@@ -42,9 +42,9 @@ export const sitePages: SitePage[] = [
   {
     path: "/about",
     label: "About",
-    title: "About Banana Hacks 2026 — Free Virtual Generative AI Hackathon",
+    title: "About Banana Hacks 2026 — Free International Generative AI Hackathon",
     description:
-      "What Banana Hacks 2026 is, who can join, what you'll build, and how the free virtual generative AI and image creation hackathon works. Oct 9–12, 2026.",
+      "What Banana Hacks 2026 is, who can join, what you'll build, and how the free international virtual generative AI and image creation hackathon works. Open to hackers in every country. Oct 9–12, 2026.",
     priority: 0.9,
   },
   {
@@ -60,7 +60,7 @@ export const sitePages: SitePage[] = [
     label: "Prizes",
     title: "Banana Hacks 2026 Prizes & Judging Criteria",
     description:
-      "How Banana Hacks 2026 projects are judged, what the award categories are, and what the prize pool includes. Free to enter, open worldwide.",
+      "How Banana Hacks 2026 projects are judged, what the award categories are, and what the prize pool includes. Free to enter and open to participants in every country.",
     priority: 0.8,
   },
   {
@@ -68,7 +68,7 @@ export const sitePages: SitePage[] = [
     label: "FAQ",
     title: "Banana Hacks 2026 FAQ — Eligibility, Teams, Tools & Submissions",
     description:
-      "Answers to common questions about Banana Hacks 2026: who can participate, whether it's free, team size limits, allowed AI tools, judging, and what to submit.",
+      "Answers to common questions about Banana Hacks 2026: who can participate worldwide, whether it's free, team size limits, allowed AI tools, judging, and what to submit.",
     priority: 0.9,
   },
   {
@@ -76,15 +76,15 @@ export const sitePages: SitePage[] = [
     label: "Sponsors",
     title: "Banana Hacks 2026 Sponsors — Partner With a Generative AI Hackathon",
     description:
-      "Meet the sponsors backing Banana Hacks 2026 and learn how your company can reach generative AI builders through compute credits, tooling, or cash prizes.",
+      "Meet the sponsors backing Banana Hacks 2026 and learn how your company can reach generative AI builders around the world through compute credits, tooling, or cash prizes.",
     priority: 0.7,
   },
   {
     path: "/register",
     label: "Register",
-    title: "Register for Banana Hacks 2026 — Free AI Hackathon Sign-Up",
+    title: "Register for Banana Hacks 2026 — Free International AI Hackathon Sign-Up",
     description:
-      "Registration for Banana Hacks 2026 is free and open worldwide. Sign up to join the virtual generative AI and image creation hackathon on Oct 9–12, 2026.",
+      "Registration for Banana Hacks 2026 is free and open to hackers in every country. Sign up to join the virtual generative AI and image creation hackathon on Oct 9–12, 2026.",
     priority: 0.9,
   },
 ];

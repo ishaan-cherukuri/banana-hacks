@@ -4,18 +4,18 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import { GenerationBar } from "@/components/svgs/StudioDecorations";
 
 const FAKE_OUTPUTS = [
-  { label: "banana robot in a gallery",   gradient: "linear-gradient(135deg, #FDD835 0%, #FF6B35 50%, #4C6EF5 100%)" },
-  { label: "neon jungle at dusk",          gradient: "linear-gradient(135deg, #1A1A2E 0%, #2E7D32 40%, #FDD835 100%)" },
-  { label: "pixel cathedral, dawn light",  gradient: "linear-gradient(135deg, #FFEE82 0%, #FF6B35 60%, #1A1A2E 100%)" },
-  { label: "impressionist AI studio",      gradient: "linear-gradient(135deg, #BACBFF 0%, #FDD835 50%, #4C6EF5 100%)" },
-  { label: "surreal banana dreamscape",    gradient: "linear-gradient(135deg, #FDD835 0%, #FF6B35 30%, #BACBFF 100%)" },
+  { label: "banana robot in a gallery",   gradient: "linear-gradient(135deg, #FDD835 0%, #E2542A 50%, #2C7466 100%)" },
+  { label: "neon jungle at dusk",          gradient: "linear-gradient(135deg, #191A17 0%, #2E7D32 40%, #FDD835 100%)" },
+  { label: "pixel cathedral, dawn light",  gradient: "linear-gradient(135deg, #FFEE82 0%, #E2542A 60%, #191A17 100%)" },
+  { label: "impressionist AI studio",      gradient: "linear-gradient(135deg, #8FC4BB 0%, #FDD835 50%, #2C7466 100%)" },
+  { label: "surreal banana dreamscape",    gradient: "linear-gradient(135deg, #FDD835 0%, #E2542A 30%, #8FC4BB 100%)" },
 ];
 
 const STYLE_PRESETS = [
   "Photorealistic", "Pixel Art", "Watercolor", "Oil Painting", "Anime", "Sketch", "Neon", "Impressionist",
 ];
 
-const COLORS = ["#1A1A2E", "#FDD835", "#FF6B35", "#4C6EF5", "#2E7D32", "#E91E63", "#ffffff", "#888888"];
+const COLORS = ["#191A17", "#FDD835", "#E2542A", "#2C7466", "#2E7D32", "#E91E63", "#ffffff", "#888888"];
 const WIDTHS  = [1, 3, 6, 12];
 
 export default function SketchPanel() {
@@ -25,7 +25,7 @@ export default function SketchPanel() {
   const lastPt      = useRef<{ x: number; y: number } | null>(null);
   const historyRef  = useRef<ImageData[]>([]);
 
-  const [color,      setColor]      = useState("#1A1A2E");
+  const [color,      setColor]      = useState("#191A17");
   const [lineWidth,  setLineWidth]  = useState(3);
   const [eraser,     setEraser]     = useState(false);
   const [prompt,     setPrompt]     = useState("");
@@ -135,18 +135,18 @@ export default function SketchPanel() {
       {/* ── Canvas area ──────────────────────────────────── */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Toolbar */}
-        <div className="flex items-center gap-3 px-4 py-2 border-b border-studio-ink/06 bg-white/60 shrink-0 flex-wrap">
+        <div className="flex items-center gap-3 px-4 py-2 border-b border-studio-ink/25 bg-banana-50 shrink-0 flex-wrap">
           {/* Eraser toggle */}
           <button
-            className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm transition-all ${
+            className={`w-8 h-8 rounded-[6px] flex items-center justify-center text-sm transition-all ${
               eraser
-                ? "bg-studio-ink text-white"
-                : "bg-studio-ink/08 text-studio-ink/60 hover:bg-studio-ink/15"
+                ? "bg-studio-ink text-banana-400 border-[1.5px] border-studio-ink"
+                : "bg-banana-50 text-studio-ink border-[1.5px] border-studio-ink hover:bg-banana-200"
             }`}
             onClick={() => setEraser((v) => !v)}
             title={eraser ? "Eraser (active)" : "Switch to eraser"}
           >
-            {eraser ? "⬜" : "✏️"}
+            <span className="font-mono text-[10px] font-bold uppercase">{eraser ? "ER" : "PN"}</span>
           </button>
 
           <div className="w-px h-5 bg-studio-ink/10 shrink-0" />
@@ -180,7 +180,7 @@ export default function SketchPanel() {
                 style={{
                   width:      Math.max(8, w * 2),
                   height:     Math.max(8, w * 2),
-                  background: "#1A1A2E",
+                  background: "#191A17",
                 }}
                 onClick={() => setLineWidth(w)}
               />
@@ -189,13 +189,13 @@ export default function SketchPanel() {
 
           <div className="ml-auto flex gap-2">
             <button
-              className="text-xs font-mono text-studio-ink/50 hover:text-studio-ink px-2 py-1 rounded-lg hover:bg-studio-ink/06 transition-all"
+              className="font-mono text-[11px] font-bold uppercase text-studio-ink/70 hover:text-studio-ink px-2 py-1 rounded-[4px] hover:bg-banana-300 transition-colors"
               onClick={undo}
             >
               ↩ Undo
             </button>
             <button
-              className="text-xs font-mono text-studio-ink/50 hover:text-red-500 px-2 py-1 rounded-lg hover:bg-red-50 transition-all"
+              className="text-xs font-mono text-studio-ink/70 hover:text-red-500 px-2 py-1 rounded-[6px] hover:bg-red-50 transition-all"
               onClick={clearCanvas}
             >
               ✕ Clear
@@ -206,7 +206,7 @@ export default function SketchPanel() {
         {/* Canvas */}
         <div className="flex-1 flex items-center justify-center bg-banana-50 p-4 overflow-hidden">
           <div
-            className="relative shadow-window rounded-lg overflow-hidden bg-banana-100"
+            className="relative shadow-window rounded-[6px] overflow-hidden bg-banana-100"
             style={{ width: "100%", maxWidth: 420, aspectRatio: "4/3" }}
           >
             <canvas
@@ -226,8 +226,11 @@ export default function SketchPanel() {
               style={{ opacity: historyRef.current.length > 0 ? 0 : 0.45, transition: "opacity 0.3s" }}
             >
               <div className="text-center">
-                <div className="text-4xl mb-2">✏️</div>
-                <p className="text-xs font-mono text-studio-ink/60">Draw something, then hit AI Generate</p>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#191A17" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mx-auto mb-2">
+                  <path d="M4 20l1-4.5L15.5 5a2.1 2.1 0 0 1 3 3L8 18.5 4 20Z" />
+                  <path d="M13.5 7 17 10.5" />
+                </svg>
+                <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-studio-ink/70">Draw something, then hit AI Generate</p>
               </div>
             </div>
           </div>
@@ -235,11 +238,11 @@ export default function SketchPanel() {
       </div>
 
       {/* ── Generation sidebar ────────────────────────────── */}
-      <div className="w-56 flex flex-col border-l border-studio-ink/08 bg-white/40 shrink-0">
+      <div className="w-56 flex flex-col border-l border-studio-ink/25 bg-banana-50 shrink-0">
         <div className="flex-1 overflow-y-auto window-scroll p-4 space-y-4">
           {/* Prompt */}
           <div>
-            <label className="block text-[10px] font-mono font-bold text-studio-ink/50 uppercase tracking-wider mb-1.5">
+            <label className="block text-[10px] font-mono font-bold text-studio-ink/70 uppercase tracking-wider mb-1.5">
               Text Prompt
             </label>
             <textarea
@@ -247,13 +250,13 @@ export default function SketchPanel() {
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="a banana robot in a neon gallery..."
               rows={3}
-              className="w-full px-2.5 py-2 rounded-lg border border-studio-ink/10 bg-white text-xs font-body text-studio-ink placeholder:text-studio-ink/30 resize-none focus:outline-none focus:border-banana-400 focus:ring-2 focus:ring-banana-400/20 transition-all"
+              className="w-full px-2.5 py-2 rounded-[6px] border-[1.5px] border-studio-ink bg-banana-50 text-xs font-body text-studio-ink placeholder:text-studio-ink/60 resize-none focus:outline-none focus:bg-white focus:shadow-icon-sm transition-all"
             />
           </div>
 
           {/* Style preset pills */}
           <div>
-            <label className="block text-[10px] font-mono font-bold text-studio-ink/50 uppercase tracking-wider mb-1.5">
+            <label className="block text-[10px] font-mono font-bold text-studio-ink/70 uppercase tracking-wider mb-1.5">
               Style
             </label>
             <div className="flex flex-wrap gap-1">
@@ -263,7 +266,7 @@ export default function SketchPanel() {
                   className={`px-2 py-1 rounded-md text-[10px] font-mono font-medium transition-all ${
                     style === s
                       ? "bg-banana-400 text-studio-ink"
-                      : "bg-studio-ink/06 text-studio-ink/55 hover:bg-banana-400/25 hover:text-studio-ink"
+                      : "bg-banana-50 text-studio-ink/80 border-[1.5px] border-studio-ink hover:bg-banana-300"
                   }`}
                   onClick={() => setStyle(s)}
                 >
@@ -275,7 +278,7 @@ export default function SketchPanel() {
 
           {/* Generate button */}
           <button
-            className="w-full py-2.5 rounded-xl font-display font-bold text-sm bg-banana-400 text-studio-ink hover:bg-banana-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:shadow-icon active:scale-95 flex items-center justify-center gap-1.5"
+            className="w-full py-2.5 rounded-[6px] font-display font-bold text-sm bg-banana-400 text-studio-ink border-[1.5px] border-studio-ink shadow-icon press disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5"
             onClick={handleGenerate}
             disabled={generating}
           >
@@ -285,7 +288,7 @@ export default function SketchPanel() {
                 Generating...
               </>
             ) : (
-              "✨ AI Generate"
+              "AI Generate"
             )}
           </button>
 
@@ -293,7 +296,7 @@ export default function SketchPanel() {
           {generating && (
             <div className="space-y-1.5">
               <GenerationBar progress={progress} />
-              <p className="text-[10px] font-mono text-studio-ink/45 text-center">
+              <p className="text-[10px] font-mono text-studio-ink/65 text-center">
                 Diffusion step {Math.round(progress / 5)} / 20
               </p>
             </div>
@@ -302,11 +305,11 @@ export default function SketchPanel() {
           {/* Generated output */}
           {output && !generating && (
             <div className="animate-bounce-in space-y-2">
-              <p className="text-[10px] font-mono font-bold text-studio-ink/50 uppercase tracking-wider">
+              <p className="text-[10px] font-mono font-bold text-studio-ink/70 uppercase tracking-wider">
                 Generated Output
               </p>
               <div
-                className="w-full rounded-xl overflow-hidden shadow-icon"
+                className="w-full rounded-[6px] overflow-hidden border-[1.5px] border-studio-ink shadow-icon"
                 style={{ aspectRatio: "1", background: output.gradient }}
               >
                 <div
@@ -317,17 +320,17 @@ export default function SketchPanel() {
                   }}
                 />
               </div>
-              <p className="text-[9px] font-mono text-studio-ink/40 text-center leading-relaxed">
+              <p className="text-[9px] font-mono text-studio-ink/65 text-center leading-relaxed">
                 &ldquo;{prompt || output.label}&rdquo; · {style}
               </p>
               <div className="flex gap-1.5">
                 <button
-                  className="flex-1 py-1.5 text-[10px] font-mono font-bold rounded-lg bg-studio-ink/06 text-studio-ink/60 hover:bg-studio-ink/12 transition-all"
+                  className="flex-1 py-1.5 text-[10px] font-mono font-bold uppercase rounded-[4px] bg-banana-50 text-studio-ink border-[1.5px] border-studio-ink hover:bg-banana-300 transition-colors"
                   onClick={handleGenerate}
                 >
                   🔄 Vary
                 </button>
-                <button className="flex-1 py-1.5 text-[10px] font-mono font-bold rounded-lg bg-banana-400/20 text-banana-700 hover:bg-banana-400/40 transition-all">
+                <button className="flex-1 py-1.5 text-[10px] font-mono font-bold rounded-[6px] bg-banana-400/20 text-banana-700 hover:bg-banana-400/40 transition-all">
                   ⬇ Save
                 </button>
               </div>
@@ -335,8 +338,8 @@ export default function SketchPanel() {
           )}
         </div>
 
-        <div className="p-3 border-t border-studio-ink/06 shrink-0">
-          <p className="text-[9px] font-mono text-studio-ink/35 text-center leading-relaxed">
+        <div className="p-3 border-t border-studio-ink/25 shrink-0">
+          <p className="text-[9px] font-mono text-studio-ink/60 text-center leading-relaxed">
             Demo mode · Real generation after registration
           </p>
         </div>

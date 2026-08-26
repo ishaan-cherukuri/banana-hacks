@@ -14,7 +14,7 @@ export interface FAQItem {
 export const FAQS: FAQItem[] = [
   {
     q: "Who can participate?",
-    a: "Anyone, anywhere in the world! Students, professionals, hobbyists, and first-timers are all welcome. You just need an internet connection and a passion for generative AI and image creation.",
+    a: "Anyone, in any country. Banana Hacks is an international hackathon — there is no regional, national, or school-based eligibility restriction. Students, professionals, hobbyists, and first-timers are all welcome; you just need an internet connection and a passion for generative AI and image creation.",
   },
   {
     q: "Is it free to enter?",
@@ -46,7 +46,7 @@ export const FAQS: FAQItem[] = [
   },
   {
     q: "Where does hacking happen?",
-    a: "Banana Hacks is 100% virtual. Our community hub is on Discord. Workshops and ceremonies are on Zoom. You hack wherever you're most creative — bedroom, café, library, co-working space.",
+    a: "Banana Hacks is fully online and international. Our community hub is on Discord and workshops and ceremonies are on Zoom, with every session recorded so participants outside North American hours can watch on their own schedule. You hack wherever you're most creative.",
   },
   {
     q: "I've never done a hackathon before. Is this beginner-friendly?",
@@ -150,7 +150,7 @@ export const JUDGING_CRITERIA = [
 ];
 
 export const ELIGIBILITY = [
-  "Open to everyone, worldwide — students, professionals, hobbyists",
+  "Open to everyone in every country — students, professionals, hobbyists",
   "Teams of 1–4 people",
   "All skill levels welcome — first-timers encouraged",
   "Must submit by Oct 11, 2026 at 11:59 PM AoE",

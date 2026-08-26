@@ -32,7 +32,7 @@ export default function RegisterPage() {
       lede={`Registration is free, open worldwide, and takes about a minute. Banana Hacks 2026 runs ${siteConfig.dateRangeLabel}, entirely online — there's nothing to pay and nowhere to travel.`}
     >
       <section aria-labelledby="cta" className="mb-12">
-        <div className="border border-banana-400/50 bg-banana-400/15 rounded-2xl p-6">
+        <div className="bg-banana-200 hard-card p-6">
           <h2
             id="cta"
             className="font-display font-bold text-lg text-studio-ink mb-2"
@@ -45,7 +45,7 @@ export default function RegisterPage() {
           </p>
           <Link
             href="/?open=apply"
-            className="inline-flex items-center px-5 py-2.5 rounded-xl font-display font-semibold text-sm bg-banana-400 text-studio-ink hover:bg-banana-500 transition-colors"
+            className="inline-flex items-center px-5 py-2.5 rounded-[6px] font-display font-semibold text-sm bg-banana-400 text-studio-ink hover:bg-banana-500 transition-colors"
           >
             Open the registration form
           </Link>
@@ -55,7 +55,7 @@ export default function RegisterPage() {
       <section aria-labelledby="how" className="mb-12">
         <h2
           id="how"
-          className="font-display font-bold text-xl text-studio-ink mb-4"
+          className="font-display font-extrabold text-xl text-studio-ink mb-4"
         >
           How it works
         </h2>
@@ -63,10 +63,10 @@ export default function RegisterPage() {
           {STEPS.map((step, i) => (
             <li
               key={step.title}
-              className="flex gap-4 border border-studio-ink/12 bg-white/50 rounded-xl px-5 py-4"
+              className="flex gap-4 bg-banana-50 hard-card-sm rounded-[6px] px-5 py-4"
             >
               <span
-                className="shrink-0 w-7 h-7 rounded-lg bg-banana-400 text-studio-ink font-display font-bold text-sm flex items-center justify-center"
+                className="shrink-0 w-7 h-7 rounded-[6px] bg-banana-400 text-studio-ink font-display font-bold text-sm flex items-center justify-center"
                 aria-hidden="true"
               >
                 {i + 1}
@@ -87,7 +87,7 @@ export default function RegisterPage() {
       <section aria-labelledby="eligible" className="mb-12">
         <h2
           id="eligible"
-          className="font-display font-bold text-xl text-studio-ink mb-3"
+          className="font-display font-extrabold text-xl text-studio-ink mb-3"
         >
           Before you sign up
         </h2>
@@ -109,25 +109,25 @@ export default function RegisterPage() {
       <section aria-labelledby="more">
         <h2
           id="more"
-          className="font-display font-bold text-xl text-studio-ink mb-3"
+          className="font-display font-extrabold text-xl text-studio-ink mb-3"
         >
           Want more detail first?
         </h2>
         <p className="font-body text-sm text-studio-ink/75 leading-relaxed max-w-2xl">
           Read{" "}
-          <Link href="/about" className="text-peri-500 hover:underline">
+          <Link href="/about" className="text-vine-500 hover:underline">
             about the hackathon
           </Link>
           , check the{" "}
-          <Link href="/schedule" className="text-peri-500 hover:underline">
+          <Link href="/schedule" className="text-vine-500 hover:underline">
             full schedule
           </Link>
           , see{" "}
-          <Link href="/prizes" className="text-peri-500 hover:underline">
+          <Link href="/prizes" className="text-vine-500 hover:underline">
             how projects are judged
           </Link>
           , or browse the{" "}
-          <Link href="/faq" className="text-peri-500 hover:underline">
+          <Link href="/faq" className="text-vine-500 hover:underline">
             FAQ
           </Link>
           .

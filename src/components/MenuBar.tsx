@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { BananaLineIcon } from "@/components/svgs/DockIcons";
 
 interface MenuBarProps {
   onOpenWindow: (id: string) => void;
@@ -41,10 +42,10 @@ export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
     >
       {/* App icon + name → go home */}
       <button
-        className="flex items-center gap-1.5 font-display font-bold text-sm text-studio-ink mr-3 select-none hover:opacity-75 transition-opacity active:scale-95"
+        className="flex items-center gap-1.5 font-display font-extrabold text-[15px] tracking-[-0.03em] text-studio-ink mr-3 select-none hover:text-vine-600 transition-colors"
         onClick={onGoHome}
       >
-        <span className="text-lg leading-none">🍌</span>
+        <BananaLineIcon size={17} />
         <span>Banana Hacks</span>
       </button>
 
@@ -52,10 +53,10 @@ export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
       {Object.entries(menus).map(([name, items]) => (
         <div key={name} className="relative">
           <button
-            className={`px-2.5 py-0.5 rounded text-sm font-body font-medium transition-colors select-none ${
+            className={`px-2.5 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] transition-colors select-none ${
               menuOpen === name
-                ? "bg-studio-ink text-white"
-                : "text-studio-ink/70 hover:text-studio-ink hover:bg-studio-ink/5"
+                ? "bg-studio-ink text-banana-400"
+                : "text-studio-ink/75 hover:bg-banana-400"
             }`}
             onClick={() => setMenuOpen(menuOpen === name ? null : name)}
           >
@@ -69,17 +70,17 @@ export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
                 className="fixed inset-0 z-40"
                 onClick={() => setMenuOpen(null)}
               />
-              <div className="absolute top-full left-0 mt-1 z-50 min-w-48 bg-white/95 backdrop-blur border border-studio-ink/10 rounded-lg shadow-window py-1 animate-bounce-in">
+              <div className="absolute top-full left-0 mt-1 z-50 min-w-48 bg-banana-50 hard-card-sm py-1 animate-bounce-in">
                 {items.map((item, i) =>
                   item.label === "—" ? (
-                    <div key={i} className="mx-2 my-1 border-t border-studio-ink/08" />
+                    <div key={i} className="mx-2 my-1 border-t border-studio-ink/30" />
                   ) : (
                     <button
                       key={i}
-                      className={`w-full text-left px-4 py-1.5 text-sm font-body transition-colors ${
+                      className={`w-full text-left px-4 py-1.5 text-[13px] font-body transition-colors ${
                         item.action
-                          ? "text-studio-ink hover:bg-banana-400/20 cursor-pointer"
-                          : "text-studio-ink/40 cursor-default"
+                          ? "text-studio-ink hover:bg-banana-400 cursor-pointer"
+                          : "text-studio-ink/65 cursor-default"
                       }`}
                       onClick={() => {
                         item.action?.();
@@ -98,13 +99,12 @@ export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
 
       {/* Right side: clock + MLH badge */}
       <div className="ml-auto flex items-center gap-3">
-        <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-banana-400/15 border border-banana-400/30">
-          <div className="w-1.5 h-1.5 rounded-full bg-studio-leaf animate-pulse" />
-          <span className="text-xs font-mono font-medium text-studio-ink/70">
-            Oct 9–12
+        <div className="hidden sm:flex items-center px-2 py-[1px] bg-banana-400 border-[1.5px] border-studio-ink">
+          <span className="font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-studio-ink">
+            Worldwide · Oct 9–12
           </span>
         </div>
-        <span suppressHydrationWarning className="text-xs font-mono text-studio-ink/50 tabular-nums">{time}</span>
+        <span suppressHydrationWarning className="font-mono text-[11px] font-bold text-studio-ink/70 tabular-nums">{time}</span>
       </div>
     </div>
   );

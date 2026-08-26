@@ -34,7 +34,7 @@ export default function SponsorsPage() {
       <section aria-labelledby="current" className="mb-12">
         <h2
           id="current"
-          className="font-display font-bold text-xl text-studio-ink mb-4"
+          className="font-display font-extrabold text-xl text-studio-ink mb-4"
         >
           Our sponsors
         </h2>
@@ -45,7 +45,7 @@ export default function SponsorsPage() {
                 href={sponsor.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col h-full overflow-hidden rounded-2xl border-2 border-studio-ink/10 hover:border-banana-400/60 transition-colors"
+                className="flex flex-col h-full overflow-hidden rounded-[8px] border-2 border-studio-ink/25 hover:border-banana-400/60 transition-colors"
                 style={{ backgroundColor: sponsor.bg }}
               >
                 <div className="flex-1 flex items-center justify-center px-4 py-10">
@@ -69,7 +69,7 @@ export default function SponsorsPage() {
                   <span
                     className={
                       sponsor.light
-                        ? "text-[11px] font-body text-studio-ink/60"
+                        ? "text-[11px] font-body text-studio-ink/72"
                         : "text-[11px] font-body text-white/80"
                     }
                   >
@@ -85,7 +85,7 @@ export default function SponsorsPage() {
       <section aria-labelledby="why" className="mb-12">
         <h2
           id="why"
-          className="font-display font-bold text-xl text-studio-ink mb-3"
+          className="font-display font-extrabold text-xl text-studio-ink mb-3"
         >
           Why sponsor Banana Hacks?
         </h2>
@@ -129,7 +129,7 @@ export default function SponsorsPage() {
                   className="flex items-start gap-2.5 font-body text-xs text-studio-ink/70 leading-relaxed"
                 >
                   <span
-                    className="mt-1.5 w-1 h-1 rounded-full bg-peri-400 shrink-0"
+                    className="mt-1.5 w-1 h-1 rounded-full bg-vine-400 shrink-0"
                     aria-hidden="true"
                   />
                   {line}
@@ -142,7 +142,7 @@ export default function SponsorsPage() {
 
       <section
         aria-labelledby="contact"
-        className="border border-banana-400/50 bg-banana-400/15 rounded-2xl p-6 text-center"
+        className="bg-banana-200 hard-card p-6 text-center"
       >
         <h2
           id="contact"
@@ -156,17 +156,17 @@ export default function SponsorsPage() {
         </p>
         <a
           href={`mailto:${siteConfig.contactEmail}`}
-          className="inline-flex items-center px-5 py-2.5 rounded-xl font-display font-semibold text-sm bg-banana-400 text-studio-ink hover:bg-banana-500 transition-colors"
+          className="inline-flex items-center px-5 py-2.5 rounded-[6px] font-display font-semibold text-sm bg-banana-400 text-studio-ink hover:bg-banana-500 transition-colors"
         >
           {siteConfig.contactEmail}
         </a>
-        <p className="font-body text-xs text-studio-ink/55 mt-4">
+        <p className="font-body text-xs text-studio-ink/70 mt-4">
           Curious what participants actually get up to? See the{" "}
-          <Link href="/schedule" className="text-peri-500 hover:underline">
+          <Link href="/schedule" className="text-vine-500 hover:underline">
             schedule
           </Link>{" "}
           and{" "}
-          <Link href="/prizes" className="text-peri-500 hover:underline">
+          <Link href="/prizes" className="text-vine-500 hover:underline">
             judging criteria
           </Link>
           .

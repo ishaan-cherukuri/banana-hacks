@@ -38,7 +38,7 @@ export default function FaqPage() {
         {FAQS.map((item) => (
           <details
             key={item.q}
-            className="group border border-studio-ink/12 bg-white/50 rounded-xl overflow-hidden"
+            className="group bg-banana-50 hard-card-sm rounded-[6px] overflow-hidden"
           >
             <summary className="cursor-pointer list-none px-5 py-4 flex items-center gap-3 hover:bg-banana-400/10 transition-colors">
               <h2 className="font-display font-semibold text-sm text-studio-ink flex-1">
@@ -46,7 +46,7 @@ export default function FaqPage() {
               </h2>
               <span
                 aria-hidden="true"
-                className="font-mono text-studio-ink/40 text-lg leading-none transition-transform group-open:rotate-45"
+                className="font-mono text-studio-ink/65 text-lg leading-none transition-transform group-open:rotate-45"
               >
                 +
               </span>
@@ -62,7 +62,7 @@ export default function FaqPage() {
 
       <section
         aria-labelledby="still-asking"
-        className="border border-banana-400/50 bg-banana-400/15 rounded-2xl p-6"
+        className="bg-banana-200 hard-card p-6"
       >
         <h2
           id="still-asking"
@@ -72,20 +72,20 @@ export default function FaqPage() {
         </h2>
         <p className="font-body text-sm text-studio-ink/70 max-w-xl">
           The{" "}
-          <Link href="/about" className="text-peri-500 hover:underline">
+          <Link href="/about" className="text-vine-500 hover:underline">
             about page
           </Link>{" "}
           covers the event in more depth, the{" "}
-          <Link href="/schedule" className="text-peri-500 hover:underline">
+          <Link href="/schedule" className="text-vine-500 hover:underline">
             schedule
           </Link>{" "}
           has exact timings, and{" "}
-          <Link href="/prizes" className="text-peri-500 hover:underline">
+          <Link href="/prizes" className="text-vine-500 hover:underline">
             prizes &amp; judging
           </Link>{" "}
           explains how projects are scored. Anything else — ask in our Discord
           once you&apos;ve{" "}
-          <Link href="/register" className="text-peri-500 hover:underline">
+          <Link href="/register" className="text-vine-500 hover:underline">
             registered
           </Link>
           .
