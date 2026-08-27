@@ -17,7 +17,7 @@ interface WindowProps {
   focused?: boolean;
   /**
    * Owned by Desktop, not by this component. When it lived here the dock had
-   * no way to clear it, so minimising a window orphaned it permanently — the
+   * no way to clear it, so minimising a window orphaned it permanently, the
    * dock still showed the app as running but clicking it did nothing, and the
    * only recovery was a page reload. See AUDIT.md C2.
    */
@@ -121,7 +121,7 @@ export default function Window({
 
   /*
     Escape closes the focused window. There was no keyboard way to dismiss a
-    window at all — the only affordance was clicking a 15px control.
+    window at all, the only affordance was clicking a 15px control.
     See AUDIT.md A5.
   */
   useEffect(() => {
@@ -197,7 +197,7 @@ export default function Window({
         onDoubleClick={toggleMaximize}
       >
         {/* Window controls. Squared and outlined rather than macOS
-            traffic lights — a cloned OS chrome is its own kind of
+            traffic lights, a cloned OS chrome is its own kind of
             stock look, and the glyphs make the actions legible. */}
         <div className="flex items-center gap-1 mr-2.5">
           {([

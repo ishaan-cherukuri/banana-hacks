@@ -19,7 +19,7 @@ const CATEGORIES = [
   },
   {
     title: "Most Surprising Output",
-    desc: "The project that produced something nobody — including its authors — expected.",
+    desc: "The project that produced something nobody expected, its own authors included.",
   },
   {
     title: "People's Choice",
@@ -32,7 +32,7 @@ export default function PrizesPage() {
     <PageShell
       path={PATH}
       heading="Prizes & Judging"
-      lede="Banana Hacks is free to enter and every submitted project gets reviewed. The prize pool is over $10,000 in cash, compute credits, and tooling from our sponsors — here's how judging works, what the award categories are, and how the pool breaks down."
+      lede="Banana Hacks is free to enter and a judge looks at every project submitted. The prize pool is over $10,000 in cash, compute credits, and tooling from our sponsors. Here is how judging works, which awards you can win, and how the pool breaks down."
     >
       <section
         aria-labelledby="prize-pool"
@@ -84,7 +84,7 @@ export default function PrizesPage() {
         </h2>
         <p className="font-body text-sm text-studio-ink/72 mb-4 max-w-2xl">
           Alongside the overall winners, category awards recognise projects that
-          stand out in a specific direction. You don&apos;t apply for these —
+          stand out in a specific direction. You don&apos;t apply for these.
           every submission is considered for every category.
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
@@ -142,7 +142,7 @@ export default function PrizesPage() {
           repository, and a write-up of at most 500 words explaining what you
           built and why. Judges interact with live demos wherever possible, so a
           working link beats a polished video. Submissions close at 11:59 PM AoE
-          on Sunday, October 11, 2026 — see the full{" "}
+          on Sunday, October 11, 2026. See the full{" "}
           <Link href="/schedule" className="text-vine-500 hover:underline">
             schedule
           </Link>{" "}

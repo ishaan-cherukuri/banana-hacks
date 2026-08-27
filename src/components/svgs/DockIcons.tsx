@@ -2,7 +2,7 @@
 
 /**
  * Line-art widget icons for the dock / desktop / window chrome.
- * Black (studio-ink) outlines with subtle color accents — replaces emoji.
+ * Black (studio-ink) outlines with subtle color accents, replaces emoji.
  */
 
 interface IconProps {

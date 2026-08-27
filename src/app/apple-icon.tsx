@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-// Apple touch icons must be raster — iOS ignores SVG — so this is generated as
+// Apple touch icons must be raster, iOS ignores SVG, so this is generated as
 // a PNG at build time rather than shipped as a static apple-icon.svg.
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";

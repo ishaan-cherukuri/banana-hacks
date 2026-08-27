@@ -20,7 +20,7 @@ const WIDTHS  = [1, 3, 6, 12];
 
 export default function SketchPanel() {
   const canvasRef   = useRef<HTMLCanvasElement>(null);
-  // Use refs for drawing state — avoids stale closure problem in pointer event callbacks
+  // Use refs for drawing state, avoids stale closure problem in pointer event callbacks
   const isDrawing   = useRef(false);
   const lastPt      = useRef<{ x: number; y: number } | null>(null);
   const historyRef  = useRef<ImageData[]>([]);
@@ -79,7 +79,7 @@ export default function SketchPanel() {
     setOutput(null);
   };
 
-  /* ── Pointer handlers (all refs — no stale state) ─────── */
+  /* ── Pointer handlers (all refs, no stale state) ─────── */
   const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     e.currentTarget.setPointerCapture(e.pointerId); // keep events even if cursor leaves
     saveHistory();

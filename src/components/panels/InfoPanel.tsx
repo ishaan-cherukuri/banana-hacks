@@ -7,13 +7,13 @@ import { siteConfig } from "@/lib/site";
 import { SPONSORS } from "@/lib/content";
 
 /**
- * "Get Info" — the trust layer.
+ * "Get Info", the trust layer.
  *
  * The audit's sharpest finding was that the site never said who runs it: four
  * of the six ten-second questions passed, and the two that failed were both
  * trust questions ("who runs this?", "is it legitimate?"). The template answer
  * is a footer with an about blurb, but this homepage is a desktop OS, and an OS
- * already has a canonical place for provenance — Get Info.
+ * already has a canonical place for provenance, Get Info.
  *
  * So the trust content lives where a user of this metaphor would look for it,
  * reached from the menu bar's app name exactly where an OS puts About. It is
@@ -94,7 +94,7 @@ export default function InfoPanel() {
                 </a>
               ) : (
                 /* No invite link is rendered until one exists in siteConfig.
-                   The previous UI shipped href="#" and a null-wired button —
+                   The previous UI shipped href="#" and a null-wired button , 
                    dead links read as abandonment, which is the opposite of
                    what a trust panel is for. */
                 <>

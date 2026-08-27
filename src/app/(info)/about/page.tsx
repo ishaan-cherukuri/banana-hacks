@@ -10,7 +10,7 @@ const PATH = "/about";
 export const metadata: Metadata = buildMetadata(PATH);
 
 const STATS = [
-  { value: "4", label: "Days", sub: "Oct 9–12, 2026" },
+  { value: "4", label: "Days", sub: "Oct 9-12, 2026" },
   { value: "60+", label: "Countries", sub: "No regional limits" },
   { value: "$0", label: "Entry fee", sub: "Free for everyone" },
   { value: "$10K+", label: "Prize pool", sub: "Cash, credits & tooling" },
@@ -21,7 +21,7 @@ export default function AboutPage() {
     <PageShell
       path={PATH}
       heading="About Banana Hacks 2026"
-      lede="Banana Hacks 2026 is a free, international online hackathon dedicated to generative AI and image creation, open to participants in every country. Over one long weekend you'll sketch prompts, fine-tune diffusion models, and ship a creative AI project — whether it's your first hackathon or your fiftieth."
+      lede="Banana Hacks 2026 is a free online hackathon about generative AI and image creation, open to anyone in any country. Over one long weekend you'll sketch prompts, fine-tune diffusion models, and ship a creative AI project. It does not matter whether this is your first hackathon or your fiftieth."
     >
       <section aria-labelledby="at-a-glance" className="mb-12">
         <h2
@@ -102,7 +102,7 @@ export default function AboutPage() {
         </h2>
         <p className="font-body text-sm text-studio-ink/72 mb-4 max-w-2xl">
           Projects tend to fall into four loose tracks. You&apos;re not locked
-          into one — they exist to give you a starting point.
+          into one. They exist to give you a starting point.
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
           {TRACKS.map((track) => (

@@ -23,7 +23,7 @@ interface FormData {
 
 const WORKSHOPS = ["HTML/CSS", "Python", "Machine Learning"];
 const TEAM_STATUSES = ["Solo hacker", "I have a team ready", "Looking for teammates", "Not sure yet"];
-const EXPERIENCE_LEVELS = ["Beginner (0–1 years)", "Intermediate (1–3 years)", "Advanced (3+ years)"];
+const EXPERIENCE_LEVELS = ["Beginner (0 to 1 years)", "Intermediate (1 to 3 years)", "Advanced (3+ years)"];
 
 // Dial codes. The previous list held 20 entries while the site advertises
 // 60+ countries, so most participants had no correct option. Sorted by name.
@@ -93,8 +93,8 @@ const COUNTRY_CODES: { dial: string; name: string; flag: string }[] = [
  *
  * The previous version truncated to 10 digits and re-grouped as 3-3-4. An
  * 11-digit UK, German or Nigerian number silently lost its last digit and
- * still passed validation, so the emergency contact — the one field that
- * exists for safety — was stored wrong for much of the world. See AUDIT.md C3.
+ * still passed validation, so the emergency contact, the one field that
+ * exists for safety, was stored wrong for much of the world. See AUDIT.md C3.
  *
  * National formats vary too much to normalise sensibly, so we only strip
  * characters that are never part of a number and cap at E.164's 15 digits.
@@ -227,7 +227,7 @@ export default function ApplyPanel() {
       if (!res.ok) throw new Error("submission failed");
       setStep("success");
     } catch {
-      setSubmitError("Something went wrong — please try again.");
+      setSubmitError("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -251,7 +251,7 @@ export default function ApplyPanel() {
           {/*
             Says only what actually happens. This screen used to read "Check
             your email for your confirmation" while /api/apply did nothing but
-            write a row — no mail is sent by the app at all — and offered a
+            write a row, no mail is sent by the app at all, and offered a
             "Join Discord" button wired to null. Both were dead promises at the
             highest-intent moment in the funnel. See AUDIT.md T2, T4.
           */}
@@ -261,7 +261,7 @@ export default function ApplyPanel() {
               <li className="flex gap-2">
                 <span className="font-mono text-[10px] font-bold text-studio-ink/70 shrink-0 mt-0.5">01</span>
                 <span>
-                  There&apos;s no automatic confirmation email — nothing has gone wrong if your
+                  There&apos;s no automatic confirmation email, so nothing has gone wrong if your
                   inbox stays quiet.
                 </span>
               </li>
@@ -457,7 +457,7 @@ export default function ApplyPanel() {
           </div>
         </div>
 
-        {/* Team status — radio card grid */}
+        {/* Team status, radio card grid */}
         <div>
           <p id="apply-team-status-label" className="block text-xs font-display font-semibold text-studio-ink/70 mb-2">Team Status *</p>
           <div
@@ -538,7 +538,7 @@ export default function ApplyPanel() {
 
         {/*
           Native checkbox. This was a <div role="checkbox"> with two <button>
-          elements nested inside it — interactive descendants are not allowed
+          elements nested inside it, interactive descendants are not allowed
           inside the checkbox role, and the nested link text polluted the
           accessible name. The policy links are now siblings, so the checkbox
           has one clean label and gets real keyboard semantics for free.

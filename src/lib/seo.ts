@@ -10,7 +10,7 @@ export function buildMetadata(path: string): Metadata {
   const page = getPage(path);
   return {
     // `absolute` opts out of the root layout's "%s · Banana Hacks 2026"
-    // template — these titles already contain the brand, and letting the
+    // template, these titles already contain the brand, and letting the
     // template append it produces a doubled, truncated SERP title.
     title: { absolute: page.title },
     description: page.description,

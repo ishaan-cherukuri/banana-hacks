@@ -7,7 +7,7 @@ import { PixelSparkle, BrushStroke, LeafDecor } from "@/components/svgs/StudioDe
 // Flat fills, not tint-over-tint. A translucent wash on a translucent
 // wash is what makes generated cards read as one grey mush.
 const STATS = [
-  { value: "4",     label: "Days",      sub: "Oct 9–12",              color: "bg-banana-300 text-studio-ink" },
+  { value: "4",     label: "Days",      sub: "Oct 9-12",              color: "bg-banana-300 text-studio-ink" },
   { value: "∞",     label: "Tracks",    sub: "AI · Image · Creative", color: "bg-vine-200 text-vine-800"     },
   { value: "$10K",  label: "Prizes",    sub: "in cash & credits",     color: "bg-studio-ripe text-banana-50" },
   { value: "60+",   label: "Countries", sub: "Hack from anywhere",    color: "bg-banana-50 text-studio-ink"  },
@@ -36,14 +36,15 @@ export default function AboutPanel() {
               Banana Hacks 2026
             </p>
             <h2 className="font-display font-extrabold text-3xl text-studio-ink leading-tight mb-2">
-              Create the{" "}
-              <span className="banana-gradient-text">Unseen</span>.
+              Make something{" "}
+              <span className="banana-gradient-text">nobody&apos;s seen</span>.
             </h2>
             <BrushStroke color="#FDD835" width={120} className="mb-3" />
             <p className="font-body text-studio-ink/70 text-sm leading-relaxed max-w-sm">
-              An international weekend hackathon dedicated to generative AI and
-              image creation, open to hackers in every country. Sketch prompts, train diffusion models, build creative
-              tools — then ship something the world hasn't seen yet.
+              A free weekend hackathon about generative AI and image creation,
+              open to anyone in any country. Sketch prompts, fine-tune diffusion
+              models, build the tool you wish existed, then show everyone what
+              came out.
             </p>
           </div>
         </div>
@@ -107,9 +108,9 @@ export default function AboutPanel() {
           </h3>
           <ul className="space-y-1.5">
             {[
-              "Open to everyone in every country — students, professionals, hobbyists",
-              "Teams of 1–4 people",
-              "All skill levels welcome — first-timers encouraged",
+              "Open to anyone in any country: students, professionals, hobbyists",
+              "Teams of 1 to 4 people",
+              "Any skill level. First-timers especially welcome",
               "Must submit by Oct 11, 2026 at 11:59 PM AoE",
             ].map((item) => (
               <li key={item} className="flex items-start gap-2 text-xs font-body text-studio-ink/70">

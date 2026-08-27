@@ -12,7 +12,7 @@ export const metadata: Metadata = buildMetadata(PATH);
 const STEPS = [
   {
     title: "Register",
-    desc: "Fill in the registration form — name, email, and a couple of questions about what you want to build. Takes about a minute.",
+    desc: "Fill in the registration form: name, email, and a couple of questions about what you want to build. Takes about a minute.",
   },
   {
     title: "Join the Discord",
@@ -29,7 +29,7 @@ export default function RegisterPage() {
     <PageShell
       path={PATH}
       heading="Register for Banana Hacks 2026"
-      lede={`Registration is free, open worldwide, and takes about a minute. Banana Hacks 2026 runs ${siteConfig.dateRangeLabel}, entirely online — there's nothing to pay and nowhere to travel.`}
+      lede={`Registering is free, open to anyone anywhere, and takes about a minute. Banana Hacks 2026 runs ${siteConfig.dateRangeLabel}, entirely online, so there is nothing to pay and nowhere to travel.`}
     >
       <section aria-labelledby="cta" className="mb-12">
         <div className="bg-banana-200 hard-card p-6">
@@ -40,7 +40,7 @@ export default function RegisterPage() {
             Sign up
           </h2>
           <p className="font-body text-sm text-studio-ink/70 mb-4 max-w-xl">
-            The registration form opens in the Banana Hacks studio — our desktop
+            The registration form opens in the Banana Hacks studio, our desktop
             app on the homepage.
           </p>
           <Link

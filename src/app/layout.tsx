@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   // the root layout is inherited by every child route, which would point all
   // pages at "/" and de-index them. Each page declares its own.
   openGraph: {
-    title: "Banana Hacks 2026 — International Generative AI & Image Creation Hackathon",
+    title: "Banana Hacks 2026 | Generative AI & Image Creation Hackathon",
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Banana Hacks 2026 — International Generative AI & Image Creation Hackathon",
+    title: "Banana Hacks 2026 | Generative AI & Image Creation Hackathon",
     description: siteConfig.description,
   },
   verification: {

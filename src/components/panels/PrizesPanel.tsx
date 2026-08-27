@@ -3,10 +3,10 @@
 import { JUDGING_CRITERIA } from "@/lib/content";
 
 const CATEGORIES = [
-  { title: "Best Creative Tool",     desc: "Most useful generative AI tool for someone making something" },
-  { title: "Best Fine-tune",         desc: "Most impressive custom model, LoRA, or training pipeline" },
-  { title: "Most Surprising Output", desc: "The result nobody saw coming" },
-  { title: "People's Choice",        desc: "Voted on by participants at demo day" },
+  { title: "Best creative tool",     desc: "The generative AI tool someone would actually keep using" },
+  { title: "Best fine-tune",         desc: "The sharpest custom model, LoRA, or training pipeline" },
+  { title: "Most surprising output", desc: "The result nobody saw coming" },
+  { title: "People's choice",        desc: "Participants vote for this one at demo day" },
 ];
 
 export default function PrizesPanel() {
@@ -14,7 +14,7 @@ export default function PrizesPanel() {
     <div className="window-scroll h-full overflow-y-auto bg-banana-100">
       <div className="px-6 pt-6 pb-4 bg-banana-300 border-b-[1.5px] border-studio-ink">
         <p className="eyebrow mb-1">Judging</p>
-        <h2 className="font-display font-extrabold text-xl text-studio-ink mb-0.5">Prizes &amp; Awards</h2>
+        <h2 className="font-display font-extrabold text-xl text-studio-ink mb-0.5">Prizes &amp; awards</h2>
         <p className="text-xs font-body text-studio-ink/75">
           Free to enter, worldwide · Every submission is judged
         </p>
@@ -32,8 +32,9 @@ export default function PrizesPanel() {
             Prize pool coming soon
           </h3>
           <p className="text-xs font-body text-studio-ink/70 max-w-sm mx-auto">
-            We&apos;re finalizing the pool with sponsors — expect cash, compute
-            credits, and tooling subscriptions. Announced before opening night.
+            We&apos;re still working out the exact split with sponsors. It will be
+            cash, compute credits, and tooling subscriptions, and we announce the
+            breakdown before opening night.
           </p>
         </div>
 

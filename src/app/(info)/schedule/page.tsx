@@ -35,7 +35,7 @@ const scheduleJsonLd = {
   itemListElement: SCHEDULE.map((event, i) => ({
     "@type": "ListItem",
     position: i + 1,
-    name: `${event.day}, ${event.time} — ${event.title}`,
+    name: `${event.day}, ${event.time}: ${event.title}`,
   })),
 };
 
@@ -98,7 +98,7 @@ export default function SchedulePage() {
         <ul className="space-y-2 font-body text-sm text-studio-ink/70">
           <li>
             The submission deadline is <strong>11:59 PM AoE</strong> (Anywhere on
-            Earth) on Sunday, October 11 — the most generous possible
+            Earth) on Sunday, October 11, the most generous possible
             interpretation of &ldquo;Sunday night&rdquo;.
           </li>
           <li>

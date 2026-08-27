@@ -36,7 +36,7 @@ const WINDOW_DEFS: WindowConfig[] = [
   { id: "info",     title: "Get Info", w: 640,   h: 560,   component: InfoPanel     },
 ];
 
-// Dock order. Icons come from DOCK_ICON_MAP — drawn marks, not emoji.
+// Dock order. Icons come from DOCK_ICON_MAP, drawn marks, not emoji.
 // Emoji are the fastest way to make a UI look auto-generated, and they
 // render as a different typeface on every platform.
 const DESKTOP_ICONS = [
@@ -66,7 +66,7 @@ export default function Desktop() {
       if (prev.find((w) => w.id === id)) {
         // Restore as well as raise. A minimized window is still in this list,
         // so without clearing the flag the dock icon looked live but did
-        // nothing — see AUDIT.md C2.
+        // nothing, see AUDIT.md C2.
         return prev.map((w) =>
           w.id === id ? { ...w, zIndex: ++zCounter.current, minimized: false } : w
         );
@@ -101,8 +101,8 @@ export default function Desktop() {
     <div className="os-desktop h-[100dvh] w-screen overflow-hidden relative desktop-wallpaper">
 
       {/*
-        The homepage previously rendered no landmarks at all — no main, nav,
-        header or skip link — so a screen-reader user got an unstructured pile
+        The homepage previously rendered no landmarks at all, no main, nav,
+        header or skip link, so a screen-reader user got an unstructured pile
         of divs. The skip link itself lives in app/page.tsx so it precedes
         SeoContent in the tab order. See AUDIT.md A1.
       */}
@@ -152,7 +152,7 @@ export default function Desktop() {
         Bottom dock.
 
         At 360px the old dock measured 379px of content in a 360px box and the
-        overflow fell on the right — where the separated Apply tile lives — so
+        overflow fell on the right, where the separated Apply tile lives, so
         the primary call to action was the one thing clipped off the narrowest
         common phone. Apply now sits outside the scrolling strip, pinned, so it
         is always reachable; the browsing icons scroll under it. Tiles are 44px

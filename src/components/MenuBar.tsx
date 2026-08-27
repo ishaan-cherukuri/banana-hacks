@@ -36,7 +36,7 @@ export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
 
   /*
     Every item here now does something. "Discord Community" and "Contact
-    Organizers" used to be actionless <button>s — dead UI in the one menu a
+    Organizers" used to be actionless <button>s, dead UI in the one menu a
     confused visitor opens. See AUDIT.md T2.
   */
   const menus: Record<string, MenuItem[]> = {
@@ -120,7 +120,7 @@ export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
       <div className="ml-auto flex items-center gap-3">
         <div className="hidden sm:flex items-center px-2 py-[1px] bg-banana-400 border-[1.5px] border-studio-ink">
           <span className="font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-studio-ink">
-            Worldwide · Oct 9–12
+            Worldwide · Oct 9-12
           </span>
         </div>
         <span suppressHydrationWarning className="font-mono text-[11px] font-bold text-studio-ink/70 tabular-nums">{time}</span>

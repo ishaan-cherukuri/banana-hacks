@@ -62,7 +62,7 @@ export default function CodeOfConductPage() {
     <PageShell
       path={PATH}
       heading="Code of Conduct & Rules"
-      lede="Everyone at Banana Hacks — participants, mentors, judges and organisers — is covered by this Code of Conduct. It applies in Discord, on Zoom, in submitted work, and anywhere else the event happens. Read it before you register."
+      lede="This Code of Conduct covers everyone at Banana Hacks: participants, mentors, judges and organisers. It applies in Discord, on Zoom, in submitted work, and anywhere else the event happens. Read it before you register."
     >
       {/* Reporting sits first, not buried at the end. If someone needs this
           page urgently, this is what they need. */}

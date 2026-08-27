@@ -34,7 +34,7 @@ export default function SchedulePanel() {
         <div className="flex items-center justify-between">
           <div>
             <h2 className="font-display font-extrabold text-base text-studio-ink">Schedule</h2>
-            <p className="font-mono text-[11px] font-bold text-studio-ink/75">Oct 9–12, 2026 · EDT (convert to your timezone)</p>
+            <p className="font-mono text-[11px] font-bold text-studio-ink/75">Oct 9-12, 2026 · EDT (convert to your timezone)</p>
           </div>
           {/* Legend */}
           <div className="flex gap-2 flex-wrap justify-end">

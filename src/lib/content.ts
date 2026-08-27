@@ -14,43 +14,43 @@ export interface FAQItem {
 export const FAQS: FAQItem[] = [
   {
     q: "Who can participate?",
-    a: "Anyone, at any age, in any country. There is no age limit, no regional or national restriction, and no school affiliation required. Banana Hacks is built for students and first-time hackers in particular — the workshops and mentoring assume no prior experience — but professionals and hobbyists are welcome too. All you need is an internet connection. Participants under 18 should have a parent or guardian read the Code of Conduct with them.",
+    a: "Anyone, at any age, in any country. We don't check your age, where you live, or whether you're enrolled at a school. Banana Hacks is aimed at students and first-time hackers, so the workshops and mentoring assume you have never done this before, but professionals and hobbyists are welcome too. All you need is an internet connection. If you're under 18, read the Code of Conduct with a parent or guardian first.",
   },
   {
     q: "Is it free to enter?",
-    a: "Yes! Banana Hacks is completely free to participate in. We also plan to provide free compute credits so you can train models and run inference without worrying about costs.",
+    a: "Yes. It costs nothing to enter. We're also lining up free compute credits so you can train and run models without paying for GPU time.",
   },
   {
     q: "Do I need a team?",
-    a: "Nope! You can hack solo or form a team of up to 4 people. We run a team formation event on Opening Night if you'd like to find teammates. Teams of all sizes compete in the same pool.",
+    a: "No. Hack alone or bring up to three other people. If you want teammates and don't have any yet, come to the team formation hour on opening night. Solo hackers and full teams are judged in the same pool.",
   },
   {
     q: "What tech stack can I use?",
-    a: "Anything goes! Stable Diffusion, DALL-E, Midjourney API, Flux, custom models, ControlNet, ComfyUI, A1111, Hugging Face Diffusers — use whatever tools help you build the best project. Open source is celebrated.",
+    a: "Whatever you want. Stable Diffusion, DALL-E, the Midjourney API, Flux, ControlNet, ComfyUI, A1111, Hugging Face Diffusers, or a model you trained yourself. If it helps you build the thing, use it. Open source is very welcome.",
   },
   {
     q: "How are projects judged?",
-    a: "Projects are evaluated on: Creativity & Originality (30%), Technical Implementation (30%), Visual Quality / User Experience (20%), and Potential Impact (20%). Judges include working AI researchers, artists, and startup founders.",
+    a: "Judges score four things: creativity and originality (30%), technical implementation (30%), visual quality and user experience (20%), and potential impact (20%). The panel includes working AI researchers, artists, and startup founders.",
   },
   {
     q: "Can I use pre-trained models?",
-    a: "Yes! You're encouraged to build on top of existing models. The innovation can be in your application layer, fine-tuning approach, prompt engineering, workflow design, or novel combination of tools.",
+    a: "Yes, and most projects do. What you build on top is the part that gets judged: the app around the model, how you fine-tuned it, your prompting, or the way you wired several tools together.",
   },
   {
     q: "What should I submit?",
-    a: "A working demo (live URL or recorded video), GitHub repository, and a short write-up (max 500 words) explaining what you built and why. Judges will interact with live demos when possible.",
+    a: "A working demo, either a live URL or a recorded video, a link to your GitHub repo, and a write-up of 500 words or less covering what you built and why. Judges will poke at live demos where they can.",
   },
   {
     q: "Will there be prizes?",
-    a: "Yes — the prize pool is over $10,000, made up of cash, compute credits, and tooling subscriptions from our sponsors, plus category awards for standout projects. The exact split between categories is confirmed closer to the event.",
+    a: "The prize pool is over $10,000 in cash, compute credits, and tooling subscriptions from our sponsors, plus awards in each category. We confirm exactly how it splits closer to the event.",
   },
   {
     q: "Where does hacking happen?",
-    a: "Banana Hacks is fully online and international. Our community hub is on Discord and workshops and ceremonies are on Zoom, with every session recorded so participants outside North American hours can watch on their own schedule. You hack wherever you're most creative.",
+    a: "Wherever you are. Banana Hacks runs entirely online. Discord is the community hub, workshops and ceremonies run on Zoom, and we record every session so people outside North American hours can catch up on their own schedule.",
   },
   {
     q: "I've never done a hackathon before. Is this beginner-friendly?",
-    a: "Absolutely. We run dedicated beginner workshops, have mentors available throughout the weekend, and specifically celebrate first-time hackers. The only requirement is curiosity. We've seen incredible projects from people on their very first hackathon.",
+    a: "Yes, that's who we built it for. There are beginner workshops, mentors on call all weekend, and we go out of our way to celebrate people shipping their first project. You need curiosity and an internet connection.",
   },
 ];
 
@@ -74,19 +74,19 @@ export const SCHEDULE: ScheduleEvent[] = [
   // Registration deadline. This date used to appear only inside the apply
   // form ("Registration closes Oct 8") and nowhere else on the site.
   { day: "Thu Oct 8",  time: "11:59 PM AoE", title: "Registration Closes",                       type: "deadline",      virtual: false },
-  // Friday — Opening night
+  // Friday, Opening night
   { day: "Fri Oct 9",  time: "8:00 PM EDT",  title: "Opening Ceremony & Theme Reveal",           type: "kickoff",       virtual: true  },
   { day: "Fri Oct 9",  time: "9:30 PM EDT",  title: "Team Formation Social Hour",                type: "social",        virtual: true  },
-  // Saturday — Build day 1
+  // Saturday, Build day 1
   { day: "Sat Oct 10", time: "11:00 AM EDT", title: "Workshop: Stable Diffusion from Scratch",   type: "workshop",      virtual: true  },
   { day: "Sat Oct 10", time: "2:00 PM EDT",  title: "Office Hours: APIs & Model Hosting",        type: "office-hours",  virtual: true  },
   { day: "Sat Oct 10", time: "5:00 PM EDT",  title: "Workshop: LoRA Fine-tuning Deep Dive",      type: "workshop",      virtual: true  },
   { day: "Sat Oct 10", time: "9:00 PM EDT",  title: "Mid-point Check-in & Progress Showcase",    type: "social",        virtual: true  },
-  // Sunday — Build day 2 + deadline
+  // Sunday, Build day 2 + deadline
   { day: "Sun Oct 11", time: "11:00 AM EDT", title: "Office Hours: UX & Prompt Engineering",     type: "office-hours",  virtual: true  },
   { day: "Sun Oct 11", time: "3:00 PM EDT",  title: "Workshop: ControlNet & Image Conditioning", type: "workshop",      virtual: true  },
   { day: "Sun Oct 11", time: "11:59 PM AoE", title: "Submissions Close",                         type: "deadline",      virtual: false },
-  // Monday — Closing
+  // Monday, Closing
   { day: "Mon Oct 12", time: "3:00 PM EDT",  title: "Judging & Demo Day (live streams)",         type: "ceremony",      virtual: true  },
   { day: "Mon Oct 12", time: "6:00 PM EDT",  title: "Award Ceremony & Closing",                  type: "ceremony",      virtual: true  },
 ];
@@ -153,9 +153,9 @@ export const JUDGING_CRITERIA = [
 ];
 
 export const ELIGIBILITY = [
-  "Open to everyone, everywhere — no age limit and no country restriction",
+  "Open to everyone, everywhere, with no age limit and no country restriction",
   "Built for students and first-timers; professionals and hobbyists welcome too",
-  "Teams of 1–4 people",
+  "Teams of 1 to 4 people",
   "Under 18? Read the Code of Conduct with a parent or guardian",
   "Must submit by Oct 11, 2026 at 11:59 PM AoE",
 ];
@@ -173,43 +173,43 @@ export interface PolicySection {
 
 export const COC_SECTIONS: PolicySection[] = [
   {
-    title: "Online Hackathon Standards",
+    title: "Online hackathon standards",
     body: [
-      "Banana Hacks is a virtual event — your conduct online is held to the same standard as an in-person event. Screen-share content, Discord messages, project demos, video calls, and submitted work are all covered.",
-      "Do not record, screenshot, or share other participants' video feeds or private messages without explicit consent.",
-      "Do not attempt to disrupt the event infrastructure — submission platforms, judging portals, Discord bots, or organizer tooling.",
+      "Banana Hacks happens online, and we hold your conduct here to the same standard as an in-person event. That covers screen shares, Discord messages, project demos, video calls, and anything you submit.",
+      "Do not record, screenshot, or share another participant's video feed or private messages without asking them first.",
+      "Do not try to disrupt the event infrastructure. That includes the submission platform, the judging portal, our Discord bots, and organizer tooling.",
     ],
   },
   {
-    title: "Be Excellent to Each Other",
+    title: "Be excellent to each other",
     body: [
-      "We are committed to providing a harassment-free experience regardless of gender, gender identity, age, sexual orientation, disability, physical appearance, race, ethnicity, nationality, or religion.",
-      "Harassment includes offensive verbal comments, deliberate intimidation, unwanted attention, sustained disruption of others' work, and inappropriate online contact.",
-      "Sexualised language, imagery, or jokes are not acceptable in any event channel, DM, or submission.",
+      "Everyone gets a harassment-free experience here, whatever their gender, gender identity, age, sexual orientation, disability, appearance, race, ethnicity, nationality, or religion.",
+      "Harassment covers offensive comments, deliberate intimidation, unwanted attention, following someone around the event, and repeatedly interrupting other people's work.",
+      "Keep sexualised language, imagery, and jokes out of every channel, DM, and submission.",
     ],
   },
   {
-    title: "Privacy & Safety Online",
+    title: "Privacy and safety online",
     body: [
-      "Do not share personal information about other participants (doxxing) in any form.",
-      "Phishing, social engineering, malware distribution, or any attack targeting participants or organizers is grounds for immediate removal.",
-      "If you discover a security vulnerability in event infrastructure, disclose it privately to the organizers — do not exploit or publicise it.",
+      "Do not post another participant's personal information anywhere, in any form.",
+      "Phishing, social engineering, malware, or any attack aimed at participants or organizers gets you removed immediately.",
+      "Found a security hole in our infrastructure? Tell the organizers privately. Do not exploit it and do not post about it.",
     ],
   },
   {
-    title: "Academic Integrity",
+    title: "Academic integrity",
     body: [
-      "All code, designs, and content submitted must be your team's original work created during the hackathon window.",
-      "Properly attribute open-source libraries, datasets, and pre-trained models used in your project.",
-      "Using generative AI tools is permitted and encouraged — disclose which tools you used in your submission.",
+      "Everything you submit has to be your team's own work, made during the hacking window.",
+      "Credit the open-source libraries, datasets, and pre-trained models your project depends on.",
+      "Generative AI tools are allowed and encouraged. Just say which ones you used when you submit.",
     ],
   },
   {
     title: "Enforcement",
     body: [
-      "Violations may result in a warning, removal from the event, or disqualification from prizes at organizer discretion.",
-      "Report concerns to an organiser via the #help channel on Discord, or by emailing team@bananahacks.tech. Reports are read only by the organising team.",
-      "Banana Hacks also follows the MLH Code of Conduct (mlh.io/code-of-conduct). Banana Hacks is not an MLH member event.",
+      "Depending on what happened, organizers may give you a warning, remove you from the event, or disqualify you from prizes.",
+      "Report anything that worries you in the #help channel on Discord, or email team@bananahacks.tech. Only the organizing team reads those reports.",
+      "We also follow the MLH Code of Conduct (mlh.io/code-of-conduct). Banana Hacks is not an MLH member event.",
     ],
   },
 ];
@@ -218,41 +218,41 @@ export const RULES_SECTIONS: PolicySection[] = [
   {
     title: "Teams",
     body: [
-      "Teams of 1–4 people. You may form a team with anyone — no school affiliation required.",
-      "Each person may only be on one team.",
-      "Team changes must be reported to organizers before hacking begins.",
+      "Teams are 1 to 4 people. Team up with anyone you like; you don't need to go to the same school or live in the same country.",
+      "You can only be on one team.",
+      "Tell the organizers about any team changes before hacking starts.",
     ],
   },
   {
-    title: "Hacking Window",
+    title: "Hacking window",
     body: [
-      "Hacking begins at the opening ceremony and ends at the announced deadline (Sun Oct 11, 11:59 PM AoE).",
-      "Any work started before the opening ceremony is not eligible for judging.",
-      "Code must be in a public GitHub repository committed within the hacking window — commit timestamps are verified.",
+      "Hacking starts at the opening ceremony and stops at the deadline, Sun Oct 11 at 11:59 PM AoE.",
+      "Anything you started before the opening ceremony is not eligible for judging.",
+      "Your code goes in a public GitHub repo, committed inside the hacking window. We check commit timestamps.",
     ],
   },
   {
-    title: "What You Can Build On",
+    title: "What you can build on",
     body: [
-      "Open-source libraries, public APIs, and pre-trained models are all fair game — cite them in your README.",
-      "Theme and challenge details are revealed at the opening ceremony. Projects must address the theme.",
-      "Hardware is not required; all projects should be demonstrable via screen-share or a hosted link.",
+      "Open-source libraries, public APIs, and pre-trained models are all fair game. Cite them in your README.",
+      "We reveal the theme and the challenge details at the opening ceremony, and your project has to address the theme.",
+      "You don't need hardware. Every project should be demoable over a screen share or at a hosted link.",
     ],
   },
   {
     title: "Submissions",
     body: [
-      "Submit via the official submission portal before the deadline. Late submissions will not be considered.",
-      "Required: project name, 1-paragraph description, GitHub link, and a short demo video (≤3 min).",
-      "Judges score on Creativity & Originality (30%), Technical Implementation (30%), Visual Quality / User Experience (20%), and Potential Impact (20%) — the same criteria listed on the Prizes page.",
+      "Submit through the official portal before the deadline. We don't accept late entries.",
+      "You'll need a project name, a one-paragraph description, a GitHub link, and a demo video of three minutes or less.",
+      "Judges score creativity and originality (30%), technical implementation (30%), visual quality and user experience (20%), and potential impact (20%). Those are the same criteria listed on the Prizes page.",
     ],
   },
   {
-    title: "Prizes & Eligibility",
+    title: "Prizes and eligibility",
     body: [
-      "Prize winners must be available for a short post-event demo call with sponsors.",
-      "Organizers and judges are not eligible to win prizes.",
-      "By submitting, you grant Banana Hacks permission to feature your project in promotional materials.",
+      "If you win, be available for a short demo call with sponsors after the event.",
+      "Organizers and judges cannot win prizes.",
+      "Submitting gives Banana Hacks permission to feature your project in promotional material.",
     ],
   },
 ];

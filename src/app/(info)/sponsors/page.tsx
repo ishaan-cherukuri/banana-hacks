@@ -10,7 +10,7 @@ const PATH = "/sponsors";
 export const metadata: Metadata = buildMetadata(PATH);
 
 const OFFERINGS = [
-  "Monetary support — cash prizes, event operations, or swag",
+  "Money for cash prizes, running the event, or swag",
   "API tokens or usage credits for participants to build with",
   "Compute / GPU credits for training and inference",
   "Tool or product access (dev accounts, licenses, trials)",
@@ -29,7 +29,7 @@ export default function SponsorsPage() {
     <PageShell
       path={PATH}
       heading="Sponsors"
-      lede="Banana Hacks 2026 is free for participants because sponsors cover the cost. These are the companies backing the event — and how yours can join them."
+      lede="Banana Hacks 2026 is free for participants because sponsors cover the cost. These are the companies backing the event, and here is how yours can join them."
     >
       <section aria-labelledby="current" className="mb-12">
         <h2
@@ -52,7 +52,7 @@ export default function SponsorsPage() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={sponsor.logo}
-                    alt={`${sponsor.name} — ${sponsor.tagline}. Sponsor of Banana Hacks 2026.`}
+                    alt={`${sponsor.name}: ${sponsor.tagline}. Sponsor of Banana Hacks 2026.`}
                     width={200}
                     height={80}
                     loading="lazy"
@@ -93,7 +93,7 @@ export default function SponsorsPage() {
           Banana Hacks is a free, virtual weekend hackathon (
           {siteConfig.dateRangeLabel}) built around generative AI and image
           creation. Sponsoring puts your brand, tools, and team directly in front
-          of people actively choosing what to build with — during the weekend
+          of people actively choosing what to build with, during the weekend
           they&apos;re making those decisions.
         </p>
 
@@ -151,7 +151,7 @@ export default function SponsorsPage() {
           Become a Banana Sponsor
         </h2>
         <p className="font-body text-sm text-studio-ink/70 max-w-md mx-auto mb-4">
-          Email us with a rough idea of what you can offer — we reply in under 12
+          Email us with a rough idea of what you can offer. We reply in under 12
           hours.
         </p>
         <a

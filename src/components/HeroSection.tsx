@@ -131,12 +131,12 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
       <div className="flex min-h-full">
 
         {/* ════════════════════════════════════════════════════ */}
-        {/* LEFT — scrollable content                           */}
+        {/* LEFT, scrollable content                           */}
         {/* ════════════════════════════════════════════════════ */}
         <div className="flex-1 min-w-0 flex flex-col">
 
           {/* ── Screen 1: above-fold hero ─────────────────── */}
-          {/* pb clears the fixed dock — at 360 the sponsor row sat underneath it. */}
+          {/* pb clears the fixed dock, at 360 the sponsor row sat underneath it. */}
           <div
             className="flex flex-col justify-center px-5 sm:px-8 md:px-12 pt-6 sm:pt-8 relative z-10"
             style={{
@@ -149,7 +149,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             <div className="flex items-center gap-2 mb-4">
               <div className="inline-flex items-center bg-banana-400 border-[1.5px] border-studio-ink shadow-icon-sm">
                 <span className="px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-studio-ink">
-                  Oct 9–12, 2026
+                  Oct 9-12, 2026
                 </span>
                 <span className="px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-banana-400 bg-studio-ink">
                   International · Free
@@ -162,8 +162,8 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
               {/* h2, not h1: the page's single H1 is the keyword-bearing one in
                   SeoContent, which comes first in the DOM. */}
               <h2 className="font-display font-extrabold leading-[0.92] text-studio-ink" style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.5rem)" }}>
-                Build the<br />
-                <span className="banana-gradient-text">Unseen.</span>
+                Make something<br />
+                <span className="banana-gradient-text">nobody&apos;s seen.</span>
               </h2>
             </div>
 
@@ -171,10 +171,11 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             {/* Subtext */}
             <p className="font-body text-base text-studio-ink/75 leading-relaxed max-w-md mb-5">
-              An international weekend hackathon dedicated to{" "}
+              A free weekend hackathon about{" "}
               <strong className="text-studio-ink font-semibold">generative AI</strong> and{" "}
               <strong className="text-studio-ink font-semibold">image creation</strong>.
-              Hack from any country — sketch prompts, train models, ship creative tools.
+              Sketch prompts, train models, ship something you would actually use.
+              Enter from anywhere.
             </p>
 
             {/* Countdown */}
@@ -223,12 +224,12 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
               )}
             </div>
 
-            {/* CTAs — one primary. These were two identically-weighted
+            {/* CTAs, one primary. These were two identically-weighted
                 buttons separated only by fill colour. Elevation now carries
                 priority: primary sits on a shadow, secondary sits flat.
                 See DESIGN-SYSTEM.md §3. */}
             {/*
-              Once the event is over, "Apply now" is a dead end — registration
+              Once the event is over, "Apply now" is a dead end, registration
               is closed and the window it opens can do nothing useful. The
               primary action follows the phase.
             */}
@@ -245,7 +246,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
               ) : (
                 <>
                   <button onClick={() => onOpenWindow("apply")} className="btn-primary">
-                    Apply now — it&apos;s free
+                    Apply now, it&apos;s free
                   </button>
                   <button onClick={() => onOpenWindow("sketch")} className="btn-secondary">
                     Try the AI Studio
@@ -277,7 +278,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             </div>
 
             {/* Scroll cue. Was centred inside a stray 28rem box, which put it
-                at no meaningful x — it now sits on the content's left rail. */}
+                at no meaningful x, it now sits on the content's left rail. */}
             <div className="hidden sm:flex justify-start">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#191A17" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-scroll-cue" style={{ opacity: 0.65 }}>
                 <line x1="12" y1="4" x2="12" y2="18" />
@@ -295,9 +296,9 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mb-8">
               {[
-                { title: "Weekend Sprint", body: "Hack from Oct 9–12. Build, iterate, and ship something real in a weekend.", color: "bg-banana-300" },
-                { title: "Gen AI Theme", body: "All tracks center on generative AI — images, models, and creative tools.", color: "bg-vine-200" },
-                { title: "Every Timezone", body: "International and fully online. Async-friendly, with workshops replayed for every region.", color: "bg-banana-50" },
+                { title: "Weekend sprint", body: "Four days, Oct 9 to 12. Start Friday night, demo on Monday.", color: "bg-banana-300" },
+                { title: "Gen AI theme", body: "Every track is about generative AI: images, models, and the tools around them.", color: "bg-vine-200" },
+                { title: "Every timezone", body: "Fully online, and we record the workshops so you can watch whenever you are awake.", color: "bg-banana-50" },
               ].map((f, i) => (
                 <FadeUp key={f.title} delay={i * 80}>
                   <div className={`hard-card p-4 h-full ${f.color}`}>
@@ -313,14 +314,14 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           <div className="px-5 sm:px-8 md:px-12 py-12 pb-16 border-t-[1.5px] border-studio-ink/25">
             <FadeUp>
               <p className="eyebrow mb-1">What you&apos;ll build</p>
-              <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-6">All About Image AI</h2>
+              <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-6">It&apos;s all image AI</h2>
             </FadeUp>
 
             <div className="flex flex-col gap-3 max-w-md mb-10">
               {[
-                { title: "Text-to-Image", desc: "Prompt-driven generation, inpainting, style transfer", color: "bg-banana-300" },
-                { title: "Fine-tuning",   desc: "LoRA, DreamBooth, ControlNet adapters",              color: "bg-vine-200"   },
-                { title: "Creative Tools", desc: "AI-assisted apps, prompt UIs, workflows",           color: "bg-banana-50"  },
+                { title: "Text to image", desc: "Prompt-driven generation, inpainting, style transfer", color: "bg-banana-300" },
+                { title: "Fine-tuning",   desc: "LoRA, DreamBooth, ControlNet adapters",               color: "bg-vine-200"   },
+                { title: "Creative tools", desc: "AI-assisted apps, prompt UIs, workflows",            color: "bg-banana-50"  },
               ].map((t, i) => (
                 <FadeUp key={t.title} delay={i * 90}>
                   <div className={`flex items-baseline gap-3 px-4 py-3 hard-card-sm ${t.color}`}>
@@ -341,7 +342,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
                 onClick={() => onOpenWindow(phase === "after" ? "info" : "apply")}
                 className="btn-primary"
               >
-                {phase === "after" ? "See what got built" : "Apply now — it\u2019s free"}
+                {phase === "after" ? "See what got built" : "Apply now, it\u2019s free"}
               </button>
             </FadeUp>
           </div>
@@ -349,10 +350,10 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
         </div>
 
         {/* ════════════════════════════════════════════════════ */}
-        {/* RIGHT — sticky illustration                         */}
+        {/* RIGHT, sticky illustration                         */}
         {/* ════════════════════════════════════════════════════ */}
         {/*
-          lg:, not md:. At 768 this panel is ~292px — too narrow for the
+          lg:, not md:. At 768 this panel is ~292px, too narrow for the
           mascot, four badges and the neural net, which is why the badges
           collided with the plate worst at that width. See AUDIT.md L3.
         */}
@@ -369,7 +370,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           */}
           {/*
             Capped and centred rather than stretched to the full column height.
-            At 1440 the plate was ~500x780 around a 190px mascot — a large
+            At 1440 the plate was ~500x780 around a 190px mascot, a large
             empty rectangle with four badges stranded in its corners. A
             bounded box puts the badges back in relation to the mascot.
           */}
@@ -396,7 +397,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             {/*
               One ornament, not six. This panel carried two PixelClusters, two
-              PixelSparkles and a LeafDecor on top of the mascot and the net —
+              PixelSparkles and a LeafDecor on top of the mascot and the net , 
               enough scattered decoration to read as noise rather than craft.
               Chanel's rule: take one thing off. See AUDIT.md §6.
             */}

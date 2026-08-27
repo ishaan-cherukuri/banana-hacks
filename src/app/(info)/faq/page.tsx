@@ -9,7 +9,7 @@ const PATH = "/faq";
 export const metadata: Metadata = buildMetadata(PATH);
 
 /**
- * FAQPage schema. Answers must match the visible copy exactly — Google treats
+ * FAQPage schema. Answers must match the visible copy exactly, Google treats
  * hidden or mismatched FAQ answers as a structured data violation, so both read
  * from the same FAQS array.
  */
@@ -31,7 +31,7 @@ export default function FaqPage() {
     <PageShell
       path={PATH}
       heading="Frequently Asked Questions"
-      lede="Everything people ask before signing up for Banana Hacks 2026 — eligibility, cost, team size, which AI tools are allowed, how judging works, and what you need to submit."
+      lede="The questions people ask before signing up for Banana Hacks 2026: who can enter, what it costs, how big teams can be, which AI tools are allowed, how judging works, and what you submit at the end."
       jsonLd={[faqJsonLd]}
     >
       <div className="space-y-3 mb-12">
@@ -83,7 +83,7 @@ export default function FaqPage() {
           <Link href="/prizes" className="text-vine-500 hover:underline">
             prizes &amp; judging
           </Link>{" "}
-          explains how projects are scored. Anything else — ask in our Discord
+          explains how projects are scored. For anything else, ask in our Discord
           once you&apos;ve{" "}
           <Link href="/register" className="text-vine-500 hover:underline">
             registered

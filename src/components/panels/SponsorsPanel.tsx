@@ -29,7 +29,7 @@ function SponsorInfoModal({ onClose }: { onClose: () => void }) {
         <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-studio-ink/25 shrink-0">
           <div className="flex items-center gap-2">
             <HeartLineIcon size={18} />
-            <h2 className="font-display font-bold text-base text-studio-ink">Become a Banana Sponsor</h2>
+            <h2 className="font-display font-bold text-base text-studio-ink">Become a banana sponsor</h2>
           </div>
           <button
             onClick={onClose}
@@ -45,8 +45,9 @@ function SponsorInfoModal({ onClose }: { onClose: () => void }) {
         {/* Scrollable content */}
         <div className="overflow-y-auto px-5 py-4 space-y-4 window-scroll">
           <p className="text-xs font-body text-studio-ink/70 leading-relaxed">
-            Banana Hacks is a free, virtual weekend hackathon (Oct 9–12, 2026) bringing together 500+ generative AI
-            builders. Sponsoring puts your brand, tools, and team directly in front of them.
+            Banana Hacks is a free online weekend hackathon running Oct 9 to 12,
+            2026, with 500+ generative AI builders taking part. Sponsoring puts
+            your brand, tools, and team in front of them.
           </p>
 
           <div>
@@ -55,7 +56,7 @@ function SponsorInfoModal({ onClose }: { onClose: () => void }) {
             </h3>
             <ul className="space-y-1.5">
               {[
-                "Monetary support — cash prizes, event operations, or swag",
+                "Money for cash prizes, running the event, or swag",
                 "API tokens or usage credits for participants to build with",
                 "Compute / GPU credits for training and inference",
                 "Tool or product access (dev accounts, licenses, trials)",
@@ -94,7 +95,7 @@ function SponsorInfoModal({ onClose }: { onClose: () => void }) {
               <a href="mailto:sponsorships@bananahacks.tech" className="font-semibold text-vine-500 hover:underline">
                 sponsorships@bananahacks.tech
               </a>{" "}
-              — we reply in under 12 hours.
+              . We reply in under 12 hours.
             </p>
           </div>
         </div>
@@ -147,7 +148,7 @@ export default function SponsorsPanel() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={sponsor.logo}
-                  alt={`${sponsor.name} — ${sponsor.tagline}. Sponsor of Banana Hacks 2026.`}
+                  alt={`${sponsor.name}: ${sponsor.tagline}. Sponsor of Banana Hacks 2026.`}
                   loading="lazy"
                   className="max-h-20 w-full object-contain"
                 />

@@ -41,7 +41,7 @@ export async function POST(req: Request) {
     const raw = err instanceof Error ? err.message : "Generation failed";
     // LightX returns a generic "FAIL"/"Oops..." when its sketch endpoint is busy.
     const message = /fail|oops|something went wrong/i.test(raw)
-      ? "The AI studio is busy right now — give it a few seconds and try again."
+      ? "The AI studio is busy right now. Give it a few seconds and try again."
       : raw;
     return NextResponse.json({ error: message }, { status: 502 });
   }
