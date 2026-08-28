@@ -10,6 +10,8 @@ out/
 # Production build
 build/
 dist/
+.vinext/
+.wrangler/
 
 # Env files
 .env

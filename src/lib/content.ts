@@ -139,10 +139,10 @@ export interface Track {
 }
 
 export const TRACKS: Track[] = [
-  { title: "Image Generators", desc: "Text-to-image tools, style transfer, inpainting systems" },
-  { title: "AI Pipelines",     desc: "Fine-tuned diffusion models, LoRA adapters, ControlNet workflows" },
-  { title: "Creative Tools",   desc: "AI-assisted drawing apps, prompt engineering interfaces" },
-  { title: "Multi-modal Apps", desc: "Combine image + text + audio generation in novel ways" },
+  { title: "Image generators", desc: "Text-to-image tools, style transfer, and inpainting" },
+  { title: "Model workflows",  desc: "Fine-tuned models, LoRA adapters, and ControlNet setups" },
+  { title: "Creative tools",   desc: "Drawing apps, prompt interfaces, and editing tools" },
+  { title: "Mixed media",      desc: "Projects that bring images, text, and audio together" },
 ];
 
 export const JUDGING_CRITERIA = [

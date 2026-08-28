@@ -1,6 +1,7 @@
 "use client";
 
 import { SCHEDULE, type ScheduleEvent } from "@/lib/content";
+import { siteConfig } from "@/lib/site";
 
 // Event types are distinguished by a flat fill from the site palette, not
 // by a tint of an arbitrary hue. `red-500` was the only colour on the page
@@ -106,7 +107,7 @@ export default function SchedulePanel() {
         ))}
 
         <div className="text-center py-4 font-mono text-[11px] font-bold uppercase tracking-wider text-studio-ink/65">
-          All sessions recorded for every timezone · Links sent to registered participants
+          All workshops led by {siteConfig.organizers[1].name} · Recordings sent to registered participants
         </div>
       </div>
     </div>

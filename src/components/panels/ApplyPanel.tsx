@@ -313,7 +313,7 @@ export default function ApplyPanel() {
     <div className="window-scroll h-full overflow-y-auto bg-banana-100">
       <div className="px-6 pt-6 pb-2">
         <div className="mb-1">
-          <h2 className="font-display font-bold text-xl text-studio-ink">Apply to Hack</h2>
+          <h2 className="font-display font-bold text-xl text-studio-ink">Register for Banana Hacks</h2>
           <p className="text-xs font-body text-studio-ink/70">Registration closes Oct 8 · Takes 2 minutes</p>
         </div>
       </div>
@@ -624,7 +624,7 @@ export default function ApplyPanel() {
               Submitting...
             </>
           ) : (
-            "Apply to Banana Hacks"
+            "Register for Banana Hacks"
           )}
         </button>
       </form>

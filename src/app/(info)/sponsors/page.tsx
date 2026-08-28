@@ -29,7 +29,7 @@ export default function SponsorsPage() {
     <PageShell
       path={PATH}
       heading="Sponsors"
-      lede="Banana Hacks 2026 is free for participants because sponsors cover the cost. These are the companies backing the event, and here is how yours can join them."
+      lede={`Sponsors keep Banana Hacks free and give participants useful tools to build with. These are the companies helping this year, plus the details for anyone who wants to join them. We currently have ${siteConfig.registrationCount} people registered.`}
     >
       <section aria-labelledby="current" className="mb-12">
         <h2
@@ -90,11 +90,10 @@ export default function SponsorsPage() {
           Why sponsor Banana Hacks?
         </h2>
         <p className="font-body text-sm text-studio-ink/75 leading-relaxed max-w-2xl mb-6">
-          Banana Hacks is a free, virtual weekend hackathon (
-          {siteConfig.dateRangeLabel}) built around generative AI and image
-          creation. Sponsoring puts your brand, tools, and team directly in front
-          of people actively choosing what to build with, during the weekend
-          they&apos;re making those decisions.
+          Banana Hacks runs online from {siteConfig.dateRangeLabel}. During the
+          event, {siteConfig.registrationCount} registered builders will be
+          choosing APIs, models, and tools for their projects. A useful credit,
+          workshop, or prize gives them a real reason to try yours.
         </p>
 
         <div className="grid sm:grid-cols-2 gap-6">
@@ -151,14 +150,13 @@ export default function SponsorsPage() {
           Become a Banana Sponsor
         </h2>
         <p className="font-body text-sm text-studio-ink/70 max-w-md mx-auto mb-4">
-          Email us with a rough idea of what you can offer. We reply in under 12
-          hours.
+          Tell us what you have in mind. We usually reply within 12 hours.
         </p>
         <a
-          href={`mailto:${siteConfig.contactEmail}`}
+          href={`mailto:${siteConfig.sponsorEmail}`}
           className="inline-flex items-center px-5 py-2.5 rounded-[6px] font-display font-semibold text-sm bg-banana-400 text-studio-ink hover:bg-banana-500 transition-colors"
         >
-          {siteConfig.contactEmail}
+          {siteConfig.sponsorEmail}
         </a>
         <p className="font-body text-xs text-studio-ink/70 mt-4">
           Curious what participants actually get up to? See the{" "}

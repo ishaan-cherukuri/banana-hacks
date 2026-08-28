@@ -29,7 +29,7 @@ export default function RegisterPage() {
     <PageShell
       path={PATH}
       heading="Register for Banana Hacks 2026"
-      lede={`Registering is free, open to anyone anywhere, and takes about a minute. Banana Hacks 2026 runs ${siteConfig.dateRangeLabel}, entirely online, so there is nothing to pay and nowhere to travel.`}
+      lede={`${siteConfig.registrationCount} people have already signed up. Registration is free, open to anyone anywhere, and takes about a minute. Banana Hacks runs ${siteConfig.dateRangeLabel}, entirely online.`}
     >
       <section aria-labelledby="cta" className="mb-12">
         <div className="bg-banana-200 hard-card p-6">

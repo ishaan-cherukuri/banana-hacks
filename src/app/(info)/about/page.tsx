@@ -11,7 +11,7 @@ export const metadata: Metadata = buildMetadata(PATH);
 
 const STATS = [
   { value: "4", label: "Days", sub: "Oct 9-12, 2026" },
-  { value: "60+", label: "Countries", sub: "No regional limits" },
+  { value: String(siteConfig.registrationCount), label: "Registered", sub: "So far" },
   { value: "$0", label: "Entry fee", sub: "Free for everyone" },
   { value: "$10K+", label: "Prize pool", sub: "Cash, credits & tooling" },
 ];
@@ -21,7 +21,7 @@ export default function AboutPage() {
     <PageShell
       path={PATH}
       heading="About Banana Hacks 2026"
-      lede="Banana Hacks 2026 is a free online hackathon about generative AI and image creation, open to anyone in any country. Over one long weekend you'll sketch prompts, fine-tune diffusion models, and ship a creative AI project. It does not matter whether this is your first hackathon or your fiftieth."
+      lede="Banana Hacks is four days of building with generative AI. Join from anywhere, work by yourself or with a team, and finish the weekend with a project you can demo. It is free, and beginners are welcome."
     >
       <section aria-labelledby="at-a-glance" className="mb-12">
         <h2
@@ -59,16 +59,15 @@ export default function AboutPage() {
         </h2>
         <div className="space-y-4 font-body text-studio-ink/75 leading-relaxed max-w-2xl">
           <p>
-            Banana Hacks is an online hackathon built around one idea: generative
-            AI has made image creation absurdly powerful, and almost nobody has
-            figured out what to do with it yet. Over {siteConfig.dateRangeLabel},
-            participants from anywhere in the world form teams, pick a track, and
-            build something that didn&apos;t exist on Friday.
+            Banana Hacks is a place to try the generative AI idea you have not
+            had time to build. From {siteConfig.dateRangeLabel}, participants
+            around the world will make image tools, train small models, and put
+            together working demos.
           </p>
           <p>
-            There is no venue, no travel, and no entry fee. The community runs on
-            Discord, workshops and ceremonies happen on Zoom, and every session is
-            recorded so you can hack across time zones without missing anything.
+            There is no venue, travel, or entry fee. We use Discord for the
+            community and Zoom for workshops and ceremonies. Sessions are
+            recorded, so you do not have to be awake for every live event.
             You can see the full breakdown on the{" "}
             <Link href="/schedule" className="text-vine-500 hover:underline">
               schedule page
@@ -85,10 +84,9 @@ export default function AboutPage() {
             with a parent or guardian before you register.
           </p>
           <p>
-            The hackathon is deliberately beginner-friendly. Dedicated beginner
-            workshops run alongside the deep-dive technical sessions, mentors are
-            available throughout the weekend, and first-time hackers are actively
-            celebrated rather than quietly out-competed.
+            If this is your first hackathon, you will not be left to figure it
+            out alone. We have beginner workshops, mentors during the weekend,
+            and a team-forming session on opening night.
           </p>
         </div>
       </section>
@@ -101,8 +99,8 @@ export default function AboutPage() {
           What you&apos;ll build
         </h2>
         <p className="font-body text-sm text-studio-ink/72 mb-4 max-w-2xl">
-          Projects tend to fall into four loose tracks. You&apos;re not locked
-          into one. They exist to give you a starting point.
+          These are suggestions, not boxes you have to fit into. Start with one
+          or ignore them and make something else.
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
           {TRACKS.map((track) => (
@@ -151,10 +149,10 @@ export default function AboutPage() {
           id="next"
           className="font-display font-bold text-lg text-studio-ink mb-2"
         >
-          Ready to build?
+          Want in?
         </h2>
         <p className="font-body text-sm text-studio-ink/70 mb-4 max-w-xl">
-          Registration is free and takes about a minute. Still deciding? The{" "}
+          {siteConfig.registrationCount} people have already registered. The form is free and takes about a minute. The{" "}
           <Link href="/faq" className="text-vine-500 hover:underline">
             FAQ
           </Link>{" "}

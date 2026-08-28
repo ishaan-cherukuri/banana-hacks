@@ -46,7 +46,7 @@ export default function SchedulePage() {
     <PageShell
       path={PATH}
       heading="Banana Hacks 2026 Schedule"
-      lede={`Every session across ${siteConfig.dateRangeLabel}, from the opening ceremony to the award ceremony. All times are EDT unless noted, everything runs virtually on Discord and Zoom, and every session is recorded for participants in other time zones.`}
+      lede={`Here is the plan for ${siteConfig.dateRangeLabel}, from kickoff to the awards. Times are EDT unless marked otherwise. Live sessions happen on Discord and Zoom, and recordings are shared afterward.`}
       jsonLd={[scheduleJsonLd]}
     >
       {Array.from(grouped.entries()).map(([day, events]) => (
@@ -98,12 +98,16 @@ export default function SchedulePage() {
         <ul className="space-y-2 font-body text-sm text-studio-ink/70">
           <li>
             The submission deadline is <strong>11:59 PM AoE</strong> (Anywhere on
-            Earth) on Sunday, October 11, the most generous possible
-            interpretation of &ldquo;Sunday night&rdquo;.
+            Earth) on Sunday, October 11. If it is still Sunday where you are,
+            you are on time.
           </li>
           <li>
             All workshops and office hours are recorded, and links go out to
             registered participants.
+          </li>
+          <li>
+            <strong>Rajveer Dharkar</strong> is running every workshop during
+            Banana Hacks 2026.
           </li>
           <li>
             Judging criteria and award categories are on the{" "}

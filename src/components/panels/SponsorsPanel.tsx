@@ -3,6 +3,7 @@ import { HeartLineIcon, BananaLineIcon } from "@/components/svgs/DockIcons";
 
 import { useState, useEffect } from "react";
 import { SPONSORS } from "@/lib/content";
+import { siteConfig } from "@/lib/site";
 
 function SponsorInfoModal({ onClose }: { onClose: () => void }) {
   useEffect(() => {
@@ -169,7 +170,7 @@ export default function SponsorsPanel() {
             Become a Banana Sponsor
           </h3>
           <p className="text-xs font-body text-studio-ink/70 max-w-xs mx-auto mb-3">
-            Reach generative AI builders in 60+ countries. Provide compute credits, tools access, or cash prizes.
+            Put your tools in front of {siteConfig.registrationCount} registered builders. You can help with credits, product access, or cash prizes.
           </p>
           <button
             onClick={() => setShowDeck(true)}

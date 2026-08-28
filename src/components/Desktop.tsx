@@ -12,6 +12,7 @@ import ApplyPanel    from "@/components/panels/ApplyPanel";
 import SponsorsPanel from "@/components/panels/SponsorsPanel";
 import SketchPanel   from "@/components/panels/SketchPanel";
 import InfoPanel     from "@/components/panels/InfoPanel";
+import OrganizersPanel from "@/components/panels/OrganizersPanel";
 import { DOCK_ICON_MAP, ApplyLineIcon } from "@/components/svgs/DockIcons";
 
 interface WindowConfig {
@@ -30,8 +31,9 @@ const WINDOW_DEFS: WindowConfig[] = [
   { id: "schedule", title: "Schedule", w: WIN_W, h: WIN_H, component: SchedulePanel },
   { id: "faq",      title: "FAQ", w: WIN_W, h: WIN_H, component: FAQPanel      },
   { id: "prizes",   title: "Prizes", w: WIN_W, h: WIN_H, component: PrizesPanel   },
-  { id: "apply",    title: "Apply", w: WIN_W, h: WIN_H, component: ApplyPanel    },
+  { id: "apply",    title: "Register", w: WIN_W, h: WIN_H, component: ApplyPanel    },
   { id: "sponsors", title: "Sponsors", w: WIN_W, h: WIN_H, component: SponsorsPanel },
+  { id: "organizers", title: "Organizers", w: 680, h: 560, component: OrganizersPanel },
   { id: "sketch",   title: "AI Studio", w: WIN_W, h: WIN_H, component: SketchPanel   },
   { id: "info",     title: "Get Info", w: 640,   h: 560,   component: InfoPanel     },
 ];
@@ -44,9 +46,10 @@ const DESKTOP_ICONS = [
   { id: "sketch",   label: "AI Studio" },
   { id: "schedule", label: "Schedule"  },
   { id: "prizes",   label: "Prizes"    },
-  { id: "apply",    label: "Apply"     },
+  { id: "apply",    label: "Register"  },
   { id: "faq",      label: "FAQ"       },
   { id: "sponsors", label: "Sponsors"  },
+  { id: "organizers", label: "Organizers" },
   { id: "info",     label: "Get Info"  },
 ];
 
@@ -198,13 +201,13 @@ export default function Desktop() {
           <div className="flex items-end shrink-0 border-l-[1.5px] border-studio-ink/25 px-2 sm:px-3 py-2">
             <div className="relative flex flex-col items-center gap-1 group/dock">
               <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-studio-ink text-banana-400 font-mono text-[10px] font-bold uppercase tracking-wider whitespace-nowrap pointer-events-none opacity-0 group-hover/dock:opacity-100 transition-opacity duration-100">
-                Apply Now
+                Register
               </div>
               <button
                 className="w-11 h-11 rounded-[6px] bg-banana-400 flex items-center justify-center icon-tile shadow-icon hover:bg-banana-500 transition-colors"
                 style={{ border: "1.5px solid #191A17" }}
                 onClick={() => openWindow("apply")}
-                aria-label="Apply Now"
+                aria-label="Register"
               >
                 <ApplyLineIcon size={26} />
               </button>

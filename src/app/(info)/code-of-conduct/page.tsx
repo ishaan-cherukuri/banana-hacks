@@ -62,7 +62,7 @@ export default function CodeOfConductPage() {
     <PageShell
       path={PATH}
       heading="Code of Conduct & Rules"
-      lede="This Code of Conduct covers everyone at Banana Hacks: participants, mentors, judges and organisers. It applies in Discord, on Zoom, in submitted work, and anywhere else the event happens. Read it before you register."
+      lede="This Code of Conduct covers everyone at Banana Hacks: participants, mentors, judges, and organizers. It applies in Discord, on Zoom, in submitted work, and anywhere else the event happens. Read it before you register."
     >
       {/* Reporting sits first, not buried at the end. If someone needs this
           page urgently, this is what they need. */}
@@ -79,7 +79,7 @@ export default function CodeOfConductPage() {
         <p className="font-body text-sm text-studio-ink/80 leading-relaxed max-w-2xl mb-3">
           If something happens that this document says should not, tell us. You can
           use the <code className="font-mono text-xs">#help</code> channel in Discord,
-          or email the organisers directly. Reports are read only by the organising
+          or email the organizers directly. Reports are read only by the organizing
           team.
         </p>
         <a

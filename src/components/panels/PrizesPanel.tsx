@@ -16,7 +16,7 @@ export default function PrizesPanel() {
         <p className="eyebrow mb-1">Judging</p>
         <h2 className="font-display font-extrabold text-xl text-studio-ink mb-0.5">Prizes &amp; awards</h2>
         <p className="text-xs font-body text-studio-ink/75">
-          Free to enter, worldwide · Every submission is judged
+          Free to enter · Every submission is judged
         </p>
       </div>
 
@@ -29,12 +29,11 @@ export default function PrizesPanel() {
             <path d="M12 14v3.5M8.5 20.5h7l-.6-3h-5.8l-.6 3Z" />
           </svg>
           <h3 className="font-display font-bold text-sm text-studio-ink mb-1">
-            Prize pool coming soon
+            More than $10,000 in prizes
           </h3>
           <p className="text-xs font-body text-studio-ink/70 max-w-sm mx-auto">
-            We&apos;re still working out the exact split with sponsors. It will be
-            cash, compute credits, and tooling subscriptions, and we announce the
-            breakdown before opening night.
+            The pool includes cash, compute credits, and software from our
+            sponsors. We&apos;ll share the exact split before opening night.
           </p>
         </div>
 

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import BananaMascot from "@/components/svgs/BananaMascot";
 import NeuralNetSVG  from "@/components/svgs/NeuralNetSVG";
 import { PixelSparkle, BrushStroke } from "@/components/svgs/StudioDecorations";
-import { BoltLineIcon, CapLineIcon, MedalLineIcon, GlobeLineIcon } from "@/components/svgs/DockIcons";
+import { PeopleLineIcon, CapLineIcon, MedalLineIcon, GlobeLineIcon } from "@/components/svgs/DockIcons";
 import { siteConfig } from "@/lib/site";
 import { SPONSORS } from "@/lib/content";
 import type { ReactNode } from "react";
@@ -147,7 +147,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             {/* Event badge */}
             <div className="flex items-center gap-2 mb-4">
-              <div className="inline-flex items-center bg-banana-400 border-[1.5px] border-studio-ink shadow-icon-sm">
+              <div className="inline-flex flex-wrap items-center bg-banana-400 border-[1.5px] border-studio-ink shadow-icon-sm">
                 <span className="px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-studio-ink">
                   Oct 9-12, 2026
                 </span>
@@ -155,6 +155,9 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
                   International · Free
                 </span>
               </div>
+              <span className="px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-studio-ink bg-banana-50 border-[1.5px] border-studio-ink shadow-icon-sm">
+                {siteConfig.registrationCount} registered
+              </span>
             </div>
 
             {/* Headline */}
@@ -162,8 +165,8 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
               {/* h2, not h1: the page's single H1 is the keyword-bearing one in
                   SeoContent, which comes first in the DOM. */}
               <h2 className="font-display font-extrabold leading-[0.92] text-studio-ink" style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.5rem)" }}>
-                Make something<br />
-                <span className="banana-gradient-text">nobody&apos;s seen.</span>
+                Build something<br />
+                <span className="banana-gradient-text">worth showing off.</span>
               </h2>
             </div>
 
@@ -171,11 +174,10 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
 
             {/* Subtext */}
             <p className="font-body text-base text-studio-ink/75 leading-relaxed max-w-md mb-5">
-              A free weekend hackathon about{" "}
-              <strong className="text-studio-ink font-semibold">generative AI</strong> and{" "}
-              <strong className="text-studio-ink font-semibold">image creation</strong>.
-              Sketch prompts, train models, ship something you would actually use.
-              Enter from anywhere.
+              Spend a long weekend building with{" "}
+              <strong className="text-studio-ink font-semibold">generative AI</strong>.
+              Make an image tool, fine-tune a model, or try an idea that has
+              been sitting in your notes. It&apos;s free and fully online.
             </p>
 
             {/* Countdown */}
@@ -246,7 +248,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
               ) : (
                 <>
                   <button onClick={() => onOpenWindow("apply")} className="btn-primary">
-                    Apply now, it&apos;s free
+                    Register now, it&apos;s free
                   </button>
                   <button onClick={() => onOpenWindow("sketch")} className="btn-secondary">
                     Try the AI Studio
@@ -291,14 +293,14 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           <div className="px-5 sm:px-8 md:px-12 py-16 border-t-[1.5px] border-studio-ink/25">
             <FadeUp>
               <p className="eyebrow mb-1">The Basics</p>
-              <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-6">What is Banana Hacks?</h2>
+              <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-6">A weekend to make the thing</h2>
             </FadeUp>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mb-8">
               {[
-                { title: "Weekend sprint", body: "Four days, Oct 9 to 12. Start Friday night, demo on Monday.", color: "bg-banana-300" },
-                { title: "Gen AI theme", body: "Every track is about generative AI: images, models, and the tools around them.", color: "bg-vine-200" },
-                { title: "Every timezone", body: "Fully online, and we record the workshops so you can watch whenever you are awake.", color: "bg-banana-50" },
+                { title: "Four days", body: "We kick off Friday night and wrap with demos and awards on Monday.", color: "bg-banana-300" },
+                { title: "One broad theme", body: "Build anything around generative AI, images, or the tools people use to make them.", color: "bg-vine-200" },
+                { title: "Join from home", body: "Everything is online, and workshops are recorded for people in other time zones.", color: "bg-banana-50" },
               ].map((f, i) => (
                 <FadeUp key={f.title} delay={i * 80}>
                   <div className={`hard-card p-4 h-full ${f.color}`}>
@@ -314,14 +316,14 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
           <div className="px-5 sm:px-8 md:px-12 py-12 pb-16 border-t-[1.5px] border-studio-ink/25">
             <FadeUp>
               <p className="eyebrow mb-1">What you&apos;ll build</p>
-              <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-6">It&apos;s all image AI</h2>
+              <h2 className="font-display font-extrabold text-2xl text-studio-ink mb-6">Pick a starting point</h2>
             </FadeUp>
 
             <div className="flex flex-col gap-3 max-w-md mb-10">
               {[
-                { title: "Text to image", desc: "Prompt-driven generation, inpainting, style transfer", color: "bg-banana-300" },
-                { title: "Fine-tuning",   desc: "LoRA, DreamBooth, ControlNet adapters",               color: "bg-vine-200"   },
-                { title: "Creative tools", desc: "AI-assisted apps, prompt UIs, workflows",            color: "bg-banana-50"  },
+                { title: "Generate images", desc: "Text-to-image, inpainting, or style transfer", color: "bg-banana-300" },
+                { title: "Tune a model",   desc: "LoRA, DreamBooth, or ControlNet",               color: "bg-vine-200"   },
+                { title: "Make a tool", desc: "Drawing apps, prompt interfaces, or new workflows", color: "bg-banana-50"  },
               ].map((t, i) => (
                 <FadeUp key={t.title} delay={i * 90}>
                   <div className={`flex items-baseline gap-3 px-4 py-3 hard-card-sm ${t.color}`}>
@@ -342,7 +344,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
                 onClick={() => onOpenWindow(phase === "after" ? "info" : "apply")}
                 className="btn-primary"
               >
-                {phase === "after" ? "See what got built" : "Apply now, it\u2019s free"}
+                {phase === "after" ? "See what got built" : "Register now, it\u2019s free"}
               </button>
             </FadeUp>
           </div>
@@ -390,7 +392,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             </div>
 
             {/* Four facts, inset from the plate edge. Pinned, not bobbing. */}
-            <Badge icon={<BoltLineIcon size={14} />}  text="GPU Credits"   className="absolute top-5 left-5"        color="bg-banana-400 text-studio-ink" />
+            <Badge icon={<PeopleLineIcon size={14} />} text={`${siteConfig.registrationCount} registered`} className="absolute top-5 left-5" color="bg-banana-400 text-studio-ink" />
             <Badge icon={<CapLineIcon size={14} />}   text="Workshops"     className="absolute top-16 right-5"      color="bg-vine-200 text-studio-ink" />
             <Badge icon={<MedalLineIcon size={14} />} text="$10K Prizes"   className="absolute bottom-16 left-5"    color="bg-studio-ripe text-banana-50" />
             <Badge icon={<GlobeLineIcon size={14} />} text="60+ countries" className="absolute bottom-5 right-5"    color="bg-banana-50 text-studio-ink" />

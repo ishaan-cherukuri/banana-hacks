@@ -64,8 +64,8 @@ export default function InfoLayout({
               </span>
             </div>
             <p className="font-body text-xs text-studio-ink/70 leading-relaxed mb-2">
-              A free, international generative AI &amp; image creation hackathon. Open to hackers in every country.{" "}
-              {siteConfig.dateRangeLabel}.
+              A free online weekend for building with generative AI.{" "}
+              {siteConfig.dateRangeLabel}. {siteConfig.registrationCount} people registered so far.
             </p>
             {/* Names a human. Nothing on the site previously said who runs the
                 event, which is the first thing a parent or teacher checks. */}

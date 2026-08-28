@@ -9,19 +9,23 @@ export const siteConfig = {
   // but the site and the DNS have to agree. See AUDIT.md T7.
   url: "https://www.bananahacks.tech",
   description:
-    "Banana Hacks 2026 is a free online weekend hackathon about generative AI and image creation, running Oct 9 to 12, 2026. Anyone can enter from any country. Build creative AI tools, fine-tune diffusion models, and compete for over $10,000 in prizes and compute credits.",
+    "Banana Hacks 2026 is a free online hackathon for people who want to build with generative AI. Join us October 9 to 12 for workshops, a weekend of hacking, and more than $10,000 in prizes.",
   startDate: "2026-10-09T20:00:00-04:00",
   endDate: "2026-10-12T19:00:00-04:00",
   dateRangeLabel: "October 9 to 12, 2026",
   organizer: "Banana Hacks",
-  /**
-   * Named human behind the event. A visitor, often a parent or a teacher , 
-   * asking "who runs this?" previously found nothing at all: `organizer` was
-   * self-referential and the Organization schema had no founder.
-   */
-  organizerName: "Ishaan Cherukuri",
+  /** Named people behind the event, shared by visible copy and metadata. */
+  organizers: [
+    { name: "Ishaan Cherukuri", role: "Organizer", detail: "" },
+    {
+      name: "Rajveer Dharkar",
+      role: "Organizer · Workshop Lead",
+      detail: "Rajveer is running every workshop at Banana Hacks 2026.",
+    },
+  ],
   organizerBlurb:
-    "Ishaan Cherukuri and a student-run team organise Banana Hacks.",
+    "Banana Hacks is organized by Ishaan Cherukuri and Rajveer Dharkar.",
+  registrationCount: 150,
   /** General participant contact. Distinct from the sponsorship inbox. */
   contactEmail: "team@bananahacks.tech",
   sponsorEmail: "sponsorships@bananahacks.tech",
@@ -34,7 +38,7 @@ export const siteConfig = {
   mlhCodeOfConductUrl: "https://mlh.io/code-of-conduct",
   /** Stated plainly because nothing on the site previously said either. */
   eligibility:
-    "Open to everyone, everywhere, at any age. We built Banana Hacks for students and first-time hackers, but you don't have to be any particular age, live anywhere specific, or attend a school to enter.",
+    "Anyone can join, no matter their age, location, or experience. The event is especially friendly to students and first-time hackers.",
 } as const;
 
 /**
@@ -101,7 +105,15 @@ export const sitePages: SitePage[] = [
     label: "Sponsors",
     title: "Banana Hacks 2026 Sponsors | Partner With a Generative AI Hackathon",
     description:
-      "The sponsors backing Banana Hacks 2026, and how your company can reach generative AI builders around the world by offering compute credits, tooling, or cash prizes.",
+      "Meet the sponsors helping keep Banana Hacks 2026 free, or learn how your company can support participants with credits, tools, workshops, or prizes.",
+    priority: 0.7,
+  },
+  {
+    path: "/organizers",
+    label: "Organizers",
+    title: "Banana Hacks 2026 Organizers",
+    description:
+      "Meet Ishaan Cherukuri and Rajveer Dharkar, the organizers of Banana Hacks 2026, and learn how to get in touch with the team.",
     priority: 0.7,
   },
   {
@@ -109,7 +121,7 @@ export const sitePages: SitePage[] = [
     label: "Conduct",
     title: "Banana Hacks 2026 Code of Conduct & Submission Rules",
     description:
-      "The Code of Conduct and submission rules for Banana Hacks 2026, and how to report a problem. This applies to every participant, mentor, judge and organiser, in Discord, on Zoom, and in submitted work.",
+      "The Code of Conduct and submission rules for Banana Hacks 2026, and how to report a problem. This applies to every participant, mentor, judge and organizer, in Discord, on Zoom, and in submitted work.",
     priority: 0.6,
   },
   {

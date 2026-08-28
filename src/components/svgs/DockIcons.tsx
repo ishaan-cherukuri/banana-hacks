@@ -82,7 +82,7 @@ export function MedalLineIcon(props: IconProps) {
 /** Apply → document + pencil */
 export function ApplyLineIcon(props: IconProps) {
   return (
-    <Base {...props} label="Apply">
+    <Base {...props} label="Register">
       <path d="M6 3.5h7l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" fill="white" />
       <path d="M13 3.5V8.5h5" />
       <path d="M8 12.5h5M8 15.5h8M8 18h5" stroke="#2C7466" />
@@ -152,7 +152,19 @@ export function InfoLineIcon(props: IconProps) {
   );
 }
 
-export const DOCK_ICON_MAP: Record<string, (p: IconProps) => JSX.Element> = {
+/** Organizers → two people */
+export function PeopleLineIcon(props: IconProps) {
+  return (
+    <Base {...props} label="Organizers">
+      <circle cx="9" cy="8" r="3" fill="#FDD835" />
+      <circle cx="16.5" cy="9" r="2.5" fill="#B8D8D0" />
+      <path d="M3.5 20c.4-4.1 2.4-6.2 5.5-6.2s5.1 2.1 5.5 6.2" fill="white" />
+      <path d="M13.2 14.7c1-.8 2.1-1.2 3.3-1.2 2.5 0 4 1.8 4.3 5.2" />
+    </Base>
+  );
+}
+
+export const DOCK_ICON_MAP: Record<string, (p: IconProps) => React.JSX.Element> = {
   info:     InfoLineIcon,
   about:    BananaLineIcon,
   sketch:   PaletteLineIcon,
@@ -161,4 +173,5 @@ export const DOCK_ICON_MAP: Record<string, (p: IconProps) => JSX.Element> = {
   apply:    ApplyLineIcon,
   faq:      QuestionLineIcon,
   sponsors: HeartLineIcon,
+  organizers: PeopleLineIcon,
 };

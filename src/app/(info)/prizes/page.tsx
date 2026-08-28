@@ -32,7 +32,7 @@ export default function PrizesPage() {
     <PageShell
       path={PATH}
       heading="Prizes & Judging"
-      lede="Banana Hacks is free to enter and a judge looks at every project submitted. The prize pool is over $10,000 in cash, compute credits, and tooling from our sponsors. Here is how judging works, which awards you can win, and how the pool breaks down."
+      lede="Every submitted project gets judged. More than $10,000 in cash, compute credits, and software is up for grabs. Here is what the judges look for and which awards they can give."
     >
       <section
         aria-labelledby="prize-pool"
@@ -83,9 +83,8 @@ export default function PrizesPage() {
           Award categories
         </h2>
         <p className="font-body text-sm text-studio-ink/72 mb-4 max-w-2xl">
-          Alongside the overall winners, category awards recognise projects that
-          stand out in a specific direction. You don&apos;t apply for these.
-          every submission is considered for every category.
+          Category awards call out projects that do one thing especially well.
+          You do not need to apply for them; every submission is considered.
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
           {CATEGORIES.map((c) => (
@@ -138,10 +137,9 @@ export default function PrizesPage() {
           What you submit
         </h2>
         <p className="font-body text-sm text-studio-ink/75 leading-relaxed max-w-2xl">
-          A working demo (live URL or recorded video), a link to your GitHub
-          repository, and a write-up of at most 500 words explaining what you
-          built and why. Judges interact with live demos wherever possible, so a
-          working link beats a polished video. Submissions close at 11:59 PM AoE
+          Send us a working demo (a live URL or video), your GitHub repository,
+          and no more than 500 words on what you built and why. A working link
+          is better than a polished video. Submissions close at 11:59 PM AoE
           on Sunday, October 11, 2026. See the full{" "}
           <Link href="/schedule" className="text-vine-500 hover:underline">
             schedule

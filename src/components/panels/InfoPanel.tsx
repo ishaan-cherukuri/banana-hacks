@@ -51,13 +51,24 @@ export default function InfoPanel() {
             {siteConfig.name}
           </h2>
           <p className="font-body text-sm text-studio-ink/75 leading-relaxed mb-5">
-            A free, international hackathon about generative AI and image creation,
-            running {siteConfig.dateRangeLabel}, entirely online.
+            Four days of building with generative AI, running entirely online
+            from {siteConfig.dateRangeLabel}.
           </p>
 
           <dl className="bg-banana-50 hard-card px-4 py-1 mb-5">
-            <Row label="Organised by">
-              {siteConfig.organizerBlurb}
+            <Row label="Organized by">
+              {siteConfig.organizerBlurb}{" "}
+              <a
+                href="/organizers"
+                className="text-vine-600 underline underline-offset-2 hover:text-vine-700"
+              >
+                Meet the organizers
+              </a>
+              .
+            </Row>
+
+            <Row label="Registered">
+              {siteConfig.registrationCount} people so far.
             </Row>
 
             <Row label="Contact">

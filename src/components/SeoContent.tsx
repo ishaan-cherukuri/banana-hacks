@@ -31,21 +31,17 @@ export default function SeoContent() {
 
       <h2>When and where</h2>
       <p>
-        Banana Hacks 2026 runs from October 9 to October 12, 2026, entirely
-        online. People join from every continent and there is no country
-        restriction on who can enter. We list times in EDT and record every
-        session so other timezones can catch up. Discord is the community hub
-        and workshops and ceremonies run on Zoom. See the{" "}
+        Banana Hacks 2026 runs October 9 to 12, entirely online. Times are
+        listed in EDT, and workshops are recorded for people in other time
+        zones. We use Discord for the community and Zoom for live sessions. See the{" "}
         <Link href="/schedule">full schedule</Link>.
       </p>
 
       <h2>What is Banana Hacks?</h2>
       <p>
-        Banana Hacks is a free weekend hackathon about generative AI and image
-        creation, open to anyone in any country. People build creative AI tools,
-        fine-tune image and diffusion models, and ship projects that do
-        something unexpected. The tracks cover AI pipelines, image generation,
-        and creative tooling.{" "}
+        Banana Hacks is a free weekend for building with generative AI. You can
+        make an image tool, fine-tune a model, or bring a different idea. Work
+        solo or in a team of up to four.{" "}
         <Link href="/about">Read more about the event</Link>.
       </p>
 
@@ -68,8 +64,8 @@ export default function SeoContent() {
 
       <h2>How to register</h2>
       <p>
-        Registering is free and takes about a minute. There is no entry fee
-        and no restriction on where you live.{" "}
+        {siteConfig.registrationCount} people have registered so far. Signing
+        up is free and takes about a minute.{" "}
         <Link href="/register">Sign up for Banana Hacks 2026</Link> and start
         building. The <Link href="/faq">FAQ</Link> covers the questions people
         ask most.

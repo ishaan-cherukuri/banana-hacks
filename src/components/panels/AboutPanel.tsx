@@ -3,12 +3,13 @@
 import BananaMascot from "@/components/svgs/BananaMascot";
 import NeuralNetSVG from "@/components/svgs/NeuralNetSVG";
 import { PixelSparkle, BrushStroke, LeafDecor } from "@/components/svgs/StudioDecorations";
+import { siteConfig } from "@/lib/site";
 
 // Flat fills, not tint-over-tint. A translucent wash on a translucent
 // wash is what makes generated cards read as one grey mush.
 const STATS = [
   { value: "4",     label: "Days",      sub: "Oct 9-12",              color: "bg-banana-300 text-studio-ink" },
-  { value: "∞",     label: "Tracks",    sub: "AI · Image · Creative", color: "bg-vine-200 text-vine-800"     },
+  { value: String(siteConfig.registrationCount), label: "Registered", sub: "and counting", color: "bg-vine-200 text-vine-800" },
   { value: "$10K",  label: "Prizes",    sub: "in cash & credits",     color: "bg-studio-ripe text-banana-50" },
   { value: "60+",   label: "Countries", sub: "Hack from anywhere",    color: "bg-banana-50 text-studio-ink"  },
 ];
@@ -36,15 +37,14 @@ export default function AboutPanel() {
               Banana Hacks 2026
             </p>
             <h2 className="font-display font-extrabold text-3xl text-studio-ink leading-tight mb-2">
-              Make something{" "}
-              <span className="banana-gradient-text">nobody&apos;s seen</span>.
+              Build something{" "}
+              <span className="banana-gradient-text">worth showing off</span>.
             </h2>
             <BrushStroke color="#FDD835" width={120} className="mb-3" />
             <p className="font-body text-studio-ink/70 text-sm leading-relaxed max-w-sm">
-              A free weekend hackathon about generative AI and image creation,
-              open to anyone in any country. Sketch prompts, fine-tune diffusion
-              models, build the tool you wish existed, then show everyone what
-              came out.
+              Four days to make something with generative AI. Join from
+              anywhere, work solo or with a team, and show us what you built on
+              demo day.
             </p>
           </div>
         </div>
@@ -75,14 +75,14 @@ export default function AboutPanel() {
       {/* What to build */}
       <div className="px-8 pb-6">
         <h2 className="font-display font-extrabold text-lg text-studio-ink mb-3">
-          What You'll Build
+            A few places to start
         </h2>
         <div className="grid grid-cols-2 gap-3">
           {[
-            { icon: "1", title: "Image Generators", desc: "Text-to-image tools, style transfer, inpainting systems",         color: "bg-banana-300" },
-            { icon: "2", title: "AI Pipelines",     desc: "Fine-tuned diffusion models, LoRA adapters, controlnet workflows", color: "bg-vine-200"   },
-            { icon: "3", title: "Creative Tools",   desc: "AI-assisted drawing apps, prompt engineering interfaces",          color: "bg-banana-50"  },
-            { icon: "4", title: "Multi-modal Apps", desc: "Combine image + text + audio generation in novel ways",            color: "bg-vine-100"   },
+            { icon: "1", title: "Image generators", desc: "Text-to-image tools, style transfer, or inpainting", color: "bg-banana-300" },
+            { icon: "2", title: "Model workflows", desc: "Fine-tuned models, LoRA adapters, or ControlNet",     color: "bg-vine-200"   },
+            { icon: "3", title: "Creative tools",  desc: "Drawing apps, prompt interfaces, or editing tools",  color: "bg-banana-50"  },
+            { icon: "4", title: "Mixed media",     desc: "Projects that bring images, text, and audio together", color: "bg-vine-100"   },
           ].map((item) => (
             <div
               key={item.title}

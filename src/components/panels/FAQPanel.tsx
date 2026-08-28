@@ -3,6 +3,7 @@ import { QuestionLineIcon } from "@/components/svgs/DockIcons";
 
 import { useState } from "react";
 import { FAQS } from "@/lib/content";
+import { siteConfig } from "@/lib/site";
 
 
 export default function FAQPanel() {
@@ -19,10 +20,13 @@ export default function FAQPanel() {
           </h2>
         </div>
         <p className="text-xs font-body text-studio-ink/70 ml-7">
-          Can't find your answer?{" "}
-          <span className="text-vine-500 cursor-pointer hover:underline">
-            Ask on Discord
-          </span>
+          Can&apos;t find your answer?{" "}
+          <a
+            href={`mailto:${siteConfig.contactEmail}`}
+            className="text-vine-500 hover:underline"
+          >
+            Email us
+          </a>
         </p>
       </div>
 

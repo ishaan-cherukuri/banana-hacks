@@ -52,8 +52,11 @@ export const metadata: Metadata = {
     "free hackathon for beginners",
   ],
   applicationName: siteConfig.name,
-  authors: [{ name: siteConfig.organizerName, url: siteConfig.url }],
-  creator: siteConfig.organizerName,
+  authors: siteConfig.organizers.map((person) => ({
+    name: person.name,
+    url: `${siteConfig.url}/organizers`,
+  })),
+  creator: siteConfig.organizers.map((person) => person.name).join(", "),
   publisher: siteConfig.organizer,
   // Note: `alternates.canonical` is intentionally NOT set here. A canonical in
   // the root layout is inherited by every child route, which would point all
@@ -107,13 +110,12 @@ const organizationJsonLd = {
   logo: `${siteConfig.url}/icon.svg`,
   email: siteConfig.contactEmail,
   description: siteConfig.description,
-  // A named human. The Organization node previously had no founder at all,
-  // which is also how the rendered site read: nothing anywhere said who runs
-  // the event. See AUDIT.md T3.
-  founder: {
+  member: siteConfig.organizers.map((person) => ({
     "@type": "Person",
-    name: siteConfig.organizerName,
-  },
+    name: person.name,
+    jobTitle: person.role,
+    url: `${siteConfig.url}/organizers`,
+  })),
   sameAs: [siteConfig.instagramUrl],
   contactPoint: {
     "@type": "ContactPoint",
