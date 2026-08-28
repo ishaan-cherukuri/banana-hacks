@@ -107,7 +107,7 @@ export default function SchedulePanel() {
         ))}
 
         <div className="text-center py-4 font-mono text-[11px] font-bold uppercase tracking-wider text-studio-ink/65">
-          All workshops led by {siteConfig.organizers[1].name} · Recordings sent to registered participants
+          All workshops led by {siteConfig.organizers[0].name} · Recordings sent to registered participants
         </div>
       </div>
     </div>

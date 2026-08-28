@@ -12,7 +12,6 @@ import ApplyPanel    from "@/components/panels/ApplyPanel";
 import SponsorsPanel from "@/components/panels/SponsorsPanel";
 import SketchPanel   from "@/components/panels/SketchPanel";
 import InfoPanel     from "@/components/panels/InfoPanel";
-import OrganizersPanel from "@/components/panels/OrganizersPanel";
 import { DOCK_ICON_MAP, ApplyLineIcon } from "@/components/svgs/DockIcons";
 
 interface WindowConfig {
@@ -33,7 +32,6 @@ const WINDOW_DEFS: WindowConfig[] = [
   { id: "prizes",   title: "Prizes", w: WIN_W, h: WIN_H, component: PrizesPanel   },
   { id: "apply",    title: "Register", w: WIN_W, h: WIN_H, component: ApplyPanel    },
   { id: "sponsors", title: "Sponsors", w: WIN_W, h: WIN_H, component: SponsorsPanel },
-  { id: "organizers", title: "Organizers", w: 680, h: 560, component: OrganizersPanel },
   { id: "sketch",   title: "AI Studio", w: WIN_W, h: WIN_H, component: SketchPanel   },
   { id: "info",     title: "Get Info", w: 640,   h: 560,   component: InfoPanel     },
 ];
@@ -49,7 +47,6 @@ const DESKTOP_ICONS = [
   { id: "apply",    label: "Register"  },
   { id: "faq",      label: "FAQ"       },
   { id: "sponsors", label: "Sponsors"  },
-  { id: "organizers", label: "Organizers" },
   { id: "info",     label: "Get Info"  },
 ];
 

@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   authors: siteConfig.organizers.map((person) => ({
     name: person.name,
-    url: `${siteConfig.url}/organizers`,
+    url: siteConfig.url,
   })),
   creator: siteConfig.organizers.map((person) => person.name).join(", "),
   publisher: siteConfig.organizer,
@@ -114,7 +114,7 @@ const organizationJsonLd = {
     "@type": "Person",
     name: person.name,
     jobTitle: person.role,
-    url: `${siteConfig.url}/organizers`,
+    url: siteConfig.url,
   })),
   sameAs: [siteConfig.instagramUrl],
   contactPoint: {

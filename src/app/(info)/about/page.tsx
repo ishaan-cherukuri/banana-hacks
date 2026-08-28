@@ -4,6 +4,7 @@ import PageShell from "@/components/seo/PageShell";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 import { TRACKS, ELIGIBILITY } from "@/lib/content";
+import RegistrationCount from "@/components/RegistrationCount";
 
 const PATH = "/about";
 
@@ -11,7 +12,7 @@ export const metadata: Metadata = buildMetadata(PATH);
 
 const STATS = [
   { value: "4", label: "Days", sub: "Oct 9-12, 2026" },
-  { value: String(siteConfig.registrationCount), label: "Registered", sub: "So far" },
+  { value: "", label: "Registered", sub: "So far" },
   { value: "$0", label: "Entry fee", sub: "Free for everyone" },
   { value: "$10K+", label: "Prize pool", sub: "Cash, credits & tooling" },
 ];
@@ -37,7 +38,7 @@ export default function AboutPage() {
               className="bg-banana-200 hard-card p-4 text-center"
             >
               <dd className="font-display font-extrabold text-2xl text-studio-ink mb-0.5">
-                {s.value}
+                {s.label === "Registered" ? <RegistrationCount /> : s.value}
               </dd>
               <dt className="font-body font-semibold text-xs text-studio-ink">
                 {s.label}
@@ -76,7 +77,7 @@ export default function AboutPage() {
           </p>
           <p>
             <strong className="text-studio-ink">Who it&apos;s for:</strong>{" "}
-            {siteConfig.eligibility} {siteConfig.organizerBlurb} If you&apos;re
+            {siteConfig.eligibility} If you&apos;re
             under 18, read the{" "}
             <Link href="/code-of-conduct" className="text-vine-600 hover:underline">
               Code of Conduct
@@ -152,7 +153,7 @@ export default function AboutPage() {
           Want in?
         </h2>
         <p className="font-body text-sm text-studio-ink/70 mb-4 max-w-xl">
-          {siteConfig.registrationCount} people have already registered. The form is free and takes about a minute. The{" "}
+          <RegistrationCount /> people have already registered. The form is free and takes about a minute. The{" "}
           <Link href="/faq" className="text-vine-500 hover:underline">
             FAQ
           </Link>{" "}

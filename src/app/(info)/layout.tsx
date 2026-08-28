@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { siteConfig, sitePages } from "@/lib/site";
 import { BananaLineIcon } from "@/components/svgs/DockIcons";
+import RegistrationCount from "@/components/RegistrationCount";
 
 /**
  * Shared chrome for the server-rendered, crawlable content pages.
@@ -65,12 +66,7 @@ export default function InfoLayout({
             </div>
             <p className="font-body text-xs text-studio-ink/70 leading-relaxed mb-2">
               A free online weekend for building with generative AI.{" "}
-              {siteConfig.dateRangeLabel}. {siteConfig.registrationCount} people registered so far.
-            </p>
-            {/* Names a human. Nothing on the site previously said who runs the
-                event, which is the first thing a parent or teacher checks. */}
-            <p className="font-body text-xs text-studio-ink/70 leading-relaxed">
-              {siteConfig.organizerBlurb}
+              {siteConfig.dateRangeLabel}. <RegistrationCount /> people registered so far.
             </p>
           </div>
 

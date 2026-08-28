@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import BananaMascot from "@/components/svgs/BananaMascot";
 import PolicyModal from "@/components/PolicyModal";
 import { siteConfig } from "@/lib/site";
+import { publishRegistrationCount } from "@/lib/useRegistrationCount";
 
 type Step = "form" | "success";
 type PolicyType = "conduct" | "rules" | null;
@@ -224,7 +225,11 @@ export default function ApplyPanel() {
           projectIdea:    form.projectIdea,
         }),
       });
+      const result = (await res.json()) as { count?: unknown };
       if (!res.ok) throw new Error("submission failed");
+      if (typeof result.count === "number") {
+        publishRegistrationCount(result.count);
+      }
       setStep("success");
     } catch {
       setSubmitError("Something went wrong. Please try again.");

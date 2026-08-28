@@ -6,6 +6,7 @@ import NeuralNetSVG  from "@/components/svgs/NeuralNetSVG";
 import { PixelSparkle, BrushStroke } from "@/components/svgs/StudioDecorations";
 import { PeopleLineIcon, CapLineIcon, MedalLineIcon, GlobeLineIcon } from "@/components/svgs/DockIcons";
 import { siteConfig } from "@/lib/site";
+import { useRegistrationCount } from "@/lib/useRegistrationCount";
 import { SPONSORS } from "@/lib/content";
 import type { ReactNode } from "react";
 
@@ -125,6 +126,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
   const { phase, d, h, m, s } = useCountdown();
+  const registrationCount = useRegistrationCount();
 
   return (
     <div className="absolute inset-0 overflow-y-auto overflow-x-hidden scroll-smooth">
@@ -156,7 +158,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
                 </span>
               </div>
               <span className="px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-studio-ink bg-banana-50 border-[1.5px] border-studio-ink shadow-icon-sm">
-                {siteConfig.registrationCount} registered
+                {registrationCount} registered
               </span>
             </div>
 
@@ -392,7 +394,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             </div>
 
             {/* Four facts, inset from the plate edge. Pinned, not bobbing. */}
-            <Badge icon={<PeopleLineIcon size={14} />} text={`${siteConfig.registrationCount} registered`} className="absolute top-5 left-5" color="bg-banana-400 text-studio-ink" />
+            <Badge icon={<PeopleLineIcon size={14} />} text={`${registrationCount} registered`} className="absolute top-5 left-5" color="bg-banana-400 text-studio-ink" />
             <Badge icon={<CapLineIcon size={14} />}   text="Workshops"     className="absolute top-16 right-5"      color="bg-vine-200 text-studio-ink" />
             <Badge icon={<MedalLineIcon size={14} />} text="$10K Prizes"   className="absolute bottom-16 left-5"    color="bg-studio-ripe text-banana-50" />
             <Badge icon={<GlobeLineIcon size={14} />} text="60+ countries" className="absolute bottom-5 right-5"    color="bg-banana-50 text-studio-ink" />

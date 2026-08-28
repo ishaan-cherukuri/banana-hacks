@@ -18,7 +18,12 @@ async function lightxPost<T>(path: string, body: unknown): Promise<T> {
     body: JSON.stringify(body),
     cache: "no-store",
   });
-  const json = await res.json();
+  const json = (await res.json()) as {
+    statusCode?: number;
+    message?: string;
+    description?: string;
+    body?: T;
+  };
   if (json?.statusCode !== 2000) {
     throw new Error(json?.message || json?.description || `LightX request failed (${path})`);
   }

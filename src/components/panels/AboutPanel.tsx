@@ -3,18 +3,20 @@
 import BananaMascot from "@/components/svgs/BananaMascot";
 import NeuralNetSVG from "@/components/svgs/NeuralNetSVG";
 import { PixelSparkle, BrushStroke, LeafDecor } from "@/components/svgs/StudioDecorations";
-import { siteConfig } from "@/lib/site";
+import { useRegistrationCount } from "@/lib/useRegistrationCount";
 
 // Flat fills, not tint-over-tint. A translucent wash on a translucent
 // wash is what makes generated cards read as one grey mush.
 const STATS = [
   { value: "4",     label: "Days",      sub: "Oct 9-12",              color: "bg-banana-300 text-studio-ink" },
-  { value: String(siteConfig.registrationCount), label: "Registered", sub: "and counting", color: "bg-vine-200 text-vine-800" },
+  { value: "", label: "Registered", sub: "and counting", color: "bg-vine-200 text-vine-800" },
   { value: "$10K",  label: "Prizes",    sub: "in cash & credits",     color: "bg-studio-ripe text-banana-50" },
   { value: "60+",   label: "Countries", sub: "Hack from anywhere",    color: "bg-banana-50 text-studio-ink"  },
 ];
 
 export default function AboutPanel() {
+  const registrationCount = useRegistrationCount();
+
   return (
     <div className="window-scroll h-full overflow-y-auto bg-banana-100">
       {/* Hero section */}
@@ -59,7 +61,7 @@ export default function AboutPanel() {
               className={`hard-card-sm p-3 text-center press ${s.color}`}
             >
               <div className="font-display font-extrabold text-2xl mb-0.5">
-                {s.value}
+                {s.label === "Registered" ? registrationCount : s.value}
               </div>
               <div className="font-body font-semibold text-xs text-studio-ink">
                 {s.label}

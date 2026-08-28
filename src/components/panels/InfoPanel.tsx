@@ -5,6 +5,7 @@ import Image from "next/image";
 import PolicyModal from "@/components/PolicyModal";
 import { siteConfig } from "@/lib/site";
 import { SPONSORS } from "@/lib/content";
+import { useRegistrationCount } from "@/lib/useRegistrationCount";
 
 /**
  * "Get Info", the trust layer.
@@ -39,6 +40,7 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
 
 export default function InfoPanel() {
   const [openPolicy, setOpenPolicy] = useState<PolicyType>(null);
+  const registrationCount = useRegistrationCount();
 
   return (
     <>
@@ -57,18 +59,11 @@ export default function InfoPanel() {
 
           <dl className="bg-banana-50 hard-card px-4 py-1 mb-5">
             <Row label="Organized by">
-              {siteConfig.organizerBlurb}{" "}
-              <a
-                href="/organizers"
-                className="text-vine-600 underline underline-offset-2 hover:text-vine-700"
-              >
-                Meet the organizers
-              </a>
-              .
+              {siteConfig.organizerBlurb}
             </Row>
 
             <Row label="Registered">
-              {siteConfig.registrationCount} people so far.
+              {registrationCount} people so far.
             </Row>
 
             <Row label="Contact">

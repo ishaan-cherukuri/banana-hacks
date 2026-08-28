@@ -4,6 +4,7 @@ import PageShell from "@/components/seo/PageShell";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 import { SPONSORS } from "@/lib/content";
+import RegistrationCount from "@/components/RegistrationCount";
 
 const PATH = "/sponsors";
 
@@ -29,7 +30,7 @@ export default function SponsorsPage() {
     <PageShell
       path={PATH}
       heading="Sponsors"
-      lede={`Sponsors keep Banana Hacks free and give participants useful tools to build with. These are the companies helping this year, plus the details for anyone who wants to join them. We currently have ${siteConfig.registrationCount} people registered.`}
+      lede="Sponsors keep Banana Hacks free and give participants useful tools to build with. These are the companies helping this year, plus the details for anyone who wants to join them."
     >
       <section aria-labelledby="current" className="mb-12">
         <h2
@@ -91,7 +92,7 @@ export default function SponsorsPage() {
         </h2>
         <p className="font-body text-sm text-studio-ink/75 leading-relaxed max-w-2xl mb-6">
           Banana Hacks runs online from {siteConfig.dateRangeLabel}. During the
-          event, {siteConfig.registrationCount} registered builders will be
+          event, <RegistrationCount /> registered builders will be
           choosing APIs, models, and tools for their projects. A useful credit,
           workshop, or prize gives them a real reason to try yours.
         </p>

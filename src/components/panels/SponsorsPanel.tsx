@@ -3,7 +3,7 @@ import { HeartLineIcon, BananaLineIcon } from "@/components/svgs/DockIcons";
 
 import { useState, useEffect } from "react";
 import { SPONSORS } from "@/lib/content";
-import { siteConfig } from "@/lib/site";
+import { useRegistrationCount } from "@/lib/useRegistrationCount";
 
 function SponsorInfoModal({ onClose }: { onClose: () => void }) {
   useEffect(() => {
@@ -118,6 +118,7 @@ function SponsorInfoModal({ onClose }: { onClose: () => void }) {
 
 export default function SponsorsPanel() {
   const [showDeck, setShowDeck] = useState(false);
+  const registrationCount = useRegistrationCount();
 
   return (
     <div className="window-scroll h-full overflow-y-auto bg-banana-100">
@@ -170,7 +171,7 @@ export default function SponsorsPanel() {
             Become a Banana Sponsor
           </h3>
           <p className="text-xs font-body text-studio-ink/70 max-w-xs mx-auto mb-3">
-            Put your tools in front of {siteConfig.registrationCount} registered builders. You can help with credits, product access, or cash prizes.
+            Put your tools in front of {registrationCount} registered builders. You can help with credits, product access, or cash prizes.
           </p>
           <button
             onClick={() => setShowDeck(true)}

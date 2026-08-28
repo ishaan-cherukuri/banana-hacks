@@ -42,7 +42,6 @@ export default function MenuBar({ onOpenWindow, onGoHome }: MenuBarProps) {
   const menus: Record<string, MenuItem[]> = {
     Help: [
       { label: "Get Info", action: () => onOpenWindow("info") },
-      { label: "Meet the organizers", action: () => onOpenWindow("organizers") },
       { label: "FAQ", action: () => onOpenWindow("faq") },
       { label: "—" },
       { label: "Email the organizers", href: `mailto:${siteConfig.contactEmail}` },

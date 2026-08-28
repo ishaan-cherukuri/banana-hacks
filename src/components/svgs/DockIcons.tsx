@@ -152,10 +152,10 @@ export function InfoLineIcon(props: IconProps) {
   );
 }
 
-/** Organizers → two people */
+/** Registration count → two people */
 export function PeopleLineIcon(props: IconProps) {
   return (
-    <Base {...props} label="Organizers">
+    <Base {...props} label="Registrations">
       <circle cx="9" cy="8" r="3" fill="#FDD835" />
       <circle cx="16.5" cy="9" r="2.5" fill="#B8D8D0" />
       <path d="M3.5 20c.4-4.1 2.4-6.2 5.5-6.2s5.1 2.1 5.5 6.2" fill="white" />
@@ -173,5 +173,4 @@ export const DOCK_ICON_MAP: Record<string, (p: IconProps) => React.JSX.Element> 
   apply:    ApplyLineIcon,
   faq:      QuestionLineIcon,
   sponsors: HeartLineIcon,
-  organizers: PeopleLineIcon,
 };

@@ -64,8 +64,7 @@ export default function SeoContent() {
 
       <h2>How to register</h2>
       <p>
-        {siteConfig.registrationCount} people have registered so far. Signing
-        up is free and takes about a minute.{" "}
+        Signing up is free and takes about a minute.{" "}
         <Link href="/register">Sign up for Banana Hacks 2026</Link> and start
         building. The <Link href="/faq">FAQ</Link> covers the questions people
         ask most.

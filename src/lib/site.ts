@@ -16,15 +16,15 @@ export const siteConfig = {
   organizer: "Banana Hacks",
   /** Named people behind the event, shared by visible copy and metadata. */
   organizers: [
-    { name: "Ishaan Cherukuri", role: "Organizer", detail: "" },
     {
       name: "Rajveer Dharkar",
       role: "Organizer · Workshop Lead",
       detail: "Rajveer is running every workshop at Banana Hacks 2026.",
     },
+    { name: "Ishaan Cherukuri", role: "Organizer", detail: "" },
   ],
   organizerBlurb:
-    "Banana Hacks is organized by Ishaan Cherukuri and Rajveer Dharkar.",
+    "Rajveer Dharkar and Ishaan Cherukuri organize Banana Hacks.",
   registrationCount: 150,
   /** General participant contact. Distinct from the sponsorship inbox. */
   contactEmail: "team@bananahacks.tech",
@@ -106,14 +106,6 @@ export const sitePages: SitePage[] = [
     title: "Banana Hacks 2026 Sponsors | Partner With a Generative AI Hackathon",
     description:
       "Meet the sponsors helping keep Banana Hacks 2026 free, or learn how your company can support participants with credits, tools, workshops, or prizes.",
-    priority: 0.7,
-  },
-  {
-    path: "/organizers",
-    label: "Organizers",
-    title: "Banana Hacks 2026 Organizers",
-    description:
-      "Meet Ishaan Cherukuri and Rajveer Dharkar, the organizers of Banana Hacks 2026, and learn how to get in touch with the team.",
     priority: 0.7,
   },
   {

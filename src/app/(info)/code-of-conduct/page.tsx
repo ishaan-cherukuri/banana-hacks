@@ -99,7 +99,7 @@ export default function CodeOfConductPage() {
         </h2>
         <p className="font-body text-sm text-studio-ink/75 leading-relaxed max-w-2xl">
           {siteConfig.eligibility} If you are under 18, please read this page with a
-          parent or guardian before registering. {siteConfig.organizerBlurb}
+          parent or guardian before registering.
         </p>
       </section>
 

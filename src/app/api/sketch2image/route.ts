@@ -3,6 +3,13 @@ import { uploadImage, startSketch2Image } from "@/lib/lightx";
 
 export const runtime = "nodejs";
 
+interface SketchRequestBody {
+  image?: string;
+  prompt?: string;
+  style?: string;
+  strength?: number;
+}
+
 /**
  * POST /api/sketch2image
  * body: { image: "data:image/png;base64,...", prompt: string, style?: string, strength?: number }
@@ -10,7 +17,8 @@ export const runtime = "nodejs";
  */
 export async function POST(req: Request) {
   try {
-    const { image, prompt, style, strength } = await req.json();
+    const { image, prompt, style, strength } =
+      (await req.json()) as SketchRequestBody;
 
     if (typeof image !== "string" || !image.startsWith("data:image/")) {
       return NextResponse.json({ error: "A PNG data URL is required" }, { status: 400 });
