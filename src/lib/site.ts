@@ -30,10 +30,10 @@ export const siteConfig = {
   contactEmail: "team@bananahacks.tech",
   sponsorEmail: "sponsorships@bananahacks.tech",
   /**
-   * Community. Left empty until a permanent invite exists, the UI renders
-   * honest copy when this is falsy rather than a button that goes nowhere.
+   * Community. Permanent invite. The UI renders honest copy when this is
+   * falsy rather than a button that goes nowhere.
    */
-  discordUrl: "",
+  discordUrl: "https://discord.gg/k6jyxXTSe",
   instagramUrl: "https://www.instagram.com/bananahacks26/",
   mlhCodeOfConductUrl: "https://mlh.io/code-of-conduct",
   /** Stated plainly because nothing on the site previously said either. */
