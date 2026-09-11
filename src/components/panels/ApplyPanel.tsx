@@ -27,8 +27,16 @@ const TEAM_STATUSES = ["Solo hacker", "I have a team ready", "Looking for teamma
 const EXPERIENCE_LEVELS = ["Beginner (0 to 1 years)", "Intermediate (1 to 3 years)", "Advanced (3+ years)"];
 
 // Dial codes. The previous list held 20 entries while the site advertises
-// 60+ countries, so most participants had no correct option. Sorted by name.
+// 60+ countries, so most participants had no correct option.
+//
+// The two countries most registrants pick sit at the top, ahead of a
+// separator; everything after it is sorted by name. PINNED_COUNT is what the
+// dropdown uses to draw that separator, so moving an entry in or out of the
+// pinned block means updating the count with it.
+const PINNED_COUNT = 2;
 const COUNTRY_CODES: { dial: string; name: string; flag: string }[] = [
+  { dial: "+1",   name: "United States", flag: "\u{1F1FA}\u{1F1F8}" },
+  { dial: "+91",  name: "India", flag: "\u{1F1EE}\u{1F1F3}" },
   { dial: "+213", name: "Algeria", flag: "\u{1F1E9}\u{1F1FF}" },
   { dial: "+54",  name: "Argentina", flag: "\u{1F1E6}\u{1F1F7}" },
   { dial: "+61",  name: "Australia", flag: "\u{1F1E6}\u{1F1FA}" },
@@ -50,7 +58,6 @@ const COUNTRY_CODES: { dial: string; name: string; flag: string }[] = [
   { dial: "+30",  name: "Greece", flag: "\u{1F1EC}\u{1F1F7}" },
   { dial: "+852", name: "Hong Kong", flag: "\u{1F1ED}\u{1F1F0}" },
   { dial: "+36",  name: "Hungary", flag: "\u{1F1ED}\u{1F1FA}" },
-  { dial: "+91",  name: "India", flag: "\u{1F1EE}\u{1F1F3}" },
   { dial: "+62",  name: "Indonesia", flag: "\u{1F1EE}\u{1F1E9}" },
   { dial: "+353", name: "Ireland", flag: "\u{1F1EE}\u{1F1EA}" },
   { dial: "+972", name: "Israel", flag: "\u{1F1EE}\u{1F1F1}" },
@@ -65,6 +72,7 @@ const COUNTRY_CODES: { dial: string; name: string; flag: string }[] = [
   { dial: "+234", name: "Nigeria", flag: "\u{1F1F3}\u{1F1EC}" },
   { dial: "+47",  name: "Norway", flag: "\u{1F1F3}\u{1F1F4}" },
   { dial: "+92",  name: "Pakistan", flag: "\u{1F1F5}\u{1F1F0}" },
+  { dial: "+507", name: "Panama", flag: "\u{1F1F5}\u{1F1E6}" },
   { dial: "+51",  name: "Peru", flag: "\u{1F1F5}\u{1F1EA}" },
   { dial: "+63",  name: "Philippines", flag: "\u{1F1F5}\u{1F1ED}" },
   { dial: "+48",  name: "Poland", flag: "\u{1F1F5}\u{1F1F1}" },
@@ -83,9 +91,9 @@ const COUNTRY_CODES: { dial: string; name: string; flag: string }[] = [
   { dial: "+66",  name: "Thailand", flag: "\u{1F1F9}\u{1F1ED}" },
   { dial: "+90",  name: "Turkey", flag: "\u{1F1F9}\u{1F1F7}" },
   { dial: "+256", name: "Uganda", flag: "\u{1F1FA}\u{1F1EC}" },
+  { dial: "+380", name: "Ukraine", flag: "\u{1F1FA}\u{1F1E6}" },
   { dial: "+971", name: "UAE", flag: "\u{1F1E6}\u{1F1EA}" },
   { dial: "+44",  name: "United Kingdom", flag: "\u{1F1EC}\u{1F1E7}" },
-  { dial: "+1",   name: "United States", flag: "\u{1F1FA}\u{1F1F8}" },
   { dial: "+84",  name: "Vietnam", flag: "\u{1F1FB}\u{1F1F3}" },
 ];
 
@@ -258,7 +266,9 @@ export default function ApplyPanel() {
             your email for your confirmation" while /api/apply did nothing but
             write a row, no mail is sent by the app at all, and offered a
             "Join Discord" button wired to null. Both were dead promises at the
-            highest-intent moment in the funnel. See AUDIT.md T2, T4.
+            highest-intent moment in the funnel. See AUDIT.md T2, T4. The
+            Discord button below is back now that siteConfig holds a real
+            invite, and stays hidden if that is ever emptied again.
           */}
           <div className="hard-card bg-banana-50 p-4 max-w-sm text-left">
             <p className="eyebrow mb-2">What happens next</p>
@@ -273,7 +283,7 @@ export default function ApplyPanel() {
               <li className="flex gap-2">
                 <span className="font-mono text-[10px] font-bold text-studio-ink/70 shrink-0 mt-0.5">02</span>
                 <span>
-                  We email the Discord invite and joining details to that address before
+                  We email your invite and the hackathon details to that address before
                   {" "}{siteConfig.dateRangeLabel.replace(", 2026", "")}.
                 </span>
               </li>
@@ -306,6 +316,17 @@ export default function ApplyPanel() {
             >
               Follow @bananahacks26
             </a>
+            {/* Only rendered once a permanent invite exists in siteConfig. */}
+            {siteConfig.discordUrl && (
+              <a
+                href={siteConfig.discordUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                Join the Discord
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -397,9 +418,12 @@ export default function ApplyPanel() {
                 </button>
                 {ccOpen && (
                   <div className="absolute bottom-full mb-1 left-0 w-52 max-h-56 overflow-y-auto bg-banana-50 hard-card-sm z-20 py-1">
-                    {COUNTRY_CODES.map((c) => (
+                    {COUNTRY_CODES.map((c, i) => (
+                      <div key={c.name}>
+                      {i === PINNED_COUNT && (
+                        <div className="mx-3 my-1 border-t border-studio-ink/20" role="separator" />
+                      )}
                       <button
-                        key={c.name}
                         type="button"
                         onClick={() => { setField("emergencyCountryCode", c.dial); setCcOpen(false); }}
                         className="w-full flex items-center gap-2 px-3 py-1.5 text-sm font-body text-left text-studio-ink hover:bg-banana-100 transition-colors"
@@ -408,6 +432,7 @@ export default function ApplyPanel() {
                         <span className="flex-1 truncate">{c.name}</span>
                         <span className="text-studio-ink/70">{c.dial}</span>
                       </button>
+                      </div>
                     ))}
                   </div>
                 )}
