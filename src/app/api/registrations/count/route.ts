@@ -11,7 +11,7 @@ export async function GET() {
     const [{ total }] = await db.select({ total: count() }).from(registrations);
 
     return NextResponse.json(
-      { count: siteConfig.registrationCount + total },
+      { count: total },
       { headers: { "Cache-Control": "no-store" } },
     );
   } catch (error) {

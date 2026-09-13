@@ -25,7 +25,8 @@ export const siteConfig = {
   ],
   organizerBlurb:
     "Rajveer Dharkar and Ishaan Cherukuri organize Banana Hacks.",
-  registrationCount: 150,
+  /** Fallback shown before the live DB count loads (or if it fails). Not added to the DB count. */
+  registrationCount: 218,
   /** General participant contact. Distinct from the sponsorship inbox. */
   contactEmail: "team@bananahacks.tech",
   sponsorEmail: "sponsorships@bananahacks.tech",

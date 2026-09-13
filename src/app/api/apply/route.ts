@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { count } from "drizzle-orm";
 import { ensureRegistrationTable, getDb } from "@db/index";
 import { registrations } from "@db/schema";
-import { siteConfig } from "@/lib/site";
 
 interface RegistrationBody {
   name?: string;
@@ -42,7 +41,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       ok: true,
-      count: siteConfig.registrationCount + total,
+      count: total,
     });
   } catch (err) {
     console.error("apply route error:", err);
