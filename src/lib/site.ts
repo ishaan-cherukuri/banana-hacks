@@ -9,7 +9,7 @@ export const siteConfig = {
   // but the site and the DNS have to agree. See AUDIT.md T7.
   url: "https://www.bananahacks.tech",
   description:
-    "Banana Hacks 2026 is a free online hackathon for people who want to build with generative AI. Join us October 9 to 12 for workshops, a weekend of hacking, and more than $10,000 in prizes.",
+    "Banana Hacks 2026 is a free online hackathon for people who want to build with generative AI. Join us October 9 to 12 for workshops, a weekend of hacking, and $500 in prizes plus licenses and domains from our sponsors.",
   startDate: "2026-10-09T20:00:00-04:00",
   endDate: "2026-10-12T19:00:00-04:00",
   dateRangeLabel: "October 9 to 12, 2026",
@@ -18,8 +18,8 @@ export const siteConfig = {
   organizers: [
     {
       name: "Rajveer Dharkar",
-      role: "Organizer · Workshop Lead",
-      detail: "Rajveer is running every workshop at Banana Hacks 2026.",
+      role: "Organizer",
+      detail: "",
     },
     { name: "Ishaan Cherukuri", role: "Organizer", detail: "" },
   ],
@@ -82,7 +82,7 @@ export const sitePages: SitePage[] = [
     label: "Schedule",
     title: "Banana Hacks 2026 Schedule | Workshops, Deadlines & Ceremonies",
     description:
-      "The full Banana Hacks 2026 schedule for Oct 9 to 12: opening ceremony, Stable Diffusion and LoRA fine-tuning workshops, office hours, the submission deadline, and demo day.",
+      "The full Banana Hacks 2026 schedule for Oct 9 to 12: opening ceremony, workshops (topics revealed soon), office hours, the submission deadline, and demo day.",
     priority: 0.8,
   },
   {
@@ -90,7 +90,7 @@ export const sitePages: SitePage[] = [
     label: "Prizes",
     title: "Banana Hacks 2026 Prizes & Judging Criteria",
     description:
-      "How judges score Banana Hacks 2026 projects, which awards you can win, and what sits in the $10,000 prize pool. Free to enter from any country.",
+      "How judges score Banana Hacks 2026 projects, which awards you can win, and every prize on the table: $500 in cash plus licenses and domains from our sponsors. Free to enter from any country.",
     priority: 0.8,
   },
   {

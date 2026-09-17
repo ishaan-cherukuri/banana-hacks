@@ -14,7 +14,7 @@ const STATS = [
   { value: "4", label: "Days", sub: "Oct 9-12, 2026" },
   { value: "", label: "Registered", sub: "So far" },
   { value: "$0", label: "Entry fee", sub: "Free for everyone" },
-  { value: "$10K+", label: "Prize pool", sub: "Cash, credits & tooling" },
+  { value: "$500", label: "Prizes", sub: "Plus licenses & domains" },
 ];
 
 export default function AboutPage() {

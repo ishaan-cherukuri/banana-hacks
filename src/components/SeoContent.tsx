@@ -47,10 +47,10 @@ export default function SeoContent() {
 
       <h2>Prizes and judging</h2>
       <p>
-        The prize pool is over $10,000 in cash, compute credits, and tooling
-        from our sponsors. We confirm how it splits between categories before
-        the event. Judges score creativity and originality, technical
-        implementation, visual quality, and potential impact. There are also
+        There is $500 in cash for the top project, plus licenses and domains
+        from our sponsors: CodeCrafters VIP memberships, Interview Cake
+        licenses, and free .xyz domains. Judges score technical execution, innovation, use of the
+        image AI theme, impact, and presentation. There are also
         awards for Best Creative Tool, Best Fine-tune, Most Surprising Output,
         and People&apos;s Choice.{" "}
         <Link href="/prizes">See prizes and judging criteria</Link>.

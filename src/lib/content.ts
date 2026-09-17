@@ -30,7 +30,7 @@ export const FAQS: FAQItem[] = [
   },
   {
     q: "How are projects judged?",
-    a: "Judges score four things: creativity and originality (30%), technical implementation (30%), visual quality and user experience (20%), and potential impact (20%). The panel includes working AI researchers, artists, and startup founders.",
+    a: "Judges score five things equally, 1 to 5 each: technical execution and difficulty, innovation and creativity, use of the image AI theme, impact and usefulness, and design, presentation, and demo. The full rubric is on the Prizes page.",
   },
   {
     q: "Can I use pre-trained models?",
@@ -42,7 +42,7 @@ export const FAQS: FAQItem[] = [
   },
   {
     q: "Will there be prizes?",
-    a: "The prize pool is over $10,000 in cash, compute credits, and tooling subscriptions from our sponsors, plus awards in each category. We confirm exactly how it splits closer to the event.",
+    a: "There is $500 in cash for the top project, plus licenses and domains from our sponsors: CodeCrafters VIP memberships for the winning teams, 50 Interview Cake licenses, and free .xyz domains. See the Prizes page for the full list.",
   },
   {
     q: "Where does hacking happen?",
@@ -78,13 +78,10 @@ export const SCHEDULE: ScheduleEvent[] = [
   { day: "Fri Oct 9",  time: "8:00 PM EDT",  title: "Opening Ceremony & Theme Reveal",           type: "kickoff",       virtual: true  },
   { day: "Fri Oct 9",  time: "9:30 PM EDT",  title: "Team Formation Social Hour",                type: "social",        virtual: true  },
   // Saturday, Build day 1
-  { day: "Sat Oct 10", time: "11:00 AM EDT", title: "Workshop: Stable Diffusion from Scratch",   type: "workshop",      virtual: true  },
   { day: "Sat Oct 10", time: "2:00 PM EDT",  title: "Office Hours: APIs & Model Hosting",        type: "office-hours",  virtual: true  },
-  { day: "Sat Oct 10", time: "5:00 PM EDT",  title: "Workshop: LoRA Fine-tuning Deep Dive",      type: "workshop",      virtual: true  },
   { day: "Sat Oct 10", time: "9:00 PM EDT",  title: "Mid-point Check-in & Progress Showcase",    type: "social",        virtual: true  },
   // Sunday, Build day 2 + deadline
   { day: "Sun Oct 11", time: "11:00 AM EDT", title: "Office Hours: UX & Prompt Engineering",     type: "office-hours",  virtual: true  },
-  { day: "Sun Oct 11", time: "3:00 PM EDT",  title: "Workshop: ControlNet & Image Conditioning", type: "workshop",      virtual: true  },
   { day: "Sun Oct 11", time: "11:59 PM AoE", title: "Submissions Close",                         type: "deadline",      virtual: false },
   // Monday, Closing
   { day: "Mon Oct 12", time: "3:00 PM EDT",  title: "Judging & Demo Day (live streams)",         type: "ceremony",      virtual: true  },
@@ -133,6 +130,36 @@ export const SPONSORS: Sponsor[] = [
   },
 ];
 
+export interface Prize {
+  title: string;
+  from: string;
+  desc: string;
+}
+
+/** Everything on the table. Only prizes from sponsors listed in SPONSORS. */
+export const PRIZES: Prize[] = [
+  {
+    title: "$500 cash",
+    from: "Banana Hacks",
+    desc: "Cash prize for the top project of the weekend.",
+  },
+  {
+    title: "CodeCrafters VIP memberships",
+    from: "CodeCrafters",
+    desc: "Every member of the winning teams gets VIP access: 2 years for 1st place, 1 year for 2nd, and 6 months for 3rd.",
+  },
+  {
+    title: "50 Interview Cake licenses",
+    from: "Interview Cake",
+    desc: "Full-access licenses to Interview Cake's coding interview course.",
+  },
+  {
+    title: "Free .xyz domains",
+    from: "XYZ",
+    desc: "A .xyz domain, free for the first year, to put your project on the web.",
+  },
+];
+
 export interface Track {
   title: string;
   desc: string;
@@ -145,11 +172,28 @@ export const TRACKS: Track[] = [
   { title: "Mixed media",      desc: "Projects that bring images, text, and audio together" },
 ];
 
+/** Equal weight, scored 1 to 5 on Devpost. */
 export const JUDGING_CRITERIA = [
-  { label: "Creativity & Originality",          weight: "30%" },
-  { label: "Technical Implementation",          weight: "30%" },
-  { label: "Visual Quality / User Experience",  weight: "20%" },
-  { label: "Potential Impact",                  weight: "20%" },
+  {
+    label: "Technical Execution and Difficulty",
+    desc: "How technically impressive is the build? Did the team tackle real engineering challenges with image AI, computer vision, or generative models, with thoughtful model choice and non-trivial integration? Thin API wrappers should score lower.",
+  },
+  {
+    label: "Innovation and Creativity",
+    desc: "How original is the idea? Does the project take a fresh angle, combine tools unexpectedly, or explore a use case that feels genuinely new? Generic clones of well-known apps score lower than projects that surprise the judge.",
+  },
+  {
+    label: "Use of the Image AI Theme",
+    desc: "Is image AI, computer vision, or a generative visual model a core part of the project, not a cosmetic add-on? How fully does it embrace the \"image everything\" theme? If the image AI could be removed without breaking the core experience, score lower.",
+  },
+  {
+    label: "Impact and Usefulness",
+    desc: "Does the project address a real problem or serve a real need? Is there a clear user, a clear benefit, and a plausible path to someone actually using this beyond the hackathon weekend? Score higher for projects that make \"who cares\" easy to answer.",
+  },
+  {
+    label: "Design, Presentation, and Demo",
+    desc: "Is the interface clean and the visual output polished? Does the demo video (3 min or less) and Devpost write-up clearly communicate what the project is, what problem it solves, and how it works? A great project buried under a confusing demo scores lower.",
+  },
 ];
 
 export const ELIGIBILITY = [
@@ -244,7 +288,7 @@ export const RULES_SECTIONS: PolicySection[] = [
     body: [
       "Submit through the official portal before the deadline. We don't accept late entries.",
       "You'll need a project name, a one-paragraph description, a GitHub link, and a demo video of three minutes or less.",
-      "Judges score creativity and originality (30%), technical implementation (30%), visual quality and user experience (20%), and potential impact (20%). Those are the same criteria listed on the Prizes page.",
+      "Judges score five equally weighted criteria: technical execution and difficulty, innovation and creativity, use of the image AI theme, impact and usefulness, and design, presentation, and demo. The full rubric is on the Prizes page.",
     ],
   },
   {

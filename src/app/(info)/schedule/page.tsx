@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- used by the commented-out schedule
 import Link from "next/link";
 import type { Metadata } from "next";
 import PageShell from "@/components/seo/PageShell";
@@ -9,6 +10,7 @@ const PATH = "/schedule";
 
 export const metadata: Metadata = buildMetadata(PATH);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- used by the commented-out schedule
 const TYPE_LABEL: Record<ScheduleEvent["type"], string> = {
   kickoff: "Kickoff",
   workshop: "Workshop",
@@ -40,6 +42,7 @@ const scheduleJsonLd = {
 };
 
 export default function SchedulePage() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- used by the commented-out schedule
   const grouped = groupByDay(SCHEDULE);
 
   return (
@@ -49,6 +52,18 @@ export default function SchedulePage() {
       lede={`Here is the plan for ${siteConfig.dateRangeLabel}, from kickoff to the awards. Times are EDT unless marked otherwise. Live sessions happen on Discord and Zoom, and recordings are shared afterward.`}
       jsonLd={[scheduleJsonLd]}
     >
+      {/* Full schedule is hidden until it is finalized. Swap the placeholder
+          for the commented block below when the schedule is ready. */}
+      <section aria-labelledby="coming-soon" className="mb-9 bg-banana-200 hard-card p-6 text-center">
+        <h2 id="coming-soon" className="font-display font-extrabold text-xl text-studio-ink mb-1">
+          Coming soon
+        </h2>
+        <p className="font-body text-sm text-studio-ink/72">
+          The full weekend schedule will be posted here before the event.
+        </p>
+      </section>
+
+      {/*
       {Array.from(grouped.entries()).map(([day, events]) => (
         <section key={day} aria-labelledby={`day-${day.replace(/\s+/g, "-")}`} className="mb-9">
           <h2
@@ -106,10 +121,6 @@ export default function SchedulePage() {
             registered participants.
           </li>
           <li>
-            <strong>Rajveer Dharkar</strong> is running every workshop during
-            Banana Hacks 2026.
-          </li>
-          <li>
             Judging criteria and award categories are on the{" "}
             <Link href="/prizes" className="text-vine-500 hover:underline">
               prizes page
@@ -118,6 +129,7 @@ export default function SchedulePage() {
           </li>
         </ul>
       </section>
+      */}
     </PageShell>
   );
 }

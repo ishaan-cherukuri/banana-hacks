@@ -1,6 +1,6 @@
 "use client";
 
-import { JUDGING_CRITERIA } from "@/lib/content";
+import { JUDGING_CRITERIA, PRIZES } from "@/lib/content";
 
 const CATEGORIES = [
   { title: "Best creative tool",     desc: "The generative AI tool someone would actually keep using" },
@@ -29,12 +29,29 @@ export default function PrizesPanel() {
             <path d="M12 14v3.5M8.5 20.5h7l-.6-3h-5.8l-.6 3Z" />
           </svg>
           <h3 className="font-display font-bold text-sm text-studio-ink mb-1">
-            More than $10,000 in prizes
+            $500 in prizes, licenses &amp; domains
           </h3>
           <p className="text-xs font-body text-studio-ink/70 max-w-sm mx-auto">
-            The pool includes cash, compute credits, and software from our
-            sponsors. We&apos;ll share the exact split before opening night.
+            Cash for the top project, plus licenses and domains from our sponsors.
           </p>
+        </div>
+
+        {/* Every prize */}
+        <div>
+          <h3 className="font-display font-extrabold text-sm text-studio-ink mb-2">
+            What you can win
+          </h3>
+          <div className="space-y-1.5">
+            {PRIZES.map((p) => (
+              <div key={p.title} className="hard-card-sm bg-banana-50 px-3 py-2">
+                <div className="flex items-baseline justify-between gap-2 mb-0.5">
+                  <span className="font-display font-semibold text-xs text-studio-ink">{p.title}</span>
+                  <span className="font-mono text-[10px] text-studio-ink/60 shrink-0">{p.from}</span>
+                </div>
+                <div className="font-body text-[11px] text-studio-ink/70 leading-relaxed">{p.desc}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Categories */}
@@ -66,14 +83,9 @@ export default function PrizesPanel() {
           </h3>
           <div className="space-y-1.5">
             {JUDGING_CRITERIA.map((c) => (
-              <div
-                key={c.label}
-                className="flex items-center justify-between gap-3 hard-card-sm bg-banana-50 px-3 py-2"
-              >
-                <span className="font-body text-xs text-studio-ink/75">{c.label}</span>
-                <span className="font-mono font-bold text-[11px] text-studio-ink shrink-0 bg-banana-400 border-[1.5px] border-studio-ink px-1.5 tabular-nums">
-                  {c.weight}
-                </span>
+              <div key={c.label} className="hard-card-sm bg-banana-50 px-3 py-2">
+                <div className="font-display font-semibold text-xs text-studio-ink mb-0.5">{c.label}</div>
+                <div className="font-body text-[11px] text-studio-ink/70 leading-relaxed">{c.desc}</div>
               </div>
             ))}
           </div>

@@ -10,7 +10,7 @@ import { useRegistrationCount } from "@/lib/useRegistrationCount";
 const STATS = [
   { value: "4",     label: "Days",      sub: "Oct 9-12",              color: "bg-banana-300 text-studio-ink" },
   { value: "", label: "Registered", sub: "and counting", color: "bg-vine-200 text-vine-800" },
-  { value: "$10K",  label: "Prizes",    sub: "in cash & credits",     color: "bg-studio-ripe text-banana-50" },
+  { value: "$500",  label: "Prizes",    sub: "plus licenses & domains", color: "bg-studio-ripe text-banana-50" },
   { value: "60+",   label: "Countries", sub: "Hack from anywhere",    color: "bg-banana-50 text-studio-ink"  },
 ];
 

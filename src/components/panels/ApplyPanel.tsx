@@ -175,7 +175,11 @@ export default function ApplyPanel() {
 
   const setField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
     setForm((f) => ({ ...f, [key]: value }));
-    setErrors((e) => ({ ...e, [key]: undefined }));
+    setErrors((e) => {
+      const next = { ...e };
+      delete next[key];
+      return next;
+    });
   };
 
   const toggleWorkshop = (w: string) => {
@@ -190,10 +194,7 @@ export default function ApplyPanel() {
     if (!form.name.trim())                          e.name          = "Name is required";
     if (!EMAIL_RE.test(form.email.trim()))          e.email         = "Valid email required";
     if (!form.emergencyName.trim())                 e.emergencyName = "Emergency contact name is required";
-    // E.164 allows 4-15 digits for a subscriber number; 6 is a safe floor
-    // that still rejects obvious typos without excluding short national formats.
-    const phoneDigits = phoneDigitCount(form.emergencyPhone);
-    if (phoneDigits < 6 || phoneDigits > 15) e.emergencyPhone = "Enter a phone number, including area code";
+    if (phoneDigitCount(form.emergencyPhone) === 0)  e.emergencyPhone = "Emergency contact phone is required";
     if (!form.teamStatus)                           e.teamStatus = "Please select team status";
     if (!form.experience)                           e.experience = "Please select your experience level";
     if (!form.agreeTerms)                           e.agreeTerms = "You must agree to continue";
@@ -354,13 +355,11 @@ export default function ApplyPanel() {
             id="apply-name"
             type="text"
             aria-invalid={!!errors.name}
-            aria-describedby={errors.name ? "apply-name-error" : undefined}
             value={form.name}
             onChange={(e) => setField("name", e.target.value)}
             placeholder="Ada Lovelace"
             className={`w-full px-3 py-2.5 rounded-[6px] border-[1.5px] text-sm font-body bg-banana-50 text-studio-ink placeholder:text-studio-ink/65 focus:outline-none focus:border-studio-ink focus:bg-white focus:shadow-icon-sm transition-all ${errors.name ? "border-studio-ripe" : "border-studio-ink"}`}
           />
-          {errors.name && <p id="apply-name-error" className="text-xs text-studio-alert mt-1">{errors.name}</p>}
         </div>
 
         {/* Email */}
@@ -372,13 +371,11 @@ export default function ApplyPanel() {
             id="apply-email"
             type="email"
             aria-invalid={!!errors.email}
-            aria-describedby={errors.email ? "apply-email-error" : undefined}
             value={form.email}
             onChange={(e) => setField("email", e.target.value)}
             placeholder="ada@gmail.com"
             className={`w-full px-3 py-2.5 rounded-[6px] border-[1.5px] text-sm font-body bg-banana-50 text-studio-ink placeholder:text-studio-ink/65 focus:outline-none focus:border-studio-ink focus:bg-white focus:shadow-icon-sm transition-all ${errors.email ? "border-studio-ripe" : "border-studio-ink"}`}
           />
-          {errors.email && <p id="apply-email-error" className="text-xs text-studio-alert mt-1">{errors.email}</p>}
         </div>
 
         {/* Emergency Contact */}
@@ -391,13 +388,11 @@ export default function ApplyPanel() {
               id="apply-ec-name"
               type="text"
               aria-invalid={!!errors.emergencyName}
-              aria-describedby={errors.emergencyName ? "apply-ec-name-error" : undefined}
               value={form.emergencyName}
               onChange={(e) => setField("emergencyName", e.target.value)}
               placeholder="Jane Lovelace"
               className={`w-full px-3 py-2.5 rounded-[6px] border-[1.5px] text-sm font-body bg-banana-50 text-studio-ink placeholder:text-studio-ink/65 focus:outline-none focus:border-studio-ink focus:bg-white focus:shadow-icon-sm transition-all ${errors.emergencyName ? "border-studio-ripe" : "border-studio-ink"}`}
             />
-            {errors.emergencyName && <p id="apply-ec-name-error" className="text-xs text-studio-alert mt-1">{errors.emergencyName}</p>}
           </div>
           <div>
             <label htmlFor="apply-ec-phone" className="block text-xs font-display font-semibold text-studio-ink/70 mb-1">
@@ -442,14 +437,12 @@ export default function ApplyPanel() {
                 type="tel"
                 inputMode="tel"
                 aria-invalid={!!errors.emergencyPhone}
-                aria-describedby={errors.emergencyPhone ? "apply-ec-phone-error" : undefined}
                 value={form.emergencyPhone}
                 onChange={(e) => setField("emergencyPhone", sanitizePhone(e.target.value))}
                 placeholder="e.g. 020 7946 0958"
                 className="flex-1 min-w-0 px-3 py-2.5 rounded-r-xl text-sm font-body bg-transparent text-studio-ink placeholder:text-studio-ink/65 focus:outline-none"
               />
             </div>
-            {errors.emergencyPhone && <p id="apply-ec-phone-error" className="text-xs text-studio-alert mt-1">{errors.emergencyPhone}</p>}
           </div>
         </div>
 
@@ -495,7 +488,6 @@ export default function ApplyPanel() {
             role="radiogroup"
             aria-labelledby="apply-team-status-label"
             aria-invalid={!!errors.teamStatus}
-            aria-describedby={errors.teamStatus ? "apply-team-status-error" : undefined}
             className="grid grid-cols-2 gap-2"
           >
             {TEAM_STATUSES.map((ts) => (
@@ -516,7 +508,6 @@ export default function ApplyPanel() {
               </button>
             ))}
           </div>
-          {errors.teamStatus && <p id="apply-team-status-error" className="text-xs text-studio-alert mt-1">{errors.teamStatus}</p>}
         </div>
 
         {/* Experience level */}
@@ -527,7 +518,6 @@ export default function ApplyPanel() {
             role="radiogroup"
             aria-labelledby="apply-experience-label"
             aria-invalid={!!errors.experience}
-            aria-describedby={errors.experience ? "apply-experience-error" : undefined}
             className="flex flex-wrap gap-2"
           >
             {EXPERIENCE_LEVELS.map((lvl) => (
@@ -548,7 +538,6 @@ export default function ApplyPanel() {
               </button>
             ))}
           </div>
-          {errors.experience && <p id="apply-experience-error" className="text-xs text-studio-alert mt-1">{errors.experience}</p>}
         </div>
 
         {/* Project idea */}
@@ -582,7 +571,6 @@ export default function ApplyPanel() {
               checked={form.agreeTerms}
               onChange={(e) => setField("agreeTerms", e.target.checked)}
               aria-invalid={!!errors.agreeTerms}
-              aria-describedby={errors.agreeTerms ? "apply-terms-error" : undefined}
               className="mt-0.5 w-4 h-4 shrink-0 accent-banana-400 cursor-pointer"
             />
             <label htmlFor="apply-terms" className="text-xs font-body text-studio-ink/70 leading-relaxed cursor-pointer">
@@ -617,7 +605,6 @@ export default function ApplyPanel() {
             </a>
             .
           </p>
-          {errors.agreeTerms && <p id="apply-terms-error" className="text-xs text-studio-alert mt-1">{errors.agreeTerms}</p>}
         </div>
 
         {/*
@@ -635,9 +622,7 @@ export default function ApplyPanel() {
             <p className="text-xs text-studio-alert">{submitError}</p>
           ) : Object.keys(errors).length > 0 ? (
             <p className="text-xs text-studio-alert">
-              {Object.keys(errors).length === 1
-                ? "1 field needs your attention before you can apply."
-                : `${Object.keys(errors).length} fields need your attention before you can apply.`}
+              Please answer every required question, enter a valid email address, and agree to the Code of Conduct and Submission Rules.
             </p>
           ) : null}
         </div>

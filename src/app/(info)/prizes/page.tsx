@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import PageShell from "@/components/seo/PageShell";
 import { buildMetadata } from "@/lib/seo";
-import { JUDGING_CRITERIA } from "@/lib/content";
+import { JUDGING_CRITERIA, PRIZES } from "@/lib/content";
 
 const PATH = "/prizes";
 
@@ -32,7 +32,7 @@ export default function PrizesPage() {
     <PageShell
       path={PATH}
       heading="Prizes & Judging"
-      lede="Every submitted project gets judged. More than $10,000 in cash, compute credits, and software is up for grabs. Here is what the judges look for and which awards they can give."
+      lede="Every submitted project gets judged. There is $500 in cash for the top project, plus licenses and domains from our sponsors. Here is everything you can win and what the judges look for."
     >
       <section
         aria-labelledby="prize-pool"
@@ -42,36 +42,28 @@ export default function PrizesPage() {
           id="prize-pool"
           className="font-display font-extrabold text-xl text-studio-ink mb-2"
         >
-          Prize pool
+          Prizes
         </h2>
-        <p className="font-body text-sm text-studio-ink/75 leading-relaxed max-w-2xl mb-3">
-          The total pool is <strong className="text-studio-ink">over $10,000</strong>, committed by
-          our{" "}
+        <p className="font-body text-sm text-studio-ink/75 leading-relaxed max-w-2xl mb-4">
+          <strong className="text-studio-ink">$500 in cash</strong> for the top project, plus
+          licenses and domains from our{" "}
           <Link href="/sponsors" className="text-vine-600 hover:underline">
             sponsors
           </Link>
-          . The exact split between categories is published here ahead of{" "}
-          <Link href="/schedule" className="text-vine-600 hover:underline">
-            opening night
-          </Link>
-          . It is made up of:
+          . Here is everything on the table:
         </p>
-        <ul className="space-y-2 font-body text-sm text-studio-ink/75">
-          <li className="flex items-start gap-2.5">
-            <span className="text-banana-600 mt-0.5 shrink-0" aria-hidden="true">◆</span>
-            Cash prizes for winning teams
-          </li>
-          <li className="flex items-start gap-2.5">
-            <span className="text-banana-600 mt-0.5 shrink-0" aria-hidden="true">◆</span>
-            Compute and GPU credits for training and inference
-          </li>
-          <li className="flex items-start gap-2.5">
-            <span className="text-banana-600 mt-0.5 shrink-0" aria-hidden="true">◆</span>
-            Tooling subscriptions and product access from our{" "}
-            <Link href="/sponsors" className="text-vine-500 hover:underline">
-              sponsors
-            </Link>
-          </li>
+        <ul className="space-y-3 font-body text-sm text-studio-ink/75 max-w-2xl">
+          {PRIZES.map((p) => (
+            <li key={p.title} className="flex items-start gap-2.5">
+              <span className="text-banana-600 mt-0.5 shrink-0" aria-hidden="true">◆</span>
+              <span>
+                <strong className="text-studio-ink">{p.title}</strong>
+                <span className="text-studio-ink/55"> · {p.from}</span>
+                <br />
+                {p.desc}
+              </span>
+            </li>
+          ))}
         </ul>
       </section>
 
@@ -111,19 +103,17 @@ export default function PrizesPage() {
           How projects are judged
         </h2>
         <p className="font-body text-sm text-studio-ink/72 mb-4 max-w-2xl">
-          Judges include working AI researchers, artists, and startup founders.
-          Every project is scored against four weighted criteria:
+          Every project is scored 1 to 5 on each of five equally weighted
+          criteria:
         </p>
         <dl className="space-y-2 max-w-2xl">
           {JUDGING_CRITERIA.map((c) => (
             <div
               key={c.label}
-              className="flex items-center justify-between gap-4 bg-banana-50 hard-card-sm rounded-[6px] px-4 py-3"
+              className="bg-banana-50 hard-card-sm rounded-[6px] px-4 py-3"
             >
-              <dt className="font-body text-sm text-studio-ink/80">{c.label}</dt>
-              <dd className="font-display font-bold text-sm text-studio-ink shrink-0">
-                {c.weight}
-              </dd>
+              <dt className="font-display font-semibold text-sm text-studio-ink mb-1">{c.label}</dt>
+              <dd className="font-body text-xs text-studio-ink/72 leading-relaxed">{c.desc}</dd>
             </div>
           ))}
         </dl>

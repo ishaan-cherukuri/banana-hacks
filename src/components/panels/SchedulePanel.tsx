@@ -1,7 +1,6 @@
 "use client";
 
 import { SCHEDULE, type ScheduleEvent } from "@/lib/content";
-import { siteConfig } from "@/lib/site";
 
 // Event types are distinguished by a flat fill from the site palette, not
 // by a tint of an arbitrary hue. `red-500` was the only colour on the page
@@ -26,6 +25,7 @@ function groupByDay(events: ScheduleEvent[]) {
 
 export default function SchedulePanel() {
   const grouped = groupByDay(SCHEDULE);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- used by the commented-out schedule
   const days = Array.from(grouped.keys());
 
   return (
@@ -49,11 +49,24 @@ export default function SchedulePanel() {
         </div>
       </div>
 
-      {/* Timeline */}
+      {/* Full schedule is hidden until it is finalized. Swap the placeholder
+          for the commented block below when the schedule is ready. */}
+      <div className="px-6 py-10 text-center">
+        <div className="hard-card bg-banana-200 px-6 py-8 max-w-sm mx-auto">
+          <p className="font-mono font-bold text-[11px] uppercase tracking-wider text-studio-ink/65 mb-2">Schedule</p>
+          <h3 className="font-display font-extrabold text-xl text-studio-ink mb-1">Coming soon</h3>
+          <p className="font-body text-xs text-studio-ink/70">
+            The full weekend schedule will be posted here before the event.
+          </p>
+        </div>
+      </div>
+
+      {/*
+      (* Timeline *)
       <div className="px-6 py-4 space-y-6">
         {days.map((day) => (
           <div key={day}>
-            {/* Day header */}
+            (* Day header *)
             <div className="flex items-center gap-3 mb-3">
               <div className="font-mono font-bold text-[11px] uppercase tracking-wider text-studio-ink px-2 py-0.5 bg-banana-400 border-[1.5px] border-studio-ink">
                 {day}
@@ -61,7 +74,7 @@ export default function SchedulePanel() {
               <div className="flex-1 h-[1.5px] bg-studio-ink/25" />
             </div>
 
-            {/* Events for this day */}
+            (* Events for this day *)
             <div className="space-y-2 pl-4 border-l-[1.5px] border-studio-ink/30">
               {grouped.get(day)!.map((event, i) => {
                 const meta = TYPE_META[event.type];
@@ -70,18 +83,18 @@ export default function SchedulePanel() {
                     key={i}
                     className="relative pl-4 flex gap-3 items-start group"
                   >
-                    {/* Timeline dot */}
+                    (* Timeline dot *)
                     <div
                       className="absolute -left-[6px] top-2 w-2.5 h-2.5 border-[1.5px] border-studio-ink shrink-0"
                       style={{ background: meta.dot }}
                     />
 
-                    {/* Time */}
+                    (* Time *)
                     <span className="font-mono text-[11px] font-bold text-studio-ink/75 w-24 shrink-0 pt-0.5 tabular-nums">
                       {event.time}
                     </span>
 
-                    {/* Event card */}
+                    (* Event card *)
                     <div className={`flex-1 hard-card-sm px-3 py-2 ${meta.card}`}>
                       <div className="flex items-center gap-2">
                         <span className="font-body font-medium text-sm text-studio-ink leading-snug">
@@ -107,9 +120,10 @@ export default function SchedulePanel() {
         ))}
 
         <div className="text-center py-4 font-mono text-[11px] font-bold uppercase tracking-wider text-studio-ink/65">
-          All workshops led by {siteConfig.organizers[0].name} · Recordings sent to registered participants
+          Recordings sent to registered participants
         </div>
       </div>
+      */}
     </div>
   );
 }

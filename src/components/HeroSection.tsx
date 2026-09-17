@@ -396,7 +396,7 @@ export default function HeroSection({ onOpenWindow }: HeroSectionProps) {
             {/* Four facts, inset from the plate edge. Pinned, not bobbing. */}
             <Badge icon={<PeopleLineIcon size={14} />} text={`${registrationCount} registered`} className="absolute top-5 left-5" color="bg-banana-400 text-studio-ink" />
             <Badge icon={<CapLineIcon size={14} />}   text="Workshops"     className="absolute top-16 right-5"      color="bg-vine-200 text-studio-ink" />
-            <Badge icon={<MedalLineIcon size={14} />} text="$10K Prizes"   className="absolute bottom-16 left-5"    color="bg-studio-ripe text-banana-50" />
+            <Badge icon={<MedalLineIcon size={14} />} text="$500 in prizes, licenses & domains"   className="absolute bottom-16 left-5"    color="bg-studio-ripe text-banana-50" />
             <Badge icon={<GlobeLineIcon size={14} />} text="60+ countries" className="absolute bottom-5 right-5"    color="bg-banana-50 text-studio-ink" />
 
             {/*
