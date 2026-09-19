@@ -128,6 +128,13 @@ export const SPONSORS: Sponsor[] = [
     bg: "#B1CF5B",
     light: true,
   },
+  {
+    name: "Kariaa",
+    url: "https://www.kariaa.com",
+    logo: "/sponsors/kariaa.png",
+    tagline: "Good work, made findable",
+    bg: "#CF3635",
+  },
 ];
 
 export interface Prize {
