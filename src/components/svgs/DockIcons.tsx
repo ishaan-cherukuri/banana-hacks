@@ -164,6 +164,18 @@ export function PeopleLineIcon(props: IconProps) {
   );
 }
 
+/** Organizers → ID badge */
+export function BadgeLineIcon(props: IconProps) {
+  return (
+    <Base {...props} label="Organizers">
+      <rect x="4" y="5" width="16" height="15" rx="2" fill="white" />
+      <path d="M9 5V3.5h6V5" />
+      <circle cx="12" cy="11" r="2.2" fill="#FDD835" />
+      <path d="M8.5 17c.3-1.9 1.6-3 3.5-3s3.2 1.1 3.5 3" fill="#B8D8D0" />
+    </Base>
+  );
+}
+
 export const DOCK_ICON_MAP: Record<string, (p: IconProps) => React.JSX.Element> = {
   info:     InfoLineIcon,
   about:    BananaLineIcon,
@@ -173,4 +185,5 @@ export const DOCK_ICON_MAP: Record<string, (p: IconProps) => React.JSX.Element> 
   apply:    ApplyLineIcon,
   faq:      QuestionLineIcon,
   sponsors: HeartLineIcon,
+  organizers: BadgeLineIcon,
 };

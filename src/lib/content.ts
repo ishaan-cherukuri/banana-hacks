@@ -307,3 +307,49 @@ export const RULES_SECTIONS: PolicySection[] = [
     ],
   },
 ];
+
+// ── Organizers ───────────────────────────────────────────────────────
+export interface Organizer {
+  name: string;
+  role: string;
+  photo: string;
+}
+
+/** Card order on the Organizers panel. */
+export const ORGANIZERS: Organizer[] = [
+  { name: "Rajveer Dharkar",  role: "Executive Organizer", photo: "/organizers/rajveer.jpg" },
+  { name: "Ishaan Cherukuri", role: "Executive Organizer", photo: "/organizers/ishaan.jpg" },
+  { name: "Deva Lingam",      role: "Sponsorship Lead",    photo: "/organizers/deva.jpg" },
+  { name: "Vihaan Cherukuri", role: "Outreach Lead",       photo: "/organizers/vihu.jpg" },
+];
+
+/** Shown in the "Join the team" modal on the Organizers panel. */
+export const ORGANIZER_APPLICATION_SECTIONS: PolicySection[] = [
+  {
+    title: "The short version",
+    body: [
+      "The 2026 team is set, so we can't bring anyone on for this year's event.",
+      "Banana Hacks is coming back in 2027, and we're building that team now.",
+      "If you want in, email team@bananahacks.tech with the subject line ORGANIZER APPLICATION and a little about yourself.",
+      "We'll read it and schedule a short call to meet you.",
+    ],
+  },
+  {
+    title: "What to expect",
+    body: [
+      "A small team of student organizers working remotely, mostly over Discord, with a weekly sync.",
+      "Roles cover sponsorship, outreach, design, judging logistics, and the website. Tell us which sound like you.",
+      "A couple of hours a week most of the year, ramping up in the month before the event.",
+      "You'll own real things: sponsor conversations, school partnerships, the Discord, the schedule.",
+      "It's unpaid and volunteer-run, like the event itself. Organizers can't compete for prizes.",
+    ],
+  },
+  {
+    title: "What to put in your email",
+    body: [
+      "Your name, school or year, and where you're based.",
+      "Why you want to help run Banana Hacks.",
+      "Anything you've organized, built, or shipped before. Hackathons, clubs, projects, all count.",
+    ],
+  },
+];

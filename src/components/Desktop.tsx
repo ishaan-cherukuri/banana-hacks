@@ -10,6 +10,7 @@ import FAQPanel      from "@/components/panels/FAQPanel";
 import PrizesPanel   from "@/components/panels/PrizesPanel";
 import ApplyPanel    from "@/components/panels/ApplyPanel";
 import SponsorsPanel from "@/components/panels/SponsorsPanel";
+import OrganizersPanel from "@/components/panels/OrganizersPanel";
 import SketchPanel   from "@/components/panels/SketchPanel";
 import InfoPanel     from "@/components/panels/InfoPanel";
 import { DOCK_ICON_MAP, ApplyLineIcon } from "@/components/svgs/DockIcons";
@@ -20,6 +21,8 @@ interface WindowConfig {
   w: number;
   h: number;
   component: React.ComponentType;
+  /** See Window.fixedSize. */
+  fixedSize?: boolean;
 }
 
 const WIN_W = 860;
@@ -32,6 +35,7 @@ const WINDOW_DEFS: WindowConfig[] = [
   { id: "prizes",   title: "Prizes", w: WIN_W, h: WIN_H, component: PrizesPanel   },
   { id: "apply",    title: "Register", w: WIN_W, h: WIN_H, component: ApplyPanel    },
   { id: "sponsors", title: "Sponsors", w: WIN_W, h: WIN_H, component: SponsorsPanel },
+  { id: "organizers", title: "Organizers", w: WIN_W, h: 600, component: OrganizersPanel, fixedSize: true },
   { id: "sketch",   title: "AI Studio", w: WIN_W, h: WIN_H, component: SketchPanel   },
   { id: "info",     title: "Get Info", w: 640,   h: 560,   component: InfoPanel     },
 ];
@@ -47,6 +51,7 @@ const DESKTOP_ICONS = [
   { id: "apply",    label: "Register"  },
   { id: "faq",      label: "FAQ"       },
   { id: "sponsors", label: "Sponsors"  },
+  { id: "organizers", label: "Organizers" },
   { id: "info",     label: "Get Info"  },
 ];
 
@@ -151,6 +156,7 @@ export default function Desktop() {
               zIndex={win.zIndex}
               focused={win.id === focusedId}
               minimized={win.minimized}
+              fixedSize={def.fixedSize}
               onFocus={() => focusWindow(win.id)}
               onClose={() => closeWindow(win.id)}
               onMinimize={() => minimizeWindow(win.id)}
@@ -191,7 +197,7 @@ export default function Desktop() {
           className="flex items-end hard-card mb-1 mx-2 max-w-full overflow-hidden"
           style={{ background: "#FFFBF0" }}
         >
-          {/* Scrollable: the seven browsing destinations. */}
+          {/* Scrollable: the eight browsing destinations. */}
           <ul className="flex items-end gap-1 sm:gap-1.5 px-2 sm:px-3 py-2 overflow-x-auto min-w-0">
             {DESKTOP_ICONS.map((icon) => {
               const isOpen = openWindows.some((w) => w.id === icon.id && !w.minimized);

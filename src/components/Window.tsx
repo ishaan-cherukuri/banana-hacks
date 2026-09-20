@@ -22,6 +22,11 @@ interface WindowProps {
    * only recovery was a page reload. See AUDIT.md C2.
    */
   minimized?: boolean;
+  /**
+   * Pinned window: no drag, no resize handle, no maximize. For panels whose
+   * layout only works at one size (Organizers is a 4-up card row).
+   */
+  fixedSize?: boolean;
   onFocus: () => void;
   onClose: () => void;
   onMinimize: () => void;
@@ -39,6 +44,7 @@ export default function Window({
   zIndex,
   focused = false,
   minimized = false,
+  fixedSize = false,
   onFocus,
   onClose,
   onMinimize,
@@ -56,7 +62,7 @@ export default function Window({
   /* ── Drag ─────────────────────────────────────────────── */
   const onTitleMouseDown = useCallback(
     (e: React.MouseEvent) => {
-      if (isMaximized || isMobile) return;
+      if (isMaximized || isMobile || fixedSize) return;
       // Don't start drag if clicking a window-control button
       if ((e.target as HTMLElement).closest("button")) return;
       e.preventDefault();
@@ -85,7 +91,7 @@ export default function Window({
       window.addEventListener("mousemove", onMove);
       window.addEventListener("mouseup", onUp);
     },
-    [isMaximized, isMobile, onFocus, pos]
+    [isMaximized, isMobile, fixedSize, onFocus, pos]
   );
 
   /* ── Resize ───────────────────────────────────────────── */
@@ -144,6 +150,7 @@ export default function Window({
 
   /* ── Maximize / Restore ───────────────────────────────── */
   const toggleMaximize = () => {
+    if (fixedSize) return;
     if (isMaximized) {
       setPos(prevState.pos);
       setSize(prevState.size);
@@ -188,7 +195,7 @@ export default function Window({
     >
       {/* Title bar */}
       <div
-        className="flex items-center px-2.5 h-9 shrink-0 cursor-grab active:cursor-grabbing"
+        className={`flex items-center px-2.5 h-9 shrink-0 ${fixedSize ? "" : "cursor-grab active:cursor-grabbing"}`}
         style={{
           background: focused ? "#FDD835" : "#F2EEE2",
           borderBottom: "1.5px solid #191A17",
@@ -203,7 +210,7 @@ export default function Window({
           {([
             { label: "Close window",    glyph: "\u00d7", fill: "#E2542A", onClick: onClose },
             { label: "Minimize window", glyph: "\u2013", fill: "#F2EEE2", onClick: onMinimize },
-            { label: "Maximize window", glyph: "\u25a1", fill: "#F2EEE2", onClick: toggleMaximize },
+            ...(fixedSize ? [] : [{ label: "Maximize window", glyph: "\u25a1", fill: "#F2EEE2", onClick: toggleMaximize }]),
           ] as const).map((b) => (
             <button
               key={b.label}
@@ -233,7 +240,7 @@ export default function Window({
       </div>
 
       {/* Resize handle */}
-      {!isMaximized && !isMobile && (
+      {!isMaximized && !isMobile && !fixedSize && (
         <div
           className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize"
           onMouseDown={onResizeMouseDown}
