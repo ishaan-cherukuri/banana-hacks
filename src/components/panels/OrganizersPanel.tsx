@@ -108,8 +108,8 @@ export default function OrganizersPanel() {
       </div>
 
       <div className="px-6 pb-8 space-y-6">
-        {/* One row of four. The window is pinned to a fixed size so this never wraps on desktop. */}
-        <ul className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {/* One row of five. The window is pinned to a fixed size so this never wraps on desktop. */}
+        <ul className="grid grid-cols-2 sm:grid-cols-5 gap-3">
           {ORGANIZERS.map((person) => (
             <li
               key={person.name}
