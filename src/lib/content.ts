@@ -321,7 +321,7 @@ export const ORGANIZERS: Organizer[] = [
   { name: "Ishaan Cherukuri", role: "Executive Organizer", photo: "/organizers/ishaan.jpg" },
   { name: "Deva Lingam",      role: "Sponsorship Lead",    photo: "/organizers/deva.jpg" },
   { name: "Vihaan Cherukuri", role: "Outreach Lead",       photo: "/organizers/vihu.jpg" },
-  { name: "Kennice Kwok",     role: "Social Media Manager", photo: "/organizers/kennice.jpg" },
+  { name: "Kennice Kwok",     role: "Curriculum Lead",     photo: "/organizers/kennice.jpg" },
 ];
 
 /** Shown in the "Join the team" modal on the Organizers panel. */
