@@ -34,7 +34,7 @@ export const siteConfig = {
    * Community. Permanent invite. The UI renders honest copy when this is
    * falsy rather than a button that goes nowhere.
    */
-  discordUrl: "https://discord.gg/k6jyxXTSe",
+  discordUrl: "https://discord.gg/mzRvv5JPn",
   instagramUrl: "https://www.instagram.com/bananahacks26/",
   mlhCodeOfConductUrl: "https://mlh.io/code-of-conduct",
   /** Stated plainly because nothing on the site previously said either. */
