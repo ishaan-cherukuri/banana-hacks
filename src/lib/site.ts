@@ -39,7 +39,7 @@ export const siteConfig = {
   mlhCodeOfConductUrl: "https://mlh.io/code-of-conduct",
   /** Stated plainly because nothing on the site previously said either. */
   eligibility:
-    "Anyone can join, no matter their age, location, or experience. The event is especially friendly to students and first-time hackers.",
+    "Open to students aged 14 to 24 who are enrolled at a school or educational institution, in any country and at any experience level. First-time hackers are especially welcome.",
 } as const;
 
 /**
@@ -74,7 +74,7 @@ export const sitePages: SitePage[] = [
     label: "About",
     title: "About Banana Hacks 2026 | Free Online Generative AI Hackathon",
     description:
-      "What Banana Hacks 2026 is, who can join, and what you'll build at this free online generative AI and image creation hackathon. Anyone can enter from any country. Oct 9 to 12, 2026.",
+      "What Banana Hacks 2026 is, who can join, and what you'll build at this free online generative AI and image creation hackathon. Open to students aged 14 to 24 in any country. Oct 9 to 12, 2026.",
     priority: 0.9,
   },
   {
@@ -122,7 +122,7 @@ export const sitePages: SitePage[] = [
     label: "Register",
     title: "Register for Banana Hacks 2026 | Free Online AI Hackathon Sign-Up",
     description:
-      "Registering for Banana Hacks 2026 is free and open to anyone in any country. Sign up for the online generative AI and image creation hackathon running Oct 9 to 12, 2026.",
+      "Registering for Banana Hacks 2026 is free and open to students aged 14 to 24 in any country. Sign up for the online generative AI and image creation hackathon running Oct 9 to 12, 2026.",
     priority: 0.9,
   },
 ];

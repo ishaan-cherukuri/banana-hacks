@@ -110,7 +110,8 @@ export default function AboutPanel() {
           </h3>
           <ul className="space-y-1.5">
             {[
-              "Open to anyone in any country: students, professionals, hobbyists",
+              "Ages 14 to 24, in any country",
+              "Must be a student enrolled at a school or educational institution",
               "Teams of 1 to 4 people",
               "Any skill level. First-timers especially welcome",
               "Must submit by Oct 11, 2026 at 11:59 PM AoE",

@@ -14,7 +14,7 @@ export interface FAQItem {
 export const FAQS: FAQItem[] = [
   {
     q: "Who can participate?",
-    a: "Anyone, at any age, in any country. We don't check your age, where you live, or whether you're enrolled at a school. Banana Hacks is aimed at students and first-time hackers, so the workshops and mentoring assume you have never done this before, but professionals and hobbyists are welcome too. All you need is an internet connection. If you're under 18, read the Code of Conduct with a parent or guardian first.",
+    a: "Students aged 14 to 24 who are currently enrolled at a school or educational institution (high school, college, university, or similar), in any country. The workshops and mentoring assume you have never done this before, so first-time hackers are especially welcome. All you need is an internet connection. If you're under 18, read the Code of Conduct with a parent or guardian first.",
   },
   {
     q: "Is it free to enter?",
@@ -204,8 +204,9 @@ export const JUDGING_CRITERIA = [
 ];
 
 export const ELIGIBILITY = [
-  "Open to everyone, everywhere, with no age limit and no country restriction",
-  "Built for students and first-timers; professionals and hobbyists welcome too",
+  "Open to participants aged 14 to 24, in any country",
+  "Must be a student currently enrolled at a school or educational institution",
+  "First-time hackers especially welcome",
   "Teams of 1 to 4 people",
   "Under 18? Read the Code of Conduct with a parent or guardian",
   "Must submit by Oct 11, 2026 at 11:59 PM AoE",
